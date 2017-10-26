@@ -37,9 +37,6 @@
                 <e p="VersionFormatter.cs" t="Include" />
               </e>
             </e>
-            <e p="Util" t="Include">
-              <e p="Maybe.cs" t="Include" />
-            </e>
           </e>
         </e>
         <e p="Octopus.Server.Core.Versioning.csproj" t="IncludeRecursive" />

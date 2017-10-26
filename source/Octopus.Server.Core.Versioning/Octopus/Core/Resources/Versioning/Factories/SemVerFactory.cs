@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text;
 using Octopus.Core.Resources.Versioning.Semver;
 using Octopus.Core.Util;
 
-namespace Octopus.Core.Resources.Versioning
+namespace Octopus.Core.Resources.Versioning.Factories
 {
     /// <summary>
     /// This partial class contains all the log required to create SemanticVersion

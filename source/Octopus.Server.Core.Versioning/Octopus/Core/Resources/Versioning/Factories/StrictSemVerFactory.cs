@@ -2,7 +2,7 @@
 using System.Linq;
 using Octopus.Core.Resources.Versioning.Semver;
 
-namespace Octopus.Core.Resources.Versioning
+namespace Octopus.Core.Resources.Versioning.Factories
 {
     public class StrictSemVerFactory
     {

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using NuGet.Versioning;
+using Octopus.Core.Resources.Versioning.Factories;
 
 namespace Octopus.Core.Resources.Versioning.Semver
 {

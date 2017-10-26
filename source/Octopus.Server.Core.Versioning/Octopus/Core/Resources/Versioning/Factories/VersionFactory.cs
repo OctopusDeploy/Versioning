@@ -1,13 +1,10 @@
 ﻿using System;
-using EnsureThat;
 using NuGet.Versioning;
-using Octopus.Core.Model.Maven;
-using Octopus.Core.Resources.Versioning.Factories;
 using Octopus.Core.Resources.Versioning.Maven;
 using Octopus.Core.Util;
 using SemanticVersion = Octopus.Core.Resources.Versioning.Semver.SemanticVersion;
 
-namespace Octopus.Core.Resources.Versioning
+namespace Octopus.Core.Resources.Versioning.Factories
 {
     public class VersionFactory : IVersionFactory
     {

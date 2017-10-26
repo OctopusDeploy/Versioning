@@ -11,7 +11,7 @@
     <RootNamespace>
     </RootNamespace>
     <AssemblyName>Octopus.Server.Core.Versioning</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,6 +39,9 @@
     </Reference>
     <Reference Include="NuGet.Versioning, Version=4.4.0.3, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\packages\NuGet.Versioning.4.4.0\lib\net45\NuGet.Versioning.dll</HintPath>
+    </Reference>
+    <Reference Include="Octopus.Server.Core.Utilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Octopus.Server.Core.Utilities.0.1.0-ci0001\lib\net45\Octopus.Server.Core.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -69,7 +72,6 @@
     <Compile Include="Octopus\Core\Resources\Versioning\Semver\VersionComparer.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\Semver\VersionComparison.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\VersionFormatter.cs" />
-    <Compile Include="Octopus\Core\Util\Maybe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using Octopus.Core.Extensions;
-using Octopus.Shared.Util;
 
 namespace Octopus.Core.Resources.Versioning.Maven
 {
@@ -59,21 +58,21 @@ namespace Octopus.Core.Resources.Versioning.Maven
                 string buildNumber = matcher.Groups[4].Value;
                 string qualifier = matcher.Groups[5].Value;
 
-                if (!buildNumber.IsNullOrEmpty())
+                if (buildNumber.Trim().Length != 0)
                 {
                     BuildNumber = Int32.Parse(buildNumber);
                 }
 
-                if (!matcher.Groups[7].Value.IsNullOrEmpty())
+                if (matcher.Groups[7].Value.Trim().Length != 0)
                 {
                     qualifier = matcher.Groups[7].Value;
                 }
                 // Starting with "-"
-                if (!matcher.Groups[9].Value.IsNullOrEmpty())
+                if (matcher.Groups[9].Value.Trim().Length != 0)
                 {
                     qualifier = matcher.Groups[9].Value;
                 }
-                if (!qualifier.IsNullOrEmpty())
+                if (qualifier.Trim().Length != 0)
                 {
                     if (qualifier.Trim().Length == 0)
                     {
@@ -100,15 +99,15 @@ namespace Octopus.Core.Resources.Versioning.Maven
                 string minorString = matcher.Groups[4].Value;
                 string patchString = matcher.Groups[6].Value;
 
-                if (!majorString.IsNullOrEmpty())
+                if (majorString.Trim().Length != 0)
                 {
                     Major = Int32.Parse(majorString);
                 }
-                if (!minorString.IsNullOrEmpty())
+                if (minorString.Trim().Length != 0)
                 {
                     Minor = Int32.Parse(minorString);
                 }
-                if (!patchString.IsNullOrEmpty())
+                if (patchString.Trim().Length != 0)
                 {
                     Patch = Int32.Parse(patchString);
                 }

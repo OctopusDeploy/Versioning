@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using Octopus.Shared.Util;
 
 namespace Octopus.Core.Resources.Versioning.Maven
 {
@@ -358,7 +357,7 @@ namespace Octopus.Core.Resources.Versioning.Maven
                 list.Add(ParseItem(isDigit, version.Substring(startIndex)));
             }
 
-            while (!stack.IsNullOrEmpty())
+            while (stack.Count != 0)
             {
                 list = (ListItem) stack.Pop();
                 list.Normalize();
