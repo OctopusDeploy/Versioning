@@ -43,6 +43,9 @@
     <Reference Include="Octopus.Server.Core.Utilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Octopus.Server.Core.Utilities.0.1.0-ci0001\lib\net45\Octopus.Server.Core.Utilities.dll</HintPath>
     </Reference>
+    <Reference Include="Octopus.Server.Core.Utilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Octopus.Server.Core.Utilities.0.1.0-ci0003\lib\net40\Octopus.Server.Core.Utilities.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />

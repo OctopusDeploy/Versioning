@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NuGet.Versioning;
 using Octopus.Core.Util;
 
@@ -23,7 +24,7 @@ namespace Octopus.Core.Resources.Versioning.Factories
         IVersion CreateSemanticVersion(int major, int minor, int patch);
         IVersion CreateSemanticVersion(int major, int minor, int patch, int revision);
         IVersion CreateSemanticVersion(Version version, string releaseLabel = null, string metadata = null);        
-        IVersion CreateSemanticVersion(NuGetVersion nugetVersion);
+        IVersion CreateSemanticVersion(Version version, IEnumerable<string> releaseLabels, string metadata, string originalVersion);
         Maybe<IVersion> CreateSemanticVersionOrNone(string input, bool preserveMissingComponents = false);
         bool CanCreateVersion(string input, out IVersion version, FeedType type);
         bool CanCreateMavenVersion(string input, out IVersion version);

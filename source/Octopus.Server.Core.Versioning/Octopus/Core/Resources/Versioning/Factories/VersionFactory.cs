@@ -1,5 +1,5 @@
 ﻿using System;
-using NuGet.Versioning;
+using System.Collections.Generic;
 using Octopus.Core.Resources.Versioning.Maven;
 using Octopus.Core.Util;
 using SemanticVersion = Octopus.Core.Resources.Versioning.Semver.SemanticVersion;
@@ -83,13 +83,13 @@ namespace Octopus.Core.Resources.Versioning.Factories
             return SemVerFactory.CreateVersionOrNone(input, preserveMissingComponents);
         }
 
-        public IVersion CreateSemanticVersion(NuGetVersion nugetVersion)
+        public IVersion CreateSemanticVersion(Version version, IEnumerable<string> releaseLabels, string metadata, string originalVersion)
         {
             return new SemanticVersion(
-                nugetVersion.Version,
-                nugetVersion.ReleaseLabels,
-                nugetVersion.Metadata,
-                nugetVersion.ToString());
+                version,
+                releaseLabels,
+                metadata,
+                originalVersion);
         }
     }
 }
