@@ -37,8 +37,8 @@
     <Reference Include="Ensure.That, Version=6.0.1.29, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Ensure.That.6.0.1\lib\netstandard1.1\Ensure.That.dll</HintPath>
     </Reference>
-    <Reference Include="NuGet.Versioning, Version=4.4.0.3, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\packages\NuGet.Versioning.4.4.0\lib\net45\NuGet.Versioning.dll</HintPath>
+    <Reference Include="NuGet.Versioning, Version=3.6.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\NuGet.Versioning.3.6.0-octopus-58672\lib\net45\NuGet.Versioning.dll</HintPath>
     </Reference>
     <Reference Include="Octopus.Server.Core.Utilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Octopus.Server.Core.Utilities.0.1.0-ci0001\lib\net45\Octopus.Server.Core.Utilities.dll</HintPath>
