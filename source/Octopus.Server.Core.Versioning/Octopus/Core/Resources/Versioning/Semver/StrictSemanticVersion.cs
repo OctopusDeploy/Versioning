@@ -128,6 +128,8 @@ namespace Octopus.Core.Resources.Versioning.Semver
         /// </summary>
         public virtual bool HasMetadata => !string.IsNullOrEmpty(Metadata);
 
+        public virtual string OriginalString => null;
+
         /// <summary>
         /// Build metadata attached to the version.
         /// </summary>

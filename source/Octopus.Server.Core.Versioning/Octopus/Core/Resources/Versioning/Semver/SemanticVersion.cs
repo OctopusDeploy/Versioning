@@ -194,5 +194,7 @@ namespace Octopus.Core.Resources.Versioning.Semver
         /// Returns true if version is a SemVer 2.0.0 version
         /// </summary>
         public bool IsSemVer2 => this.ReleaseLabels.Count() > 1 || this.HasMetadata;
+
+        public override string OriginalString => _originalString;
     }
 }

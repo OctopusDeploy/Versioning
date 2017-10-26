@@ -34,15 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ensure.That, Version=6.0.1.29, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Ensure.That.6.0.1\lib\netstandard1.1\Ensure.That.dll</HintPath>
-    </Reference>
-    <Reference Include="NuGet.Versioning, Version=3.6.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\NuGet.Versioning.3.6.0-octopus-58672\lib\net45\NuGet.Versioning.dll</HintPath>
-    </Reference>
-    <Reference Include="Octopus.Server.Core.Utilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Octopus.Server.Core.Utilities.0.1.0-ci0001\lib\net45\Octopus.Server.Core.Utilities.dll</HintPath>
-    </Reference>
     <Reference Include="Octopus.Server.Core.Utilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Octopus.Server.Core.Utilities.0.1.0-ci0003\lib\net40\Octopus.Server.Core.Utilities.dll</HintPath>
     </Reference>
@@ -50,9 +41,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>

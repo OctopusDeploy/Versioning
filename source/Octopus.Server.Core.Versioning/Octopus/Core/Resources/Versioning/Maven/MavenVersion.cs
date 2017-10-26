@@ -32,15 +32,7 @@ namespace Octopus.Core.Resources.Versioning.Maven
 
         public string Metadata => null;
         public bool HasMetadata => false;
-        public object ToType(Type type)
-        {
-            if (type == typeof(string))
-            {
-                return originalVersion;
-            }
-
-            throw new ArgumentException("Invalid type supplied to MavenVersion.ToType()");
-        }
+        public string OriginalString => originalVersion;
 
         public MavenVersion(int major, int minor, int patch, int revision, IEnumerable<string> releaseLabels, string originalVersion)
         {
