@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NuGet.Versioning;
 using Octopus.Core.Resources.Versioning.Factories;
 
 namespace Octopus.Core.Resources.Versioning.Semver
@@ -195,15 +194,5 @@ namespace Octopus.Core.Resources.Versioning.Semver
         /// Returns true if version is a SemVer 2.0.0 version
         /// </summary>
         public bool IsSemVer2 => this.ReleaseLabels.Count() > 1 || this.HasMetadata;
-
-        public override object ToType(Type type)
-        {
-            if (type.IsAssignableFrom(typeof(NuGetVersion)))
-            {
-                return new NuGetVersion(Version, ReleaseLabels, Metadata, _originalString);
-            }
-            
-            throw new InvalidCastException();
-        } 
     }
 }

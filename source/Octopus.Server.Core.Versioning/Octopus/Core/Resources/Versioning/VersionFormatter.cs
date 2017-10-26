@@ -4,7 +4,6 @@
 using System;
 using System.Globalization;
 using System.Text;
-using EnsureThat;
 using Octopus.Core.Resources.Versioning.Semver;
 
 namespace Octopus.Core.Resources.Versioning
@@ -13,7 +12,10 @@ namespace Octopus.Core.Resources.Versioning
     {
         public string Format(string format, object arg, IFormatProvider formatProvider)
         {
-            EnsureArg.IsNotNull(arg, nameof(arg));
+            if (arg == null)
+            {
+                throw new ArgumentException("arg can not be null");
+            }    
 
             string formatted = null;
             var argType = arg.GetType();

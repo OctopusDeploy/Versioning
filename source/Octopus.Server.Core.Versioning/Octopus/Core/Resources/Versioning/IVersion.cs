@@ -38,6 +38,5 @@ namespace Octopus.Core.Resources.Versioning
         string Metadata { get; }
         string Release { get; }
         bool HasMetadata { get; }
-        object ToType(Type type);
     }
 }

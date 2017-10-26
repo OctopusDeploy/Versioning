@@ -11,23 +11,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MavenVersionParser.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/MavenVersionParser.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VersionFactory.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VersionFactory.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3558">
-              <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+            <state relative-caret-position="570">
+              <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
               <folding>
-                <marker date="1509050457813" expanded="true" signature="6:201" ph="..." />
+                <marker date="1509050457813" expanded="false" signature="6:201" ph="..." />
                 <marker date="1509050457813" expanded="true" signature="256:3288" ph="{...}" />
                 <marker date="1509050457813" expanded="true" signature="308:3286" ph="{...}" />
                 <marker date="1509050457813" expanded="true" signature="457:704" ph="{...}" />
@@ -50,49 +40,62 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SemanticVersion.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SemanticVersion.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/SemanticVersion.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="671">
-              <caret line="163" column="122" lean-forward="false" selection-start-line="163" selection-start-column="31" selection-end-line="163" selection-end-column="122" />
+            <state relative-caret-position="704">
+              <caret line="180" column="9" lean-forward="false" selection-start-line="180" selection-start-column="9" selection-end-line="180" selection-end-column="9" />
               <folding>
-                <marker date="1508987529314" expanded="true" signature="0:201" ph="/* This class is based on NuGet's NuGetVersion class from https://github.com/NuGet/NuGet.Client ... */" />
-                <marker date="1508987529314" expanded="false" signature="209:344" ph="..." />
-                <marker date="1508987529314" expanded="true" signature="396:8638" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="404:657" ph="/// A hybrid implementation of SemVer that supports semantic versioning as described at http://semver.org while ... " />
-                <marker date="1508987529314" expanded="true" signature="714:8636" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="936:1274" ph="/// This is used by the JSON deserialisation to to pass a SemanticVersion ... " />
-                <marker date="1508987529314" expanded="true" signature="1352:1435" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="1453:1614" ph="/// Creates a NuGetVersion using NuGetVersion.Parse(string) ... " />
-                <marker date="1508987529314" expanded="true" signature="1718:1738" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="1756:1857" ph="/// Creates a NuGetVersion from an existing NuGetVersion ... " />
-                <marker date="1508987529314" expanded="true" signature="2010:2030" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="2040:2311" ph="/// Creates a NuGetVersion from a .NET Version ... " />
-                <marker date="1508987529314" expanded="true" signature="2622:2642" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="2652:2867" ph="/// Creates a NuGetVersion X.Y.Z ... " />
-                <marker date="1508987529314" expanded="true" signature="3005:3025" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="3035:3320" ph="/// Creates a NuGetVersion X.Y.Z-alpha ... " />
-                <marker date="1508987529314" expanded="true" signature="3491:3511" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="3521:3872" ph="/// Creates a NuGetVersion X.Y.Z-alpha##build01 ... " />
-                <marker date="1508987529314" expanded="true" signature="4064:4084" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="4094:4451" ph="/// Creates a NuGetVersion X.Y.Z-alpha.1.2##build01 ... " />
-                <marker date="1508987529314" expanded="true" signature="4654:4674" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="4684:4958" ph="/// Creates a NuGetVersion W.X.Y.Z ... " />
-                <marker date="1508987529314" expanded="true" signature="5120:5140" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="5150:5560" ph="/// Creates a NuGetVersion W.X.Y.Z-alpha##build01 ... " />
-                <marker date="1508987529314" expanded="true" signature="5776:5796" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="5806:6220" ph="/// Creates a NuGetVersion W.X.Y.Z-alpha.1##build01 ... " />
-                <marker date="1508987529314" expanded="true" signature="6444:6464" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="6474:7044" ph="/// Creates a NuGetVersion from a .NET Version with additional release labels, build metadata, and a ... " />
-                <marker date="1508987529314" expanded="true" signature="7288:7355" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="7365:7544" ph="/// Returns the version string. ... " />
-                <marker date="1508987529314" expanded="true" signature="7586:7771" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="7651:7724" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="7781:7912" ph="/// A System.Version representation of the version without metadata or release labels. ... " />
-                <marker date="1508987529314" expanded="true" signature="7966:8065" ph="/// True if the NuGetVersion is using legacy behavior. ... " />
-                <marker date="1508987529314" expanded="true" signature="8136:8234" ph="/// Returns true if version is a SemVer 2.0.0 version ... " />
-                <marker date="1508987529314" expanded="true" signature="8369:8629" ph="{...}" />
-                <marker date="1508987529314" expanded="true" signature="8440:8560" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="0:201" ph="/* This class is based on NuGet's NuGetVersion class from https://github.com/NuGet/NuGet.Client ... */" />
+                <marker date="1509051507390" expanded="false" signature="209:320" ph="..." />
+                <marker date="1509051507390" expanded="true" signature="372:8303" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="380:633" ph="/// A hybrid implementation of SemVer that supports semantic versioning as described at http://semver.org while ... " />
+                <marker date="1509051507390" expanded="true" signature="690:8301" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="912:1250" ph="/// This is used by the JSON deserialisation to to pass a SemanticVersion ... " />
+                <marker date="1509051507390" expanded="true" signature="1328:1411" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="1429:1590" ph="/// Creates a NuGetVersion using NuGetVersion.Parse(string) ... " />
+                <marker date="1509051507390" expanded="true" signature="1694:1714" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="1732:1833" ph="/// Creates a NuGetVersion from an existing NuGetVersion ... " />
+                <marker date="1509051507390" expanded="true" signature="1986:2006" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="2016:2287" ph="/// Creates a NuGetVersion from a .NET Version ... " />
+                <marker date="1509051507390" expanded="true" signature="2598:2618" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="2628:2843" ph="/// Creates a NuGetVersion X.Y.Z ... " />
+                <marker date="1509051507390" expanded="true" signature="2981:3001" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="3011:3296" ph="/// Creates a NuGetVersion X.Y.Z-alpha ... " />
+                <marker date="1509051507390" expanded="true" signature="3467:3487" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="3497:3848" ph="/// Creates a NuGetVersion X.Y.Z-alpha##build01 ... " />
+                <marker date="1509051507390" expanded="true" signature="4040:4060" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="4070:4427" ph="/// Creates a NuGetVersion X.Y.Z-alpha.1.2##build01 ... " />
+                <marker date="1509051507390" expanded="true" signature="4630:4650" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="4660:4934" ph="/// Creates a NuGetVersion W.X.Y.Z ... " />
+                <marker date="1509051507390" expanded="true" signature="5096:5116" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="5126:5536" ph="/// Creates a NuGetVersion W.X.Y.Z-alpha##build01 ... " />
+                <marker date="1509051507390" expanded="true" signature="5752:5772" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="5782:6196" ph="/// Creates a NuGetVersion W.X.Y.Z-alpha.1##build01 ... " />
+                <marker date="1509051507390" expanded="true" signature="6420:6440" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="6450:7020" ph="/// Creates a NuGetVersion from a .NET Version with additional release labels, build metadata, and a ... " />
+                <marker date="1509051507390" expanded="true" signature="7264:7331" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="7341:7520" ph="/// Returns the version string. ... " />
+                <marker date="1509051507390" expanded="true" signature="7562:7747" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="7627:7700" ph="{...}" />
+                <marker date="1509051507390" expanded="true" signature="7757:7888" ph="/// A System.Version representation of the version without metadata or release labels. ... " />
+                <marker date="1509051507390" expanded="true" signature="7942:8041" ph="/// True if the NuGetVersion is using legacy behavior. ... " />
+                <marker date="1509051507390" expanded="true" signature="8112:8210" ph="/// Returns true if version is a SemVer 2.0.0 version ... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IVersion.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/IVersion.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1629">
+              <caret line="39" column="33" lean-forward="false" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+              <folding>
+                <marker date="1509051470964" expanded="false" signature="6:47" ph="..." />
+                <marker date="1509051470964" expanded="true" signature="92:1584" ph="{...}" />
+                <marker date="1509051470964" expanded="true" signature="99:1230" ph="/// Represents the base components of a version recognised by Octopus. ... " />
+                <marker date="1509051470964" expanded="true" signature="1274:1582" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -101,9 +104,38 @@
       <file leaf-file-name="StrictSemanticVersion.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/StrictSemanticVersion.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-              <folding />
+            <state relative-caret-position="7296">
+              <caret line="128" column="75" lean-forward="false" selection-start-line="128" selection-start-column="75" selection-end-line="128" selection-end-column="75" />
+              <folding>
+                <marker date="1509051507427" expanded="true" signature="0:204" ph="/* This class is based on NuGet's SemanticVersion class from https://github.com/NuGet/NuGet.Client ... */" />
+                <marker date="1509051507427" expanded="true" signature="212:272" ph="..." />
+                <marker date="1509051507427" expanded="true" signature="324:4307" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="332:403" ph="/// A strict SemVer implementation ... " />
+                <marker date="1509051507427" expanded="true" signature="461:4305" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="692:910" ph="/// Creates a SemanticVersion X.Y.Z ... " />
+                <marker date="1509051507427" expanded="true" signature="1054:1074" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="1084:1480" ph="/// Creates a NuGetVersion X.Y.Z-alpha.1.2##build01 ... " />
+                <marker date="1509051507427" expanded="true" signature="1676:1696" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="1843:2335" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="1886:1985" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="2201:2325" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="2345:2417" ph="/// Major version X (X.y.z) ... " />
+                <marker date="1509051507427" expanded="true" signature="2471:2543" ph="/// Minor version Y (x.Y.z) ... " />
+                <marker date="1509051507427" expanded="true" signature="2597:2669" ph="/// Patch version Z (x.y.Z) ... " />
+                <marker date="1509051507427" expanded="true" signature="2723:2800" ph="/// Revision version R (x.y.z.R) ... " />
+                <marker date="1509051507427" expanded="true" signature="2860:2968" ph="/// A collection of pre-release labels attached to the version. ... " />
+                <marker date="1509051507427" expanded="true" signature="3017:3110" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="3120:3212" ph="/// The full pre-release label for the version. ... " />
+                <marker date="1509051507427" expanded="true" signature="3242:3485" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="3268:3475" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="3326:3423" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="3495:3593" ph="/// True if pre-release labels exist for the version. ... " />
+                <marker date="1509051507427" expanded="true" signature="3634:3973" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="3660:3963" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="3717:3918" ph="{...}" />
+                <marker date="1509051507427" expanded="true" signature="3983:4072" ph="/// True if metadata exists for the version. ... " />
+                <marker date="1509051507427" expanded="true" signature="4158:4246" ph="/// Build metadata attached to the version. ... " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,9 +153,32 @@
       <file leaf-file-name="VersionFormatter.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/VersionFormatter.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="798">
-              <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="912">
+              <caret line="16" column="48" lean-forward="false" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+              <folding>
+                <marker date="1509051391489" expanded="true" signature="0:177" ph="/* Based on VersionFormatter from https://github.com/NuGet/NuGet.Client ... */" />
+                <marker date="1509051391489" expanded="true" signature="185:287" ph="..." />
+                <marker date="1509051391489" expanded="true" signature="332:4483" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="404:4481" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="498:1943" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="537:633" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="766:876" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="928:1902" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="987:1888" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="1096:1204" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="1229:1870" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="1383:1796" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="1517:1631" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="1664:1770" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="1993:2217" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="2124:2181" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="2278:2707" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="2415:2519" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="2557:2662" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="2771:4010" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="2834:3977" ph="{...}" />
+                <marker date="1509051391489" expanded="true" signature="4073:4475" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,14 +216,14 @@
       <file leaf-file-name="IVersionFactory.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+            <state relative-caret-position="57">
+              <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
               <folding>
-                <marker date="1509050441488" expanded="false" signature="6:96" ph="..." />
-                <marker date="1509050441488" expanded="true" signature="151:1730" ph="{...}" />
-                <marker date="1509050441488" expanded="true" signature="158:289" ph="/// Defines a service that can be used to create specific implementations ... " />
-                <marker date="1509050441488" expanded="true" signature="326:1728" ph="{...}" />
-                <marker date="1509050441488" expanded="true" signature="341:636" ph="/// Parses a version string based on the FeedType ... " />
+                <marker date="1509051178258" expanded="true" signature="6:72" ph="..." />
+                <marker date="1509051178258" expanded="true" signature="127:1706" ph="{...}" />
+                <marker date="1509051178258" expanded="true" signature="134:265" ph="/// Defines a service that can be used to create specific implementations ... " />
+                <marker date="1509051178258" expanded="true" signature="302:1704" ph="{...}" />
+                <marker date="1509051178258" expanded="true" signature="317:612" ph="/// Parses a version string based on the FeedType ... " />
               </folding>
             </state>
           </provider>
@@ -185,6 +240,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/382F2007-D938-498A-BA23-2CFF4D8AFCA6/29/2710f61a/NuGetVersion.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/IVersion.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/VersionFormatter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/ComparableVersion.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/VersionComparer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -210,8 +266,12 @@
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/ComparableVersion.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/MavenVersionParser.cs" />
         <option value="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AADEEACB-2A92-4F58-A1D9-E7E66A9EC24C/b1/ad17de57/SemanticVersion.cs" />
-        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/VersionFormatter.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/IVersion.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/StrictSemanticVersion.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/SemanticVersion.cs" />
       </list>
     </option>
   </component>
@@ -253,6 +313,56 @@
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="Octopus.Server.Core.Versioning (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Octopus.Server.Core.Versioning" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Octopus.Server.Core.Versioning (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus.Server.Core.Versioning" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Octopus.Server.Core.Versioning (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus.Server.Core.Versioning" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Octopus.Server.Core.Versioning (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus.Server.Core.Versioning" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Resources" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Octopus.Server.Core.Versioning (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus.Server.Core.Versioning" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Resources" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Versioning" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Octopus.Server.Core.Versioning (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus.Server.Core.Versioning" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Resources" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Versioning" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Factories" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Octopus.Server.Core.Versioning (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus.Server.Core.Versioning" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Core" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Resources" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Versioning" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Semver" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
           </expand>
           <select />
@@ -305,12 +415,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1508985960561</updated>
-      <workItem from="1508985962374" duration="5724000" />
+      <workItem from="1508985962374" duration="6768000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5724000" />
+    <option name="totallyTimeSpent" value="6768000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -479,88 +589,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/VersionFormatter.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/StrictSemanticVersion.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/SemanticVersion.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="671">
-          <caret line="163" column="122" lean-forward="false" selection-start-line="163" selection-start-column="31" selection-end-line="163" selection-end-column="122" />
-          <folding>
-            <marker date="1508987529314" expanded="true" signature="0:201" ph="/* This class is based on NuGet's NuGetVersion class from https://github.com/NuGet/NuGet.Client ... */" />
-            <marker date="1508987529314" expanded="false" signature="209:344" ph="..." />
-            <marker date="1508987529314" expanded="true" signature="396:8638" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="404:657" ph="/// A hybrid implementation of SemVer that supports semantic versioning as described at http://semver.org while ... " />
-            <marker date="1508987529314" expanded="true" signature="714:8636" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="936:1274" ph="/// This is used by the JSON deserialisation to to pass a SemanticVersion ... " />
-            <marker date="1508987529314" expanded="true" signature="1352:1435" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="1453:1614" ph="/// Creates a NuGetVersion using NuGetVersion.Parse(string) ... " />
-            <marker date="1508987529314" expanded="true" signature="1718:1738" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="1756:1857" ph="/// Creates a NuGetVersion from an existing NuGetVersion ... " />
-            <marker date="1508987529314" expanded="true" signature="2010:2030" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="2040:2311" ph="/// Creates a NuGetVersion from a .NET Version ... " />
-            <marker date="1508987529314" expanded="true" signature="2622:2642" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="2652:2867" ph="/// Creates a NuGetVersion X.Y.Z ... " />
-            <marker date="1508987529314" expanded="true" signature="3005:3025" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="3035:3320" ph="/// Creates a NuGetVersion X.Y.Z-alpha ... " />
-            <marker date="1508987529314" expanded="true" signature="3491:3511" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="3521:3872" ph="/// Creates a NuGetVersion X.Y.Z-alpha##build01 ... " />
-            <marker date="1508987529314" expanded="true" signature="4064:4084" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="4094:4451" ph="/// Creates a NuGetVersion X.Y.Z-alpha.1.2##build01 ... " />
-            <marker date="1508987529314" expanded="true" signature="4654:4674" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="4684:4958" ph="/// Creates a NuGetVersion W.X.Y.Z ... " />
-            <marker date="1508987529314" expanded="true" signature="5120:5140" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="5150:5560" ph="/// Creates a NuGetVersion W.X.Y.Z-alpha##build01 ... " />
-            <marker date="1508987529314" expanded="true" signature="5776:5796" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="5806:6220" ph="/// Creates a NuGetVersion W.X.Y.Z-alpha.1##build01 ... " />
-            <marker date="1508987529314" expanded="true" signature="6444:6464" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="6474:7044" ph="/// Creates a NuGetVersion from a .NET Version with additional release labels, build metadata, and a ... " />
-            <marker date="1508987529314" expanded="true" signature="7288:7355" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="7365:7544" ph="/// Returns the version string. ... " />
-            <marker date="1508987529314" expanded="true" signature="7586:7771" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="7651:7724" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="7781:7912" ph="/// A System.Version representation of the version without metadata or release labels. ... " />
-            <marker date="1508987529314" expanded="true" signature="7966:8065" ph="/// True if the NuGetVersion is using legacy behavior. ... " />
-            <marker date="1508987529314" expanded="true" signature="8136:8234" ph="/// Returns true if version is a SemVer 2.0.0 version ... " />
-            <marker date="1508987529314" expanded="true" signature="8369:8629" ph="{...}" />
-            <marker date="1508987529314" expanded="true" signature="8440:8560" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding>
-            <marker date="1509050441488" expanded="false" signature="6:96" ph="..." />
-            <marker date="1509050441488" expanded="true" signature="151:1730" ph="{...}" />
-            <marker date="1509050441488" expanded="true" signature="158:289" ph="/// Defines a service that can be used to create specific implementations ... " />
-            <marker date="1509050441488" expanded="true" signature="326:1728" ph="{...}" />
-            <marker date="1509050441488" expanded="true" signature="341:636" ph="/// Parses a version string based on the FeedType ... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3558">
-          <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+        <state relative-caret-position="570">
+          <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
           <folding>
-            <marker date="1509050457813" expanded="true" signature="6:201" ph="..." />
+            <marker date="1509050457813" expanded="false" signature="6:201" ph="..." />
             <marker date="1509050457813" expanded="true" signature="256:3288" ph="{...}" />
             <marker date="1509050457813" expanded="true" signature="308:3286" ph="{...}" />
             <marker date="1509050457813" expanded="true" signature="457:704" ph="{...}" />
@@ -578,6 +612,145 @@
             <marker date="1509050457813" expanded="true" signature="2546:2742" ph="{...}" />
             <marker date="1509050457813" expanded="true" signature="2856:2964" ph="{...}" />
             <marker date="1509050457813" expanded="true" signature="3104:3280" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="1" column="33" lean-forward="false" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+          <folding>
+            <marker date="1509051178258" expanded="true" signature="6:72" ph="..." />
+            <marker date="1509051178258" expanded="true" signature="127:1706" ph="{...}" />
+            <marker date="1509051178258" expanded="true" signature="134:265" ph="/// Defines a service that can be used to create specific implementations ... " />
+            <marker date="1509051178258" expanded="true" signature="302:1704" ph="{...}" />
+            <marker date="1509051178258" expanded="true" signature="317:612" ph="/// Parses a version string based on the FeedType ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/VersionFormatter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="912">
+          <caret line="16" column="48" lean-forward="false" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+          <folding>
+            <marker date="1509051391489" expanded="true" signature="0:177" ph="/* Based on VersionFormatter from https://github.com/NuGet/NuGet.Client ... */" />
+            <marker date="1509051391489" expanded="true" signature="185:287" ph="..." />
+            <marker date="1509051391489" expanded="true" signature="332:4483" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="404:4481" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="498:1943" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="537:633" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="766:876" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="928:1902" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="987:1888" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="1096:1204" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="1229:1870" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="1383:1796" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="1517:1631" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="1664:1770" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="1993:2217" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="2124:2181" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="2278:2707" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="2415:2519" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="2557:2662" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="2771:4010" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="2834:3977" ph="{...}" />
+            <marker date="1509051391489" expanded="true" signature="4073:4475" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/IVersion.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1629">
+          <caret line="39" column="33" lean-forward="false" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+          <folding>
+            <marker date="1509051470964" expanded="false" signature="6:47" ph="..." />
+            <marker date="1509051470964" expanded="true" signature="92:1584" ph="{...}" />
+            <marker date="1509051470964" expanded="true" signature="99:1230" ph="/// Represents the base components of a version recognised by Octopus. ... " />
+            <marker date="1509051470964" expanded="true" signature="1274:1582" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/StrictSemanticVersion.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7296">
+          <caret line="128" column="75" lean-forward="false" selection-start-line="128" selection-start-column="75" selection-end-line="128" selection-end-column="75" />
+          <folding>
+            <marker date="1509051507427" expanded="true" signature="0:204" ph="/* This class is based on NuGet's SemanticVersion class from https://github.com/NuGet/NuGet.Client ... */" />
+            <marker date="1509051507427" expanded="true" signature="212:272" ph="..." />
+            <marker date="1509051507427" expanded="true" signature="324:4307" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="332:403" ph="/// A strict SemVer implementation ... " />
+            <marker date="1509051507427" expanded="true" signature="461:4305" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="692:910" ph="/// Creates a SemanticVersion X.Y.Z ... " />
+            <marker date="1509051507427" expanded="true" signature="1054:1074" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="1084:1480" ph="/// Creates a NuGetVersion X.Y.Z-alpha.1.2##build01 ... " />
+            <marker date="1509051507427" expanded="true" signature="1676:1696" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="1843:2335" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="1886:1985" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="2201:2325" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="2345:2417" ph="/// Major version X (X.y.z) ... " />
+            <marker date="1509051507427" expanded="true" signature="2471:2543" ph="/// Minor version Y (x.Y.z) ... " />
+            <marker date="1509051507427" expanded="true" signature="2597:2669" ph="/// Patch version Z (x.y.Z) ... " />
+            <marker date="1509051507427" expanded="true" signature="2723:2800" ph="/// Revision version R (x.y.z.R) ... " />
+            <marker date="1509051507427" expanded="true" signature="2860:2968" ph="/// A collection of pre-release labels attached to the version. ... " />
+            <marker date="1509051507427" expanded="true" signature="3017:3110" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="3120:3212" ph="/// The full pre-release label for the version. ... " />
+            <marker date="1509051507427" expanded="true" signature="3242:3485" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="3268:3475" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="3326:3423" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="3495:3593" ph="/// True if pre-release labels exist for the version. ... " />
+            <marker date="1509051507427" expanded="true" signature="3634:3973" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="3660:3963" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="3717:3918" ph="{...}" />
+            <marker date="1509051507427" expanded="true" signature="3983:4072" ph="/// True if metadata exists for the version. ... " />
+            <marker date="1509051507427" expanded="true" signature="4158:4246" ph="/// Build metadata attached to the version. ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/SemanticVersion.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="180" column="9" lean-forward="false" selection-start-line="180" selection-start-column="9" selection-end-line="180" selection-end-column="9" />
+          <folding>
+            <marker date="1509051507390" expanded="true" signature="0:201" ph="/* This class is based on NuGet's NuGetVersion class from https://github.com/NuGet/NuGet.Client ... */" />
+            <marker date="1509051507390" expanded="false" signature="209:320" ph="..." />
+            <marker date="1509051507390" expanded="true" signature="372:8303" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="380:633" ph="/// A hybrid implementation of SemVer that supports semantic versioning as described at http://semver.org while ... " />
+            <marker date="1509051507390" expanded="true" signature="690:8301" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="912:1250" ph="/// This is used by the JSON deserialisation to to pass a SemanticVersion ... " />
+            <marker date="1509051507390" expanded="true" signature="1328:1411" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="1429:1590" ph="/// Creates a NuGetVersion using NuGetVersion.Parse(string) ... " />
+            <marker date="1509051507390" expanded="true" signature="1694:1714" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="1732:1833" ph="/// Creates a NuGetVersion from an existing NuGetVersion ... " />
+            <marker date="1509051507390" expanded="true" signature="1986:2006" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="2016:2287" ph="/// Creates a NuGetVersion from a .NET Version ... " />
+            <marker date="1509051507390" expanded="true" signature="2598:2618" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="2628:2843" ph="/// Creates a NuGetVersion X.Y.Z ... " />
+            <marker date="1509051507390" expanded="true" signature="2981:3001" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="3011:3296" ph="/// Creates a NuGetVersion X.Y.Z-alpha ... " />
+            <marker date="1509051507390" expanded="true" signature="3467:3487" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="3497:3848" ph="/// Creates a NuGetVersion X.Y.Z-alpha##build01 ... " />
+            <marker date="1509051507390" expanded="true" signature="4040:4060" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="4070:4427" ph="/// Creates a NuGetVersion X.Y.Z-alpha.1.2##build01 ... " />
+            <marker date="1509051507390" expanded="true" signature="4630:4650" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="4660:4934" ph="/// Creates a NuGetVersion W.X.Y.Z ... " />
+            <marker date="1509051507390" expanded="true" signature="5096:5116" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="5126:5536" ph="/// Creates a NuGetVersion W.X.Y.Z-alpha##build01 ... " />
+            <marker date="1509051507390" expanded="true" signature="5752:5772" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="5782:6196" ph="/// Creates a NuGetVersion W.X.Y.Z-alpha.1##build01 ... " />
+            <marker date="1509051507390" expanded="true" signature="6420:6440" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="6450:7020" ph="/// Creates a NuGetVersion from a .NET Version with additional release labels, build metadata, and a ... " />
+            <marker date="1509051507390" expanded="true" signature="7264:7331" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="7341:7520" ph="/// Returns the version string. ... " />
+            <marker date="1509051507390" expanded="true" signature="7562:7747" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="7627:7700" ph="{...}" />
+            <marker date="1509051507390" expanded="true" signature="7757:7888" ph="/// A System.Version representation of the version without metadata or release labels. ... " />
+            <marker date="1509051507390" expanded="true" signature="7942:8041" ph="/// True if the NuGetVersion is using legacy behavior. ... " />
+            <marker date="1509051507390" expanded="true" signature="8112:8210" ph="/// Returns true if version is a SemVer 2.0.0 version ... " />
           </folding>
         </state>
       </provider>

@@ -4,8 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using EnsureThat;
-using NuGet.Versioning;
 
 namespace Octopus.Core.Resources.Versioning.Semver
 {
@@ -46,7 +44,10 @@ namespace Octopus.Core.Resources.Versioning.Semver
 
         public StrictSemanticVersion(Version version, IEnumerable<string> releaseLabels, string metadata, bool preserveMissingComponents = false)
         {
-            EnsureArg.IsNotNull(version, nameof(version));           
+            if (version == null)
+            {
+               throw new ArgumentException("version can not be null");
+            }         
 
             _version = preserveMissingComponents
                 ? version
@@ -126,16 +127,6 @@ namespace Octopus.Core.Resources.Versioning.Semver
         /// True if metadata exists for the version.
         /// </summary>
         public virtual bool HasMetadata => !string.IsNullOrEmpty(Metadata);
-
-        public virtual object ToType(Type type)
-        {
-            if (type.IsAssignableFrom(typeof(NuGetVersion)))
-            {
-                return new NuGetVersion(Major, Minor, Patch, this.ReleaseLabels, this.Metadata);
-            }
-            
-            throw new InvalidCastException();
-        } 
 
         /// <summary>
         /// Build metadata attached to the version.
