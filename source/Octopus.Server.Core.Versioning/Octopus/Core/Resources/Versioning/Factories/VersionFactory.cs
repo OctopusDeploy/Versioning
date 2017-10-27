@@ -51,6 +51,12 @@ namespace Octopus.Core.Resources.Versioning.Factories
             return new SemanticVersion(version, releaseLabel, metadata);
         }
 
+        public IVersion CreateSemanticVersion(int major, int minor, int patch, int revision, IEnumerable<string> releaseLabels,
+            string metadata, string originalVersion)
+        {
+            return new SemanticVersion(major, minor, patch, revision, releaseLabels, metadata);
+        }
+
         public bool CanCreateVersion(string input, out IVersion version, FeedType type)
         {
             switch (type)
