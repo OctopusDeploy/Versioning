@@ -32,17 +32,6 @@ namespace Octopus.Core.Resources.Metadata
             return BuildMetadata(baseDetails.PackageId, version, extension);
         }
 
-        public PhysicalPackageMetadata GetMetadataFromPackageID(
-            string packageID, 
-            string version, 
-            string extension, 
-            long size,
-            string hash)
-        {
-            var baseDetails = GetMetadataFromPackageID(packageID);
-            return BuildMetadata(baseDetails.PackageId, version, extension, size, hash);
-        }
-
         public PackageMetadata GetMetadataFromPackageName(string packageFile, string[] extensions)
         {
             return GetMetadataFromPackageName(
@@ -57,6 +46,15 @@ namespace Octopus.Core.Resources.Metadata
                 packageFile,
                 PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions),
                 extensions);   
+        }
+
+        public PhysicalPackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions, long size, string hash)
+        {
+            var baseDetails = GetMetadataFromPackageName(
+                packageFile,
+                PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions),
+                extensions);  
+            return BuildMetadata(baseDetails.PackageId, baseDetails.Version, baseDetails.FileExtension, size, hash);
         }
 
         PackageMetadata GetMetadataFromPackageName(string packageFile, Tuple<string, string> metadataAndExtension, string[] extensions)

@@ -29,21 +29,6 @@ namespace Octopus.Core.Resources
         /// <returns>The metadata assocaited with the package id</returns>
         PackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension);
         /// <summary>
-        /// Extracts metadata from a package ID, and adds the supplied version, extension, size and hash
-        /// </summary>
-        /// <param name="packageID">The package id</param>
-        /// <param name="version">The package version</param>
-        /// <param name="extension">The package extension</param>
-        /// <param name="size">The package filesize</param>
-        /// <param name="hash">The package hash</param>
-        /// <returns>The metadata assocaited with the package id</returns>
-        PhysicalPackageMetadata GetMetadataFromPackageID(
-            string packageID, 
-            string version, 
-            string extension,
-            long size,
-            string hash);
-        /// <summary>
         /// The target Files cache has filenames like 
         /// "com.google.guava#guava#23.3-jre.jar-e55fcd51-6081-4300-91a3-117b7930c023" or
         /// "com.google.guava#guava#23.3-jre.jar" or
@@ -64,5 +49,21 @@ namespace Octopus.Core.Resources
         /// <param name="extensions">The extensions that this parser should know about</param>
         /// <returns>The metadata assocaited with the package file</returns>
         PackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions);
+        /// <summary>
+        /// The server side cache has filenames like 
+        /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or
+        /// "mypackage.1.0.0.0_BA90F59B8C9EE04DADE2D3501181EFCD.nuget".
+        /// This method will break down this filename.
+        /// </summary>
+        /// <param name="packageFile">The package file name</param>
+        /// <param name="extensions">The extensions that this parser should know about</param>
+        /// <param name="size">The file size</param>
+        /// <param name="hash">The file hash</param>
+        /// <returns>The metadata assocaited with the package file</returns>
+        PhysicalPackageMetadata GetMetadataFromServerPackageName(
+            string packageFile, 
+            string[] extensions,
+            long size,
+            string hash);
     }
 }
