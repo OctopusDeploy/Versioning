@@ -79,7 +79,8 @@ namespace Octopus.Core.Resources.Metadata
             pkg.FileExtension = extension;
             pkg.FeedType = FeedType.NuGet;             
             pkg.PackageSearchPattern = pkg.PackageId + "." + pkg.Version + "*";
-            pkg.PackageFileName = pkg.PackageId + "." + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
+            pkg.ServerPackageFileName = pkg.PackageId + "." + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
+            pkg.TargetPackageFileName = pkg.PackageId + "." + pkg.Version + extension;
             return pkg;
         }
         
@@ -91,7 +92,8 @@ namespace Octopus.Core.Resources.Metadata
             pkg.FileExtension = extension;
             pkg.FeedType = FeedType.NuGet;            
             pkg.PackageSearchPattern = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + "*";
-            pkg.PackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
+            pkg.ServerPackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
+            pkg.TargetPackageFileName = pkg.PackageId + "." + pkg.Version + extension;
             pkg.Size = size;
             pkg.Hash = hash;
             return pkg;

@@ -15,11 +15,18 @@ namespace Octopus.Core.Resources
         /// <summary>
         /// Used to define the search pattern for files on the target
         /// </summary>
+        [JsonIgnore]
         public string PackageSearchPattern {get; set; }
         /// <summary>
         /// Defines the server side cache file name
         /// </summary>
-        public string PackageFileName {get; set; }
+        [JsonIgnore]
+        public string ServerPackageFileName {get; set; }
+        /// <summary>
+        /// Defines the server side cache file name
+        /// </summary>
+        [JsonIgnore]
+        public string TargetPackageFileName {get; set; }
         
         /// <summary>
         /// The delimiter to use between the packageid and the version
@@ -30,11 +37,6 @@ namespace Octopus.Core.Resources
         public override string ToString()
         {
             return $"{PackageId}{VersionDelimiter}{Version}";
-        }
-
-        public string GetFileName()
-        {
-            return $"{PackageId}{VersionDelimiter}{Version}{FileExtension}";
         }
     }
 }

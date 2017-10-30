@@ -89,7 +89,8 @@ namespace Octopus.Core.Resources.Metadata
             pkg.FileExtension = extension;
             pkg.FeedType = FeedType.Maven;            
             pkg.PackageSearchPattern = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + "*";
-            pkg.PackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
+            pkg.ServerPackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
+            pkg.TargetPackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + extension;
             pkg.VersionDelimiter = JavaConstants.JAVA_FILENAME_DELIMITER.ToString();
             return pkg;
         }
@@ -102,7 +103,8 @@ namespace Octopus.Core.Resources.Metadata
             pkg.FileExtension = extension;
             pkg.FeedType = FeedType.Maven;            
             pkg.PackageSearchPattern = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + "*";
-            pkg.PackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
+            pkg.ServerPackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
+            pkg.TargetPackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + extension;
             pkg.Size = size;
             pkg.Hash = hash;
             pkg.VersionDelimiter = JavaConstants.JAVA_FILENAME_DELIMITER.ToString();
