@@ -1,10 +1,7 @@
 ﻿using System;
-using System.IO;
-using Octopus.Core.Resources;
-using Octopus.Core.Resources.Metadata;
 using Octopus.Core.Resources.Versioning;
 
-namespace Calamari.Integration.Packages.Metadata
+namespace Octopus.Core.Resources.Metadata
 {
     /// <summary>
     /// A service for extracting metadata from packages that are sourced from a NuGet compatible
