@@ -21,14 +21,19 @@ namespace Octopus.Core.Resources.Metadata
             };
         }
 
+        public PackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension)
+        {
+            throw new NotImplementedException();
+        }
+
         public PackageMetadata GetMetadataFromPackageName(string packageFile, string[] extensions)
         {            
             var metadataAndExtension = PackageIdentifier.ExtractPackageExtensionAndMetadata(packageFile, extensions);
 
             var idAndVersion = metadataAndExtension.Item1;
-            var pkg = new PackageMetadata {FileExtension = metadataAndExtension.Item2};
+            var extension = metadataAndExtension.Item2;
 
-            if (string.IsNullOrEmpty(pkg.FileExtension))
+            if (string.IsNullOrEmpty(extension))
             {
                 throw new Exception($"Unable to determine filetype of file \"{packageFile}\"");
             }
@@ -38,10 +43,18 @@ namespace Octopus.Core.Resources.Metadata
                 throw new Exception($"Unable to extract the package ID and version from file \"{packageFile}\"");
             }
 
-            pkg.Id = packageId;
-            pkg.Version = version.ToString();
-            pkg.FeedType = FeedType.NuGet;
+            return BuildMetadata(packageId, version.ToString(), extension);
+        }
+        
+        PackageMetadata BuildMetadata(string id, string version, string extension)
+        {
+            var pkg = new PackageMetadata();
+            pkg.Id = id;
+            pkg.Version = version;
+            pkg.FileExtension = extension;
+            pkg.FeedType = FeedType.NuGet;             
             pkg.PackageSearchPattern = pkg.Id + "." + pkg.Version + "*";
+            pkg.PackageFileName = pkg.Id + "." + pkg.Version + "_";
             return pkg;
         }
     }

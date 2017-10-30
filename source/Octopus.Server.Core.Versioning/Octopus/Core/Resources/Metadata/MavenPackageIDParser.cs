@@ -1,5 +1,6 @@
 ﻿using System;
 using Octopus.Core.Constants;
+using Octopus.Core.Resources.Versioning;
 
 namespace Octopus.Core.Resources.Metadata
 {
@@ -25,15 +26,21 @@ namespace Octopus.Core.Resources.Metadata
             };
         }
 
+        public PackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension)
+        {
+            var baseDetails = GetMetadataFromPackageID(packageID);
+            return BuildMetadata(baseDetails.Id, version, extension);
+        }
+
         public PackageMetadata GetMetadataFromPackageName(string packageFile, string[] extensions)
         {
             var metadataAndExtension =
                 PackageIdentifier.ExtractPackageExtensionAndMetadata(packageFile, extensions);
 
             var idAndVersion = metadataAndExtension.Item1;
-            var pkg = new PackageMetadata {FileExtension = metadataAndExtension.Item2};
+            var extension = metadataAndExtension.Item2;
 
-            if (string.IsNullOrEmpty(pkg.FileExtension))
+            if (string.IsNullOrEmpty(extension))
             {
                 throw new Exception($"Unable to determine filetype of file \"{packageFile}\"");
             }
@@ -46,9 +53,19 @@ namespace Octopus.Core.Resources.Metadata
                     $"Unable to extract the package ID and version from file \"{packageFile}\"");
             }
 
-            pkg.Id = idAndVersionSplit[0] + JavaConstants.JAVA_FILENAME_DELIMITER + idAndVersionSplit[1];
-            pkg.Version = idAndVersionSplit[2];
-            pkg.FeedType = FeedType.Maven;
+            return BuildMetadata(
+                idAndVersionSplit[0] + JavaConstants.JAVA_FILENAME_DELIMITER + idAndVersionSplit[1],
+                idAndVersionSplit[2],
+                extension);            
+        }
+
+        PackageMetadata BuildMetadata(string id, string version, string extension)
+        {
+            var pkg = new PackageMetadata();
+            pkg.Id = id;
+            pkg.Version = version;
+            pkg.FileExtension = extension;
+            pkg.FeedType = FeedType.Maven;            
             pkg.PackageSearchPattern = pkg.Id + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + "*";
             pkg.PackageFileName = pkg.Id + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + "_";
             return pkg;

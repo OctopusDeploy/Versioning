@@ -1,4 +1,6 @@
-﻿namespace Octopus.Core.Resources
+﻿using Octopus.Core.Resources.Versioning;
+
+namespace Octopus.Core.Resources
 {
     /// <summary>
     /// Defines a service for extracting metadata from package ids or package file names.
@@ -11,6 +13,14 @@
         /// <param name="packageID">The package id</param>
         /// <returns>The metadata assocaited with the package id</returns>
         BasePackageMetadata GetMetadataFromPackageID(string packageID);
+        /// <summary>
+        /// Extracts metadata from a package ID (i.e. no version information)
+        /// </summary>
+        /// <param name="packageID">The package id</param>
+        /// <param name="version">The package version</param>
+        /// <param name="extension">The package extension</param>
+        /// <returns>The metadata assocaited with the package id</returns>
+        PackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension);
         /// <summary>
         /// Extracts metadata from a package file name
         /// </summary>
