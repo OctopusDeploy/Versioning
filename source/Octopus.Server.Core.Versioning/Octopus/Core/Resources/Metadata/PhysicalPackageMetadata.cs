@@ -39,6 +39,11 @@ namespace Octopus.Core.Resources.Metadata
             Hash = hash;
             VersionDelimiter = versionDelimiter;
         }
+
+        public PhysicalPackageMetadata()
+        {
+            
+        }
         
         public long Size { get; set; }
         public string Hash { get; set; }
