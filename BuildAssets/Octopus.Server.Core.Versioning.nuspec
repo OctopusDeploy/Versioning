@@ -23,4 +23,7 @@
     <file src="*" target="lib\net40" />
 	<file src="*" target="lib\netcoreapp2.0" />
   </files>
+  <dependencies>
+    <dependency id="Newtonsoft.Json" version="9.0.1" />
+  </dependencies>
 </package>
