@@ -23,7 +23,7 @@ namespace Octopus.Core.Resources
         [JsonIgnore]
         public string ServerPackageFileName {get; set; }
         /// <summary>
-        /// Defines the server side cache file name
+        /// Defines the target file name
         /// </summary>
         [JsonIgnore]
         public string TargetPackageFileName {get; set; }

@@ -8,7 +8,12 @@ namespace Octopus.Core.Resources.Metadata
     /// Maven package IDs come in the format: group#artifact
     /// </summary>
     public class MavenPackageIDParser : IPackageIDParser
-    {       
+    {
+        /// <summary>
+        /// The prefix added to all files to identify it as coming from a maven feed
+        /// </summary>
+        private const string MavenFeedPrefix = "Maven";
+        
         public BasePackageMetadata GetMetadataFromPackageID(string packageID)
         {
             var idAndVersionSplit = packageID.Split(JavaConstants.JAVA_FILENAME_DELIMITER);
@@ -69,15 +74,15 @@ namespace Octopus.Core.Resources.Metadata
 
             var idAndVersionSplit = idAndVersion.Split(JavaConstants.JAVA_FILENAME_DELIMITER);
 
-            if (idAndVersionSplit.Length != 3)
+            if (idAndVersionSplit.Length != 4 || idAndVersionSplit[0] != MavenFeedPrefix)
             {
                 throw new Exception(
                     $"Unable to extract the package ID and version from file \"{packageFile}\"");
             }
 
             return BuildMetadata(
-                idAndVersionSplit[0] + JavaConstants.JAVA_FILENAME_DELIMITER + idAndVersionSplit[1],
-                idAndVersionSplit[2],
+                idAndVersionSplit[1] + JavaConstants.JAVA_FILENAME_DELIMITER + idAndVersionSplit[2],
+                idAndVersionSplit[3],
                 extension);            
         }
 
@@ -89,22 +94,27 @@ namespace Octopus.Core.Resources.Metadata
             pkg.FileExtension = extension;
             pkg.FeedType = FeedType.Maven;            
             pkg.PackageSearchPattern = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + "*";
-            pkg.ServerPackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
-            pkg.TargetPackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + extension;
+            pkg.ServerPackageFileName = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER + 
+                                        pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + 
+                                        pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
+            pkg.TargetPackageFileName = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER + 
+                                        pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + 
+                                        pkg.Version + extension;
             pkg.VersionDelimiter = JavaConstants.JAVA_FILENAME_DELIMITER.ToString();
             return pkg;
         }
         
         PhysicalPackageMetadata BuildMetadata(string id, string version, string extension, long size, string hash)
         {
+            var basePackage = BuildMetadata(id, version, extension);
             var pkg = new PhysicalPackageMetadata();
-            pkg.PackageId = id;
-            pkg.Version = version;
-            pkg.FileExtension = extension;
-            pkg.FeedType = FeedType.Maven;            
-            pkg.PackageSearchPattern = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + "*";
-            pkg.ServerPackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
-            pkg.TargetPackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + extension;
+            pkg.PackageId = basePackage.PackageId;
+            pkg.Version = basePackage.Version;
+            pkg.FileExtension = basePackage.FileExtension;
+            pkg.FeedType = basePackage.FeedType;
+            pkg.PackageSearchPattern = basePackage.PackageSearchPattern;
+            pkg.ServerPackageFileName = basePackage.ServerPackageFileName;
+            pkg.TargetPackageFileName = basePackage.TargetPackageFileName;
             pkg.Size = size;
             pkg.Hash = hash;
             pkg.VersionDelimiter = JavaConstants.JAVA_FILENAME_DELIMITER.ToString();
