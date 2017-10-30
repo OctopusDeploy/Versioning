@@ -66,7 +66,7 @@
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PhysicalPackageMetadata.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1539">
-              <caret line="47" column="38" lean-forward="true" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
+              <caret line="47" column="38" lean-forward="false" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
               <folding>
                 <marker date="1509393572834" expanded="true" signature="65:3281" ph="{...}" />
                 <marker date="1509393572834" expanded="true" signature="72:157" ph="/// Represents the metadata from a physical file ... " />
@@ -407,12 +407,12 @@
       <updated>1508985960561</updated>
       <workItem from="1508985962374" duration="10224000" />
       <workItem from="1509316634204" duration="12282000" />
-      <workItem from="1509391757137" duration="2603000" />
+      <workItem from="1509391757137" duration="2953000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25109000" />
+    <option name="totallyTimeSpent" value="25459000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -991,7 +991,7 @@
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PhysicalPackageMetadata.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1539">
-          <caret line="47" column="38" lean-forward="true" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
+          <caret line="47" column="38" lean-forward="false" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
           <folding>
             <marker date="1509393572834" expanded="true" signature="65:3281" ph="{...}" />
             <marker date="1509393572834" expanded="true" signature="72:157" ph="/// Represents the metadata from a physical file ... " />
