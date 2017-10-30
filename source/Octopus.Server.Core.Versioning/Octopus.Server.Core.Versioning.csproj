@@ -45,7 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Octopus\Core\Constants\JavaConstants.cs" />
     <Compile Include="Octopus\Core\FeedType.cs" />
+    <Compile Include="Octopus\Core\Resources\Metadata\BasePackageMetadata.cs" />
+    <Compile Include="Octopus\Core\Resources\Metadata\MavenPackageIDParser.cs" />
+    <Compile Include="Octopus\Core\Resources\Metadata\NuGetPackageIDParser.cs" />
+    <Compile Include="Octopus\Core\Resources\Metadata\PackageIdentifier.cs" />
+    <Compile Include="Octopus\Core\Resources\Metadata\PackageIDParser.cs" />
+    <Compile Include="Octopus\Core\Resources\Metadata\PackageMetadata.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\Factories\IVersionFactory.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\Factories\SemVerFactory.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\Factories\StrictSemVerFactory.cs" />
