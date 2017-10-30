@@ -75,5 +75,39 @@ namespace Octopus.Core.Resources.Metadata
 
             return new Tuple<string, string>(metaDataSection, matchingExtension);
         }
+        
+        /// <summary>
+        /// Given a package-file path and a list of valid extensions extracts the package-metadata component and the extension.  
+        /// E.g: Given `C:\HelloWorld.1.0.0_9822965F2883AD43AD79DA4E8795319F.zip` would return `{ "HelloWorld.1.0.0", ".zip" }` 
+        /// (assuming `.zip` was in the list of valid extensions).
+        /// </summary>
+        /// <param name="packageFilePath">A package file path</param>
+        /// <param name="validExtensions">A list of valid extensions</param>
+        /// <returns>a Tuple where Item1 is the package metadata component and Item2 is the extension</returns>
+        public static Tuple<string,string> ExtractPackageExtensionAndMetadataForServer(string packageFilePath, ICollection<string> validExtensions)
+        {
+            var fileName = Path.GetFileName(packageFilePath);
+            var matchingExtension = validExtensions.FirstOrDefault(fileName.EndsWith);
+            var metaDataSection = string.Empty;
+            if (matchingExtension != null)
+            {
+                metaDataSection = fileName.Substring(0, fileName.Length - matchingExtension.Length);
+            }
+            else
+            {
+                foreach (var ext in validExtensions)
+                {
+                    var match = new Regex("_[0-9A-F]{32}(?<extension>" + Regex.Escape(ext) + ")$").Match(fileName);
+                    if (match.Success)
+                    {
+                        matchingExtension = match.Groups["extension"].Value;
+                        metaDataSection = fileName.Substring(0, match.Index);
+                        break;
+                    }
+                }
+            }
+
+            return new Tuple<string, string>(metaDataSection, matchingExtension);
+        }
     }
 }

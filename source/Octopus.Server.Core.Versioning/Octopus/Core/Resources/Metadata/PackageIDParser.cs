@@ -1,9 +1,14 @@
-﻿using Octopus.Core.Resources.Versioning;
-
-namespace Octopus.Core.Resources
+﻿namespace Octopus.Core.Resources
 {
     /// <summary>
-    /// Defines a service for extracting metadata from package ids or package file names.
+    /// Throughout the lifecycle of a package deployment we have access to various
+    /// bits of information that we need to convert into consistent metadata to
+    /// make decisions about what feed the package came from, how the filenames
+    /// for the package should be formatted, the patterns to use when searching for
+    /// similar packages etc.
+    /// 
+    /// This interface defines the various was we can get this consistent metadata
+    /// from these snippets of information. 
     /// </summary>
     public interface IPackageIDParser
     {
@@ -28,5 +33,13 @@ namespace Octopus.Core.Resources
         /// <param name="extensions">The extensions that this parser should know about</param>
         /// <returns>The metadata assocaited with the package file</returns>
         PackageMetadata GetMetadataFromPackageName(string packageFile, string[] extensions);
+        /// <summary>
+        /// The server side cache has filenames like "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar"
+        /// which required some different parsing.
+        /// </summary>
+        /// <param name="packageFile">The package file name</param>
+        /// <param name="extensions">The extensions that this parser should know about</param>
+        /// <returns>The metadata assocaited with the package file</returns>
+        PackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions);
     }
 }

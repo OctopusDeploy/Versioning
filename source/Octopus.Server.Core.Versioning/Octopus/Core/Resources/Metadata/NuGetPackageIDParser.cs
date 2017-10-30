@@ -27,9 +27,21 @@ namespace Octopus.Core.Resources.Metadata
         }
 
         public PackageMetadata GetMetadataFromPackageName(string packageFile, string[] extensions)
-        {            
-            var metadataAndExtension = PackageIdentifier.ExtractPackageExtensionAndMetadata(packageFile, extensions);
+        {
+            return GetMetadataFromPackageName(
+                packageFile,
+                PackageIdentifier.ExtractPackageExtensionAndMetadata(packageFile, extensions));
+        }
 
+        public PackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions)
+        {
+            return GetMetadataFromPackageName(
+                packageFile,
+                PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions));
+        }
+
+        PackageMetadata GetMetadataFromPackageName(string packageFile, Tuple<string, string> metadataAndExtension)
+        {            
             var idAndVersion = metadataAndExtension.Item1;
             var extension = metadataAndExtension.Item2;
 
