@@ -21,7 +21,7 @@ namespace Octopus.Core.Resources.Metadata
 
             return new BasePackageMetadata()
             {
-                Id = packageID,
+                PackageId = packageID,
                 FeedType = FeedType.Maven
             };
         }
@@ -29,7 +29,7 @@ namespace Octopus.Core.Resources.Metadata
         public PackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension)
         {
             var baseDetails = GetMetadataFromPackageID(packageID);
-            return BuildMetadata(baseDetails.Id, version, extension);
+            return BuildMetadata(baseDetails.PackageId, version, extension);
         }
 
         public PackageMetadata GetMetadataFromPackageName(string packageFile, string[] extensions)
@@ -75,12 +75,12 @@ namespace Octopus.Core.Resources.Metadata
         PackageMetadata BuildMetadata(string id, string version, string extension)
         {
             var pkg = new PackageMetadata();
-            pkg.Id = id;
+            pkg.PackageId = id;
             pkg.Version = version;
             pkg.FileExtension = extension;
             pkg.FeedType = FeedType.Maven;            
-            pkg.PackageSearchPattern = pkg.Id + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + "*";
-            pkg.PackageFileName = pkg.Id + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
+            pkg.PackageSearchPattern = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + "*";
+            pkg.PackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
             return pkg;
         }
     }

@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Octopus.Server.Core.Utilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Octopus.Server.Core.Utilities.0.1.0-ci0003\lib\net40\Octopus.Server.Core.Utilities.dll</HintPath>
     </Reference>
@@ -54,6 +57,7 @@
     <Compile Include="Octopus\Core\Resources\Metadata\PackageIdentifier.cs" />
     <Compile Include="Octopus\Core\Resources\Metadata\IPackageIDParser.cs" />
     <Compile Include="Octopus\Core\Resources\Metadata\PackageMetadata.cs" />
+    <Compile Include="Octopus\Core\Resources\Metadata\PhysicalPackageMetadata.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\Factories\IVersionFactory.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\Factories\SemVerFactory.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\Factories\StrictSemVerFactory.cs" />
