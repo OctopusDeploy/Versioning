@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Octopus.Core.Constants;
 using Octopus.Core.Resources.Versioning;
 using Octopus.Core.Resources.Versioning.Factories;
 
@@ -97,7 +98,7 @@ namespace Octopus.Core.Resources.Metadata
             {
                 foreach (var ext in validExtensions)
                 {
-                    var match = new Regex("_[0-9A-F]{32}(?<extension>" + Regex.Escape(ext) + ")$").Match(fileName);
+                    var match = new Regex(ServerConstants.SERVER_CACHE_DELIMITER + "[0-9A-F]{32}(?<extension>" + Regex.Escape(ext) + ")$").Match(fileName);
                     if (match.Success)
                     {
                         matchingExtension = match.Groups["extension"].Value;

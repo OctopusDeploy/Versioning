@@ -11,6 +11,7 @@
           <e p="Core" t="Include">
             <e p="Constants" t="Include">
               <e p="JavaConstants.cs" t="Include" />
+              <e p="ServerConstants.cs" t="Include" />
             </e>
             <e p="FeedType.cs" t="Include" />
             <e p="Resources" t="Include">

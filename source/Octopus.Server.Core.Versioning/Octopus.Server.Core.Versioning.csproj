@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Octopus\Core\Constants\JavaConstants.cs" />
+    <Compile Include="Octopus\Core\Constants\ServerConstants.cs" />
     <Compile Include="Octopus\Core\FeedType.cs" />
     <Compile Include="Octopus\Core\Resources\Metadata\BasePackageMetadata.cs" />
     <Compile Include="Octopus\Core\Resources\Metadata\MavenPackageIDParser.cs" />

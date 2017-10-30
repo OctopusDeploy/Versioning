@@ -80,7 +80,7 @@ namespace Octopus.Core.Resources.Metadata
             pkg.FileExtension = extension;
             pkg.FeedType = FeedType.Maven;            
             pkg.PackageSearchPattern = pkg.Id + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + "*";
-            pkg.PackageFileName = pkg.Id + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + "_";
+            pkg.PackageFileName = pkg.Id + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
             return pkg;
         }
     }
