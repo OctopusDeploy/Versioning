@@ -7,7 +7,7 @@ namespace Octopus.Core.Resources.Metadata
     /// </summary>
     public class PhysicalPackageMetadata : PackageMetadata
     {
-        const string DEFAULT_VERSION_DELIMITER = ".";
+        public const string DEFAULT_VERSION_DELIMITER = ".";
         
         [JsonConstructor]
         public PhysicalPackageMetadata(string packageId, string version, long size, string hash, string fileExtension)
@@ -42,7 +42,7 @@ namespace Octopus.Core.Resources.Metadata
 
         public PhysicalPackageMetadata()
         {
-            
+            VersionDelimiter = DEFAULT_VERSION_DELIMITER;
         }
         
         public long Size { get; set; }

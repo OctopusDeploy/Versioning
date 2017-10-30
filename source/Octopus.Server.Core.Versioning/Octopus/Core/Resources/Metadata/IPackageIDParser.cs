@@ -1,4 +1,6 @@
-﻿namespace Octopus.Core.Resources
+﻿using Octopus.Core.Resources.Metadata;
+
+namespace Octopus.Core.Resources
 {
     /// <summary>
     /// Throughout the lifecycle of a package deployment we have access to various
@@ -19,13 +21,28 @@
         /// <returns>The metadata assocaited with the package id</returns>
         BasePackageMetadata GetMetadataFromPackageID(string packageID);
         /// <summary>
-        /// Extracts metadata from a package ID (i.e. no version information)
+        /// Extracts metadata from a package ID and adds the supplied version and extension
         /// </summary>
         /// <param name="packageID">The package id</param>
         /// <param name="version">The package version</param>
         /// <param name="extension">The package extension</param>
         /// <returns>The metadata assocaited with the package id</returns>
         PackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension);
+        /// <summary>
+        /// Extracts metadata from a package ID, and adds the supplied version, extension, size and hash
+        /// </summary>
+        /// <param name="packageID">The package id</param>
+        /// <param name="version">The package version</param>
+        /// <param name="extension">The package extension</param>
+        /// <param name="size">The package filesize</param>
+        /// <param name="hash">The package hash</param>
+        /// <returns>The metadata assocaited with the package id</returns>
+        PhysicalPackageMetadata GetMetadataFromPackageID(
+            string packageID, 
+            string version, 
+            string extension,
+            long size,
+            string hash);
         /// <summary>
         /// The target Files cache has filenames like 
         /// "com.google.guava#guava#23.3-jre.jar-e55fcd51-6081-4300-91a3-117b7930c023" or
