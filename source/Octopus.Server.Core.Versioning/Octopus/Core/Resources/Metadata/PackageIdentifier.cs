@@ -88,27 +88,18 @@ namespace Octopus.Core.Resources.Metadata
         public static Tuple<string,string> ExtractPackageExtensionAndMetadataForServer(string packageFilePath, ICollection<string> validExtensions)
         {
             var fileName = Path.GetFileName(packageFilePath);
-            var matchingExtension = validExtensions.FirstOrDefault(fileName.EndsWith);
-            var metaDataSection = string.Empty;
-            if (matchingExtension != null)
+            foreach (var ext in validExtensions)
             {
-                metaDataSection = fileName.Substring(0, fileName.Length - matchingExtension.Length);
-            }
-            else
-            {
-                foreach (var ext in validExtensions)
+                var match = new Regex(ServerConstants.SERVER_CACHE_DELIMITER + "[0-9A-F]{32}(?<extension>" + Regex.Escape(ext) + ")$").Match(fileName);
+                if (match.Success)
                 {
-                    var match = new Regex(ServerConstants.SERVER_CACHE_DELIMITER + "[0-9A-F]{32}(?<extension>" + Regex.Escape(ext) + ")$").Match(fileName);
-                    if (match.Success)
-                    {
-                        matchingExtension = match.Groups["extension"].Value;
-                        metaDataSection = fileName.Substring(0, match.Index);
-                        break;
-                    }
+                    return new Tuple<string, string>(
+                        match.Groups["extension"].Value,
+                        fileName.Substring(0, match.Index));
                 }
             }
 
-            return new Tuple<string, string>(metaDataSection, matchingExtension);
+            return new Tuple<string, string>(string.Empty, null);
         }
     }
 }

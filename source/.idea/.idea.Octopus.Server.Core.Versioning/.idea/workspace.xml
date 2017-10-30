@@ -152,7 +152,7 @@
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Constants/ServerConstants.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
-              <caret line="4" column="50" lean-forward="false" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="50" />
+              <caret line="4" column="50" lean-forward="false" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
               <folding>
                 <marker date="1509341412177" expanded="true" signature="32:147" ph="{...}" />
                 <marker date="1509341412177" expanded="true" signature="75:145" ph="{...}" />
@@ -164,26 +164,24 @@
       <file leaf-file-name="PackageIdentifier.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageIdentifier.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2053">
-              <caret line="100" column="44" lean-forward="false" selection-start-line="100" selection-start-column="44" selection-end-line="100" selection-end-column="44" />
+            <state relative-caret-position="2566">
+              <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
               <folding>
-                <marker date="1509341412277" expanded="false" signature="6:243" ph="..." />
-                <marker date="1509341412277" expanded="true" signature="286:5553" ph="{...}" />
-                <marker date="1509341412277" expanded="true" signature="323:5551" ph="{...}" />
-                <marker date="1509341412277" expanded="true" signature="426:942" ph="/// Takes a string containing a concatenated package ID and version (e.g. a filename or database-key) and  ... " />
-                <marker date="1509341412277" expanded="true" signature="1062:1962" ph="{...}" />
-                <marker date="1509341412277" expanded="true" signature="1972:2597" ph="/// Given a package-file path and a list of valid extensions extracts the package-metadata component and the exte ... " />
-                <marker date="1509341412277" expanded="true" signature="2736:3727" ph="{...}" />
-                <marker date="1509341412277" expanded="true" signature="2986:3115" ph="{...}" />
-                <marker date="1509341412277" expanded="true" signature="3132:3634" ph="{...}" />
-                <marker date="1509341412277" expanded="true" signature="3199:3620" ph="{...}" />
-                <marker date="1509341412277" expanded="true" signature="3372:3602" ph="{...}" />
-                <marker date="1509341412277" expanded="true" signature="3745:4366" ph="/// Given a package-file path and a list of valid extensions extracts the package-metadata component and the exte ... " />
-                <marker date="1509341412277" expanded="true" signature="4514:5545" ph="{...}" />
-                <marker date="1509341412277" expanded="true" signature="4764:4893" ph="{...}" />
-                <marker date="1509341412277" expanded="true" signature="4910:5452" ph="{...}" />
-                <marker date="1509341412277" expanded="true" signature="4977:5438" ph="{...}" />
-                <marker date="1509341412277" expanded="true" signature="5190:5420" ph="{...}" />
+                <marker date="1509342127795" expanded="false" signature="6:243" ph="..." />
+                <marker date="1509342127795" expanded="true" signature="286:5143" ph="{...}" />
+                <marker date="1509342127795" expanded="true" signature="323:5141" ph="{...}" />
+                <marker date="1509342127795" expanded="true" signature="426:942" ph="/// Takes a string containing a concatenated package ID and version (e.g. a filename or database-key) and  ... " />
+                <marker date="1509342127795" expanded="true" signature="1062:1962" ph="{...}" />
+                <marker date="1509342127795" expanded="true" signature="1972:2597" ph="/// Given a package-file path and a list of valid extensions extracts the package-metadata component and the exte ... " />
+                <marker date="1509342127795" expanded="true" signature="2736:3727" ph="{...}" />
+                <marker date="1509342127795" expanded="true" signature="2986:3115" ph="{...}" />
+                <marker date="1509342127795" expanded="true" signature="3132:3634" ph="{...}" />
+                <marker date="1509342127795" expanded="true" signature="3199:3620" ph="{...}" />
+                <marker date="1509342127795" expanded="true" signature="3372:3602" ph="{...}" />
+                <marker date="1509342127795" expanded="true" signature="3745:4366" ph="/// Given a package-file path and a list of valid extensions extracts the package-metadata component and the exte ... " />
+                <marker date="1509342127795" expanded="true" signature="4514:5135" ph="{...}" />
+                <marker date="1509342127795" expanded="true" signature="4635:5058" ph="{...}" />
+                <marker date="1509342127795" expanded="true" signature="4836:5044" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -192,8 +190,8 @@
       <file leaf-file-name="MavenPackageIDParser.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MavenPackageIDParser.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2566">
-              <caret line="82" column="97" lean-forward="false" selection-start-line="82" selection-start-column="97" selection-end-line="82" selection-end-column="135" />
+            <state relative-caret-position="514">
+              <caret line="46" column="77" lean-forward="false" selection-start-line="46" selection-start-column="77" selection-end-line="46" selection-end-column="77" />
               <folding>
                 <marker date="1509341412200" expanded="true" signature="6:84" ph="..." />
                 <marker date="1509341412200" expanded="true" signature="127:3311" ph="{...}" />
@@ -296,8 +294,8 @@
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageMetadata.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageIDParser.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Constants/ServerConstants.cs" />
-        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MavenPackageIDParser.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/NuGetPackageIDParser.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MavenPackageIDParser.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageIdentifier.cs" />
       </list>
     </option>
@@ -431,12 +429,12 @@
       <option name="presentableId" value="Default" />
       <updated>1508985960561</updated>
       <workItem from="1508985962374" duration="10224000" />
-      <workItem from="1509316634204" duration="8657000" />
+      <workItem from="1509316634204" duration="9365000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18881000" />
+    <option name="totallyTimeSpent" value="19589000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1055,18 +1053,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/BasePackageMetadata.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <marker date="1509335742942" expanded="true" signature="32:288" ph="{...}" />
-            <marker date="1509335742942" expanded="true" signature="39:151" ph="/// Represents the metadata that can be extracted from the package id alone ... " />
-            <marker date="1509335742942" expanded="true" signature="188:286" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageIDParser.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2109">
@@ -1110,21 +1096,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Constants/ServerConstants.cs">
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/BasePackageMetadata.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="4" column="50" lean-forward="false" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="50" />
+        <state relative-caret-position="285">
+          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
           <folding>
-            <marker date="1509341412177" expanded="true" signature="32:147" ph="{...}" />
-            <marker date="1509341412177" expanded="true" signature="75:145" ph="{...}" />
+            <marker date="1509335742942" expanded="true" signature="32:288" ph="{...}" />
+            <marker date="1509335742942" expanded="true" signature="39:151" ph="/// Represents the metadata that can be extracted from the package id alone ... " />
+            <marker date="1509335742942" expanded="true" signature="188:286" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MavenPackageIDParser.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2566">
-          <caret line="82" column="97" lean-forward="false" selection-start-line="82" selection-start-column="97" selection-end-line="82" selection-end-column="135" />
+        <state relative-caret-position="514">
+          <caret line="46" column="77" lean-forward="false" selection-start-line="46" selection-start-column="77" selection-end-line="46" selection-end-column="77" />
           <folding>
             <marker date="1509341412200" expanded="true" signature="6:84" ph="..." />
             <marker date="1509341412200" expanded="true" signature="127:3311" ph="{...}" />
@@ -1140,6 +1127,17 @@
             <marker date="1509341412200" expanded="true" signature="2073:2197" ph="{...}" />
             <marker date="1509341412200" expanded="true" signature="2341:2504" ph="{...}" />
             <marker date="1509341412200" expanded="true" signature="2812:3303" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Constants/ServerConstants.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="4" column="50" lean-forward="false" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
+          <folding>
+            <marker date="1509341412177" expanded="true" signature="32:147" ph="{...}" />
+            <marker date="1509341412177" expanded="true" signature="75:145" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1169,26 +1167,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageIdentifier.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2053">
-          <caret line="100" column="44" lean-forward="false" selection-start-line="100" selection-start-column="44" selection-end-line="100" selection-end-column="44" />
+        <state relative-caret-position="2566">
+          <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
           <folding>
-            <marker date="1509341412277" expanded="false" signature="6:243" ph="..." />
-            <marker date="1509341412277" expanded="true" signature="286:5553" ph="{...}" />
-            <marker date="1509341412277" expanded="true" signature="323:5551" ph="{...}" />
-            <marker date="1509341412277" expanded="true" signature="426:942" ph="/// Takes a string containing a concatenated package ID and version (e.g. a filename or database-key) and  ... " />
-            <marker date="1509341412277" expanded="true" signature="1062:1962" ph="{...}" />
-            <marker date="1509341412277" expanded="true" signature="1972:2597" ph="/// Given a package-file path and a list of valid extensions extracts the package-metadata component and the exte ... " />
-            <marker date="1509341412277" expanded="true" signature="2736:3727" ph="{...}" />
-            <marker date="1509341412277" expanded="true" signature="2986:3115" ph="{...}" />
-            <marker date="1509341412277" expanded="true" signature="3132:3634" ph="{...}" />
-            <marker date="1509341412277" expanded="true" signature="3199:3620" ph="{...}" />
-            <marker date="1509341412277" expanded="true" signature="3372:3602" ph="{...}" />
-            <marker date="1509341412277" expanded="true" signature="3745:4366" ph="/// Given a package-file path and a list of valid extensions extracts the package-metadata component and the exte ... " />
-            <marker date="1509341412277" expanded="true" signature="4514:5545" ph="{...}" />
-            <marker date="1509341412277" expanded="true" signature="4764:4893" ph="{...}" />
-            <marker date="1509341412277" expanded="true" signature="4910:5452" ph="{...}" />
-            <marker date="1509341412277" expanded="true" signature="4977:5438" ph="{...}" />
-            <marker date="1509341412277" expanded="true" signature="5190:5420" ph="{...}" />
+            <marker date="1509342127795" expanded="false" signature="6:243" ph="..." />
+            <marker date="1509342127795" expanded="true" signature="286:5143" ph="{...}" />
+            <marker date="1509342127795" expanded="true" signature="323:5141" ph="{...}" />
+            <marker date="1509342127795" expanded="true" signature="426:942" ph="/// Takes a string containing a concatenated package ID and version (e.g. a filename or database-key) and  ... " />
+            <marker date="1509342127795" expanded="true" signature="1062:1962" ph="{...}" />
+            <marker date="1509342127795" expanded="true" signature="1972:2597" ph="/// Given a package-file path and a list of valid extensions extracts the package-metadata component and the exte ... " />
+            <marker date="1509342127795" expanded="true" signature="2736:3727" ph="{...}" />
+            <marker date="1509342127795" expanded="true" signature="2986:3115" ph="{...}" />
+            <marker date="1509342127795" expanded="true" signature="3132:3634" ph="{...}" />
+            <marker date="1509342127795" expanded="true" signature="3199:3620" ph="{...}" />
+            <marker date="1509342127795" expanded="true" signature="3372:3602" ph="{...}" />
+            <marker date="1509342127795" expanded="true" signature="3745:4366" ph="/// Given a package-file path and a list of valid extensions extracts the package-metadata component and the exte ... " />
+            <marker date="1509342127795" expanded="true" signature="4514:5135" ph="{...}" />
+            <marker date="1509342127795" expanded="true" signature="4635:5058" ph="{...}" />
+            <marker date="1509342127795" expanded="true" signature="4836:5044" ph="{...}" />
           </folding>
         </state>
       </provider>
