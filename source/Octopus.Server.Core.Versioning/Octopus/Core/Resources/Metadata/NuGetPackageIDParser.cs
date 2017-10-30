@@ -96,16 +96,18 @@ namespace Octopus.Core.Resources.Metadata
         
         PhysicalPackageMetadata BuildMetadata(string id, string version, string extension, long size, string hash)
         {
+            var basePackage = BuildMetadata(id, version, extension);
             var pkg = new PhysicalPackageMetadata();
-            pkg.PackageId = id;
-            pkg.Version = version;
-            pkg.FileExtension = extension;
-            pkg.FeedType = FeedType.NuGet;            
-            pkg.PackageSearchPattern = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + "*";
-            pkg.ServerPackageFileName = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
-            pkg.TargetPackageFileName = pkg.PackageId + "." + pkg.Version + extension;
+            pkg.PackageId = basePackage.PackageId;
+            pkg.Version = basePackage.Version;
+            pkg.FileExtension = basePackage.FileExtension;
+            pkg.FeedType = basePackage.FeedType;
+            pkg.PackageSearchPattern = basePackage.PackageSearchPattern;
+            pkg.ServerPackageFileName = basePackage.ServerPackageFileName;
+            pkg.TargetPackageFileName = basePackage.TargetPackageFileName;
             pkg.Size = size;
             pkg.Hash = hash;
+            pkg.VersionDelimiter = basePackage.VersionDelimiter;
             return pkg;
         }
         
