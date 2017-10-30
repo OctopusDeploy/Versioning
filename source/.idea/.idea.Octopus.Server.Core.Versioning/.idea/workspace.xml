@@ -89,15 +89,15 @@
       <file leaf-file-name="FeedType.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/FeedType.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1254">
-              <caret line="22" column="83" lean-forward="false" selection-start-line="22" selection-start-column="83" selection-end-line="22" selection-end-column="83" />
+            <state relative-caret-position="1026">
+              <caret line="18" column="31" lean-forward="false" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
               <folding>
-                <marker date="1509332593523" expanded="true" signature="47:1559" ph="{...}" />
-                <marker date="1509332593523" expanded="true" signature="74:149" ph="{...}" />
-                <marker date="1509332593523" expanded="true" signature="197:1557" ph="{...}" />
-                <marker date="1509332593523" expanded="true" signature="212:1054" ph="/// Returns the precidence of a feed type. Feeds with higher precidence will be  ... " />
-                <marker date="1509332593523" expanded="true" signature="1111:1551" ph="{...}" />
-                <marker date="1509332593523" expanded="true" signature="1158:1541" ph="{...}" />
+                <marker date="1509332838279" expanded="true" signature="47:1559" ph="{...}" />
+                <marker date="1509332838279" expanded="true" signature="74:149" ph="{...}" />
+                <marker date="1509332838279" expanded="true" signature="197:1557" ph="{...}" />
+                <marker date="1509332838279" expanded="true" signature="212:1054" ph="/// Returns the precedence of a feed type. Feeds with higher precedence will be  ... " />
+                <marker date="1509332838279" expanded="true" signature="1111:1551" ph="{...}" />
+                <marker date="1509332838279" expanded="true" signature="1158:1541" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -441,12 +441,12 @@
       <option name="presentableId" value="Default" />
       <updated>1508985960561</updated>
       <workItem from="1508985962374" duration="10224000" />
-      <workItem from="1509316634204" duration="2142000" />
+      <workItem from="1509316634204" duration="2381000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12366000" />
+    <option name="totallyTimeSpent" value="12605000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1052,15 +1052,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/FeedType.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1254">
-          <caret line="22" column="83" lean-forward="false" selection-start-line="22" selection-start-column="83" selection-end-line="22" selection-end-column="83" />
+        <state relative-caret-position="1026">
+          <caret line="18" column="31" lean-forward="false" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
           <folding>
-            <marker date="1509332593523" expanded="true" signature="47:1559" ph="{...}" />
-            <marker date="1509332593523" expanded="true" signature="74:149" ph="{...}" />
-            <marker date="1509332593523" expanded="true" signature="197:1557" ph="{...}" />
-            <marker date="1509332593523" expanded="true" signature="212:1054" ph="/// Returns the precidence of a feed type. Feeds with higher precidence will be  ... " />
-            <marker date="1509332593523" expanded="true" signature="1111:1551" ph="{...}" />
-            <marker date="1509332593523" expanded="true" signature="1158:1541" ph="{...}" />
+            <marker date="1509332838279" expanded="true" signature="47:1559" ph="{...}" />
+            <marker date="1509332838279" expanded="true" signature="74:149" ph="{...}" />
+            <marker date="1509332838279" expanded="true" signature="197:1557" ph="{...}" />
+            <marker date="1509332838279" expanded="true" signature="212:1054" ph="/// Returns the precedence of a feed type. Feeds with higher precedence will be  ... " />
+            <marker date="1509332838279" expanded="true" signature="1111:1551" ph="{...}" />
+            <marker date="1509332838279" expanded="true" signature="1158:1541" ph="{...}" />
           </folding>
         </state>
       </provider>

@@ -13,10 +13,10 @@ namespace Octopus.Core.Resources
     public static class FeedTypeExtensions
     {
         /// <summary>
-        /// Returns the precidence of a feed type. Feeds with higher precidence will be 
+        /// Returns the precedence of a feed type. Feeds with higher precedence will be 
         /// prefered when multiple feeds can support the same extension type.
         /// 
-        /// Typically the only precidence that matters is between NuGet (which is also considered
+        /// Typically the only precedence that matters is between NuGet (which is also considered
         /// to be the built in library) and a more specific feed like Maven. For example, both
         /// these feeds support .zip, .jar, .war, .ear etc files. But because the Maven feed has
         /// a higher priority, if the package can be parsed as a maven feed package, it will be
@@ -25,7 +25,7 @@ namespace Octopus.Core.Resources
         /// <param name="self">The FeedType enum</param>
         /// <returns>The precidence</returns>
         /// <exception cref="Exception"></exception>
-        public static int Precidence(this FeedType self)
+        public static int Precedence(this FeedType self)
         {            
             switch(self)
             {
