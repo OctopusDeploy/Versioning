@@ -93,9 +93,7 @@ namespace Octopus.Core.Resources.Metadata
                 var match = new Regex(ServerConstants.SERVER_CACHE_DELIMITER + "[0-9A-F]{32}(?<extension>" + Regex.Escape(ext) + ")$").Match(fileName);
                 if (match.Success)
                 {
-                    return new Tuple<string, string>(
-                        match.Groups["extension"].Value,
-                        fileName.Substring(0, match.Index));
+                    return new Tuple<string, string>(fileName.Substring(0, match.Index), ext);
                 }
             }
 
