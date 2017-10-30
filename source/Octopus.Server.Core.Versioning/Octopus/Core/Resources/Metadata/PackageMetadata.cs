@@ -13,15 +13,11 @@ namespace Octopus.Core.Resources
         /// </summary>
         public string FileExtension { get; set; }
         /// <summary>
-        /// Used to define the search pattern for files on the target
+        /// Used to define the search pattern for files on the target based
+        /// on the package id and the version.
         /// </summary>
         [JsonIgnore]
         public string PackageAndVersionSearchPattern {get; set; }
-        /// <summary>
-        /// Used to define the search pattern for files on the target
-        /// </summary>
-        [JsonIgnore]
-        public string PackageSearchPattern {get; set; }
         /// <summary>
         /// Defines the server side cache file name
         /// </summary>

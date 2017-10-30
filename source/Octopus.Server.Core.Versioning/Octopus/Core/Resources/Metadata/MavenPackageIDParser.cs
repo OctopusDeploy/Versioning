@@ -19,7 +19,7 @@ namespace Octopus.Core.Resources.Metadata
         /// a file that it is not responsible for.
         /// </summary>
         private const string MavenFeedPrefix = "Maven";
-        
+
         public BasePackageMetadata GetMetadataFromPackageID(string packageID)
         {
             var idAndVersionSplit = packageID.Split(JavaConstants.JAVA_FILENAME_DELIMITER);
@@ -30,11 +30,7 @@ namespace Octopus.Core.Resources.Metadata
                     $"Unable to extract the package ID from \"{packageID}\"");
             }
 
-            return new BasePackageMetadata()
-            {
-                PackageId = packageID,
-                FeedType = FeedType.Maven
-            };
+            return BuildMetadata(packageID);
         }
 
         public PackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension)
@@ -44,9 +40,9 @@ namespace Octopus.Core.Resources.Metadata
         }
 
         public PhysicalPackageMetadata GetMetadataFromPackageID(
-            string packageID, 
-            string version, 
-            string extension, 
+            string packageID,
+            string version,
+            string extension,
             long size,
             string hash)
         {
@@ -58,7 +54,7 @@ namespace Octopus.Core.Resources.Metadata
             return GetMetadataFromPackageName(
                 packageFile,
                 PackageIdentifier.ExtractPackageExtensionAndMetadata(packageFile, extensions),
-                extensions);         
+                extensions);
         }
 
         public PackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions)
@@ -66,19 +62,21 @@ namespace Octopus.Core.Resources.Metadata
             return GetMetadataFromPackageName(
                 packageFile,
                 PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions),
-                extensions);   
+                extensions);
         }
 
-        public PhysicalPackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions, long size, string hash)
+        public PhysicalPackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions,
+            long size, string hash)
         {
             var baseDetails = GetMetadataFromPackageName(
                 packageFile,
                 PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions),
-                extensions);  
+                extensions);
             return BuildMetadata(baseDetails.PackageId, baseDetails.Version, baseDetails.FileExtension, size, hash);
         }
 
-        PackageMetadata GetMetadataFromPackageName(string packageFile, Tuple<string, string> metadataAndExtension, string[] extensions)
+        PackageMetadata GetMetadataFromPackageName(string packageFile, Tuple<string, string> metadataAndExtension,
+            string[] extensions)
         {
             var idAndVersion = metadataAndExtension.Item1;
             var extension = metadataAndExtension.Item2;
@@ -99,31 +97,43 @@ namespace Octopus.Core.Resources.Metadata
             return BuildMetadata(
                 idAndVersionSplit[1] + JavaConstants.JAVA_FILENAME_DELIMITER + idAndVersionSplit[2],
                 idAndVersionSplit[3],
-                extension);            
+                extension);
+        }
+
+        BasePackageMetadata BuildMetadata(string packageID)
+        {
+            return new BasePackageMetadata()
+            {
+                PackageId = packageID,
+                FeedType = FeedType.Maven,
+                PackageSearchPattern = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER +
+                                       packageID + "*"
+            };
         }
 
         PackageMetadata BuildMetadata(string id, string version, string extension)
         {
+            var baseMetadata = BuildMetadata(id);
+            
             var pkg = new PackageMetadata();
-            pkg.PackageId = id;
+            pkg.PackageId = baseMetadata.PackageId;
             pkg.Version = version;
             pkg.FileExtension = extension;
-            pkg.FeedType = FeedType.Maven;  
-            pkg.PackageSearchPattern = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER + 
-                                                 pkg.PackageId + "*";
-            pkg.PackageAndVersionSearchPattern = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER + 
-                                       pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + 
-                                       pkg.Version + "*";
-            pkg.ServerPackageFileName = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER + 
-                                        pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + 
+            pkg.FeedType = FeedType.Maven;
+            pkg.PackageSearchPattern = baseMetadata.PackageSearchPattern;
+            pkg.PackageAndVersionSearchPattern = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER +
+                                                 pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER +
+                                                 pkg.Version + "*";
+            pkg.ServerPackageFileName = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER +
+                                        pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER +
                                         pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
-            pkg.TargetPackageFileName = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER + 
-                                        pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + 
+            pkg.TargetPackageFileName = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER +
+                                        pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER +
                                         pkg.Version + extension;
             pkg.VersionDelimiter = JavaConstants.JAVA_FILENAME_DELIMITER.ToString();
             return pkg;
         }
-        
+
         PhysicalPackageMetadata BuildMetadata(string id, string version, string extension, long size, string hash)
         {
             var basePackage = BuildMetadata(id, version, extension);

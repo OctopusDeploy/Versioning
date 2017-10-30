@@ -11,5 +11,12 @@ namespace Octopus.Core.Resources
         
         [JsonIgnore]
         public FeedType FeedType { get; set; }
+        
+        /// <summary>
+        /// Used to define the search pattern for files on the target base only
+        /// on the package id.
+        /// </summary>
+        [JsonIgnore]
+        public string PackageSearchPattern {get; set; }
     }
 }

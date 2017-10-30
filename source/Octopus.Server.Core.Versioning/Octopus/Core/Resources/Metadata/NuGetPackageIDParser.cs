@@ -19,11 +19,7 @@ namespace Octopus.Core.Resources.Metadata
         /// </summary>
         public BasePackageMetadata GetMetadataFromPackageID(string packageID)
         {
-            return new BasePackageMetadata()
-            {
-                PackageId = packageID,
-                FeedType = FeedType.NuGet
-            };
+            return BuildMetadata(packageID);
         }
 
         public PackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension)
@@ -81,15 +77,27 @@ namespace Octopus.Core.Resources.Metadata
             return BuildMetadata(packageId, version.ToString(), extension);
         }
         
+        BasePackageMetadata BuildMetadata(string packageID)
+        {
+            return new BasePackageMetadata()
+            {
+                PackageId = packageID,
+                FeedType = FeedType.Maven,
+                PackageSearchPattern = packageID + "*"
+            };
+        }
+        
         PackageMetadata BuildMetadata(string id, string version, string extension)
         {
+            var baseMetadata = BuildMetadata(id);
+            
             var pkg = new PackageMetadata();
-            pkg.PackageId = id;
+            pkg.PackageId = baseMetadata.PackageId;
             pkg.Version = version;
             pkg.FileExtension = extension;
             pkg.FeedType = FeedType.NuGet;             
             pkg.PackageAndVersionSearchPattern = pkg.PackageId + "." + pkg.Version + "*";
-            pkg.PackageSearchPattern = pkg.PackageId + "*";
+            pkg.PackageSearchPattern = baseMetadata.PackageSearchPattern;
             pkg.ServerPackageFileName = pkg.PackageId + "." + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
             pkg.TargetPackageFileName = pkg.PackageId + "." + pkg.Version + extension;
             return pkg;
