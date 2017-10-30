@@ -88,7 +88,8 @@ namespace Octopus.Core.Resources.Metadata
             pkg.Version = version;
             pkg.FileExtension = extension;
             pkg.FeedType = FeedType.NuGet;             
-            pkg.PackageSearchPattern = pkg.PackageId + "." + pkg.Version + "*";
+            pkg.PackageAndVersionSearchPattern = pkg.PackageId + "." + pkg.Version + "*";
+            pkg.PackageSearchPattern = pkg.PackageId + "*";
             pkg.ServerPackageFileName = pkg.PackageId + "." + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
             pkg.TargetPackageFileName = pkg.PackageId + "." + pkg.Version + extension;
             return pkg;
@@ -102,6 +103,7 @@ namespace Octopus.Core.Resources.Metadata
             pkg.Version = basePackage.Version;
             pkg.FileExtension = basePackage.FileExtension;
             pkg.FeedType = basePackage.FeedType;
+            pkg.PackageAndVersionSearchPattern = basePackage.PackageAndVersionSearchPattern;
             pkg.PackageSearchPattern = basePackage.PackageSearchPattern;
             pkg.ServerPackageFileName = basePackage.ServerPackageFileName;
             pkg.TargetPackageFileName = basePackage.TargetPackageFileName;

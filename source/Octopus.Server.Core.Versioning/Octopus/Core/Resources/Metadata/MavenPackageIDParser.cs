@@ -108,8 +108,12 @@ namespace Octopus.Core.Resources.Metadata
             pkg.PackageId = id;
             pkg.Version = version;
             pkg.FileExtension = extension;
-            pkg.FeedType = FeedType.Maven;            
-            pkg.PackageSearchPattern = pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + pkg.Version + "*";
+            pkg.FeedType = FeedType.Maven;  
+            pkg.PackageSearchPattern = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER + 
+                                                 pkg.PackageId + "*";
+            pkg.PackageAndVersionSearchPattern = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER + 
+                                       pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + 
+                                       pkg.Version + "*";
             pkg.ServerPackageFileName = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER + 
                                         pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER + 
                                         pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
@@ -128,6 +132,7 @@ namespace Octopus.Core.Resources.Metadata
             pkg.Version = basePackage.Version;
             pkg.FileExtension = basePackage.FileExtension;
             pkg.FeedType = basePackage.FeedType;
+            pkg.PackageAndVersionSearchPattern = basePackage.PackageAndVersionSearchPattern;
             pkg.PackageSearchPattern = basePackage.PackageSearchPattern;
             pkg.ServerPackageFileName = basePackage.ServerPackageFileName;
             pkg.TargetPackageFileName = basePackage.TargetPackageFileName;

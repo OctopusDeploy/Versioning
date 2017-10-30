@@ -16,6 +16,11 @@ namespace Octopus.Core.Resources
         /// Used to define the search pattern for files on the target
         /// </summary>
         [JsonIgnore]
+        public string PackageAndVersionSearchPattern {get; set; }
+        /// <summary>
+        /// Used to define the search pattern for files on the target
+        /// </summary>
+        [JsonIgnore]
         public string PackageSearchPattern {get; set; }
         /// <summary>
         /// Defines the server side cache file name
@@ -37,6 +42,6 @@ namespace Octopus.Core.Resources
         public override string ToString()
         {
             return $"{PackageId}{VersionDelimiter}{Version}";
-        }
+        }        
     }
 }

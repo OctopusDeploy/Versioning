@@ -44,6 +44,21 @@ namespace Octopus.Core.Resources.Metadata
         {
             VersionDelimiter = DEFAULT_VERSION_DELIMITER;
         }
+
+        public PhysicalPackageMetadata(PackageMetadata metadata, long size, string hash)
+        {
+            this.Hash = hash;
+            this.Size = size;
+            this.FeedType = metadata.FeedType;
+            this.FileExtension = metadata.FileExtension;
+            this.PackageAndVersionSearchPattern = metadata.PackageAndVersionSearchPattern;
+            this.PackageId = metadata.PackageId;
+            this.PackageSearchPattern = metadata.PackageSearchPattern;
+            this.ServerPackageFileName = metadata.ServerPackageFileName;
+            this.TargetPackageFileName = metadata.TargetPackageFileName;
+            this.Version = metadata.Version;
+            this.VersionDelimiter = metadata.VersionDelimiter;
+        }
         
         public long Size { get; set; }
         public string Hash { get; set; }
