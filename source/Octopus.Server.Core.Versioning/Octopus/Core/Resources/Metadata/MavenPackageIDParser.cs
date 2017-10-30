@@ -10,7 +10,13 @@ namespace Octopus.Core.Resources.Metadata
     public class MavenPackageIDParser : IPackageIDParser
     {
         /// <summary>
-        /// The prefix added to all files to identify it as coming from a maven feed
+        /// The prefix added to all files to identify it as coming from a maven feed. This
+        /// means that filenames will look like:
+        /// Maven#org.example#artifact#1.0.jar
+        /// 
+        /// Appending a prefix like this is the recommended way to identify the origin of
+        /// a package, as it means that a parser can quickly fail if it is looking at
+        /// a file that it is not responsible for.
         /// </summary>
         private const string MavenFeedPrefix = "Maven";
         
@@ -35,6 +41,16 @@ namespace Octopus.Core.Resources.Metadata
         {
             var baseDetails = GetMetadataFromPackageID(packageID);
             return BuildMetadata(baseDetails.PackageId, version, extension);
+        }
+
+        public PhysicalPackageMetadata GetMetadataFromPackageID(
+            string packageID, 
+            string version, 
+            string extension, 
+            long size,
+            string hash)
+        {
+            return BuildMetadata(packageID, version, extension, size, hash);
         }
 
         public PackageMetadata GetMetadataFromPackageName(string packageFile, string[] extensions)
@@ -117,7 +133,7 @@ namespace Octopus.Core.Resources.Metadata
             pkg.TargetPackageFileName = basePackage.TargetPackageFileName;
             pkg.Size = size;
             pkg.Hash = hash;
-            pkg.VersionDelimiter = JavaConstants.JAVA_FILENAME_DELIMITER.ToString();
+            pkg.VersionDelimiter = basePackage.VersionDelimiter;
             return pkg;
         }
     }

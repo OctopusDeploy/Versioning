@@ -31,6 +31,16 @@ namespace Octopus.Core.Resources.Metadata
             throw new NotImplementedException();
         }
 
+        public PhysicalPackageMetadata GetMetadataFromPackageID(
+            string packageID, 
+            string version, 
+            string extension, 
+            long size,
+            string hash)
+        {
+            return BuildMetadata(packageID, version, extension, size, hash);
+        }
+
         public PackageMetadata GetMetadataFromPackageName(string packageFile, string[] extensions)
         {
             return GetMetadataFromPackageName(
