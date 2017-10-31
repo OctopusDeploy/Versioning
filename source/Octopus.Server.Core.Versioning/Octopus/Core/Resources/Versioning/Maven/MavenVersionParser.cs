@@ -16,7 +16,7 @@ namespace Octopus.Core.Resources.Versioning.Maven
 
         static readonly Regex DIGITS = new Regex(MAJOR_MINOR_PATCH_PATTERN + "(.*)$");
 
-        static readonly Regex BUILD_NUMBER = new Regex("(((\\-)(\\d+)(.*))?)|(\\.(.*))|(\\-(.*))|(.*)$");
+        static readonly Regex BUILD_NUMBER = new Regex("(?:(((\\-)(\\d+)(.*))?)|(\\.(.*))|(\\-(.*))|(.*))$");
 
         public int Major { get; private set; }
 

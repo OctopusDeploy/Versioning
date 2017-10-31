@@ -27,6 +27,40 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
         }
         
         [Test]
+        public void ParseMavenServerPackagePhysicalMetadata()
+        {
+            var filePath = "C:\\Maven#com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar";
+            var metadata = MavenParser.GetMetadataFromServerPackageName(
+                filePath, 
+                new string[] {".jar"},
+                123,
+                "hash");
+            Assert.AreEqual(metadata.FileExtension, ".jar");
+            Assert.AreEqual(metadata.PackageId, "com.google.guava#guava");
+            Assert.AreEqual(metadata.Version, "23.3-jre");
+            Assert.AreEqual(metadata.FeedType, FeedType.Maven);
+            Assert.AreEqual(metadata.Size, 123);
+            Assert.AreEqual(metadata.Hash, "hash");
+        }
+        
+        [Test]
+        public void ParseNuGetServerPackagePhysicalMetadata()
+        {
+            var filePath = "C:\\package.suffix.1.0.0_9822965F2883AD43AD79DA4E8795319F.zip";
+            var metadata = NuGetParser.GetMetadataFromServerPackageName(
+                filePath, 
+                new string[] {".zip"},
+                123,
+                "hash");
+            Assert.AreEqual(metadata.FileExtension, ".zip");
+            Assert.AreEqual(metadata.PackageId, "package.suffix");
+            Assert.AreEqual(metadata.Version, "1.0.0");
+            Assert.AreEqual(metadata.FeedType, FeedType.NuGet);
+            Assert.AreEqual(metadata.Size, 123);
+            Assert.AreEqual(metadata.Hash, "hash");
+        }
+        
+        [Test]
         public void ParseMavenServerPackage()
         {
             var filePath = "C:\\Maven#com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar";
