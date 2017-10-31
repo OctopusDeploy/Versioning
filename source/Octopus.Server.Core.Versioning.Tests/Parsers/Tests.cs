@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Octopus.Core.Resources;
 using Octopus.Core.Resources.Metadata;
 
@@ -9,6 +10,13 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
     {
         private readonly IPackageIDParser MavenParser = new MavenPackageIDParser();
         private readonly IPackageIDParser NuGetParser = new NuGetPackageIDParser();
+
+        [Test]
+        public void ParseNugetWithMaven()
+        {
+            Assert.Throws<Exception>(() =>
+                MavenParser.GetMetadataFromPackageID("Acme.Web", "1.0.0", null, 0, "whatever"));
+        }
         
         [Test]
         public void ParseMavenPackageId()
@@ -85,20 +93,11 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
         [Test]
         public void MavenFailToParseNuGetTargetPackage()
         {
-            try
+            Assert.Throws<Exception>(() =>
             {
                 var filePath = "C:\\package.suffix.1.0.0.zip-e55fcd51-6081-4300-91a3-117b7930c023";
                 var metadata = MavenParser.GetMetadataFromPackageName(filePath, new string[] {".jar"});
-            }
-            catch
-            {
-                /*
-                 * This exception is expected
-                 */
-                return;
-            }
-
-            Assert.Fail();
+            });
         }
         
         [Test]
@@ -126,20 +125,11 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
         [Test]
         public void NuGetFailToParseMavenTargetPackage()
         {
-            try
+            Assert.Throws<Exception>(() =>
             {
                 var filePath = "C:\\Maven#com.google.guava#guava#22.0.jar-e55fcd51-6081-4300-91a3-117b7930c023";
                 var metadata = NuGetParser.GetMetadataFromPackageName(filePath, new string[] {".jar"});
-            }
-            catch
-            {
-                /*
-                 * This exception is expected
-                 */
-                return;
-            }
-
-            Assert.Fail();
+            });           
         }
     }
 }

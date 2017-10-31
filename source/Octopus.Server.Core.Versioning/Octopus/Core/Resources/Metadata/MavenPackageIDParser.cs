@@ -102,6 +102,14 @@ namespace Octopus.Core.Resources.Metadata
 
         BasePackageMetadata BuildMetadata(string packageID)
         {
+            var groupAndArtifact = packageID.Split(JavaConstants.JAVA_FILENAME_DELIMITER);
+
+            if (groupAndArtifact.Length != 2)
+            {
+                throw new Exception(
+                    $"Unable to extract the package ID and version from package ID \"{packageID}\"");
+            }
+            
             return new BasePackageMetadata()
             {
                 PackageId = packageID,
