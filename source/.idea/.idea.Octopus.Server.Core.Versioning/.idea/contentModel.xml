@@ -63,6 +63,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive" />
         <e p="Octopus.Server.Core.Versioning.Tests.csproj" t="IncludeRecursive" />
+        <e p="packages.config" t="Include" />
         <e p="Parsers" t="Include">
           <e p="Tests.cs" t="Include" />
         </e>
