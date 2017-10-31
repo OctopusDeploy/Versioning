@@ -82,7 +82,7 @@ namespace Octopus.Core.Resources.Metadata
             return new BasePackageMetadata()
             {
                 PackageId = packageID,
-                FeedType = FeedType.Maven,
+                FeedType = FeedType.NuGet,
                 PackageSearchPattern = packageID + "*"
             };
         }
@@ -95,7 +95,7 @@ namespace Octopus.Core.Resources.Metadata
             pkg.PackageId = baseMetadata.PackageId;
             pkg.Version = version;
             pkg.FileExtension = extension;
-            pkg.FeedType = FeedType.NuGet;             
+            pkg.FeedType = baseMetadata.FeedType;            
             pkg.PackageAndVersionSearchPattern = pkg.PackageId + "." + pkg.Version + "*";
             pkg.PackageSearchPattern = baseMetadata.PackageSearchPattern;
             pkg.ServerPackageFileName = pkg.PackageId + "." + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;

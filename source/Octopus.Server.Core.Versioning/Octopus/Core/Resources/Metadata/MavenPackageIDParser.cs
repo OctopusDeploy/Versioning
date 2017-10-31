@@ -119,7 +119,7 @@ namespace Octopus.Core.Resources.Metadata
             pkg.PackageId = baseMetadata.PackageId;
             pkg.Version = version;
             pkg.FileExtension = extension;
-            pkg.FeedType = FeedType.Maven;
+            pkg.FeedType = baseMetadata.FeedType;
             pkg.PackageSearchPattern = baseMetadata.PackageSearchPattern;
             pkg.PackageAndVersionSearchPattern = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER +
                                                  pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER +

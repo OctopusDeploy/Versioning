@@ -11,6 +11,22 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
         private readonly IPackageIDParser NuGetParser = new NuGetPackageIDParser();
         
         [Test]
+        public void ParseMavenPackageId()
+        {
+            var metadata = MavenParser.GetMetadataFromPackageID("com.google.guava#guava");
+            Assert.AreEqual(metadata.PackageId, "com.google.guava#guava");
+            Assert.AreEqual(metadata.FeedType, FeedType.Maven);
+        }
+        
+        [Test]
+        public void ParseNuGetPackageId()
+        {
+            var metadata = NuGetParser.GetMetadataFromPackageID("NuGet.Package");
+            Assert.AreEqual(metadata.PackageId, "NuGet.Package");
+            Assert.AreEqual(metadata.FeedType, FeedType.NuGet);
+        }
+        
+        [Test]
         public void ParseMavenServerPackage()
         {
             var filePath = "C:\\Maven#com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar";
