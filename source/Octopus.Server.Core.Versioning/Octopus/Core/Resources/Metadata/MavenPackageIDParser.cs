@@ -9,20 +9,9 @@ namespace Octopus.Core.Resources.Metadata
     /// </summary>
     public class MavenPackageIDParser : IPackageIDParser
     {
-        /// <summary>
-        /// The prefix added to all files to identify it as coming from a maven feed. This
-        /// means that filenames will look like:
-        /// Maven#org.example#artifact#1.0.jar
-        /// 
-        /// Appending a prefix like this is the recommended way to identify the origin of
-        /// a package, as it means that a parser can quickly fail if it is looking at
-        /// a file that it is not responsible for.
-        /// </summary>
-        private const string MavenFeedPrefix = "Maven";
-
         public BasePackageMetadata GetMetadataFromPackageID(string packageID)
         {
-            var idAndVersionSplit = packageID.Split(JavaConstants.JAVA_FILENAME_DELIMITER);
+            var idAndVersionSplit = packageID.Split(JavaConstants.MavenFilenameDelimiter);
 
             if (idAndVersionSplit.Length != 2)
             {
@@ -86,7 +75,7 @@ namespace Octopus.Core.Resources.Metadata
                 throw new Exception($"Unable to determine filetype of file \"{packageFile}\"");
             }
 
-            var idAndVersionSplit = idAndVersion.Split(JavaConstants.JAVA_FILENAME_DELIMITER);
+            var idAndVersionSplit = idAndVersion.Split(JavaConstants.MavenFilenameDelimiter);
 
             if (idAndVersionSplit.Length != 4 || idAndVersionSplit[0] != MavenFeedPrefix)
             {
@@ -95,14 +84,14 @@ namespace Octopus.Core.Resources.Metadata
             }
 
             return BuildMetadata(
-                idAndVersionSplit[1] + JavaConstants.JAVA_FILENAME_DELIMITER + idAndVersionSplit[2],
+                idAndVersionSplit[1] + JavaConstants.MavenFilenameDelimiter + idAndVersionSplit[2],
                 idAndVersionSplit[3],
                 extension);
         }
 
         BasePackageMetadata BuildMetadata(string packageID)
         {
-            var groupAndArtifact = packageID.Split(JavaConstants.JAVA_FILENAME_DELIMITER);
+            var groupAndArtifact = packageID.Split(JavaConstants.MavenFilenameDelimiter);
 
             if (groupAndArtifact.Length != 2)
             {
@@ -114,7 +103,7 @@ namespace Octopus.Core.Resources.Metadata
             {
                 PackageId = packageID,
                 FeedType = FeedType.Maven,
-                PackageSearchPattern = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER +
+                PackageSearchPattern = MavenFeedPrefix + JavaConstants.MavenFilenameDelimiter +
                                        packageID + "*"
             };
         }
@@ -129,16 +118,16 @@ namespace Octopus.Core.Resources.Metadata
             pkg.FileExtension = extension;
             pkg.FeedType = baseMetadata.FeedType;
             pkg.PackageSearchPattern = baseMetadata.PackageSearchPattern;
-            pkg.PackageAndVersionSearchPattern = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER +
-                                                 pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER +
+            pkg.PackageAndVersionSearchPattern = MavenFeedPrefix + JavaConstants.MavenFilenameDelimiter +
+                                                 pkg.PackageId + JavaConstants.MavenFilenameDelimiter +
                                                  pkg.Version + "*";
-            pkg.ServerPackageFileName = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER +
-                                        pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER +
+            pkg.ServerPackageFileName = MavenFeedPrefix + JavaConstants.MavenFilenameDelimiter +
+                                        pkg.PackageId + JavaConstants.MavenFilenameDelimiter +
                                         pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
-            pkg.TargetPackageFileName = MavenFeedPrefix + JavaConstants.JAVA_FILENAME_DELIMITER +
-                                        pkg.PackageId + JavaConstants.JAVA_FILENAME_DELIMITER +
+            pkg.TargetPackageFileName = MavenFeedPrefix + JavaConstants.MavenFilenameDelimiter +
+                                        pkg.PackageId + JavaConstants.MavenFilenameDelimiter +
                                         pkg.Version + extension;
-            pkg.VersionDelimiter = JavaConstants.JAVA_FILENAME_DELIMITER.ToString();
+            pkg.VersionDelimiter = JavaConstants.MavenFilenameDelimiter.ToString();
             return pkg;
         }
 
