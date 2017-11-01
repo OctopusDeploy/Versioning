@@ -54,5 +54,10 @@ namespace Octopus.Core.Resources.Versioning.Maven
         {
             return originalVersion;
         } 
+        
+        public override bool Equals(object obj)
+        {
+            return this.CompareTo(obj) == 0;
+        }
     }
 }
