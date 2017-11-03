@@ -141,6 +141,11 @@ namespace Octopus.Core.Resources.Parsing.Maven
             Version = version.Trim();
             Packaging = packaging.Trim();
         }
+
+        public MavenPackageID(string id, IVersion version) : this(id)
+        {
+            Version = version.ToString();
+        }
         
         /// <summary>
         /// Parses an octopus package id into the maven package details.
