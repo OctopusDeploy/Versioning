@@ -72,6 +72,7 @@
         <e p="Octopus.Server.Core.Versioning.Tests.csproj" t="IncludeRecursive" />
         <e p="packages.config" t="Include" />
         <e p="Parsers" t="Include">
+          <e p="MavenURLParserTest.cs" t="Include" />
           <e p="Tests.cs" t="Include" />
         </e>
         <e p="Properties" t="Include">

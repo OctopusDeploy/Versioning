@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Octopus.Core.Extensions;
 
 namespace Octopus.Core.Resources.Parsing.Maven
 {
     public class MavenURLParser : IMavenURLParser
     {
-        public string SanitiseFeedUri(string uri) => Regex.Replace(uri, "(maven2)?//$", "");
+        public string SanitiseFeedUri(string uri) =>
+            Regex.Replace(uri, "(/maven2)?/?$", "");
+        
         public Uri SanitiseFeedUri(Uri uri)
         {
             if (uri == null)
