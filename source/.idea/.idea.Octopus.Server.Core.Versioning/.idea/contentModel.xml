@@ -24,6 +24,11 @@
                 <e p="PackageMetadata.cs" t="Include" />
                 <e p="PhysicalPackageMetadata.cs" t="Include" />
               </e>
+              <e p="Parsing" t="Include">
+                <e p="Maven" t="Include">
+                  <e p="MavenPackageID.cs" t="Include" />
+                </e>
+              </e>
               <e p="Versioning" t="Include">
                 <e p="Factories" t="Include">
                   <e p="IVersionFactory.cs" t="Include" />
