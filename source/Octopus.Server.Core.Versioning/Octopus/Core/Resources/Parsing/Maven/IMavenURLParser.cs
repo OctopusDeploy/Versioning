@@ -1,4 +1,6 @@
-﻿namespace Octopus.Core.Resources.Parsing.Maven
+﻿using System;
+
+namespace Octopus.Core.Resources.Parsing.Maven
 {
     public interface IMavenURLParser
     {
@@ -9,5 +11,6 @@
         /// <param name="uri">The input uri</param>
         /// <returns>The sanitised uri</returns>
         string SanitiseFeedUri(string uri);
+        Uri SanitiseFeedUri(Uri uri);
     }
 }
