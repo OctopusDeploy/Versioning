@@ -14,6 +14,20 @@ namespace Octopus.Core.Resources.Metadata
             return BuildMetadata(packageID);
         }
 
+        public bool CanGetMetadataFromPackageID(string packageID, out BasePackageMetadata metadata)
+        {
+            try
+            {
+                metadata = GetMetadataFromPackageID(packageID);
+                return true;
+            }
+            catch
+            {
+                metadata = null;
+                return false;
+            }
+        }
+
         public PackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension)
         {
             var baseDetails = GetMetadataFromPackageID(packageID);

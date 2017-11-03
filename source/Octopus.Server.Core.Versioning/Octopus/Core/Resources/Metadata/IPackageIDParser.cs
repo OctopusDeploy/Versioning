@@ -21,6 +21,14 @@ namespace Octopus.Core.Resources
         /// <returns>The metadata assocaited with the package id</returns>
         BasePackageMetadata GetMetadataFromPackageID(string packageID);
         /// <summary>
+        /// Returns true or false based on whether or not we can parse the
+        /// supplied package id.
+        /// </summary>
+        /// <param name="packageID">The package id</param>
+        /// <param name="metadata">The parsed metadata if we returned true</param>
+        /// <returns>True if this package id could be parsed</returns>
+        bool CanGetMetadataFromPackageID(string packageID, out BasePackageMetadata metadata);
+        /// <summary>
         /// Extracts metadata from a package ID and adds the supplied version and extension
         /// </summary>
         /// <param name="packageID">The package id</param>
