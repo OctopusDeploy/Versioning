@@ -58,7 +58,9 @@
     <Compile Include="Octopus\Core\Resources\Metadata\IPackageIDParser.cs" />
     <Compile Include="Octopus\Core\Resources\Metadata\PackageMetadata.cs" />
     <Compile Include="Octopus\Core\Resources\Metadata\PhysicalPackageMetadata.cs" />
+    <Compile Include="Octopus\Core\Resources\Parsing\Maven\IMavenURLParser.cs" />
     <Compile Include="Octopus\Core\Resources\Parsing\Maven\MavenPackageID.cs" />
+    <Compile Include="Octopus\Core\Resources\Parsing\Maven\MavenURLParser.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\Factories\IVersionFactory.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\Factories\SemVerFactory.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\Factories\StrictSemVerFactory.cs" />

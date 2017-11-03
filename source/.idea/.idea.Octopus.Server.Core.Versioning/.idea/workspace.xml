@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dd6778c-89a3-421b-b23b-8691b04b3795" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMavenURLParser.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenURLParser.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/contentModel.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus.Server.Core.Versioning.csproj" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus.Server.Core.Versioning.csproj" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -119,13 +123,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MavenPackageID.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MavenPackageID.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6897">
+            <state relative-caret-position="1573">
               <caret line="146" column="40" lean-forward="false" selection-start-line="146" selection-start-column="40" selection-end-line="146" selection-end-column="40" />
               <folding>
-                <marker date="1509670725420" expanded="true" signature="6:150" ph="..." />
+                <marker date="1509670725420" expanded="false" signature="6:150" ph="..." />
                 <marker date="1509670725420" expanded="true" signature="198:8484" ph="{...}" />
                 <marker date="1509670725420" expanded="true" signature="205:1347" ph="/// Back when Octopus only support NuGet (or NuGet like) feeds, it was possible to make ... " />
                 <marker date="1509670725420" expanded="true" signature="1379:8482" ph="{...}" />
@@ -156,6 +160,33 @@
                 <marker date="1509670725420" expanded="true" signature="7938:8075" ph="{...}" />
                 <marker date="1509670725420" expanded="true" signature="8128:8196" ph="{...}" />
                 <marker date="1509670725420" expanded="true" signature="8244:8476" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IMavenURLParser.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMavenURLParser.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="9" column="38" lean-forward="false" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+              <folding>
+                <marker date="1509675474372" expanded="true" signature="46:394" ph="{...}" />
+                <marker date="1509675474372" expanded="true" signature="85:392" ph="{...}" />
+                <marker date="1509675474372" expanded="true" signature="100:342" ph="/// Given a maven repo, return a sanitised uri that we can use ... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MavenURLParser.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenURLParser.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="6" column="56" lean-forward="false" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
+              <folding>
+                <marker date="1509675445626" expanded="true" signature="85:244" ph="{...}" />
+                <marker date="1509675445626" expanded="true" signature="137:242" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -266,16 +297,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="String.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7EDA6945-225D-4F3E-82C5-F31F305A504F/7e/6baf9ade/String.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96444">
-              <caret line="1692" column="15" lean-forward="false" selection-start-line="1692" selection-start-column="15" selection-end-line="1692" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MavenVersion.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/MavenVersion.cs">
           <provider selected="true" editor-type-id="text-editor">
@@ -291,32 +312,6 @@
                 <marker date="1509580540424" expanded="true" signature="1348:1523" ph="{...}" />
                 <marker date="1509580540424" expanded="true" signature="1566:1622" ph="{...}" />
                 <marker date="1509580540424" expanded="true" signature="1680:1745" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tests.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Parsers/Tests.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4047">
-              <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-              <folding>
-                <marker date="1509426131909" expanded="false" signature="6:105" ph="..." />
-                <marker date="1509426131909" expanded="true" signature="204:5706" ph="{...}" />
-                <marker date="1509426131909" expanded="true" signature="436:596" ph="{...}" />
-                <marker date="1509426131909" expanded="true" signature="662:924" ph="{...}" />
-                <marker date="1509426131909" expanded="true" signature="990:1222" ph="{...}" />
-                <marker date="1509426131909" expanded="true" signature="1308:1988" ph="{...}" />
-                <marker date="1509426131909" expanded="true" signature="2074:2720" ph="{...}" />
-                <marker date="1509426131909" expanded="true" signature="2790:3290" ph="{...}" />
-                <marker date="1509426131909" expanded="true" signature="3360:3850" ph="{...}" />
-                <marker date="1509426131909" expanded="true" signature="3931:4228" ph="{...}" />
-                <marker date="1509426131909" expanded="true" signature="3984:4216" ph="{...}" />
-                <marker date="1509426131909" expanded="true" signature="4298:4764" ph="{...}" />
-                <marker date="1509426131909" expanded="true" signature="4834:5298" ph="{...}" />
-                <marker date="1509426131909" expanded="true" signature="5379:5700" ph="{...}" />
-                <marker date="1509426131909" expanded="true" signature="5432:5677" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -364,11 +359,13 @@
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/VersionFormatter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PhysicalPackageMetadata.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/ComparableVersion.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMavenURLParser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/VersionComparer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/592E4DC6-A830-4739-896F-D685AF04DD6E/a1/0c1b9ae6/HashCodeCombiner.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/MavenVersion.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/MavenVersionParser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageIdentifier.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenURLParser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/497E7C03-5433-4AE6-B257-9B219192BCF0/8b/fe19677a/TestAttribute.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/497E7C03-5433-4AE6-B257-9B219192BCF0/2f/1e441cda/Assert.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/StrictSemanticVersion.cs" root0="FORCE_HIGHLIGHTING" />
@@ -430,6 +427,8 @@
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MavenPackageIDParser.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/NuGetPackageIDParser.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenURLParser.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMavenURLParser.cs" />
       </list>
     </option>
   </component>
@@ -445,7 +444,9 @@
     <option name="width" value="3872" />
     <option name="height" value="2092" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="SolutionExplorer" proportions="" version="1">
       <flattenPackages />
@@ -569,12 +570,12 @@
       <workItem from="1509391757137" duration="10493000" />
       <workItem from="1509414274559" duration="8968000" />
       <workItem from="1509580332288" duration="4253000" />
-      <workItem from="1509667759791" duration="2045000" />
+      <workItem from="1509667759791" duration="2828000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48265000" />
+    <option name="totallyTimeSpent" value="49048000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -684,20 +685,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2964">
-          <caret line="56" column="29" lean-forward="false" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/SemanticVersion.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8322">
-          <caret line="149" column="61" lean-forward="false" selection-start-line="149" selection-start-column="19" selection-end-line="149" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files (x86)/Microsoft Visual Studio/2017/Professional/MSBuild/15.0/Bin/Microsoft.Common.CurrentVersion.targets">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114741">
@@ -1285,10 +1272,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6897">
+        <state relative-caret-position="1573">
           <caret line="146" column="40" lean-forward="false" selection-start-line="146" selection-start-column="40" selection-end-line="146" selection-end-column="40" />
           <folding>
-            <marker date="1509670725420" expanded="true" signature="6:150" ph="..." />
+            <marker date="1509670725420" expanded="false" signature="6:150" ph="..." />
             <marker date="1509670725420" expanded="true" signature="198:8484" ph="{...}" />
             <marker date="1509670725420" expanded="true" signature="205:1347" ph="/// Back when Octopus only support NuGet (or NuGet like) feeds, it was possible to make ... " />
             <marker date="1509670725420" expanded="true" signature="1379:8482" ph="{...}" />
@@ -1319,6 +1306,29 @@
             <marker date="1509670725420" expanded="true" signature="7938:8075" ph="{...}" />
             <marker date="1509670725420" expanded="true" signature="8128:8196" ph="{...}" />
             <marker date="1509670725420" expanded="true" signature="8244:8476" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenURLParser.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="6" column="56" lean-forward="false" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
+          <folding>
+            <marker date="1509675445626" expanded="true" signature="85:244" ph="{...}" />
+            <marker date="1509675445626" expanded="true" signature="137:242" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMavenURLParser.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="9" column="38" lean-forward="false" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+          <folding>
+            <marker date="1509675474372" expanded="true" signature="46:394" ph="{...}" />
+            <marker date="1509675474372" expanded="true" signature="85:392" ph="{...}" />
+            <marker date="1509675474372" expanded="true" signature="100:342" ph="/// Given a maven repo, return a sanitised uri that we can use ... " />
           </folding>
         </state>
       </provider>
