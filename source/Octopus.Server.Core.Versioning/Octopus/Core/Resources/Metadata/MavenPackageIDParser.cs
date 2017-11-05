@@ -52,12 +52,41 @@ namespace Octopus.Core.Resources.Metadata
                 extensions);
         }
 
+        public bool CanGetMetadataFromPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata)
+        {
+            try
+            {
+                packageMetadata = GetMetadataFromPackageName(packageFile, extensions);
+                return true;
+            }
+            catch
+            {
+                packageMetadata = null;
+                return false;
+            }
+        }
+
         public PackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions)
         {
             return GetMetadataFromPackageName(
                 packageFile,
                 PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions),
                 extensions);
+        }
+
+        public bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions,
+            out PackageMetadata packageMetadata)
+        {
+            try
+            {
+                packageMetadata = GetMetadataFromServerPackageName(packageFile, extensions);
+                return true;
+            }
+            catch
+            {
+                packageMetadata = null;
+                return false;
+            }
         }
 
         public PhysicalPackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions,

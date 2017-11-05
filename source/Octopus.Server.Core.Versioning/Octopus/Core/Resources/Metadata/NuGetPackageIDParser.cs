@@ -59,6 +59,35 @@ namespace Octopus.Core.Resources.Metadata
                 PackageIdentifier.ExtractPackageExtensionAndMetadata(packageFile, extensions));
         }
 
+        public bool CanGetMetadataFromPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata)
+        {
+            try
+            {
+                packageMetadata = GetMetadataFromPackageName(packageFile, extensions);
+                return true;
+            }
+            catch
+            {
+                packageMetadata = null;
+                return false;
+            }
+        }
+        
+        public bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions,
+            out PackageMetadata packageMetadata)
+        {
+            try
+            {
+                packageMetadata = GetMetadataFromServerPackageName(packageFile, extensions);
+                return true;
+            }
+            catch
+            {
+                packageMetadata = null;
+                return false;
+            }
+        }
+
         public PackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions)
         {
             return GetMetadataFromPackageName(
