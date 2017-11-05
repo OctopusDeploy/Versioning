@@ -52,7 +52,8 @@ namespace Octopus.Core.Resources.Metadata
                 extensions);
         }
 
-        public bool CanGetMetadataFromPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata)
+        public bool CanGetMetadataFromPackageName(string packageFile, string[] extensions,
+            out PackageMetadata packageMetadata)
         {
             try
             {
@@ -63,6 +64,30 @@ namespace Octopus.Core.Resources.Metadata
             {
                 packageMetadata = null;
                 return false;
+            }
+        }
+
+        public Tuple<bool, PackageMetadata> CanGetMetadataFromPackageName(string packageFile, string[] extensions)
+        {
+            try
+            {
+                return new Tuple<bool, PackageMetadata>(true, GetMetadataFromPackageName(packageFile, extensions));
+            }
+            catch
+            {
+                return new Tuple<bool, PackageMetadata>(false, null);
+            }
+        }
+        
+        public Tuple<bool, PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions)
+        {
+            try
+            {
+                return new Tuple<bool, PackageMetadata>(true, GetMetadataFromServerPackageName(packageFile, extensions));
+            }
+            catch
+            {
+                return new Tuple<bool, PackageMetadata>(false, null);
             }
         }
 
@@ -139,7 +164,7 @@ namespace Octopus.Core.Resources.Metadata
             return new BasePackageMetadata()
             {
                 PackageId = groupAndArtifact[0] + JavaConstants.MavenFilenameDelimiter +
-                            groupAndArtifact[1] + JavaConstants.MavenFilenameDelimiter + 
+                            groupAndArtifact[1] + JavaConstants.MavenFilenameDelimiter +
                             groupAndArtifact[2],
                 FeedType = FeedType.Maven,
                 PackageSearchPattern = packageID + "*"

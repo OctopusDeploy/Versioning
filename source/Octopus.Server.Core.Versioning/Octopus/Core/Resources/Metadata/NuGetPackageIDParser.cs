@@ -73,6 +73,30 @@ namespace Octopus.Core.Resources.Metadata
             }
         }
         
+        public Tuple<bool, PackageMetadata> CanGetMetadataFromPackageName(string packageFile, string[] extensions)
+        {
+            try
+            {
+                return new Tuple<bool, PackageMetadata>(true, GetMetadataFromPackageName(packageFile, extensions));
+            }
+            catch
+            {
+                return new Tuple<bool, PackageMetadata>(false, null);
+            }
+        }
+        
+        public Tuple<bool, PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions)
+        {
+            try
+            {
+                return new Tuple<bool, PackageMetadata>(true, GetMetadataFromServerPackageName(packageFile, extensions));
+            }
+            catch
+            {
+                return new Tuple<bool, PackageMetadata>(false, null);
+            }
+        }
+        
         public bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions,
             out PackageMetadata packageMetadata)
         {

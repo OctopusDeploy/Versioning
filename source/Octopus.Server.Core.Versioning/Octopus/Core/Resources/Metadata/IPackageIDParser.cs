@@ -1,4 +1,5 @@
-﻿using Octopus.Core.Resources.Metadata;
+﻿using System;
+using Octopus.Core.Resources.Metadata;
 
 namespace Octopus.Core.Resources
 {
@@ -70,6 +71,17 @@ namespace Octopus.Core.Resources
         /// <returns>True if the file could be parsed, and false otherwise</returns>
         bool CanGetMetadataFromPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata);
         /// <summary>
+        /// The target Files cache has filenames like 
+        /// "com.google.guava#guava#23.3-jre.jar-e55fcd51-6081-4300-91a3-117b7930c023" or
+        /// "com.google.guava#guava#23.3-jre.jar" or
+        /// "mypackage.1.0.0.0.nuget-f363ce3a-0657-401a-8831-f3634f6cca2b".
+        /// This method will break down these filenames.
+        /// </summary>
+        /// <param name="packageFile">The package file name</param>
+        /// <param name="extensions">The extensions that this parser should know about</param>
+        /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
+        Tuple<bool, PackageMetadata> CanGetMetadataFromPackageName(string packageFile, string[] extensions);
+        /// <summary>
         /// The server side cache has filenames like 
         /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or
         /// "mypackage.1.0.0.0_BA90F59B8C9EE04DADE2D3501181EFCD.nuget".
@@ -89,6 +101,15 @@ namespace Octopus.Core.Resources
         /// <param name="packageMetadata">The package metadata if the parsing was successful</param>
         /// <returns>True if the file could be parsed, and false otherwise</returns>
         bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata);
+        /// <summary>
+        /// The server side cache has filenames like 
+        /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or
+        /// "mypackage.1.0.0.0_BA90F59B8C9EE04DADE2D3501181EFCD.nuget".
+        /// This method will break down this filename.
+        /// </summary>
+        /// <param name="packageFile">The package file name</param>
+        /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
+        Tuple<bool, PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions);
         /// <summary>
         /// The server side cache has filenames like 
         /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or
