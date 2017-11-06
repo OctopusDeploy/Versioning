@@ -52,7 +52,7 @@ namespace Octopus.Core.Resources.Versioning.Maven
 
         public override string ToString()
         {
-            return originalVersion;
+            return originalVersion ?? "";
         } 
         
         public override bool Equals(object obj)

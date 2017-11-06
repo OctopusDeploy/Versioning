@@ -49,6 +49,23 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
             Assert.AreEqual(metadata.FeedType, FeedType.Maven);
             Assert.AreEqual(metadata.Size, 123);
             Assert.AreEqual(metadata.Hash, "hash");
+        }        
+        
+        [Test]
+        public void ParseMavenServerPackagePhysicalMetadata2()
+        {
+            var filePath = "C:\\Temp\\Files\\feeds-maven\\Maven#com.google.guava#guava.22.0_3C7672DD8977C04DBD1F8BA70E1AF190.jar";
+            var metadata = MavenParser.GetMetadataFromServerPackageName(
+                filePath, 
+                new string[] {".jar"},
+                123,
+                "hash");
+            Assert.AreEqual(metadata.FileExtension, ".jar");
+            Assert.AreEqual(metadata.PackageId, "Maven#com.google.guava#guava");
+            Assert.AreEqual(metadata.Version, "22.0");
+            Assert.AreEqual(metadata.FeedType, FeedType.Maven);
+            Assert.AreEqual(metadata.Size, 123);
+            Assert.AreEqual(metadata.Hash, "hash");
         }
         
         [Test]
