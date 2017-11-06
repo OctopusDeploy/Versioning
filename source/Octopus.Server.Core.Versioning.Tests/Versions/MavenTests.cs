@@ -114,5 +114,29 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
             Assert.AreEqual( "-SNAPSHOT", version.Release );
             Assert.AreEqual( 4, version.Revision );
         }
+        
+        [Test]
+        public void testPrerelease()            
+        {
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-alpha" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-alpha1" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-a1" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-alpha1-SNAPSHOT" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-beta" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-beta1" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-b1" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-MILESTONE" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-MILESTONE1" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-M1" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-CR" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-CR1" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-RC" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-RC1" ).IsPrerelease);                       
+            Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-SNAPSHOT" ).IsPrerelease);                  
+            Assert.IsFalse(new MavenVersionParser().Parse( "1.0.0" ).IsPrerelease);                  
+            Assert.IsFalse(new MavenVersionParser().Parse( "1.0.0-a" ).IsPrerelease);                  
+            Assert.IsFalse(new MavenVersionParser().Parse( "1.0.0-release" ).IsPrerelease);                  
+
+        }
     }
 }

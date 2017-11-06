@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Octopus.Core.Resources.Versioning.Maven
 {
@@ -13,7 +14,18 @@ namespace Octopus.Core.Resources.Versioning.Maven
         public int Patch { get; }
         public int Revision { get; }
 
-        public bool IsPrerelease => ReleaseLabels.Any(label => label.Equals("SNAPSHOT", StringComparison.OrdinalIgnoreCase));
+        public bool IsPrerelease => ReleaseLabels.Any(label =>
+        {
+            return label != null && (label.Equals("SNAPSHOT", StringComparison.OrdinalIgnoreCase) ||
+                   label.StartsWith("ALPHA", StringComparison.OrdinalIgnoreCase) ||
+                   Regex.Match(label, "^[Aa]\\d+").Success ||
+                   label.StartsWith("BETA", StringComparison.OrdinalIgnoreCase) ||
+                   Regex.Match(label, "^[Bb]\\d+").Success ||
+                   label.StartsWith("MILESTONE", StringComparison.OrdinalIgnoreCase) ||
+                   Regex.Match(label, "^[Mm]\\d+").Success ||
+                   label.StartsWith("CR", StringComparison.OrdinalIgnoreCase) ||
+                   label.StartsWith("RC", StringComparison.OrdinalIgnoreCase));
+        });
 
         public IEnumerable<string> ReleaseLabels { get; }
 
