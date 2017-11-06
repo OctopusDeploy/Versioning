@@ -13,7 +13,7 @@ namespace Octopus.Core.Resources.Versioning.Maven
         public int Patch { get; }
         public int Revision { get; }
 
-        public bool IsPrerelease => ReleaseLabels.Any(label => label == "SNAPSHOT");
+        public bool IsPrerelease => ReleaseLabels.Any(label => label.Equals("SNAPSHOT", StringComparison.OrdinalIgnoreCase));
 
         public IEnumerable<string> ReleaseLabels { get; }
 
