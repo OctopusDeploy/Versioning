@@ -18,6 +18,7 @@ namespace Octopus.Core.Resources.Versioning.Factories
         /// <param name="type">The feed type</param>
         /// <returns>An impletation of IVersion that matches the supplied feed</returns>
         IVersion CreateVersion(string input, FeedType type);
+        Maybe<IVersion> CreateOptionalVersion(string input, FeedType type);
         IVersion CreateMavenVersion(string input);
         IVersion CreateSemanticVersion(string input, bool preserveMissingComponents = false);
         IVersion CreateSemanticVersion(int major, int minor, int patch, string releaseLabel);
@@ -26,7 +27,7 @@ namespace Octopus.Core.Resources.Versioning.Factories
         IVersion CreateSemanticVersion(Version version, string releaseLabel = null, string metadata = null);        
         IVersion CreateSemanticVersion(Version version, IEnumerable<string> releaseLabels, string metadata, string originalVersion);
         Maybe<IVersion> CreateSemanticVersionOrNone(string input, bool preserveMissingComponents = false);
-        bool CanCreateVersion(string input, out IVersion version, FeedType type);
+        bool CanCreateVersion(string input, out IVersion version, FeedType type);        
         bool CanCreateMavenVersion(string input, out IVersion version);
         bool CanCreateSemanticVersion(string input, out IVersion version, bool preserveMissingComponents = false);
     }

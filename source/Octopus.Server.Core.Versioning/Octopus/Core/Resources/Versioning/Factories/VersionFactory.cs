@@ -21,6 +21,25 @@ namespace Octopus.Core.Resources.Versioning.Factories
             }
         }
 
+        public Maybe<IVersion> CreateOptionalVersion(string input, FeedType type)
+        {
+            try
+            {
+                switch (type)
+                {
+                    case FeedType.Maven:
+                        return Maybe<IVersion>.Some(CreateMavenVersion(input));
+                    default:
+                        return CreateSemanticVersionOrNone(input);
+                }
+            }
+            catch
+            {
+                return Maybe<IVersion>.None;
+            }
+
+        }
+
         public IVersion CreateMavenVersion(string input)
         {
             return new MavenVersionParser().Parse(input);

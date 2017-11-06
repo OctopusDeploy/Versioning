@@ -1,6 +1,7 @@
 ﻿using System;
 using Octopus.Core.Constants;
 using Octopus.Core.Resources.Versioning;
+using Octopus.Core.Util;
 
 namespace Octopus.Core.Resources.Metadata
 {
@@ -67,27 +68,27 @@ namespace Octopus.Core.Resources.Metadata
             }
         }
 
-        public Tuple<bool, PackageMetadata> CanGetMetadataFromPackageName(string packageFile, string[] extensions)
+        public Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile, string[] extensions)
         {
             try
             {
-                return new Tuple<bool, PackageMetadata>(true, GetMetadataFromPackageName(packageFile, extensions));
+                return Maybe<PackageMetadata>.Some(GetMetadataFromPackageName(packageFile, extensions));
             }
             catch
             {
-                return new Tuple<bool, PackageMetadata>(false, null);
+                return Maybe<PackageMetadata>.None;
             }
         }
         
-        public Tuple<bool, PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions)
+        public Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions)
         {
             try
             {
-                return new Tuple<bool, PackageMetadata>(true, GetMetadataFromServerPackageName(packageFile, extensions));
+                return Maybe<PackageMetadata>.Some(GetMetadataFromServerPackageName(packageFile, extensions));
             }
             catch
             {
-                return new Tuple<bool, PackageMetadata>(false, null);
+                return Maybe<PackageMetadata>.None;
             }
         }
 
