@@ -118,6 +118,7 @@ namespace Octopus.Core.Resources
         /// This method will break down this filename.
         /// </summary>
         /// <param name="packageFile">The package file name</param>
+        /// <param name="extensions">The extensions that this parser should know about</param>
         /// <param name="packageMetadata">The package metadata if the parsing was successful</param>
         /// <returns>True if the file could be parsed, and false otherwise</returns>
         bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata);
