@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text.RegularExpressions;
 using Octopus.Core.Constants;
 using Octopus.Core.Resources.Versioning;
@@ -85,7 +86,19 @@ namespace Octopus.Core.Resources.Metadata
                 return Maybe<PackageMetadata>.None;
             }
         }
-        
+
+        public Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile)
+        {
+            try
+            {
+                return Maybe<PackageMetadata>.Some(GetMetadataFromPackageName(packageFile, new string[] {Path.GetExtension(packageFile)}));
+            }
+            catch
+            {
+                return Maybe<PackageMetadata>.None;
+            }
+        }
+
         public Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions)
         {
             try
@@ -97,7 +110,26 @@ namespace Octopus.Core.Resources.Metadata
                 return Maybe<PackageMetadata>.None;
             }
         }
-        
+
+        public Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile)
+        {
+            try
+            {
+                return Maybe<PackageMetadata>.Some(GetMetadataFromServerPackageName(packageFile, new string[] {Path.GetExtension(packageFile)}));
+            }
+            catch
+            {
+                return Maybe<PackageMetadata>.None;
+            }
+        }
+
+        public PackageMetadata GetMetadataFromServerPackageName(string packageFile)
+        {
+            return GetMetadataFromPackageName(
+                packageFile,
+                PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, new string[] {Path.GetExtension(packageFile)}));
+        }
+
         public bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions,
             out PackageMetadata packageMetadata)
         {

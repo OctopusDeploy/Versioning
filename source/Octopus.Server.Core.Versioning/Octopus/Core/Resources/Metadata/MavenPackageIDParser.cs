@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Threading;
 using Octopus.Core.Constants;
 using Octopus.Core.Resources.Versioning;
 using Octopus.Core.Util;
@@ -79,12 +81,36 @@ namespace Octopus.Core.Resources.Metadata
                 return Maybe<PackageMetadata>.None;
             }
         }
-        
+
+        public Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile)
+        {
+            try
+            {
+                return Maybe<PackageMetadata>.Some(GetMetadataFromPackageName(packageFile, new string[] {Path.GetExtension(packageFile)}));
+            }
+            catch
+            {
+                return Maybe<PackageMetadata>.None;
+            }
+        }
+
         public Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions)
         {
             try
             {
                 return Maybe<PackageMetadata>.Some(GetMetadataFromServerPackageName(packageFile, extensions));
+            }
+            catch
+            {
+                return Maybe<PackageMetadata>.None;
+            }
+        }
+
+        public Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile)
+        {
+            try
+            {
+                return Maybe<PackageMetadata>.Some(GetMetadataFromServerPackageName(packageFile, new string[] {Path.GetExtension(packageFile)}));
             }
             catch
             {
@@ -98,6 +124,14 @@ namespace Octopus.Core.Resources.Metadata
                 packageFile,
                 PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions),
                 extensions);
+        }
+
+        public PackageMetadata GetMetadataFromServerPackageName(string packageFile)
+        {
+            return GetMetadataFromPackageName(
+                packageFile,
+                PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, new string[] {Path.GetExtension(packageFile)}),
+                new string[] {Path.GetExtension(packageFile)});
         }
 
         public bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions,

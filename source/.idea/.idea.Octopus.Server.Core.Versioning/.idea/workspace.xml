@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dd6778c-89a3-421b-b23b-8691b04b3795" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IPackageIDParser.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IPackageIDParser.cs" />
       <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MavenPackageIDParser.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MavenPackageIDParser.cs" />
       <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/NuGetPackageIDParser.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/NuGetPackageIDParser.cs" />
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs" />
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,24 +18,27 @@
       <file leaf-file-name="IPackageIDParser.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IPackageIDParser.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5533">
-              <caret line="112" column="14" lean-forward="false" selection-start-line="112" selection-start-column="14" selection-end-line="112" selection-end-column="14" />
+            <state relative-caret-position="3481">
+              <caret line="91" column="67" lean-forward="false" selection-start-line="91" selection-start-column="67" selection-end-line="91" selection-end-column="67" />
               <folding>
-                <marker date="1509952960637" expanded="true" signature="6:77" ph="..." />
-                <marker date="1509952960637" expanded="true" signature="111:7768" ph="{...}" />
-                <marker date="1509952960637" expanded="true" signature="118:644" ph="/// Throughout the lifecycle of a package deployment we have access to various ... " />
-                <marker date="1509952960637" expanded="true" signature="682:7766" ph="{...}" />
-                <marker date="1509952960637" expanded="true" signature="697:945" ph="/// Extracts metadata from a package ID (i.e. no version information) ... " />
-                <marker date="1509952960637" expanded="true" signature="1026:1383" ph="/// Returns true or false based on whether or not we can parse the ... " />
-                <marker date="1509952960637" expanded="true" signature="1486:1876" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
-                <marker date="1509952960637" expanded="true" signature="1987:2483" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
-                <marker date="1509952960637" expanded="true" signature="2626:3233" ph="/// The target Files cache has filenames like  ... " />
-                <marker date="1509952960637" expanded="true" signature="3335:4051" ph="/// The target Files cache has filenames like  ... " />
-                <marker date="1509952960637" expanded="true" signature="4182:4848" ph="/// The target Files cache has filenames like  ... " />
-                <marker date="1509952960637" expanded="true" signature="4960:5503" ph="/// The server side cache has filenames like  ... " />
-                <marker date="1509952960637" expanded="true" signature="5611:6168" ph="/// The server side cache has filenames like  ... " />
-                <marker date="1509952960637" expanded="true" signature="6305:6812" ph="/// The server side cache has filenames like  ... " />
-                <marker date="1509952960637" expanded="true" signature="6930:7579" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1509953919179" expanded="true" signature="6:77" ph="..." />
+                <marker date="1509953919179" expanded="true" signature="111:9569" ph="{...}" />
+                <marker date="1509953919179" expanded="true" signature="118:644" ph="/// Throughout the lifecycle of a package deployment we have access to various ... " />
+                <marker date="1509953919179" expanded="true" signature="682:9567" ph="{...}" />
+                <marker date="1509953919179" expanded="true" signature="697:945" ph="/// Extracts metadata from a package ID (i.e. no version information) ... " />
+                <marker date="1509953919179" expanded="true" signature="1026:1383" ph="/// Returns true or false based on whether or not we can parse the ... " />
+                <marker date="1509953919179" expanded="true" signature="1486:1876" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
+                <marker date="1509953919179" expanded="true" signature="1987:2483" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
+                <marker date="1509953919179" expanded="true" signature="2626:3233" ph="/// The target Files cache has filenames like  ... " />
+                <marker date="1509953919179" expanded="true" signature="3335:4051" ph="/// The target Files cache has filenames like  ... " />
+                <marker date="1509953919179" expanded="true" signature="4182:4848" ph="/// The target Files cache has filenames like  ... " />
+                <marker date="1509953919179" expanded="true" signature="4960:5531" ph="/// The target Files cache has filenames like  ... " />
+                <marker date="1509953919179" expanded="true" signature="5622:6165" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1509953919179" expanded="true" signature="6273:6721" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1509953919179" expanded="true" signature="6808:7365" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1509953919179" expanded="true" signature="7502:8009" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1509953919179" expanded="true" signature="8127:8634" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1509953919179" expanded="true" signature="8731:9380" ph="/// The server side cache has filenames like  ... " />
               </folding>
             </state>
           </provider>
@@ -47,42 +47,49 @@
       <file leaf-file-name="MavenPackageIDParser.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MavenPackageIDParser.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="70" column="8" lean-forward="false" selection-start-line="70" selection-start-column="8" selection-end-line="92" selection-end-column="9" />
+            <state relative-caret-position="1230">
+              <caret line="130" column="12" lean-forward="false" selection-start-line="130" selection-start-column="12" selection-end-line="133" selection-end-column="63" />
               <folding>
-                <marker date="1509952960662" expanded="true" signature="6:109" ph="..." />
-                <marker date="1509952960662" expanded="true" signature="152:8194" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="159:252" ph="/// Maven package IDs come in the format: group##artifact ... " />
-                <marker date="1509952960662" expanded="true" signature="309:8192" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="393:458" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="559:825" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="585:706" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="737:815" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="934:1098" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="1300:1397" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="1497:1717" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="1858:2154" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="1884:2028" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="2059:2144" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="2264:2531" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="2290:2423" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="2454:2521" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="2655:2928" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="2681:2820" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="2851:2918" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="3034:3263" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="3410:3712" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="3436:3586" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="3617:3702" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="3862:4219" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="4368:5335" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="4543:4667" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="4867:5030" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="5396:6176" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="5599:5766" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="5825:6165" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="6260:7259" ph="{...}" />
-                <marker date="1509952960662" expanded="true" signature="7375:8186" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="6:150" ph="..." />
+                <marker date="1509954027539" expanded="true" signature="193:9405" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="200:293" ph="/// Maven package IDs come in the format: group##artifact ... " />
+                <marker date="1509954027539" expanded="true" signature="350:9403" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="434:499" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="600:866" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="626:747" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="778:856" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="975:1139" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="1341:1438" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="1538:1758" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="1899:2195" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="1925:2069" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="2100:2185" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="2305:2572" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="2331:2464" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="2495:2562" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="2661:2963" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="2687:2855" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="2886:2953" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="3079:3352" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="3105:3244" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="3275:3342" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="3447:3755" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="3473:3647" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="3678:3745" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="3861:4090" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="4175:4474" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="4621:4923" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="4647:4797" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="4828:4913" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="5073:5430" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="5579:6546" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="5754:5878" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="6078:6241" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="6607:7387" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="6810:6977" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="7036:7376" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="7471:8470" ph="{...}" />
+                <marker date="1509954027539" expanded="true" signature="8586:9397" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -114,44 +121,51 @@
       <file leaf-file-name="NuGetPackageIDParser.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/NuGetPackageIDParser.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="76" column="18" lean-forward="false" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
+            <state relative-caret-position="1183">
+              <caret line="138" column="28" lean-forward="true" selection-start-line="138" selection-start-column="28" selection-end-line="138" selection-end-column="28" />
               <folding>
-                <marker date="1509952990604" expanded="true" signature="6:198" ph="..." />
-                <marker date="1509952990604" expanded="true" signature="241:8937" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="248:420" ph="/// A service for extracting metadata from packages that are sourced from a NuGet compatible ... " />
-                <marker date="1509952990604" expanded="true" signature="477:8935" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="580:708" ph="/// NuGet is considered the fallback that will always match the supplied package id ... " />
-                <marker date="1509952990604" expanded="true" signature="786:851" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="952:1218" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="978:1099" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="1130:1208" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="1327:1491" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="1696:1793" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="1893:2085" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="2214:2510" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="2240:2384" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="2415:2500" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="2628:2895" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="2654:2787" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="2818:2885" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="3019:3292" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="3045:3184" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="3215:3282" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="3447:3749" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="3473:3623" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="3654:3739" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="3855:4056" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="4194:4524" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="4640:5285" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="4827:4951" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="5056:5198" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="5354:5585" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="5422:5574" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="5677:6388" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="6512:7323" ph="{...}" />
-                <marker date="1509952990604" expanded="true" signature="7341:7857" ph="/// Takes a string containing a concatenated package ID and version (e.g. a filename or database-key) and  ... " />
-                <marker date="1509952990604" expanded="true" signature="7963:8929" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="6:215" ph="..." />
+                <marker date="1509954095231" expanded="true" signature="258:10053" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="265:437" ph="/// A service for extracting metadata from packages that are sourced from a NuGet compatible ... " />
+                <marker date="1509954095231" expanded="true" signature="494:10051" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="597:725" ph="/// NuGet is considered the fallback that will always match the supplied package id ... " />
+                <marker date="1509954095231" expanded="true" signature="803:868" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="969:1235" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="995:1116" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="1147:1225" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="1344:1508" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="1713:1810" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="1910:2102" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="2231:2527" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="2257:2401" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="2432:2517" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="2645:2912" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="2671:2804" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="2835:2902" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="3001:3303" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="3027:3195" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="3226:3293" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="3419:3692" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="3445:3584" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="3615:3682" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="3787:4095" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="3813:3987" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="4018:4085" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="4180:4416" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="4563:4865" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="4589:4739" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="4770:4855" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="4971:5172" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="5310:5640" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="5756:6401" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="5943:6067" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="6172:6314" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="6470:6701" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="6538:6690" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="6793:7504" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="7628:8439" ph="{...}" />
+                <marker date="1509954095231" expanded="true" signature="8457:8973" ph="/// Takes a string containing a concatenated package ID and version (e.g. a filename or database-key) and  ... " />
+                <marker date="1509954095231" expanded="true" signature="9079:10045" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -334,6 +348,9 @@
       <find>MavenGav</find>
       <find>PackageReference</find>
       <find>Tuple</find>
+      <find>CanGetMetadataFromPackageName</find>
+      <find>CanGetMetadataFromServerPackageName</find>
+      <find>GetMetadataFromServerPackageName</find>
     </findStrings>
     <replaceStrings>
       <replace>version.Revision</replace>
@@ -586,12 +603,12 @@
       <workItem from="1509667759791" duration="6105000" />
       <workItem from="1509915024803" duration="3806000" />
       <workItem from="1509924887060" duration="2183000" />
-      <workItem from="1509952392603" duration="600000" />
+      <workItem from="1509952392603" duration="1488000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58914000" />
+    <option name="totallyTimeSpent" value="59802000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1147,110 +1164,127 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IPackageIDParser.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5533">
-          <caret line="112" column="14" lean-forward="false" selection-start-line="112" selection-start-column="14" selection-end-line="112" selection-end-column="14" />
+        <state relative-caret-position="3481">
+          <caret line="91" column="67" lean-forward="false" selection-start-line="91" selection-start-column="67" selection-end-line="91" selection-end-column="67" />
           <folding>
-            <marker date="1509952960637" expanded="true" signature="6:77" ph="..." />
-            <marker date="1509952960637" expanded="true" signature="111:7768" ph="{...}" />
-            <marker date="1509952960637" expanded="true" signature="118:644" ph="/// Throughout the lifecycle of a package deployment we have access to various ... " />
-            <marker date="1509952960637" expanded="true" signature="682:7766" ph="{...}" />
-            <marker date="1509952960637" expanded="true" signature="697:945" ph="/// Extracts metadata from a package ID (i.e. no version information) ... " />
-            <marker date="1509952960637" expanded="true" signature="1026:1383" ph="/// Returns true or false based on whether or not we can parse the ... " />
-            <marker date="1509952960637" expanded="true" signature="1486:1876" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
-            <marker date="1509952960637" expanded="true" signature="1987:2483" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
-            <marker date="1509952960637" expanded="true" signature="2626:3233" ph="/// The target Files cache has filenames like  ... " />
-            <marker date="1509952960637" expanded="true" signature="3335:4051" ph="/// The target Files cache has filenames like  ... " />
-            <marker date="1509952960637" expanded="true" signature="4182:4848" ph="/// The target Files cache has filenames like  ... " />
-            <marker date="1509952960637" expanded="true" signature="4960:5503" ph="/// The server side cache has filenames like  ... " />
-            <marker date="1509952960637" expanded="true" signature="5611:6168" ph="/// The server side cache has filenames like  ... " />
-            <marker date="1509952960637" expanded="true" signature="6305:6812" ph="/// The server side cache has filenames like  ... " />
-            <marker date="1509952960637" expanded="true" signature="6930:7579" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1509953919179" expanded="true" signature="6:77" ph="..." />
+            <marker date="1509953919179" expanded="true" signature="111:9569" ph="{...}" />
+            <marker date="1509953919179" expanded="true" signature="118:644" ph="/// Throughout the lifecycle of a package deployment we have access to various ... " />
+            <marker date="1509953919179" expanded="true" signature="682:9567" ph="{...}" />
+            <marker date="1509953919179" expanded="true" signature="697:945" ph="/// Extracts metadata from a package ID (i.e. no version information) ... " />
+            <marker date="1509953919179" expanded="true" signature="1026:1383" ph="/// Returns true or false based on whether or not we can parse the ... " />
+            <marker date="1509953919179" expanded="true" signature="1486:1876" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
+            <marker date="1509953919179" expanded="true" signature="1987:2483" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
+            <marker date="1509953919179" expanded="true" signature="2626:3233" ph="/// The target Files cache has filenames like  ... " />
+            <marker date="1509953919179" expanded="true" signature="3335:4051" ph="/// The target Files cache has filenames like  ... " />
+            <marker date="1509953919179" expanded="true" signature="4182:4848" ph="/// The target Files cache has filenames like  ... " />
+            <marker date="1509953919179" expanded="true" signature="4960:5531" ph="/// The target Files cache has filenames like  ... " />
+            <marker date="1509953919179" expanded="true" signature="5622:6165" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1509953919179" expanded="true" signature="6273:6721" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1509953919179" expanded="true" signature="6808:7365" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1509953919179" expanded="true" signature="7502:8009" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1509953919179" expanded="true" signature="8127:8634" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1509953919179" expanded="true" signature="8731:9380" ph="/// The server side cache has filenames like  ... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MavenPackageIDParser.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="70" column="8" lean-forward="false" selection-start-line="70" selection-start-column="8" selection-end-line="92" selection-end-column="9" />
+        <state relative-caret-position="1230">
+          <caret line="130" column="12" lean-forward="false" selection-start-line="130" selection-start-column="12" selection-end-line="133" selection-end-column="63" />
           <folding>
-            <marker date="1509952960662" expanded="true" signature="6:109" ph="..." />
-            <marker date="1509952960662" expanded="true" signature="152:8194" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="159:252" ph="/// Maven package IDs come in the format: group##artifact ... " />
-            <marker date="1509952960662" expanded="true" signature="309:8192" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="393:458" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="559:825" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="585:706" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="737:815" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="934:1098" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="1300:1397" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="1497:1717" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="1858:2154" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="1884:2028" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="2059:2144" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="2264:2531" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="2290:2423" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="2454:2521" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="2655:2928" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="2681:2820" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="2851:2918" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="3034:3263" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="3410:3712" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="3436:3586" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="3617:3702" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="3862:4219" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="4368:5335" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="4543:4667" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="4867:5030" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="5396:6176" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="5599:5766" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="5825:6165" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="6260:7259" ph="{...}" />
-            <marker date="1509952960662" expanded="true" signature="7375:8186" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="6:150" ph="..." />
+            <marker date="1509954027539" expanded="true" signature="193:9405" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="200:293" ph="/// Maven package IDs come in the format: group##artifact ... " />
+            <marker date="1509954027539" expanded="true" signature="350:9403" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="434:499" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="600:866" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="626:747" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="778:856" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="975:1139" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="1341:1438" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="1538:1758" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="1899:2195" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="1925:2069" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="2100:2185" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="2305:2572" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="2331:2464" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="2495:2562" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="2661:2963" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="2687:2855" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="2886:2953" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="3079:3352" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="3105:3244" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="3275:3342" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="3447:3755" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="3473:3647" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="3678:3745" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="3861:4090" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="4175:4474" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="4621:4923" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="4647:4797" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="4828:4913" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="5073:5430" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="5579:6546" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="5754:5878" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="6078:6241" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="6607:7387" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="6810:6977" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="7036:7376" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="7471:8470" ph="{...}" />
+            <marker date="1509954027539" expanded="true" signature="8586:9397" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/NuGetPackageIDParser.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="76" column="18" lean-forward="false" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
+        <state relative-caret-position="1183">
+          <caret line="138" column="28" lean-forward="true" selection-start-line="138" selection-start-column="28" selection-end-line="138" selection-end-column="28" />
           <folding>
-            <marker date="1509952990604" expanded="true" signature="6:198" ph="..." />
-            <marker date="1509952990604" expanded="true" signature="241:8937" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="248:420" ph="/// A service for extracting metadata from packages that are sourced from a NuGet compatible ... " />
-            <marker date="1509952990604" expanded="true" signature="477:8935" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="580:708" ph="/// NuGet is considered the fallback that will always match the supplied package id ... " />
-            <marker date="1509952990604" expanded="true" signature="786:851" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="952:1218" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="978:1099" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="1130:1208" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="1327:1491" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="1696:1793" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="1893:2085" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="2214:2510" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="2240:2384" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="2415:2500" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="2628:2895" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="2654:2787" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="2818:2885" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="3019:3292" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="3045:3184" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="3215:3282" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="3447:3749" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="3473:3623" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="3654:3739" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="3855:4056" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="4194:4524" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="4640:5285" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="4827:4951" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="5056:5198" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="5354:5585" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="5422:5574" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="5677:6388" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="6512:7323" ph="{...}" />
-            <marker date="1509952990604" expanded="true" signature="7341:7857" ph="/// Takes a string containing a concatenated package ID and version (e.g. a filename or database-key) and  ... " />
-            <marker date="1509952990604" expanded="true" signature="7963:8929" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="6:215" ph="..." />
+            <marker date="1509954095231" expanded="true" signature="258:10053" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="265:437" ph="/// A service for extracting metadata from packages that are sourced from a NuGet compatible ... " />
+            <marker date="1509954095231" expanded="true" signature="494:10051" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="597:725" ph="/// NuGet is considered the fallback that will always match the supplied package id ... " />
+            <marker date="1509954095231" expanded="true" signature="803:868" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="969:1235" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="995:1116" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="1147:1225" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="1344:1508" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="1713:1810" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="1910:2102" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="2231:2527" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="2257:2401" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="2432:2517" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="2645:2912" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="2671:2804" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="2835:2902" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="3001:3303" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="3027:3195" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="3226:3293" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="3419:3692" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="3445:3584" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="3615:3682" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="3787:4095" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="3813:3987" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="4018:4085" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="4180:4416" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="4563:4865" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="4589:4739" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="4770:4855" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="4971:5172" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="5310:5640" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="5756:6401" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="5943:6067" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="6172:6314" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="6470:6701" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="6538:6690" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="6793:7504" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="7628:8439" ph="{...}" />
+            <marker date="1509954095231" expanded="true" signature="8457:8973" ph="/// Takes a string containing a concatenated package ID and version (e.g. a filename or database-key) and  ... " />
+            <marker date="1509954095231" expanded="true" signature="9079:10045" ph="{...}" />
           </folding>
         </state>
       </provider>
