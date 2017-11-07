@@ -145,6 +145,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
             Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-RC1" ).IsPrerelease);
             Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-rc" ).IsPrerelease);
             Assert.IsTrue(new MavenVersionParser().Parse("1.0.0-rc1").IsPrerelease);
+            Assert.IsTrue(new MavenVersionParser().Parse("22.0-rc1").IsPrerelease);
             Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-SNAPSHOT" ).IsPrerelease);                  
             Assert.IsTrue(new MavenVersionParser().Parse( "1.0.0-snapshot" ).IsPrerelease);                  
             Assert.IsFalse(new MavenVersionParser().Parse( "1.0.0" ).IsPrerelease);                  

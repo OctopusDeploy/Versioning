@@ -25,6 +25,7 @@
                 <e p="PhysicalPackageMetadata.cs" t="Include" />
               </e>
               <e p="Parsing" t="Include">
+                <e p="IPackageID.cs" t="Include" />
                 <e p="Maven" t="Include">
                   <e p="IMavenURLParser.cs" t="Include" />
                   <e p="MavenPackageID.cs" t="Include" />

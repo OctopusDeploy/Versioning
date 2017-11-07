@@ -44,9 +44,9 @@ namespace Octopus.Core.Resources.Parsing.Maven
         public string DisplayName => ToString(DISPLAY_DELIMITER);
 
         public string FileSystemName => JavaConstants.MavenFeedPrefix +
-            JavaConstants.MavenFilenameDelimiter +
-            ToString(JavaConstants.MavenFilenameDelimiter);
-        
+                                        JavaConstants.MavenFilenameDelimiter +
+                                        ToString(JavaConstants.MavenFilenameDelimiter);
+
         public IVersion SemanticVersion => new MavenVersionParser().Parse(Version);
 
         /// <summary>
@@ -57,24 +57,24 @@ namespace Octopus.Core.Resources.Parsing.Maven
                                            "/" +
                                            Artifact +
                                            "/maven-metadata.xml";
-        
+
         /// <summary>
         /// The path to the metadata file for the artifact
         /// </summary>
         public string GroupVersionPomPath => "/maven2/" +
                                              Groups?.Aggregate((result, item) => result + "/" + item) +
                                              "/" + Artifact +
-                                             "/" + Version + 
+                                             "/" + Version +
                                              "/" + Artifact + "-" + Version + ".pom";
-        
+
         /// <summary>
         /// The path to the archive file for the artifact
         /// </summary>
         public string ArtifactPath => "/maven2/" +
                                       Groups?.Aggregate((result, item) => result + "/" + item) +
                                       "/" + Artifact +
-                                      "/" + Version + 
-                                      "/" + Artifact + "-" + Version + "." + Packaging;  
+                                      "/" + Version +
+                                      "/" + Artifact + "-" + Version + "." + Packaging;
 
         public MavenPackageID(string group, string artifact)
         {
@@ -82,60 +82,60 @@ namespace Octopus.Core.Resources.Parsing.Maven
             {
                 throw new ArgumentException("group can not be empty");
             }
-            
+
             if (artifact == null || artifact.Trim().Length == 0)
             {
                 throw new ArgumentException("artifact can not be empty");
             }
-            
+
             Group = group.Trim();
             Artifact = artifact.Trim();
         }
-        
+
         public MavenPackageID(string group, string artifact, string version)
         {
             if (group == null || group.Trim().Length == 0)
             {
                 throw new ArgumentException("group can not be empty");
             }
-            
+
             if (artifact == null || artifact.Trim().Length == 0)
             {
                 throw new ArgumentException("artifact can not be empty");
             }
-            
+
             if (version == null || version.Trim().Length == 0)
             {
                 throw new ArgumentException("version can not be empty");
             }
-            
+
             Group = group.Trim();
             Artifact = artifact.Trim();
             Version = version.Trim();
         }
-        
+
         public MavenPackageID(string group, string artifact, string version, string packaging)
         {
             if (group == null || group.Trim().Length == 0)
             {
                 throw new ArgumentException("group can not be empty");
             }
-            
+
             if (artifact == null || artifact.Trim().Length == 0)
             {
                 throw new ArgumentException("artifact can not be empty");
             }
-            
+
             if (version == null || version.Trim().Length == 0)
             {
                 throw new ArgumentException("version can not be empty");
             }
-            
+
             if (packaging == null || packaging.Trim().Length == 0)
             {
                 throw new ArgumentException("packaging can not be empty");
             }
-            
+
             Group = group.Trim();
             Artifact = artifact.Trim();
             Version = version.Trim();
@@ -146,7 +146,7 @@ namespace Octopus.Core.Resources.Parsing.Maven
         {
             Version = version.ToString();
         }
-        
+
         /// <summary>
         /// Parses an octopus package id into the maven package details.
         /// </summary>
@@ -172,8 +172,22 @@ namespace Octopus.Core.Resources.Parsing.Maven
             {
                 Group = mavenDisplaySplit[0].Trim();
                 Artifact = mavenDisplaySplit[1].Trim();
-                Packaging = mavenDisplaySplit.Length >= 3 ? mavenDisplaySplit[2].Trim() : "";
-                Classifier = mavenDisplaySplit.Length >= 4 ? mavenDisplaySplit[3].Trim() : "";
+
+                if (mavenDisplaySplit.Length == 3) // groupId:artifactId:version
+                {
+                    Version = mavenDisplaySplit[2].Trim();
+                }
+                else if (mavenDisplaySplit.Length == 4) // groupId:artifactId:packaging:version
+                {
+                    Packaging = mavenDisplaySplit[2].Trim();
+                    Version = mavenDisplaySplit[3].Trim();
+                }
+                else if (mavenDisplaySplit.Length == 5) // groupId:artifactId:packaging:classifier:version
+                {
+                    Packaging = mavenDisplaySplit[2].Trim();
+                    Classifier = mavenDisplaySplit[3].Trim();
+                    Version = mavenDisplaySplit[4].Trim();
+                }
             }
             /*
              * When pushing a delta we will be using the Maven#G#A#V format from
@@ -183,8 +197,21 @@ namespace Octopus.Core.Resources.Parsing.Maven
             {
                 Group = mavenSplit[1].Trim();
                 Artifact = mavenSplit[2].Trim();
-                Packaging = mavenSplit.Length >= 4 ? mavenSplit[3].Trim() : "";
-                Classifier = mavenSplit.Length >= 5 ? mavenSplit[4].Trim() : "";
+                if (mavenDisplaySplit.Length == 4)
+                {
+                    Version = mavenDisplaySplit[3].Trim();
+                }
+                else if (mavenDisplaySplit.Length == 5)
+                {
+                    Packaging = mavenDisplaySplit[3].Trim();
+                    Version = mavenDisplaySplit[4].Trim();
+                }
+                else if (mavenDisplaySplit.Length == 6)
+                {
+                    Packaging = mavenDisplaySplit[3].Trim();
+                    Classifier = mavenDisplaySplit[4].Trim();
+                    Version = mavenDisplaySplit[5].Trim();
+                }
             }
             else
             {
@@ -200,7 +227,7 @@ namespace Octopus.Core.Resources.Parsing.Maven
         public string ToString(char delimiter)
         {
             return string.Join(
-                delimiter.ToString(), 
+                delimiter.ToString(),
                 new[] {Group, Artifact, Packaging, Classifier}
                     .Where(item => item != null && item.Trim().Length != 0));
         }
