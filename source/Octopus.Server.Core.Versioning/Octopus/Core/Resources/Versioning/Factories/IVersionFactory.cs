@@ -18,6 +18,13 @@ namespace Octopus.Core.Resources.Versioning.Factories
         /// <param name="type">The feed type</param>
         /// <returns>An impletation of IVersion that matches the supplied feed</returns>
         IVersion CreateVersion(string input, FeedType type);
+        /// <summary>
+        /// Parses a version string based on the package id
+        /// </summary>
+        /// <param name="input">The version string</param>
+        /// <param name="packageId">The feed type</param>
+        /// <returns>An impletation of IVersion that matches the supplied feed</returns>
+        IVersion CreateVersion(string input, string packageId);
         Maybe<IVersion> CreateOptionalVersion(string input, FeedType type);
         IVersion CreateMavenVersion(string input);
         IVersion CreateSemanticVersion(string input, bool preserveMissingComponents = false);

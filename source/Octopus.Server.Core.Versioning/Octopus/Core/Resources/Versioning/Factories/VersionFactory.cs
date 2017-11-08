@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using Octopus.Core.Resources.Metadata;
 using Octopus.Core.Resources.Versioning.Maven;
 using Octopus.Core.Util;
 using SemanticVersion = Octopus.Core.Resources.Versioning.Semver.SemanticVersion;
@@ -9,6 +11,8 @@ namespace Octopus.Core.Resources.Versioning.Factories
     public class VersionFactory : IVersionFactory
     {
         static readonly SemVerFactory SemVerFactory = new SemVerFactory();
+        static readonly IPackageIDParser MavenPackageIdParser = new MavenPackageIDParser();
+        static readonly IPackageIDParser NugetPackageIdParser = new NuGetPackageIDParser();
 
         public IVersion CreateVersion(string input, FeedType type)
         {
@@ -16,9 +20,26 @@ namespace Octopus.Core.Resources.Versioning.Factories
             {
                 case FeedType.Maven:
                     return CreateMavenVersion(input);
-                default:
+                case FeedType.NuGet:
                     return CreateSemanticVersion(input);
             }
+            
+            throw new ArgumentException($"Feed type {type} is not recognised");
+        }
+
+        public IVersion CreateVersion(string input, string packageId)
+        {
+            if (MavenPackageIdParser.CanGetMetadataFromPackageID(packageId, out var metadata))
+            {
+                return CreateMavenVersion(input);
+            }
+            
+            if (NugetPackageIdParser.CanGetMetadataFromPackageID(packageId, out var nugetMetdata))
+            {
+                return CreateSemanticVersion(input);
+            }
+
+            throw new ArgumentException($"Package id {packageId} is not recognised");
         }
 
         public Maybe<IVersion> CreateOptionalVersion(string input, FeedType type)
@@ -37,7 +58,6 @@ namespace Octopus.Core.Resources.Versioning.Factories
             {
                 return Maybe<IVersion>.None;
             }
-
         }
 
         public IVersion CreateMavenVersion(string input)
@@ -70,7 +90,8 @@ namespace Octopus.Core.Resources.Versioning.Factories
             return new SemanticVersion(version, releaseLabel, metadata);
         }
 
-        public IVersion CreateSemanticVersion(int major, int minor, int patch, int revision, IEnumerable<string> releaseLabels,
+        public IVersion CreateSemanticVersion(int major, int minor, int patch, int revision,
+            IEnumerable<string> releaseLabels,
             string metadata, string originalVersion)
         {
             return new SemanticVersion(major, minor, patch, revision, releaseLabels, metadata);
@@ -108,7 +129,8 @@ namespace Octopus.Core.Resources.Versioning.Factories
             return SemVerFactory.CreateVersionOrNone(input, preserveMissingComponents);
         }
 
-        public IVersion CreateSemanticVersion(Version version, IEnumerable<string> releaseLabels, string metadata, string originalVersion)
+        public IVersion CreateSemanticVersion(Version version, IEnumerable<string> releaseLabels, string metadata,
+            string originalVersion)
         {
             return new SemanticVersion(
                 version,
