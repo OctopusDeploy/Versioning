@@ -282,8 +282,12 @@ namespace Octopus.Core.Resources.Ranges
             List<Restriction> restrictions = new List<Restriction>( r1.Count + r2.Count );
             List<Restriction>.Enumerator i1 = r1.GetEnumerator();
             List<Restriction>.Enumerator i2 = r2.GetEnumerator();
-            Restriction res1 = i1.Tee(e => e.MoveNext()).Current;
-            Restriction res2 = i2.Tee(e => e.MoveNext()).Current;
+
+            i1.MoveNext();
+            i2.MoveNext();
+            
+            Restriction res1 = i1.Current;
+            Restriction res2 = i2.Current;
     
             bool done = false;
             while ( !done )
