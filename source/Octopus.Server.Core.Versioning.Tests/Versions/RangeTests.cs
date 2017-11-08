@@ -7,6 +7,9 @@ using Octopus.Core.Resources.Versioning.Maven;
 
 namespace Octopus.Server.Core.Versioning.Tests.Versions
 {
+    /// <summary>
+    /// Based on https://github.com/apache/maven/blob/master/maven-artifact/src/test/java/org/apache/maven/artifact/versioning/VersionRangeTest.java
+    /// </summary>
     [TestFixture]
     public class RangeTests
     {
@@ -691,7 +694,6 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
             Assert.IsFalse(enforceVersion("[2.0,2.0.5)", actualVersion));
         }
 
-        [Test]
         public bool enforceVersion(String requiredMavenVersionRange, IVersion actualVersion)
         {
             MavenVersionRange vr = null;

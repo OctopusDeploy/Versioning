@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dd6778c-89a3-421b-b23b-8691b04b3795" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/contentModel.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Octopus.Server.Core.Versioning.Tests.csproj" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Octopus.Server.Core.Versioning.Tests.csproj" />
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/MavenTests.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/MavenTests.cs" />
+      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs" />
+      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/MavenVersionRange.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/MavenVersionRange.cs" />
       <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/Restriction.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/Restriction.cs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,109 +70,109 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MavenVersionRange.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MavenVersionRange.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/MavenVersionRange.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30837">
-              <caret line="541" column="18" lean-forward="false" selection-start-line="541" selection-start-column="18" selection-end-line="541" selection-end-column="18" />
+            <state relative-caret-position="669">
+              <caret line="290" column="33" lean-forward="false" selection-start-line="290" selection-start-column="33" selection-end-line="290" selection-end-column="33" />
               <folding>
-                <marker date="1510112106539" expanded="true" signature="6:185" ph="..." />
-                <marker date="1510112106539" expanded="true" signature="226:21464" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="236:419" ph="/// A copy of https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/ ... " />
-                <marker date="1510112106539" expanded="true" signature="454:21462" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="683:807" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="989:1443" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="1101:1344" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="1229:1330" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="1457:2246" ph="/* &lt;p&gt; ... */" />
-                <marker date="1510112106539" expanded="true" signature="2323:4801" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="2365:2422" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="2731:4207" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="2945:3104" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="3002:3086" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="3142:3276" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="3420:3513" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="3555:3848" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="3685:3830" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="4096:4193" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="4250:4719" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="4310:4511" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="4532:4705" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="4873:6931" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="5215:5666" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="5297:5455" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="5683:6884" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="5901:6058" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="6154:6271" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="6362:6479" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="6598:6746" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="7012:7203" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="7217:9086" ph="/* Creates and returns a new &lt;code&gt;MavenVersionRange&lt;/code&gt; that is a restriction of this ... */" />
-                <marker date="1510112106539" expanded="true" signature="9161:11297" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="9385:9469" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="9486:9569" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="9653:10414" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="9715:10400" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="9830:10020" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="10189:10382" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="10553:10699" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="10762:10998" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="10793:10926" ph="/* Use the recommended version from the specified MavenVersionRange since there is no ... */" />
-                <marker date="1510112106539" expanded="true" signature="11003:11215" ph="/* TODO should throw this immediately, but need artifact ... */" />
-                <marker date="1510112106539" expanded="true" signature="11395:17517" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="11824:17469" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="11985:17119" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="12158:16717" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="12446:12624" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="12684:12862" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="12891:13785" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="13058:13252" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="13308:13532" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="13565:13759" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="13845:14023" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="14083:14261" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="14290:15184" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="14457:14651" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="14707:14931" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="14964:15158" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="15364:15529" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="15598:15763" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="15878:16272" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="15997:16108" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="16141:16246" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="16301:16695" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="16420:16531" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="16564:16669" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="16742:17101" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="16858:16957" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="16986:17079" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="17140:17455" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="17244:17331" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="17356:17437" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="17569:18034" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="17655:17729" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="17746:17996" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="17807:17945" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="18085:18497" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="18173:18231" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="18248:18461" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="18309:18447" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="18544:19261" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="18600:18682" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="18699:19251" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="18871:19051" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="19330:19948" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="19541:19910" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="19605:19896" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="19791:19878" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="20009:20268" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="20073:20232" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="20149:20218" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="20311:20405" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="20460:21146" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="20501:20558" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="20607:20665" ph="{...}" />
-                <marker date="1510112106539" expanded="true" signature="21193:21456" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="6:185" ph="..." />
+                <marker date="1510114782773" expanded="true" signature="226:21459" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="236:414" ph="/// A copy of https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/ ... " />
+                <marker date="1510114782773" expanded="true" signature="449:21457" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="678:802" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="984:1438" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="1096:1339" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="1224:1325" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="1452:2241" ph="/* &lt;p&gt; ... */" />
+                <marker date="1510114782773" expanded="true" signature="2318:4796" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="2360:2417" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="2726:4202" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="2940:3099" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="2997:3081" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="3137:3271" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="3415:3508" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="3550:3843" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="3680:3825" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="4091:4188" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="4245:4714" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="4305:4506" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="4527:4700" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="4868:6926" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="5210:5661" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="5292:5450" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="5678:6879" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="5896:6053" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="6149:6266" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="6357:6474" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="6593:6741" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="7007:7198" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="7212:9081" ph="/* Creates and returns a new &lt;code&gt;MavenVersionRange&lt;/code&gt; that is a restriction of this ... */" />
+                <marker date="1510114782773" expanded="true" signature="9156:11292" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="9380:9464" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="9481:9564" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="9648:10409" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="9710:10395" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="9825:10015" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="10184:10377" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="10548:10694" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="10757:10993" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="10788:10921" ph="/* Use the recommended version from the specified MavenVersionRange since there is no ... */" />
+                <marker date="1510114782773" expanded="true" signature="10998:11210" ph="/* TODO should throw this immediately, but need artifact ... */" />
+                <marker date="1510114782773" expanded="true" signature="11390:17512" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="11819:17464" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="11980:17114" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="12153:16712" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="12441:12619" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="12679:12857" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="12886:13780" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="13053:13247" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="13303:13527" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="13560:13754" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="13840:14018" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="14078:14256" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="14285:15179" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="14452:14646" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="14702:14926" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="14959:15153" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="15359:15524" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="15593:15758" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="15873:16267" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="15992:16103" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="16136:16241" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="16296:16690" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="16415:16526" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="16559:16664" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="16737:17096" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="16853:16952" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="16981:17074" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="17135:17450" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="17239:17326" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="17351:17432" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="17564:18029" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="17650:17724" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="17741:17991" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="17802:17940" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="18080:18492" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="18168:18226" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="18243:18456" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="18304:18442" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="18539:19256" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="18595:18677" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="18694:19246" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="18866:19046" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="19325:19943" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="19536:19905" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="19600:19891" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="19786:19873" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="20004:20263" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="20068:20227" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="20144:20213" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="20306:20400" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="20455:21141" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="20496:20553" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="20602:20660" ph="{...}" />
+                <marker date="1510114782773" expanded="true" signature="21188:21451" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -248,28 +246,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RangeTests.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RangeTests.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1707">
-              <caret line="703" column="14" lean-forward="false" selection-start-line="703" selection-start-column="14" selection-end-line="703" selection-end-column="14" />
+            <state relative-caret-position="570">
+              <caret line="10" column="148" lean-forward="false" selection-start-line="10" selection-start-column="148" selection-end-line="10" selection-end-column="148" />
               <folding>
-                <marker date="1510114508589" expanded="true" signature="6:195" ph="..." />
-                <marker date="1510114508589" expanded="true" signature="252:45114" ph="{...}" />
-                <marker date="1510114508589" expanded="true" signature="300:45112" ph="{...}" />
-                <marker date="1510114508589" expanded="true" signature="1034:8018" ph="{...}" />
-                <marker date="1510114508589" expanded="true" signature="8074:8670" ph="{...}" />
-                <marker date="1510114508589" expanded="true" signature="8726:41933" ph="{...}" />
-                <marker date="1510114508589" expanded="true" signature="8992:9228" ph="/* TODO current policy is to retain the original version - is this correct, do we need strategies or is that hand ... */" />
-                <marker date="1510114508589" expanded="true" signature="42011:42419" ph="{...}" />
-                <marker date="1510114508589" expanded="true" signature="42500:43099" ph="{...}" />
-                <marker date="1510114508589" expanded="true" signature="43179:43393" ph="{...}" />
-                <marker date="1510114508589" expanded="true" signature="43464:43804" ph="{...}" />
-                <marker date="1510114508589" expanded="true" signature="43490:43672" ph="{...}" />
-                <marker date="1510114508589" expanded="true" signature="43738:43794" ph="{...}" />
-                <marker date="1510114508589" expanded="true" signature="43855:44589" ph="{...}" />
-                <marker date="1510114508589" expanded="true" signature="44698:44900" ph="{...}" />
-                <marker date="1510114508589" expanded="true" signature="44949:45106" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="6:195" ph="..." />
+                <marker date="1510114738529" expanded="true" signature="252:45285" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="486:45283" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="1220:8204" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="8260:8856" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="8912:42119" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="9178:9414" ph="/* TODO current policy is to retain the original version - is this correct, do we need strategies or is that hand ... */" />
+                <marker date="1510114738529" expanded="true" signature="42197:42605" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="42686:43285" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="43365:43579" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="43650:43990" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="43676:43858" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="43924:43980" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="44041:44775" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="44869:45071" ph="{...}" />
+                <marker date="1510114738529" expanded="true" signature="45120:45277" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -278,39 +276,39 @@
       <file leaf-file-name="Restriction.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/Restriction.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="2" column="39" lean-forward="false" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
+            <state relative-caret-position="1254">
+              <caret line="22" column="24" lean-forward="false" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
               <folding>
-                <marker date="1510112226711" expanded="true" signature="6:73" ph="..." />
-                <marker date="1510112226711" expanded="true" signature="114:4106" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="121:297" ph="/// Based on https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/v ... " />
-                <marker date="1510112226711" expanded="true" signature="326:4104" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="565:773" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="1019:1805" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="1065:1399" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="1209:1279" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="1315:1385" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="1435:1769" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="1579:1649" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="1685:1755" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="1848:2415" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="1924:1981" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="1998:2078" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="2169:2226" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="2243:2323" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="2466:3568" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="2507:2564" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="2606:2664" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="2760:2922" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="2838:2908" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="2975:3033" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="3110:3168" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="3205:3367" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="3283:3353" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="3420:3478" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="3611:4098" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="3770:3849" ph="{...}" />
-                <marker date="1510112226711" expanded="true" signature="3914:3993" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="6:73" ph="..." />
+                <marker date="1510114869290" expanded="true" signature="114:4145" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="121:297" ph="/// Based on https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/v ... " />
+                <marker date="1510114869290" expanded="true" signature="326:4143" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="604:812" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="1058:1844" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="1104:1438" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="1248:1318" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="1354:1424" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="1474:1808" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="1618:1688" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="1724:1794" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="1887:2454" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="1963:2020" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="2037:2117" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="2208:2265" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="2282:2362" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="2505:3607" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="2546:2603" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="2645:2703" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="2799:2961" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="2877:2947" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="3014:3072" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="3149:3207" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="3244:3406" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="3322:3392" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="3459:3517" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="3650:4137" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="3809:3888" ph="{...}" />
+                <marker date="1510114869290" expanded="true" signature="3953:4032" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -357,7 +355,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>[TestFixture]</find>
       <find>@Test</find>
       <find>throws Exception</find>
       <find>props.getProperty( &quot;parsed.buildNumber&quot; )</find>
@@ -380,13 +377,14 @@
       <find>boolean</find>
       <find>MavenVersion</find>
       <find>isUpperBoundInclusive()</find>
-      <find>ArtifactVersion</find>
-      <find>PackageMe</find>
       <find>areeq</find>
       <find>Assert.AreEqual</find>
       <find>assertEquals</find>
       <find>String</find>
       <find>.restrict(</find>
+      <find>.get( 2 )</find>
+      <find>PackageMe</find>
+      <find>ArtifactVersion</find>
     </findStrings>
     <replaceStrings>
       <replace>version.Revision</replace>
@@ -395,11 +393,12 @@
       <replace>MavenVersionRange</replace>
       <replace>GetHashCode()</replace>
       <replace>bool</replace>
-      <replace>IVersion</replace>
-      <replace>IsUpperBoundInclusive</replace>
       <replace>Assert.AreEqual</replace>
       <replace>string</replace>
       <replace>.Restrict(</replace>
+      <replace>[ 2 ]</replace>
+      <replace>IsUpperBoundInclusive</replace>
+      <replace>IVersion</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -496,10 +495,10 @@
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/MavenVersionRange.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/InvalidVersionSpecificationException.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/OverConstrainedVersionException.cs" />
-        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/MavenVersionRange.cs" />
-        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/Restriction.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/MavenTests.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/MavenVersionRange.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/Restriction.cs" />
       </list>
     </option>
   </component>
@@ -661,12 +660,12 @@
       <workItem from="1509924887060" duration="2183000" />
       <workItem from="1509952392603" duration="3165000" />
       <workItem from="1509999105901" duration="5319000" />
-      <workItem from="1510089845220" duration="11190000" />
+      <workItem from="1510089845220" duration="11559000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77988000" />
+    <option name="totallyTimeSpent" value="78357000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -694,7 +693,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298807" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39974818" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39974537" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1343,45 +1342,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/Restriction.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="2" column="39" lean-forward="false" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
-          <folding>
-            <marker date="1510112226711" expanded="true" signature="6:73" ph="..." />
-            <marker date="1510112226711" expanded="true" signature="114:4106" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="121:297" ph="/// Based on https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/v ... " />
-            <marker date="1510112226711" expanded="true" signature="326:4104" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="565:773" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="1019:1805" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="1065:1399" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="1209:1279" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="1315:1385" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="1435:1769" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="1579:1649" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="1685:1755" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="1848:2415" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="1924:1981" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="1998:2078" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="2169:2226" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="2243:2323" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="2466:3568" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="2507:2564" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="2606:2664" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="2760:2922" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="2838:2908" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="2975:3033" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="3110:3168" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="3205:3367" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="3283:3353" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="3420:3478" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="3611:4098" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="3770:3849" ph="{...}" />
-            <marker date="1510112226711" expanded="true" signature="3914:3993" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/OverConstrainedVersionException.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -1393,112 +1353,6 @@
             <marker date="1510111029089" expanded="true" signature="372:392" ph="{...}" />
             <marker date="1510111029089" expanded="true" signature="484:504" ph="{...}" />
             <marker date="1510111029089" expanded="true" signature="620:640" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/MavenVersionRange.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30837">
-          <caret line="541" column="18" lean-forward="false" selection-start-line="541" selection-start-column="18" selection-end-line="541" selection-end-column="18" />
-          <folding>
-            <marker date="1510112106539" expanded="true" signature="6:185" ph="..." />
-            <marker date="1510112106539" expanded="true" signature="226:21464" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="236:419" ph="/// A copy of https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/ ... " />
-            <marker date="1510112106539" expanded="true" signature="454:21462" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="683:807" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="989:1443" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="1101:1344" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="1229:1330" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="1457:2246" ph="/* &lt;p&gt; ... */" />
-            <marker date="1510112106539" expanded="true" signature="2323:4801" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="2365:2422" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="2731:4207" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="2945:3104" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="3002:3086" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="3142:3276" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="3420:3513" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="3555:3848" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="3685:3830" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="4096:4193" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="4250:4719" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="4310:4511" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="4532:4705" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="4873:6931" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="5215:5666" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="5297:5455" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="5683:6884" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="5901:6058" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="6154:6271" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="6362:6479" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="6598:6746" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="7012:7203" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="7217:9086" ph="/* Creates and returns a new &lt;code&gt;MavenVersionRange&lt;/code&gt; that is a restriction of this ... */" />
-            <marker date="1510112106539" expanded="true" signature="9161:11297" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="9385:9469" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="9486:9569" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="9653:10414" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="9715:10400" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="9830:10020" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="10189:10382" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="10553:10699" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="10762:10998" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="10793:10926" ph="/* Use the recommended version from the specified MavenVersionRange since there is no ... */" />
-            <marker date="1510112106539" expanded="true" signature="11003:11215" ph="/* TODO should throw this immediately, but need artifact ... */" />
-            <marker date="1510112106539" expanded="true" signature="11395:17517" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="11824:17469" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="11985:17119" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="12158:16717" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="12446:12624" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="12684:12862" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="12891:13785" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="13058:13252" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="13308:13532" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="13565:13759" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="13845:14023" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="14083:14261" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="14290:15184" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="14457:14651" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="14707:14931" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="14964:15158" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="15364:15529" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="15598:15763" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="15878:16272" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="15997:16108" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="16141:16246" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="16301:16695" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="16420:16531" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="16564:16669" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="16742:17101" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="16858:16957" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="16986:17079" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="17140:17455" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="17244:17331" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="17356:17437" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="17569:18034" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="17655:17729" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="17746:17996" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="17807:17945" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="18085:18497" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="18173:18231" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="18248:18461" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="18309:18447" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="18544:19261" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="18600:18682" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="18699:19251" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="18871:19051" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="19330:19948" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="19541:19910" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="19605:19896" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="19791:19878" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="20009:20268" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="20073:20232" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="20149:20218" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="20311:20405" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="20460:21146" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="20501:20558" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="20607:20665" ph="{...}" />
-            <marker date="1510112106539" expanded="true" signature="21193:21456" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1550,25 +1404,170 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1707">
-          <caret line="703" column="14" lean-forward="false" selection-start-line="703" selection-start-column="14" selection-end-line="703" selection-end-column="14" />
+        <state relative-caret-position="570">
+          <caret line="10" column="148" lean-forward="false" selection-start-line="10" selection-start-column="148" selection-end-line="10" selection-end-column="148" />
           <folding>
-            <marker date="1510114508589" expanded="true" signature="6:195" ph="..." />
-            <marker date="1510114508589" expanded="true" signature="252:45114" ph="{...}" />
-            <marker date="1510114508589" expanded="true" signature="300:45112" ph="{...}" />
-            <marker date="1510114508589" expanded="true" signature="1034:8018" ph="{...}" />
-            <marker date="1510114508589" expanded="true" signature="8074:8670" ph="{...}" />
-            <marker date="1510114508589" expanded="true" signature="8726:41933" ph="{...}" />
-            <marker date="1510114508589" expanded="true" signature="8992:9228" ph="/* TODO current policy is to retain the original version - is this correct, do we need strategies or is that hand ... */" />
-            <marker date="1510114508589" expanded="true" signature="42011:42419" ph="{...}" />
-            <marker date="1510114508589" expanded="true" signature="42500:43099" ph="{...}" />
-            <marker date="1510114508589" expanded="true" signature="43179:43393" ph="{...}" />
-            <marker date="1510114508589" expanded="true" signature="43464:43804" ph="{...}" />
-            <marker date="1510114508589" expanded="true" signature="43490:43672" ph="{...}" />
-            <marker date="1510114508589" expanded="true" signature="43738:43794" ph="{...}" />
-            <marker date="1510114508589" expanded="true" signature="43855:44589" ph="{...}" />
-            <marker date="1510114508589" expanded="true" signature="44698:44900" ph="{...}" />
-            <marker date="1510114508589" expanded="true" signature="44949:45106" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="6:195" ph="..." />
+            <marker date="1510114738529" expanded="true" signature="252:45285" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="486:45283" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="1220:8204" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="8260:8856" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="8912:42119" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="9178:9414" ph="/* TODO current policy is to retain the original version - is this correct, do we need strategies or is that hand ... */" />
+            <marker date="1510114738529" expanded="true" signature="42197:42605" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="42686:43285" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="43365:43579" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="43650:43990" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="43676:43858" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="43924:43980" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="44041:44775" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="44869:45071" ph="{...}" />
+            <marker date="1510114738529" expanded="true" signature="45120:45277" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/Restriction.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1254">
+          <caret line="22" column="24" lean-forward="false" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+          <folding>
+            <marker date="1510114869290" expanded="true" signature="6:73" ph="..." />
+            <marker date="1510114869290" expanded="true" signature="114:4145" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="121:297" ph="/// Based on https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/v ... " />
+            <marker date="1510114869290" expanded="true" signature="326:4143" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="604:812" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="1058:1844" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="1104:1438" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="1248:1318" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="1354:1424" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="1474:1808" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="1618:1688" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="1724:1794" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="1887:2454" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="1963:2020" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="2037:2117" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="2208:2265" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="2282:2362" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="2505:3607" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="2546:2603" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="2645:2703" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="2799:2961" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="2877:2947" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="3014:3072" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="3149:3207" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="3244:3406" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="3322:3392" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="3459:3517" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="3650:4137" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="3809:3888" ph="{...}" />
+            <marker date="1510114869290" expanded="true" signature="3953:4032" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/MavenVersionRange.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="669">
+          <caret line="290" column="33" lean-forward="false" selection-start-line="290" selection-start-column="33" selection-end-line="290" selection-end-column="33" />
+          <folding>
+            <marker date="1510114782773" expanded="true" signature="6:185" ph="..." />
+            <marker date="1510114782773" expanded="true" signature="226:21459" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="236:414" ph="/// A copy of https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/ ... " />
+            <marker date="1510114782773" expanded="true" signature="449:21457" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="678:802" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="984:1438" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="1096:1339" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="1224:1325" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="1452:2241" ph="/* &lt;p&gt; ... */" />
+            <marker date="1510114782773" expanded="true" signature="2318:4796" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="2360:2417" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="2726:4202" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="2940:3099" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="2997:3081" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="3137:3271" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="3415:3508" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="3550:3843" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="3680:3825" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="4091:4188" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="4245:4714" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="4305:4506" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="4527:4700" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="4868:6926" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="5210:5661" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="5292:5450" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="5678:6879" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="5896:6053" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="6149:6266" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="6357:6474" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="6593:6741" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="7007:7198" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="7212:9081" ph="/* Creates and returns a new &lt;code&gt;MavenVersionRange&lt;/code&gt; that is a restriction of this ... */" />
+            <marker date="1510114782773" expanded="true" signature="9156:11292" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="9380:9464" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="9481:9564" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="9648:10409" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="9710:10395" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="9825:10015" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="10184:10377" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="10548:10694" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="10757:10993" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="10788:10921" ph="/* Use the recommended version from the specified MavenVersionRange since there is no ... */" />
+            <marker date="1510114782773" expanded="true" signature="10998:11210" ph="/* TODO should throw this immediately, but need artifact ... */" />
+            <marker date="1510114782773" expanded="true" signature="11390:17512" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="11819:17464" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="11980:17114" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="12153:16712" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="12441:12619" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="12679:12857" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="12886:13780" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="13053:13247" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="13303:13527" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="13560:13754" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="13840:14018" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="14078:14256" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="14285:15179" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="14452:14646" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="14702:14926" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="14959:15153" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="15359:15524" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="15593:15758" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="15873:16267" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="15992:16103" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="16136:16241" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="16296:16690" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="16415:16526" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="16559:16664" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="16737:17096" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="16853:16952" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="16981:17074" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="17135:17450" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="17239:17326" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="17351:17432" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="17564:18029" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="17650:17724" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="17741:17991" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="17802:17940" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="18080:18492" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="18168:18226" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="18243:18456" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="18304:18442" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="18539:19256" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="18595:18677" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="18694:19246" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="18866:19046" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="19325:19943" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="19536:19905" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="19600:19891" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="19786:19873" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="20004:20263" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="20068:20227" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="20144:20213" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="20306:20400" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="20455:21141" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="20496:20553" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="20602:20660" ph="{...}" />
+            <marker date="1510114782773" expanded="true" signature="21188:21451" ph="{...}" />
           </folding>
         </state>
       </provider>

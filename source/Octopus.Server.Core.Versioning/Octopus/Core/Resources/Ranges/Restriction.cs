@@ -11,7 +11,10 @@ namespace Octopus.Core.Resources.Ranges
     {
         public static readonly Restriction EVERYTHING = new Restriction(null, false, null, false);
 
-        public Restriction(IVersion lowerBound, bool lowerBoundInclusive, IVersion upperBound,
+        public Restriction(
+            IVersion lowerBound, 
+            bool lowerBoundInclusive, 
+            IVersion upperBound,
             bool upperBoundInclusive)
         {
             LowerBound = lowerBound;

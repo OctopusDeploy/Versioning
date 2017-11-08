@@ -8,7 +8,7 @@ using Octopus.Core.Resources.Versioning.Maven;
 namespace Octopus.Core.Resources.Ranges
 {   
     /// <summary>
-    /// A copy of https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/versioning/MavenVersionRange.java
+    /// A copy of https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/versioning/VersionRange.java
     /// </summary>
     public class MavenVersionRange
     {
