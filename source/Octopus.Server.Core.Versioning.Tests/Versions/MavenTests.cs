@@ -8,7 +8,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
     /// </summary>
     [TestFixture]
     public class MavenTests
-    {       
+    {                 
         [Test]
         public void TestJunkVersion()           
         {
@@ -23,7 +23,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
         }
 
         [Test]
-        public void TestBasicMavenVersionString()           
+        public void TestBasicMavenVersionstring()           
         {
             // Test a basic maven version string
             var version = new MavenVersionParser().Parse( "1.0.0" );                       
@@ -36,7 +36,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
         }
 
         [Test]
-        public void TestVersionStringWithQualifier()
+        public void TestVersionstringWithQualifier()
         {
             // Test a version string with qualifier
             var version = new MavenVersionParser().Parse( "2.3.4-beta-5" );
@@ -49,7 +49,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
         }
 
         [Test]
-        public void TestOsGiVersionStringWithQualifier()
+        public void TestOsGiVersionstringWithQualifier()
         {
             // Test an osgi version string
             var version = new MavenVersionParser().Parse( "2.3.4.beta_5" );
@@ -88,7 +88,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
         }
 
         [Test]
-        public void TestVersionStringWithBuildNumber()
+        public void TestVersionstringWithBuildNumber()
         {
             // Test a version string with a build number
             var version = new MavenVersionParser().Parse( "1.2.3-4" );
@@ -102,7 +102,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
         }
 
         [Test]
-        public void TestSnapshotVersionStringWithBuildNumber()
+        public void TestSnapshotVersionstringWithBuildNumber()
         {
             // Test a version string with a build number
             var version = new MavenVersionParser().Parse( "1.2.3-4-SNAPSHOT" );

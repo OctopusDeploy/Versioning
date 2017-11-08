@@ -86,6 +86,7 @@
         </e>
         <e p="Versions" t="Include">
           <e p="MavenTests.cs" t="Include" />
+          <e p="RangeTests.cs" t="Include" />
           <e p="VersionTests.cs" t="Include" />
         </e>
       </e>
