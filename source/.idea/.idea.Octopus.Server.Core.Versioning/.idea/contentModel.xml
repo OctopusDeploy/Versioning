@@ -31,6 +31,12 @@
                   <e p="MavenURLParser.cs" t="Include" />
                 </e>
               </e>
+              <e p="Ranges" t="Include">
+                <e p="InvalidVersionSpecificationException.cs" t="Include" />
+                <e p="MavenVersionRange.cs" t="Include" />
+                <e p="OverConstrainedVersionException.cs" t="Include" />
+                <e p="Restriction.cs" t="Include" />
+              </e>
               <e p="Versioning" t="Include">
                 <e p="Factories" t="Include">
                   <e p="IVersionFactory.cs" t="Include" />

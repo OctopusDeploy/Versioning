@@ -61,6 +61,10 @@
     <Compile Include="Octopus\Core\Resources\Parsing\Maven\IMavenURLParser.cs" />
     <Compile Include="Octopus\Core\Resources\Parsing\Maven\MavenPackageID.cs" />
     <Compile Include="Octopus\Core\Resources\Parsing\Maven\MavenURLParser.cs" />
+    <Compile Include="Octopus\Core\Resources\Ranges\InvalidVersionSpecificationException.cs" />
+    <Compile Include="Octopus\Core\Resources\Ranges\MavenVersionRange.cs" />
+    <Compile Include="Octopus\Core\Resources\Ranges\OverConstrainedVersionException.cs" />
+    <Compile Include="Octopus\Core\Resources\Ranges\Restriction.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\Factories\IVersionFactory.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\Factories\SemVerFactory.cs" />
     <Compile Include="Octopus\Core\Resources\Versioning\Factories\StrictSemVerFactory.cs" />
