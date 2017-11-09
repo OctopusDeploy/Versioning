@@ -108,6 +108,21 @@ namespace Octopus.Core.Resources.Versioning.Factories
             }
         }
 
+        public bool CanCreateVersion(string input, out IVersion version, string packageId)
+        {
+            if (MavenPackageIdParser.CanGetMetadataFromPackageID(packageId, out var metadata))
+            {
+                return CanCreateSemanticVersion(input, out version);
+            }
+            
+            if (NugetPackageIdParser.CanGetMetadataFromPackageID(packageId, out var nugetMetdata))
+            {
+                return CanCreateMavenVersion(input,  out version);
+            }
+
+            throw new ArgumentException($"Package id {packageId} is not recognised");
+        }
+
         public bool CanCreateMavenVersion(string input, out IVersion version)
         {
             /*
