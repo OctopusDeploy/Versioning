@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dd6778c-89a3-421b-b23b-8691b04b3795" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs" />
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs" />
+      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -257,29 +255,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RangeTests.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RangeTests.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="13" column="27" lean-forward="false" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+            <state relative-caret-position="87">
+              <caret line="666" column="0" lean-forward="false" selection-start-line="666" selection-start-column="0" selection-end-line="666" selection-end-column="0" />
               <folding>
-                <marker date="1510114738529" expanded="false" signature="6:195" ph="..." />
-                <marker date="1510114738529" expanded="true" signature="252:45285" ph="{...}" />
-                <marker date="1510114738529" expanded="true" signature="259:440" ph="/// Based on https://github.com/apache/maven/blob/master/maven-artifact/src/test/java/org/apache/maven/artifact/v ... " />
-                <marker date="1510114738529" expanded="true" signature="486:45283" ph="{...}" />
-                <marker date="1510114738529" expanded="true" signature="1220:8204" ph="{...}" />
-                <marker date="1510114738529" expanded="true" signature="8260:8856" ph="{...}" />
-                <marker date="1510114738529" expanded="true" signature="8912:42119" ph="{...}" />
-                <marker date="1510114738529" expanded="true" signature="9178:9414" ph="/* TODO current policy is to retain the original version - is this correct, do we need strategies or is that hand ... */" />
-                <marker date="1510114738529" expanded="true" signature="42197:42605" ph="{...}" />
-                <marker date="1510114738529" expanded="true" signature="42686:43285" ph="{...}" />
-                <marker date="1510114738529" expanded="true" signature="43365:43579" ph="{...}" />
-                <marker date="1510114738529" expanded="true" signature="43650:43990" ph="{...}" />
-                <marker date="1510114738529" expanded="true" signature="43676:43858" ph="{...}" />
-                <marker date="1510114738529" expanded="true" signature="43924:43980" ph="{...}" />
-                <marker date="1510114738529" expanded="true" signature="44041:44775" ph="{...}" />
-                <marker date="1510114738529" expanded="true" signature="44869:45071" ph="{...}" />
-                <marker date="1510114738529" expanded="true" signature="45120:45277" ph="{...}" />
+                <marker date="1510189649350" expanded="false" signature="6:195" ph="..." />
+                <marker date="1510189649350" expanded="true" signature="252:45270" ph="{...}" />
+                <marker date="1510189649350" expanded="true" signature="259:440" ph="/// Based on https://github.com/apache/maven/blob/master/maven-artifact/src/test/java/org/apache/maven/artifact/v ... " />
+                <marker date="1510189649350" expanded="true" signature="486:45268" ph="{...}" />
+                <marker date="1510189649350" expanded="true" signature="1220:8204" ph="{...}" />
+                <marker date="1510189649350" expanded="true" signature="8260:8856" ph="{...}" />
+                <marker date="1510189649350" expanded="true" signature="8912:42119" ph="{...}" />
+                <marker date="1510189649350" expanded="true" signature="9178:9414" ph="/* TODO current policy is to retain the original version - is this correct, do we need strategies or is that hand ... */" />
+                <marker date="1510189649350" expanded="true" signature="42197:42605" ph="{...}" />
+                <marker date="1510189649350" expanded="true" signature="42686:43285" ph="{...}" />
+                <marker date="1510189649350" expanded="true" signature="43365:43579" ph="{...}" />
+                <marker date="1510189649350" expanded="true" signature="43635:43975" ph="{...}" />
+                <marker date="1510189649350" expanded="true" signature="43661:43843" ph="{...}" />
+                <marker date="1510189649350" expanded="true" signature="43909:43965" ph="{...}" />
+                <marker date="1510189649350" expanded="true" signature="44026:44760" ph="{...}" />
+                <marker date="1510189649350" expanded="true" signature="44854:45056" ph="{...}" />
+                <marker date="1510189649350" expanded="true" signature="45105:45262" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -302,11 +300,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VersionFactory.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VersionFactory.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1323">
-              <caret line="119" column="64" lean-forward="false" selection-start-line="119" selection-start-column="64" selection-end-line="119" selection-end-column="64" />
+            <state relative-caret-position="354">
+              <caret line="102" column="13" lean-forward="false" selection-start-line="102" selection-start-column="13" selection-end-line="102" selection-end-column="13" />
               <folding>
                 <marker date="1510189424919" expanded="false" signature="6:278" ph="..." />
                 <marker date="1510189424919" expanded="true" signature="333:5639" ph="{...}" />
@@ -386,7 +384,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>@Test</find>
       <find>throws Exception</find>
       <find>props.getProperty( &quot;parsed.buildNumber&quot; )</find>
       <find>version.Metadata</find>
@@ -416,6 +413,7 @@
       <find>.get( 2 )</find>
       <find>ArtifactVersion</find>
       <find>PackageMe</find>
+      <find>string pac</find>
     </findStrings>
     <replaceStrings>
       <replace>version.Revision</replace>
@@ -526,11 +524,11 @@
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/InvalidVersionSpecificationException.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/OverConstrainedVersionException.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/MavenTests.cs" />
-        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/Restriction.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/MavenVersionRange.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs" />
       </list>
     </option>
   </component>
@@ -616,6 +614,17 @@
               <item name="Versioning" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Factories" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Octopus.Server.Core.Versioning (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus.Server.Core.Versioning.Tests" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Octopus.Server.Core.Versioning (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Octopus.Server.Core.Versioning.Tests" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Versions" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -683,12 +692,12 @@
       <workItem from="1509952392603" duration="3165000" />
       <workItem from="1509999105901" duration="5319000" />
       <workItem from="1510089845220" duration="12607000" />
-      <workItem from="1510189333804" duration="94000" />
+      <workItem from="1510189333804" duration="317000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79499000" />
+    <option name="totallyTimeSpent" value="79722000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1364,32 +1373,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="13" column="27" lean-forward="false" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
-          <folding>
-            <marker date="1510114738529" expanded="false" signature="6:195" ph="..." />
-            <marker date="1510114738529" expanded="true" signature="252:45285" ph="{...}" />
-            <marker date="1510114738529" expanded="true" signature="259:440" ph="/// Based on https://github.com/apache/maven/blob/master/maven-artifact/src/test/java/org/apache/maven/artifact/v ... " />
-            <marker date="1510114738529" expanded="true" signature="486:45283" ph="{...}" />
-            <marker date="1510114738529" expanded="true" signature="1220:8204" ph="{...}" />
-            <marker date="1510114738529" expanded="true" signature="8260:8856" ph="{...}" />
-            <marker date="1510114738529" expanded="true" signature="8912:42119" ph="{...}" />
-            <marker date="1510114738529" expanded="true" signature="9178:9414" ph="/* TODO current policy is to retain the original version - is this correct, do we need strategies or is that hand ... */" />
-            <marker date="1510114738529" expanded="true" signature="42197:42605" ph="{...}" />
-            <marker date="1510114738529" expanded="true" signature="42686:43285" ph="{...}" />
-            <marker date="1510114738529" expanded="true" signature="43365:43579" ph="{...}" />
-            <marker date="1510114738529" expanded="true" signature="43650:43990" ph="{...}" />
-            <marker date="1510114738529" expanded="true" signature="43676:43858" ph="{...}" />
-            <marker date="1510114738529" expanded="true" signature="43924:43980" ph="{...}" />
-            <marker date="1510114738529" expanded="true" signature="44041:44775" ph="{...}" />
-            <marker date="1510114738529" expanded="true" signature="44869:45071" ph="{...}" />
-            <marker date="1510114738529" expanded="true" signature="45120:45277" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1938">
@@ -1407,8 +1390,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1323">
-          <caret line="119" column="64" lean-forward="false" selection-start-line="119" selection-start-column="64" selection-end-line="119" selection-end-column="64" />
+        <state relative-caret-position="354">
+          <caret line="102" column="13" lean-forward="false" selection-start-line="102" selection-start-column="13" selection-end-line="102" selection-end-column="13" />
           <folding>
             <marker date="1510189424919" expanded="false" signature="6:278" ph="..." />
             <marker date="1510189424919" expanded="true" signature="333:5639" ph="{...}" />
@@ -1439,6 +1422,32 @@
             <marker date="1510189424919" expanded="true" signature="4885:5081" ph="{...}" />
             <marker date="1510189424919" expanded="true" signature="5195:5303" ph="{...}" />
             <marker date="1510189424919" expanded="true" signature="5455:5631" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="666" column="0" lean-forward="false" selection-start-line="666" selection-start-column="0" selection-end-line="666" selection-end-column="0" />
+          <folding>
+            <marker date="1510189649350" expanded="false" signature="6:195" ph="..." />
+            <marker date="1510189649350" expanded="true" signature="252:45270" ph="{...}" />
+            <marker date="1510189649350" expanded="true" signature="259:440" ph="/// Based on https://github.com/apache/maven/blob/master/maven-artifact/src/test/java/org/apache/maven/artifact/v ... " />
+            <marker date="1510189649350" expanded="true" signature="486:45268" ph="{...}" />
+            <marker date="1510189649350" expanded="true" signature="1220:8204" ph="{...}" />
+            <marker date="1510189649350" expanded="true" signature="8260:8856" ph="{...}" />
+            <marker date="1510189649350" expanded="true" signature="8912:42119" ph="{...}" />
+            <marker date="1510189649350" expanded="true" signature="9178:9414" ph="/* TODO current policy is to retain the original version - is this correct, do we need strategies or is that hand ... */" />
+            <marker date="1510189649350" expanded="true" signature="42197:42605" ph="{...}" />
+            <marker date="1510189649350" expanded="true" signature="42686:43285" ph="{...}" />
+            <marker date="1510189649350" expanded="true" signature="43365:43579" ph="{...}" />
+            <marker date="1510189649350" expanded="true" signature="43635:43975" ph="{...}" />
+            <marker date="1510189649350" expanded="true" signature="43661:43843" ph="{...}" />
+            <marker date="1510189649350" expanded="true" signature="43909:43965" ph="{...}" />
+            <marker date="1510189649350" expanded="true" signature="44026:44760" ph="{...}" />
+            <marker date="1510189649350" expanded="true" signature="44854:45056" ph="{...}" />
+            <marker date="1510189649350" expanded="true" signature="45105:45262" ph="{...}" />
           </folding>
         </state>
       </provider>

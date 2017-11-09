@@ -665,7 +665,6 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
             Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.0-SNAPSHOT")));
         }
 
-        [Test]
         private void checkInvalidRange(string version)
         {
             try
