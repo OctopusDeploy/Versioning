@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dd6778c-89a3-421b-b23b-8691b04b3795" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/contentModel.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Octopus.Server.Core.Versioning.Tests.csproj" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Octopus.Server.Core.Versioning.Tests.csproj" />
+      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/CustomRangeTests.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/CustomRangeTests.cs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -273,13 +271,14 @@
       <file leaf-file-name="CustomRangeTests.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/CustomRangeTests.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="10" column="46" lean-forward="false" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+            <state relative-caret-position="1197">
+              <caret line="21" column="93" lean-forward="false" selection-start-line="21" selection-start-column="93" selection-end-line="21" selection-end-column="93" />
               <folding>
-                <marker date="1510279017941" expanded="true" signature="6:106" ph="..." />
-                <marker date="1510279017941" expanded="true" signature="163:595" ph="{...}" />
-                <marker date="1510279017941" expanded="true" signature="217:593" ph="{...}" />
-                <marker date="1510279017941" expanded="true" signature="287:587" ph="{...}" />
+                <marker date="1510281131714" expanded="true" signature="6:106" ph="..." />
+                <marker date="1510281131714" expanded="true" signature="163:1279" ph="{...}" />
+                <marker date="1510281131714" expanded="true" signature="217:1277" ph="{...}" />
+                <marker date="1510281131714" expanded="true" signature="287:587" ph="{...}" />
+                <marker date="1510281131714" expanded="true" signature="665:1271" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -650,12 +649,12 @@
       <workItem from="1509999105901" duration="5319000" />
       <workItem from="1510089845220" duration="12607000" />
       <workItem from="1510189333804" duration="915000" />
-      <workItem from="1510278814279" duration="206000" />
+      <workItem from="1510278814279" duration="1182000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80526000" />
+    <option name="totallyTimeSpent" value="81502000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -668,12 +667,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="9512" y="-5469" width="6432" height="3532" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21260343" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Unit Tests" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21260343" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1385,13 +1383,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/CustomRangeTests.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="10" column="46" lean-forward="false" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+        <state relative-caret-position="1197">
+          <caret line="21" column="93" lean-forward="false" selection-start-line="21" selection-start-column="93" selection-end-line="21" selection-end-column="93" />
           <folding>
-            <marker date="1510279017941" expanded="true" signature="6:106" ph="..." />
-            <marker date="1510279017941" expanded="true" signature="163:595" ph="{...}" />
-            <marker date="1510279017941" expanded="true" signature="217:593" ph="{...}" />
-            <marker date="1510279017941" expanded="true" signature="287:587" ph="{...}" />
+            <marker date="1510281131714" expanded="true" signature="6:106" ph="..." />
+            <marker date="1510281131714" expanded="true" signature="163:1279" ph="{...}" />
+            <marker date="1510281131714" expanded="true" signature="217:1277" ph="{...}" />
+            <marker date="1510281131714" expanded="true" signature="287:587" ph="{...}" />
+            <marker date="1510281131714" expanded="true" signature="665:1271" ph="{...}" />
           </folding>
         </state>
       </provider>
