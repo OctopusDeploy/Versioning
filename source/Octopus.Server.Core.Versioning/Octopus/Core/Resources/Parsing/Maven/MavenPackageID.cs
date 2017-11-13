@@ -67,12 +67,36 @@ namespace Octopus.Core.Resources.Parsing.Maven
                                            "/maven-metadata.xml";
 
         /// <summary>
+        /// The path to the metadata file for the artifact
+        /// </summary>
+        public string DefaultGroupVersionPomPath => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
+                                             "/" + Artifact +
+                                             "/" + Version +
+                                             "/" + Artifact + "-" + Version + ".pom";
+        
+        /// <summary>
+        /// The path to the metadata file for the artifact with a custome value
+        /// </summary>
+        public string SnapshotGroupVersionPomPath(string value) => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
+                                                    "/" + Artifact +
+                                                    "/" + Version +
+                                                    "/" + Artifact + "-" + value + ".pom";
+
+        /// <summary>
         /// The path to the archive file for the artifact
         /// </summary>
-        public string ArtifactPath(string value) => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
+        public string DefaultArtifactPath => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
                                       "/" + Artifact +
                                       "/" + Version +
-                                      "/" + Artifact + "-" + value + "." + Packaging;
+                                      "/" + Artifact + "-" + Version + "." + Packaging;
+        
+        /// <summary>
+        /// The path to the archive file for the artifact with a custom value
+        /// </summary>
+        public string SnapshotArtifactPath(string value) => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
+                                                    "/" + Artifact +
+                                                    "/" + Version +
+                                                    "/" + Artifact + "-" + value + "." + Packaging;
 
         public MavenPackageID(string group, string artifact)
         {
