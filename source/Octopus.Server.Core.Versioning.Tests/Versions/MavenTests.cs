@@ -62,7 +62,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
         }
 
         [Test]
-        public void testSnapshotVersion()
+        public void TestSnapshotVersion()
         {
             // Test a snapshot version string
             var version = new MavenVersionParser().Parse( "1.2.3-SNAPSHOT" );
