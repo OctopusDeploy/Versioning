@@ -222,46 +222,46 @@
       <file leaf-file-name="MavenPackageID.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1482">
-              <caret line="70" column="38" lean-forward="false" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
+            <state relative-caret-position="1710">
+              <caret line="74" column="66" lean-forward="false" selection-start-line="74" selection-start-column="66" selection-end-line="74" selection-end-column="66" />
               <folding>
-                <marker date="1510607034792" expanded="false" signature="6:150" ph="..." />
-                <marker date="1510607034792" expanded="true" signature="198:9268" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="205:1347" ph="/// Back when Octopus only support NuGet (or NuGet like) feeds, it was possible to make ... " />
-                <marker date="1510607034792" expanded="true" signature="1379:9266" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="1394:1712" ph="/// When we display the package ID to the user, this is the delimiter we use. ... " />
-                <marker date="1510607034792" expanded="true" signature="2482:2577" ph="/// The path to the metadata file for the artifact ... " />
-                <marker date="1510607034792" expanded="true" signature="2864:2959" ph="/// The path to the metadata file for the artifact ... " />
-                <marker date="1510607034792" expanded="true" signature="3288:3382" ph="/// The path to the archive file for the artifact ... " />
-                <marker date="1510607034792" expanded="true" signature="3744:4165" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="3813:3912" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="3978:4080" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="4243:4867" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="4312:4411" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="4477:4579" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="4643:4744" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="4963:5800" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="5032:5131" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="5197:5299" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="5363:5464" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="5532:5635" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="5871:5933" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="5943:6247" ph="/// Parses an octopus package id into the maven package details. ... " />
-                <marker date="1510607034792" expanded="true" signature="6288:8870" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="6351:6447" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="6604:6744" ph="/* When downloading for the first time, we will use the G:A:V format ... */" />
-                <marker date="1510607034792" expanded="true" signature="6791:7682" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="6996:7091" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="7187:7343" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="7450:7668" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="7695:7856" ph="/* When pushing a delta we will be using the Maven##G##A##V format from ... */" />
-                <marker date="1510607034792" expanded="true" signature="7951:8706" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="8111:8206" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="8262:8418" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="8474:8692" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="8723:8860" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="8913:8981" ph="{...}" />
-                <marker date="1510607034792" expanded="true" signature="9029:9260" ph="{...}" />
+                <marker date="1510610160191" expanded="false" signature="6:150" ph="..." />
+                <marker date="1510610160191" expanded="true" signature="198:9333" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="205:1347" ph="/// Back when Octopus only support NuGet (or NuGet like) feeds, it was possible to make ... " />
+                <marker date="1510610160191" expanded="true" signature="1379:9331" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="1394:1712" ph="/// When we display the package ID to the user, this is the delimiter we use. ... " />
+                <marker date="1510610160191" expanded="true" signature="2482:2577" ph="/// The path to the metadata file for the artifact ... " />
+                <marker date="1510610160191" expanded="true" signature="2872:2988" ph="/// The path to the metadata file for a particular artifact and version ... " />
+                <marker date="1510610160191" expanded="true" signature="3341:3435" ph="/// The path to the archive file for the artifact ... " />
+                <marker date="1510610160191" expanded="true" signature="3809:4230" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="3878:3977" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="4043:4145" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="4308:4932" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="4377:4476" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="4542:4644" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="4708:4809" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="5028:5865" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="5097:5196" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="5262:5364" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="5428:5529" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="5597:5700" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="5936:5998" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="6008:6312" ph="/// Parses an octopus package id into the maven package details. ... " />
+                <marker date="1510610160191" expanded="true" signature="6353:8935" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="6416:6512" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="6669:6809" ph="/* When downloading for the first time, we will use the G:A:V format ... */" />
+                <marker date="1510610160191" expanded="true" signature="6856:7747" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="7061:7156" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="7252:7408" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="7515:7733" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="7760:7921" ph="/* When pushing a delta we will be using the Maven##G##A##V format from ... */" />
+                <marker date="1510610160191" expanded="true" signature="8016:8771" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="8176:8271" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="8327:8483" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="8539:8757" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="8788:8925" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="8978:9046" ph="{...}" />
+                <marker date="1510610160191" expanded="true" signature="9094:9325" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -729,7 +729,7 @@
       <workItem from="1510189333804" duration="915000" />
       <workItem from="1510278814279" duration="1774000" />
       <workItem from="1510532063571" duration="3323000" />
-      <workItem from="1510605023637" duration="716000" />
+      <workItem from="1510605023637" duration="1681000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed up a function name">
       <created>1510532881615</created>
@@ -742,7 +742,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86133000" />
+    <option name="totallyTimeSpent" value="87098000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1485,46 +1485,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1482">
-          <caret line="70" column="38" lean-forward="false" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
+        <state relative-caret-position="1710">
+          <caret line="74" column="66" lean-forward="false" selection-start-line="74" selection-start-column="66" selection-end-line="74" selection-end-column="66" />
           <folding>
-            <marker date="1510607034792" expanded="false" signature="6:150" ph="..." />
-            <marker date="1510607034792" expanded="true" signature="198:9268" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="205:1347" ph="/// Back when Octopus only support NuGet (or NuGet like) feeds, it was possible to make ... " />
-            <marker date="1510607034792" expanded="true" signature="1379:9266" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="1394:1712" ph="/// When we display the package ID to the user, this is the delimiter we use. ... " />
-            <marker date="1510607034792" expanded="true" signature="2482:2577" ph="/// The path to the metadata file for the artifact ... " />
-            <marker date="1510607034792" expanded="true" signature="2864:2959" ph="/// The path to the metadata file for the artifact ... " />
-            <marker date="1510607034792" expanded="true" signature="3288:3382" ph="/// The path to the archive file for the artifact ... " />
-            <marker date="1510607034792" expanded="true" signature="3744:4165" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="3813:3912" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="3978:4080" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="4243:4867" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="4312:4411" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="4477:4579" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="4643:4744" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="4963:5800" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="5032:5131" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="5197:5299" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="5363:5464" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="5532:5635" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="5871:5933" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="5943:6247" ph="/// Parses an octopus package id into the maven package details. ... " />
-            <marker date="1510607034792" expanded="true" signature="6288:8870" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="6351:6447" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="6604:6744" ph="/* When downloading for the first time, we will use the G:A:V format ... */" />
-            <marker date="1510607034792" expanded="true" signature="6791:7682" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="6996:7091" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="7187:7343" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="7450:7668" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="7695:7856" ph="/* When pushing a delta we will be using the Maven##G##A##V format from ... */" />
-            <marker date="1510607034792" expanded="true" signature="7951:8706" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="8111:8206" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="8262:8418" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="8474:8692" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="8723:8860" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="8913:8981" ph="{...}" />
-            <marker date="1510607034792" expanded="true" signature="9029:9260" ph="{...}" />
+            <marker date="1510610160191" expanded="false" signature="6:150" ph="..." />
+            <marker date="1510610160191" expanded="true" signature="198:9333" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="205:1347" ph="/// Back when Octopus only support NuGet (or NuGet like) feeds, it was possible to make ... " />
+            <marker date="1510610160191" expanded="true" signature="1379:9331" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="1394:1712" ph="/// When we display the package ID to the user, this is the delimiter we use. ... " />
+            <marker date="1510610160191" expanded="true" signature="2482:2577" ph="/// The path to the metadata file for the artifact ... " />
+            <marker date="1510610160191" expanded="true" signature="2872:2988" ph="/// The path to the metadata file for a particular artifact and version ... " />
+            <marker date="1510610160191" expanded="true" signature="3341:3435" ph="/// The path to the archive file for the artifact ... " />
+            <marker date="1510610160191" expanded="true" signature="3809:4230" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="3878:3977" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="4043:4145" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="4308:4932" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="4377:4476" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="4542:4644" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="4708:4809" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="5028:5865" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="5097:5196" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="5262:5364" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="5428:5529" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="5597:5700" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="5936:5998" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="6008:6312" ph="/// Parses an octopus package id into the maven package details. ... " />
+            <marker date="1510610160191" expanded="true" signature="6353:8935" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="6416:6512" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="6669:6809" ph="/* When downloading for the first time, we will use the G:A:V format ... */" />
+            <marker date="1510610160191" expanded="true" signature="6856:7747" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="7061:7156" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="7252:7408" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="7515:7733" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="7760:7921" ph="/* When pushing a delta we will be using the Maven##G##A##V format from ... */" />
+            <marker date="1510610160191" expanded="true" signature="8016:8771" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="8176:8271" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="8327:8483" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="8539:8757" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="8788:8925" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="8978:9046" ph="{...}" />
+            <marker date="1510610160191" expanded="true" signature="9094:9325" ph="{...}" />
           </folding>
         </state>
       </provider>

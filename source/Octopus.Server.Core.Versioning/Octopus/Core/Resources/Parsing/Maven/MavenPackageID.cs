@@ -56,22 +56,23 @@ namespace Octopus.Core.Resources.Parsing.Maven
                                            "/" +
                                            Artifact +
                                            "/maven-metadata.xml";
-
+        
         /// <summary>
-        /// The path to the metadata file for the artifact
+        /// The path to the metadata file for a particular artifact and version
         /// </summary>
-        public string GroupVersionPomPath => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
-                                             "/" + Artifact +
-                                             "/" + Version +
-                                             "/" + Artifact + "-" + Version + ".pom";
+        public string GroupVersionMetadataPath => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
+                                           "/" +
+                                           Artifact +
+                                           "/" + Version +
+                                           "/maven-metadata.xml";
 
         /// <summary>
         /// The path to the archive file for the artifact
         /// </summary>
-        public string ArtifactPath => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
+        public string ArtifactPath(string value) => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
                                       "/" + Artifact +
                                       "/" + Version +
-                                      "/" + Artifact + "-" + Version + "." + Packaging;
+                                      "/" + Artifact + "-" + value + "." + Packaging;
 
         public MavenPackageID(string group, string artifact)
         {
