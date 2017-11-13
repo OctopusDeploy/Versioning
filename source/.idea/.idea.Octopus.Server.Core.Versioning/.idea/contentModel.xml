@@ -28,7 +28,6 @@
                 <e p="Maven" t="Include">
                   <e p="IMavenURLParser.cs" t="Include" />
                   <e p="MavenPackageID.cs" t="Include" />
-                  <e p="MavenURLParser.cs" t="Include" />
                 </e>
               </e>
               <e p="Ranges" t="Include">
@@ -78,7 +77,6 @@
         <e p="Octopus.Server.Core.Versioning.Tests.csproj" t="IncludeRecursive" />
         <e p="packages.config" t="Include" />
         <e p="Parsers" t="Include">
-          <e p="MavenURLParserTest.cs" t="Include" />
           <e p="Tests.cs" t="Include" />
         </e>
         <e p="Properties" t="Include">

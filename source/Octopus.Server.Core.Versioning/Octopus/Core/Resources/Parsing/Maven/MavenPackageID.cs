@@ -52,8 +52,7 @@ namespace Octopus.Core.Resources.Parsing.Maven
         /// <summary>
         /// The path to the metadata file for the artifact
         /// </summary>
-        public string GroupMetadataPath => "/maven2/" +
-                                           Groups?.Aggregate((result, item) => result + "/" + item) +
+        public string GroupMetadataPath => Groups?.Aggregate((result, item) => result + "/" + item) +
                                            "/" +
                                            Artifact +
                                            "/maven-metadata.xml";
@@ -61,8 +60,7 @@ namespace Octopus.Core.Resources.Parsing.Maven
         /// <summary>
         /// The path to the metadata file for the artifact
         /// </summary>
-        public string GroupVersionPomPath => "/maven2/" +
-                                             Groups?.Aggregate((result, item) => result + "/" + item) +
+        public string GroupVersionPomPath => Groups?.Aggregate((result, item) => result + "/" + item) +
                                              "/" + Artifact +
                                              "/" + Version +
                                              "/" + Artifact + "-" + Version + ".pom";
@@ -70,8 +68,7 @@ namespace Octopus.Core.Resources.Parsing.Maven
         /// <summary>
         /// The path to the archive file for the artifact
         /// </summary>
-        public string ArtifactPath => "/maven2/" +
-                                      Groups?.Aggregate((result, item) => result + "/" + item) +
+        public string ArtifactPath => Groups?.Aggregate((result, item) => result + "/" + item) +
                                       "/" + Artifact +
                                       "/" + Version +
                                       "/" + Artifact + "-" + Version + "." + Packaging;
