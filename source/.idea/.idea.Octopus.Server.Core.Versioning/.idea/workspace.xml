@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dd6778c-89a3-421b-b23b-8691b04b3795" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMetadataParser.cs" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MetadataParser.cs" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/contentModel.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus.Server.Core.Versioning.csproj" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus.Server.Core.Versioning.csproj" />
+      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMavenURLParser.cs" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,189 +18,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="MavenVersionRange.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/MavenVersionRange.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15903">
-              <caret line="279" column="34" lean-forward="false" selection-start-line="279" selection-start-column="34" selection-end-line="279" selection-end-column="34" />
-              <folding>
-                <marker date="1510115094148" expanded="true" signature="6:185" ph="..." />
-                <marker date="1510115094148" expanded="true" signature="236:414" ph="/// A copy of https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/ ... " />
-                <marker date="1510115094148" expanded="true" signature="449:21479" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="678:802" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="984:1438" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="1096:1339" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="1224:1325" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="1452:2241" ph="/* &lt;p&gt; ... */" />
-                <marker date="1510115094148" expanded="true" signature="2318:4796" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="2360:2417" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="2726:4202" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="2940:3099" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="2997:3081" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="3137:3271" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="3415:3508" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="3550:3843" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="3680:3825" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="4091:4188" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="4245:4714" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="4305:4506" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="4527:4700" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="4868:6926" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="5210:5661" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="5292:5450" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="5678:6879" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="5896:6053" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="6149:6266" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="6357:6474" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="6593:6741" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="7007:7198" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="7212:9081" ph="/* Creates and returns a new &lt;code&gt;MavenVersionRange&lt;/code&gt; that is a restriction of this ... */" />
-                <marker date="1510115094148" expanded="true" signature="9156:11292" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="9380:9464" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="9481:9564" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="9648:10409" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="9710:10395" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="9825:10015" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="10184:10377" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="10548:10694" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="10757:10993" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="10788:10921" ph="/* Use the recommended version from the specified MavenVersionRange since there is no ... */" />
-                <marker date="1510115094148" expanded="true" signature="10998:11210" ph="/* TODO should throw this immediately, but need artifact ... */" />
-                <marker date="1510115094148" expanded="true" signature="11390:17534" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="11841:17486" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="12002:17136" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="12175:16734" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="12463:12641" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="12701:12879" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="12908:13802" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="13075:13269" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="13325:13549" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="13582:13776" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="13862:14040" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="14100:14278" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="14307:15201" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="14474:14668" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="14724:14948" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="14981:15175" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="15381:15546" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="15615:15780" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="15895:16289" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="16014:16125" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="16158:16263" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="16318:16712" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="16437:16548" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="16581:16686" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="16759:17118" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="16875:16974" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="17003:17096" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="17157:17472" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="17261:17348" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="17373:17454" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="17586:18051" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="17672:17746" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="17763:18013" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="17824:17962" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="18102:18514" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="18190:18248" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="18265:18478" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="18326:18464" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="18561:19278" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="18617:18699" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="18716:19268" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="18888:19068" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="19347:19965" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="19558:19927" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="19622:19913" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="19808:19895" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="20026:20285" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="20090:20249" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="20166:20235" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="20328:20422" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="20477:21163" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="20518:20575" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="20624:20682" ph="{...}" />
-                <marker date="1510115094148" expanded="true" signature="21210:21473" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ComparableVersion.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/ComparableVersion.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21261">
-              <caret line="376" column="0" lean-forward="false" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
-              <folding>
-                <marker date="1508987816841" expanded="false" signature="6:89" ph="..." />
-                <marker date="1508987816841" expanded="true" signature="147:427" ph="/// This class is based on the org.apache.maven.artifact.versioning.ComparableVersion ... " />
-                <marker date="1508987816841" expanded="true" signature="495:12317" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="736:791" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="815:933" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="943:1021" ph="/* Represents a numeric item in the version item list. ... */" />
-                <marker date="1508987816841" expanded="true" signature="1054:2521" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="1281:1350" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="1394:1469" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="1507:1572" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="1606:1688" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="1733:2395" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="1781:1904" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="1949:2381" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="2442:2511" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="2531:2624" ph="/* Represents a string in the version item list, usually a qualifier. ... */" />
-                <marker date="1508987816841" expanded="true" signature="2656:6359" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="2966:3069" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="3084:3305" ph="/* A comparable value for the empty-string qualifier. This one is used to determine if a given qualifier makes ... */" />
-                <marker date="1508987816841" expanded="true" signature="3494:4192" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="3566:4096" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="3689:4078" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="4230:4294" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="4328:4447" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="4461:5206" ph="/* Returns a comparable value for a qualifier. ... */" />
-                <marker date="1508987816841" expanded="true" signature="5277:5447" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="5492:6244" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="5540:5706" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="5750:6230" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="6291:6349" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="6369:6566" ph="/* Represents a version list item. This class is used both for the global item list and for sub-lists (which star ... */" />
-                <marker date="1508987816841" expanded="true" signature="6608:8769" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="6655:6717" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="6751:6816" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="6853:7084" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="6929:7055" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="7129:8625" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="7177:7447" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="7231:7337" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="7491:8611" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="7877:8424" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="8291:8398" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="8672:8759" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="8818:11660" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="9176:11309" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="9258:9641" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="9317:9413" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="9438:9583" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="9676:10613" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="9735:9831" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="9856:10001" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="10075:10595" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="10241:10573" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="10296:10439" ph="/* new ListItem only if previous were digits and new char is a digit, ... */" />
-                <marker date="1508987816841" expanded="true" signature="10655:10967" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="10725:10912" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="10988:11295" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="11057:11239" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="11355:11460" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="11498:11607" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="11717:11837" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="11888:11953" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="11996:12042" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="12089:12204" ph="{...}" />
-                <marker date="1508987816841" expanded="true" signature="12247:12311" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MavenTests.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/MavenTests.cs">
           <provider selected="true" editor-type-id="text-editor">
@@ -219,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MavenPackageID.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MavenPackageID.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="79" column="30" lean-forward="false" selection-start-line="79" selection-start-column="30" selection-end-line="79" selection-end-column="30" />
+            <state relative-caret-position="1087">
+              <caret line="95" column="30" lean-forward="false" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
               <folding>
                 <marker date="1510610628434" expanded="false" signature="6:150" ph="..." />
                 <marker date="1510610628434" expanded="true" signature="198:10747" ph="{...}" />
@@ -265,6 +87,36 @@
                 <marker date="1510610628434" expanded="true" signature="10202:10339" ph="{...}" />
                 <marker date="1510610628434" expanded="true" signature="10392:10460" ph="{...}" />
                 <marker date="1510610628434" expanded="true" signature="10508:10739" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IMetadataParser.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMetadataParser.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="798">
+              <caret line="14" column="58" lean-forward="false" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+              <folding>
+                <marker date="1510618508303" expanded="true" signature="65:692" ph="{...}" />
+                <marker date="1510618508303" expanded="true" signature="72:157" ph="/// Defines a service for parsing metadata files ... " />
+                <marker date="1510618508303" expanded="true" signature="194:690" ph="{...}" />
+                <marker date="1510618508303" expanded="true" signature="209:595" ph="/// Given a maven-metadata.xml file parsed into a XML document, find the latest ... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MetadataParser.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MetadataParser.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="912">
+              <caret line="16" column="149" lean-forward="false" selection-start-line="16" selection-start-column="149" selection-end-line="16" selection-end-column="149" />
+              <folding>
+                <marker date="1510618435166" expanded="true" signature="6:81" ph="..." />
+                <marker date="1510618435166" expanded="true" signature="129:1171" ph="{...}" />
+                <marker date="1510618435166" expanded="true" signature="181:1169" ph="{...}" />
+                <marker date="1510618435166" expanded="true" signature="282:1163" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -421,7 +273,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>props.getProperty( &quot;parsed.buildNumber&quot; )</find>
       <find>version.Metadata</find>
       <find>Parser</find>
       <find>Exce</find>
@@ -451,6 +302,7 @@
       <find>PackageMe</find>
       <find>string pac</find>
       <find>GroupVersionPomPath</find>
+      <find>IMavenURLParser</find>
     </findStrings>
     <replaceStrings>
       <replace>version.Revision</replace>
@@ -477,7 +329,9 @@
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/StrictSemanticVersionBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/SemanticVersion.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/SemVerFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MetadataParser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMetadataParser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/StrictSemVerFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/CustomRangeTests.cs" root0="FORCE_HIGHLIGHTING" />
@@ -509,7 +363,6 @@
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Constants/JavaConstants.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Constants/ServerConstants.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMavenURLParser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageIdentifier.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IPackageIDParser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PhysicalPackageMetadata.cs" root0="FORCE_HIGHLIGHTING" />
@@ -566,6 +419,8 @@
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/VersionTests.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/MavenTests.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MetadataParser.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMetadataParser.cs" />
       </list>
     </option>
   </component>
@@ -732,7 +587,7 @@
       <workItem from="1510189333804" duration="915000" />
       <workItem from="1510278814279" duration="1774000" />
       <workItem from="1510532063571" duration="3323000" />
-      <workItem from="1510605023637" duration="2153000" />
+      <workItem from="1510605023637" duration="3470000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed up a function name">
       <created>1510532881615</created>
@@ -745,7 +600,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87570000" />
+    <option name="totallyTimeSpent" value="88887000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -771,6 +626,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16332698" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298807" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298807" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39974537" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -779,7 +635,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298807" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -869,20 +724,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/B48979BD-2A86-4A1A-9CE7-C60BE98F59BF/74/1c5bd689/GroupCollection.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1083">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/B48979BD-2A86-4A1A-9CE7-C60BE98F59BF/50/c0fa383d/Match.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="695">
-          <caret line="66" column="35" lean-forward="false" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AADEEACB-2A92-4F58-A1D9-E7E66A9EC24C/b1/ad17de57/SemanticVersion.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2565">
@@ -999,13 +840,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96444">
           <caret line="1692" column="15" lean-forward="false" selection-start-line="1692" selection-start-column="15" selection-end-line="1692" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMavenURLParser.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -1488,8 +1322,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="79" column="30" lean-forward="false" selection-start-line="79" selection-start-column="30" selection-end-line="79" selection-end-column="30" />
+        <state relative-caret-position="1087">
+          <caret line="95" column="30" lean-forward="false" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
           <folding>
             <marker date="1510610628434" expanded="false" signature="6:150" ph="..." />
             <marker date="1510610628434" expanded="true" signature="198:10747" ph="{...}" />
@@ -1531,6 +1365,40 @@
             <marker date="1510610628434" expanded="true" signature="10202:10339" ph="{...}" />
             <marker date="1510610628434" expanded="true" signature="10392:10460" ph="{...}" />
             <marker date="1510610628434" expanded="true" signature="10508:10739" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMavenURLParser.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MetadataParser.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="912">
+          <caret line="16" column="149" lean-forward="false" selection-start-line="16" selection-start-column="149" selection-end-line="16" selection-end-column="149" />
+          <folding>
+            <marker date="1510618435166" expanded="true" signature="6:81" ph="..." />
+            <marker date="1510618435166" expanded="true" signature="129:1171" ph="{...}" />
+            <marker date="1510618435166" expanded="true" signature="181:1169" ph="{...}" />
+            <marker date="1510618435166" expanded="true" signature="282:1163" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMetadataParser.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="14" column="58" lean-forward="false" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+          <folding>
+            <marker date="1510618508303" expanded="true" signature="65:692" ph="{...}" />
+            <marker date="1510618508303" expanded="true" signature="72:157" ph="/// Defines a service for parsing metadata files ... " />
+            <marker date="1510618508303" expanded="true" signature="194:690" ph="{...}" />
+            <marker date="1510618508303" expanded="true" signature="209:595" ph="/// Given a maven-metadata.xml file parsed into a XML document, find the latest ... " />
           </folding>
         </state>
       </provider>

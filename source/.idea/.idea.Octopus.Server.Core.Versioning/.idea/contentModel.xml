@@ -26,8 +26,9 @@
               </e>
               <e p="Parsing" t="Include">
                 <e p="Maven" t="Include">
-                  <e p="IMavenURLParser.cs" t="Include" />
+                  <e p="IMetadataParser.cs" t="Include" />
                   <e p="MavenPackageID.cs" t="Include" />
+                  <e p="MetadataParser.cs" t="Include" />
                 </e>
               </e>
               <e p="Ranges" t="Include">
