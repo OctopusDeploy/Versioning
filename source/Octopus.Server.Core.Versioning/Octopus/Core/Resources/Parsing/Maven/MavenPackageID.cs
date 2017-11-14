@@ -52,51 +52,164 @@ namespace Octopus.Core.Resources.Parsing.Maven
         /// <summary>
         /// The path to the metadata file for the artifact
         /// </summary>
-        public string GroupMetadataPath => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
-                                           "/" +
-                                           Artifact +
-                                           "/maven-metadata.xml";
-        
+        public string GroupMetadataPath {
+            get
+            {
+                if (Groups == null || Groups.Length == 0)
+                {
+                    throw new ArgumentException("Groups can not be null or empty");
+                }
+
+                if (Artifact == null || Artifact.Trim().Length == 0)
+                {
+                    throw new ArgumentException("Artifact can not be null or empty");
+                }
+                
+                return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
+                       "/" +
+                       Artifact +
+                       "/maven-metadata.xml";
+            }
+        } 
+
         /// <summary>
         /// The path to the metadata file for a particular artifact and version
         /// </summary>
-        public string GroupVersionMetadataPath => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
-                                           "/" +
-                                           Artifact +
-                                           "/" + Version +
-                                           "/maven-metadata.xml";
+        public string GroupVersionMetadataPath
+        {
+            get
+            {
+                if (Groups == null || Groups.Length == 0)
+                {
+                    throw new ArgumentException("Groups can not be null or empty");
+                }
+
+                if (Artifact == null || Artifact.Trim().Length == 0)
+                {
+                    throw new ArgumentException("Artifact can not be null or empty");
+                }
+
+                if (Version == null || Version.Trim().Length == 0)
+                {
+                    throw new ArgumentException("Version can not be null or empty");
+                }
+
+                return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
+                       "/" +
+                       Artifact +
+                       "/" + Version +
+                       "/maven-metadata.xml";
+            }
+        }
 
         /// <summary>
         /// The path to the metadata file for the artifact
         /// </summary>
-        public string DefaultGroupVersionPomPath => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
-                                             "/" + Artifact +
-                                             "/" + Version +
-                                             "/" + Artifact + "-" + Version + ".pom";
-        
+        public string DefaultGroupVersionPomPath
+        {
+            get
+            {
+                if (Groups == null || Groups.Length == 0)
+                {
+                    throw new ArgumentException("Groups can not be null or empty");
+                }
+
+                if (Artifact == null || Artifact.Trim().Length == 0)
+                {
+                    throw new ArgumentException("Artifact can not be null or empty");
+                }
+
+                if (Version == null || Version.Trim().Length == 0)
+                {
+                    throw new ArgumentException("Version can not be null or empty");
+                }
+
+                return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
+                       "/" + Artifact +
+                       "/" + Version +
+                       "/" + Artifact + "-" + Version + ".pom";
+            }
+        }
+
         /// <summary>
         /// The path to the metadata file for the artifact with a custome value
         /// </summary>
-        public string SnapshotGroupVersionPomPath(string value) => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
-                                                    "/" + Artifact +
-                                                    "/" + Version +
-                                                    "/" + Artifact + "-" + value + ".pom";
+        public string SnapshotGroupVersionPomPath(string value)
+        {
+            if (Groups == null || Groups.Length == 0)
+            {
+                throw new ArgumentException("Groups can not be null or empty");
+            }
+
+            if (Artifact == null || Artifact.Trim().Length == 0)
+            {
+                throw new ArgumentException("Artifact can not be null or empty");
+            }
+
+            if (Version == null || Version.Trim().Length == 0)
+            {
+                throw new ArgumentException("Version can not be null or empty");
+            }
+
+            return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
+                   "/" + Artifact +
+                   "/" + Version +
+                   "/" + Artifact + "-" + value + ".pom";
+        }
 
         /// <summary>
         /// The path to the archive file for the artifact
         /// </summary>
-        public string DefaultArtifactPath => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
-                                      "/" + Artifact +
-                                      "/" + Version +
-                                      "/" + Artifact + "-" + Version + "." + Packaging;
-        
+        public string DefaultArtifactPath {
+            get
+            {
+                if (Groups == null || Groups.Length == 0)
+                {
+                    throw new ArgumentException("Groups can not be null or empty");
+                }
+
+                if (Artifact == null || Artifact.Trim().Length == 0)
+                {
+                    throw new ArgumentException("Artifact can not be null or empty");
+                }
+
+                if (Version == null || Version.Trim().Length == 0)
+                {
+                    throw new ArgumentException("Version can not be null or empty");
+                }
+                
+                return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
+                       "/" + Artifact +
+                       "/" + Version +
+                       "/" + Artifact + "-" + Version + "." + Packaging;
+            }
+        }
+
         /// <summary>
         /// The path to the archive file for the artifact with a custom value
         /// </summary>
-        public string SnapshotArtifactPath(string value) => "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
-                                                    "/" + Artifact +
-                                                    "/" + Version +
-                                                    "/" + Artifact + "-" + value + "." + Packaging;
+        public string SnapshotArtifactPath(string value)
+        {
+            if (Groups == null || Groups.Length == 0)
+            {
+                throw new ArgumentException("Groups can not be null or empty");
+            }
+
+            if (Artifact == null || Artifact.Trim().Length == 0)
+            {
+                throw new ArgumentException("Artifact can not be null or empty");
+            }
+
+            if (Version == null || Version.Trim().Length == 0)
+            {
+                throw new ArgumentException("Version can not be null or empty");
+            }
+            
+            return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
+                "/" + Artifact +
+                "/" + Version +
+                "/" + Artifact + "-" + value + "." + Packaging;
+        }
 
         public MavenPackageID(string group, string artifact)
         {
@@ -237,7 +350,8 @@ namespace Octopus.Core.Resources.Parsing.Maven
             }
             else
             {
-                throw new Exception("Package ID of " + id + " was neither a G:A:V or a Maven#G#A#V format");
+                throw new Exception(
+                    "Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
         }
 

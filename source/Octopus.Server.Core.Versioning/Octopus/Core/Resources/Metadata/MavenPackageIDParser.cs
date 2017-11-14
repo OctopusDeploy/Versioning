@@ -159,7 +159,9 @@ namespace Octopus.Core.Resources.Metadata
             return BuildMetadata(baseDetails.PackageId, baseDetails.Version, baseDetails.FileExtension, size, hash);
         }
 
-        PackageMetadata GetMetadataFromPackageName(string packageFile, Tuple<string, string> metadataAndExtension,
+        PackageMetadata GetMetadataFromPackageName(
+            string packageFile, 
+            Tuple<string, string> metadataAndExtension,
             string[] extensions)
         {
             var idAndVersion = metadataAndExtension.Item1;
