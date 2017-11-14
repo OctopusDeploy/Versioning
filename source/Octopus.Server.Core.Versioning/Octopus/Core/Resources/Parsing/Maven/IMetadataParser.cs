@@ -13,7 +13,8 @@ namespace Octopus.Core.Resources.Parsing.Maven
         /// </summary>
         /// <param name="snapshotMetadata">The parsed Snapshot maven-metadata.xml file</param>
         /// <param name="extension">The artifect extension</param>
+        /// <param name="defaultVersion">The value to return if the extension was not found</param>
         /// <returns></returns>
-        string GetLatestSnapshotRelease(XmlDocument snapshotMetadata, string extension);
+        string GetLatestSnapshotRelease(XmlDocument snapshotMetadata, string extension, string defaultVersion = "");
     }
 }

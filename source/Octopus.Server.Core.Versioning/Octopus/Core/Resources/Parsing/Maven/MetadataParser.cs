@@ -7,7 +7,14 @@ namespace Octopus.Core.Resources.Parsing.Maven
 {
     public class MetadataParser : IMetadataParser
     {
-        public string GetLatestSnapshotRelease(XmlDocument snapshotMetadata, string extension)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="snapshotMetadata"></param>
+        /// <param name="extension"></param>
+        /// <param name="defaultVersion"></param>
+        /// <returns></returns>
+        public string GetLatestSnapshotRelease(XmlDocument snapshotMetadata, string extension, string defaultVersion = "")
         {
             return snapshotMetadata.ToEnumerable()
                        .Select(doc => doc.DocumentElement?.SelectSingleNode("./*[local-name()='versioning']"))
@@ -17,7 +24,7 @@ namespace Octopus.Core.Resources.Parsing.Maven
                        .Where(node => (node.SelectSingleNode("./*[local-name()='extension']")?.InnerText.Trim() ?? "").Equals(extension.Trim(), StringComparison.OrdinalIgnoreCase))
                        .OrderByDescending(node => node.SelectSingleNode("./*[local-name()='updated']")?.InnerText)
                        .Select(node => node.SelectSingleNode("./*[local-name()='value']")?.InnerText)
-                       .FirstOrDefault() ?? "";
+                       .FirstOrDefault() ?? defaultVersion;
         }
     }
 }

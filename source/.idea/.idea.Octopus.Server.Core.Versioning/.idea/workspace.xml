@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dd6778c-89a3-421b-b23b-8691b04b3795" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMetadataParser.cs" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MetadataParser.cs" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/contentModel.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus.Server.Core.Versioning.csproj" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus.Server.Core.Versioning.csproj" />
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMavenURLParser.cs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMetadataParser.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMetadataParser.cs" />
+      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MetadataParser.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MetadataParser.cs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -92,31 +89,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IMetadataParser.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IMetadataParser.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMetadataParser.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="798">
-              <caret line="14" column="58" lean-forward="false" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+            <state relative-caret-position="855">
+              <caret line="15" column="91" lean-forward="false" selection-start-line="15" selection-start-column="91" selection-end-line="15" selection-end-column="91" />
               <folding>
-                <marker date="1510618508303" expanded="true" signature="65:692" ph="{...}" />
-                <marker date="1510618508303" expanded="true" signature="72:157" ph="/// Defines a service for parsing metadata files ... " />
-                <marker date="1510618508303" expanded="true" signature="194:690" ph="{...}" />
-                <marker date="1510618508303" expanded="true" signature="209:595" ph="/// Given a maven-metadata.xml file parsed into a XML document, find the latest ... " />
+                <marker date="1510632877006" expanded="true" signature="65:820" ph="{...}" />
+                <marker date="1510632877006" expanded="true" signature="72:157" ph="/// Defines a service for parsing metadata files ... " />
+                <marker date="1510632877006" expanded="true" signature="194:818" ph="{...}" />
+                <marker date="1510632877006" expanded="true" signature="209:695" ph="/// Given a maven-metadata.xml file parsed into a XML document, find the latest ... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MetadataParser.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MetadataParser.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MetadataParser.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="912">
-              <caret line="16" column="149" lean-forward="false" selection-start-line="16" selection-start-column="149" selection-end-line="16" selection-end-column="149" />
+            <state relative-caret-position="399">
+              <caret line="7" column="47" lean-forward="false" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
               <folding>
-                <marker date="1510618435166" expanded="true" signature="6:81" ph="..." />
-                <marker date="1510618435166" expanded="true" signature="129:1171" ph="{...}" />
-                <marker date="1510618435166" expanded="true" signature="181:1169" ph="{...}" />
-                <marker date="1510618435166" expanded="true" signature="282:1163" ph="{...}" />
+                <marker date="1510632877059" expanded="true" signature="6:81" ph="..." />
+                <marker date="1510632877059" expanded="true" signature="129:1448" ph="{...}" />
+                <marker date="1510632877059" expanded="true" signature="181:1446" ph="{...}" />
+                <marker date="1510632877059" expanded="true" signature="196:424" ph="///  ... " />
+                <marker date="1510632877059" expanded="true" signature="547:1440" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -273,7 +271,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>version.Metadata</find>
       <find>Parser</find>
       <find>Exce</find>
       <find>ExpectedException</find>
@@ -303,6 +300,7 @@
       <find>string pac</find>
       <find>GroupVersionPomPath</find>
       <find>IMavenURLParser</find>
+      <find>input</find>
     </findStrings>
     <replaceStrings>
       <replace>version.Revision</replace>
@@ -587,7 +585,7 @@
       <workItem from="1510189333804" duration="915000" />
       <workItem from="1510278814279" duration="1774000" />
       <workItem from="1510532063571" duration="3323000" />
-      <workItem from="1510605023637" duration="3470000" />
+      <workItem from="1510605023637" duration="5050000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed up a function name">
       <created>1510532881615</created>
@@ -600,7 +598,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88887000" />
+    <option name="totallyTimeSpent" value="90467000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1377,28 +1375,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MetadataParser.cs">
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMetadataParser.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="912">
-          <caret line="16" column="149" lean-forward="false" selection-start-line="16" selection-start-column="149" selection-end-line="16" selection-end-column="149" />
+        <state relative-caret-position="855">
+          <caret line="15" column="91" lean-forward="false" selection-start-line="15" selection-start-column="91" selection-end-line="15" selection-end-column="91" />
           <folding>
-            <marker date="1510618435166" expanded="true" signature="6:81" ph="..." />
-            <marker date="1510618435166" expanded="true" signature="129:1171" ph="{...}" />
-            <marker date="1510618435166" expanded="true" signature="181:1169" ph="{...}" />
-            <marker date="1510618435166" expanded="true" signature="282:1163" ph="{...}" />
+            <marker date="1510632877006" expanded="true" signature="65:820" ph="{...}" />
+            <marker date="1510632877006" expanded="true" signature="72:157" ph="/// Defines a service for parsing metadata files ... " />
+            <marker date="1510632877006" expanded="true" signature="194:818" ph="{...}" />
+            <marker date="1510632877006" expanded="true" signature="209:695" ph="/// Given a maven-metadata.xml file parsed into a XML document, find the latest ... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/IMetadataParser.cs">
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MetadataParser.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="14" column="58" lean-forward="false" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+        <state relative-caret-position="399">
+          <caret line="7" column="47" lean-forward="false" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
           <folding>
-            <marker date="1510618508303" expanded="true" signature="65:692" ph="{...}" />
-            <marker date="1510618508303" expanded="true" signature="72:157" ph="/// Defines a service for parsing metadata files ... " />
-            <marker date="1510618508303" expanded="true" signature="194:690" ph="{...}" />
-            <marker date="1510618508303" expanded="true" signature="209:595" ph="/// Given a maven-metadata.xml file parsed into a XML document, find the latest ... " />
+            <marker date="1510632877059" expanded="true" signature="6:81" ph="..." />
+            <marker date="1510632877059" expanded="true" signature="129:1448" ph="{...}" />
+            <marker date="1510632877059" expanded="true" signature="181:1446" ph="{...}" />
+            <marker date="1510632877059" expanded="true" signature="196:424" ph="///  ... " />
+            <marker date="1510632877059" expanded="true" signature="547:1440" ph="{...}" />
           </folding>
         </state>
       </provider>
