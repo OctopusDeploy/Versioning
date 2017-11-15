@@ -57,12 +57,12 @@ namespace Octopus.Core.Resources.Parsing.Maven
             {
                 if (Groups == null || Groups.Length == 0)
                 {
-                    throw new ArgumentException("Groups can not be null or empty");
+                    throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
                 if (Artifact == null || Artifact.Trim().Length == 0)
                 {
-                    throw new ArgumentException("Artifact can not be null or empty");
+                    throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
                 
                 return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
@@ -81,17 +81,17 @@ namespace Octopus.Core.Resources.Parsing.Maven
             {
                 if (Groups == null || Groups.Length == 0)
                 {
-                    throw new ArgumentException("Groups can not be null or empty");
+                    throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
                 if (Artifact == null || Artifact.Trim().Length == 0)
                 {
-                    throw new ArgumentException("Artifact can not be null or empty");
+                    throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
                 if (Version == null || Version.Trim().Length == 0)
                 {
-                    throw new ArgumentException("Version can not be null or empty");
+                    throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
                 return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
@@ -111,17 +111,17 @@ namespace Octopus.Core.Resources.Parsing.Maven
             {
                 if (Groups == null || Groups.Length == 0)
                 {
-                    throw new ArgumentException("Groups can not be null or empty");
+                    throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
                 if (Artifact == null || Artifact.Trim().Length == 0)
                 {
-                    throw new ArgumentException("Artifact can not be null or empty");
+                    throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
                 if (Version == null || Version.Trim().Length == 0)
                 {
-                    throw new ArgumentException("Version can not be null or empty");
+                    throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
                 return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
@@ -138,17 +138,17 @@ namespace Octopus.Core.Resources.Parsing.Maven
         {
             if (Groups == null || Groups.Length == 0)
             {
-                throw new ArgumentException("Groups can not be null or empty");
+                throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
 
             if (Artifact == null || Artifact.Trim().Length == 0)
             {
-                throw new ArgumentException("Artifact can not be null or empty");
+                throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
 
             if (Version == null || Version.Trim().Length == 0)
             {
-                throw new ArgumentException("Version can not be null or empty");
+                throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
 
             return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
@@ -165,17 +165,17 @@ namespace Octopus.Core.Resources.Parsing.Maven
             {
                 if (Groups == null || Groups.Length == 0)
                 {
-                    throw new ArgumentException("Groups can not be null or empty");
+                    throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
                 if (Artifact == null || Artifact.Trim().Length == 0)
                 {
-                    throw new ArgumentException("Artifact can not be null or empty");
+                    throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
                 if (Version == null || Version.Trim().Length == 0)
                 {
-                    throw new ArgumentException("Version can not be null or empty");
+                    throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
                 
                 return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
@@ -192,17 +192,17 @@ namespace Octopus.Core.Resources.Parsing.Maven
         {
             if (Groups == null || Groups.Length == 0)
             {
-                throw new ArgumentException("Groups can not be null or empty");
+                throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
 
             if (Artifact == null || Artifact.Trim().Length == 0)
             {
-                throw new ArgumentException("Artifact can not be null or empty");
+                throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
 
             if (Version == null || Version.Trim().Length == 0)
             {
-                throw new ArgumentException("Version can not be null or empty");
+                throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
             
             return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
@@ -215,12 +215,12 @@ namespace Octopus.Core.Resources.Parsing.Maven
         {
             if (group == null || group.Trim().Length == 0)
             {
-                throw new ArgumentException("group can not be empty");
+                throw new ArgumentException("Group can not be empty");
             }
 
             if (artifact == null || artifact.Trim().Length == 0)
             {
-                throw new ArgumentException("artifact can not be empty");
+                throw new ArgumentException("Artifact can not be empty.");
             }
 
             Group = group.Trim();
@@ -231,17 +231,17 @@ namespace Octopus.Core.Resources.Parsing.Maven
         {
             if (group == null || group.Trim().Length == 0)
             {
-                throw new ArgumentException("group can not be empty");
+                throw new ArgumentException("Group can not be empty");
             }
 
             if (artifact == null || artifact.Trim().Length == 0)
             {
-                throw new ArgumentException("artifact can not be empty");
+                throw new ArgumentException("Artifact can not be empty");
             }
 
             if (version == null || version.Trim().Length == 0)
             {
-                throw new ArgumentException("version can not be empty");
+                throw new ArgumentException("Version can not be empty");
             }
 
             Group = group.Trim();
@@ -253,22 +253,22 @@ namespace Octopus.Core.Resources.Parsing.Maven
         {
             if (group == null || group.Trim().Length == 0)
             {
-                throw new ArgumentException("group can not be empty");
+                throw new ArgumentException("Group can not be empty");
             }
 
             if (artifact == null || artifact.Trim().Length == 0)
             {
-                throw new ArgumentException("artifact can not be empty");
+                throw new ArgumentException("Artifact can not be empty");
             }
 
             if (version == null || version.Trim().Length == 0)
             {
-                throw new ArgumentException("version can not be empty");
+                throw new ArgumentException("Version can not be empty");
             }
 
             if (packaging == null || packaging.Trim().Length == 0)
             {
-                throw new ArgumentException("packaging can not be empty");
+                throw new ArgumentException("Packaging can not be empty");
             }
 
             Group = group.Trim();
@@ -303,7 +303,7 @@ namespace Octopus.Core.Resources.Parsing.Maven
              * When downloading for the first time, we will use the G:A:V format
              * supplied by the end user.
              */
-            if (mavenDisplaySplit.Length >= 2)
+            if (mavenDisplaySplit.Length >= 2 && mavenDisplaySplit.All(x => x != null && x.Trim().Length != 0))
             {
                 Group = mavenDisplaySplit[0].Trim();
                 Artifact = mavenDisplaySplit[1].Trim();
