@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9dd6778c-89a3-421b-b23b-8691b04b3795" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs" />
+      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,7 +37,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MavenPackageID.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MavenPackageID.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="705">
@@ -255,40 +255,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VersionFactory.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VersionFactory.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3306">
-              <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+            <state relative-caret-position="1026">
+              <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
               <folding>
-                <marker date="1510189424919" expanded="false" signature="6:278" ph="..." />
-                <marker date="1510189424919" expanded="true" signature="385:5637" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="718:1070" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="754:967" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="1141:1614" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="1246:1324" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="1436:1517" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="1697:2135" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="1723:2034" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="1767:2020" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="2065:2125" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="2193:2271" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="2372:2474" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="2575:2670" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="2750:2831" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="2925:3016" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="3132:3225" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="3419:3535" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="3624:3903" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="3660:3893" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="3995:4501" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="4100:4197" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="4309:4404" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="4580:4763" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="4603:4667" ph="/* Any version is valid for Maven ... */" />
-                <marker date="1510189424919" expanded="true" signature="4885:5081" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="5195:5303" ph="{...}" />
-                <marker date="1510189424919" expanded="true" signature="5455:5631" ph="{...}" />
+                <marker date="1510871135949" expanded="false" signature="6:278" ph="..." />
+                <marker date="1510871135949" expanded="true" signature="333:5534" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="385:5532" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="718:965" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="754:955" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="1036:1509" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="1141:1219" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="1331:1412" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="1592:2030" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="1618:1929" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="1662:1915" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="1960:2020" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="2088:2166" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="2267:2369" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="2470:2565" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="2645:2726" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="2820:2911" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="3027:3120" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="3314:3430" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="3519:3798" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="3555:3788" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="3890:4396" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="3995:4092" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="4204:4299" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="4475:4658" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="4498:4562" ph="/* Any version is valid for Maven ... */" />
+                <marker date="1510871135949" expanded="true" signature="4780:4976" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="5090:5198" ph="{...}" />
+                <marker date="1510871135949" expanded="true" signature="5350:5526" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -329,7 +330,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ExpectedException</find>
       <find>Assert.Thro</find>
       <find>Equals</find>
       <find>Equa</find>
@@ -359,6 +359,7 @@
       <find>input</find>
       <find>G:A:V</find>
       <find>be null or empty</find>
+      <find>is not recognised</find>
     </findStrings>
     <replaceStrings>
       <replace>version.Revision</replace>
@@ -467,7 +468,6 @@
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/Restriction.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Ranges/MavenVersionRange.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs" />
-        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/RangeTests.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning.Tests/Versions/CustomRangeTests.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/MavenVersionParser.cs" />
@@ -477,6 +477,7 @@
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MetadataParser.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MavenPackageIDParser.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs" />
       </list>
     </option>
   </component>
@@ -487,10 +488,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-16" />
-    <option name="y" value="-16" />
-    <option name="width" value="3872" />
-    <option name="height" value="2092" />
+    <option name="x" value="9512" />
+    <option name="y" value="-5469" />
+    <option name="width" value="6432" />
+    <option name="height" value="3532" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -510,6 +511,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="SolutionExplorer">
         <subPane>
           <expand>
@@ -523,12 +525,12 @@
         <option name="show-file-system" value="false" />
         <option name="show-all-items" value="false" />
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="SearchEverywhereHistoryKey" value="Maven&#9;FILE&#9;file://C:/Users/matth/Octopus/CoreVersioning/source/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MavenPackageIDParser.cs&#10;MavenVers&#9;FILE&#9;file://C:/Users/matth/Octopus/CoreVersioning/source/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/MavenVersion.cs&#10;MavenVer&#9;FILE&#9;file://C:/Users/matth/Octopus/CoreVersioning/source/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/MavenVersion.cs&#10;VersionFac&#9;FILE&#9;file://C:/Users/matth/Octopus/CoreVersioning/source/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs&#10;MavenParser&#9;FILE&#9;file://C:/Users/matth/Octopus/CoreVersioning/source/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/MavenVersionParser.cs&#10;Java&#9;FILE&#9;file://C:/Users/matth/Octopus/CoreVersioning/source/Octopus.Server.Core.Versioning/Octopus/Core/Constants/JavaConstants.cs&#10;Semanti&#9;FILE&#9;file://C:/Users/matth/Octopus/CoreVersioning/source/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/SemanticVersion.cs&#10;MavenPac&#9;FILE&#9;file://C:/Users/matth/Octopus/CoreVersioning/source/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs&#10;IPa&#9;FILE&#9;file://C:/Users/matth/Octopus/CoreVersioning/source/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IPackageIDParser.cs&#10;MavenV&#9;FILE&#9;file://C:/Users/matth/Octopus/CoreVersioning/source/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/MavenVersion.cs&#10;Semantic&#9;FILE&#9;file://C:/Users/matth/Octopus/CoreVersioning/source/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Semver/SemanticVersion.cs&#10;HashCode&#9;null&#9;null&#10;VersionFactory&#9;FILE&#9;file://C:/Users/matth/Octopus/CoreVersioning/source/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/IVersionFactory.cs" />
+    <property name="nodejs_interpreter_path" value="node" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -587,7 +589,8 @@
       <workItem from="1510605023637" duration="5647000" />
       <workItem from="1510693388151" duration="1116000" />
       <workItem from="1510699919330" duration="939000" />
-      <workItem from="1510717968814" duration="231000" />
+      <workItem from="1510717968814" duration="830000" />
+      <workItem from="1510871076222" duration="63000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed up a function name">
       <created>1510532881615</created>
@@ -600,7 +603,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93350000" />
+    <option name="totallyTimeSpent" value="94012000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -612,7 +615,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-16" y="-16" width="3872" height="2092" extended-state="6" />
+    <frame x="9512" y="-5469" width="6432" height="3532" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -623,7 +626,8 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33019978" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972628" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17060086" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10257634" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298807" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1123,43 +1127,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3306">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding>
-            <marker date="1510189424919" expanded="false" signature="6:278" ph="..." />
-            <marker date="1510189424919" expanded="true" signature="385:5637" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="718:1070" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="754:967" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="1141:1614" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="1246:1324" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="1436:1517" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="1697:2135" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="1723:2034" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="1767:2020" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="2065:2125" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="2193:2271" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="2372:2474" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="2575:2670" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="2750:2831" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="2925:3016" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="3132:3225" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="3419:3535" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="3624:3903" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="3660:3893" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="3995:4501" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="4100:4197" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="4309:4404" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="4580:4763" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="4603:4667" ph="/* Any version is valid for Maven ... */" />
-            <marker date="1510189424919" expanded="true" signature="4885:5081" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="5195:5303" ph="{...}" />
-            <marker date="1510189424919" expanded="true" signature="5455:5631" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Maven/MavenVersionParser.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3591">
@@ -1373,6 +1340,44 @@
             <marker date="1510718198924" expanded="true" signature="14879:15060" ph="{...}" />
             <marker date="1510718198924" expanded="true" signature="15113:15181" ph="{...}" />
             <marker date="1510718198924" expanded="true" signature="15229:15460" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding>
+            <marker date="1510871135949" expanded="false" signature="6:278" ph="..." />
+            <marker date="1510871135949" expanded="true" signature="333:5534" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="385:5532" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="718:965" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="754:955" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="1036:1509" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="1141:1219" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="1331:1412" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="1592:2030" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="1618:1929" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="1662:1915" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="1960:2020" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="2088:2166" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="2267:2369" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="2470:2565" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="2645:2726" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="2820:2911" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="3027:3120" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="3314:3430" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="3519:3798" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="3555:3788" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="3890:4396" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="3995:4092" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="4204:4299" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="4475:4658" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="4498:4562" ph="/* Any version is valid for Maven ... */" />
+            <marker date="1510871135949" expanded="true" signature="4780:4976" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="5090:5198" ph="{...}" />
+            <marker date="1510871135949" expanded="true" signature="5350:5526" ph="{...}" />
           </folding>
         </state>
       </provider>

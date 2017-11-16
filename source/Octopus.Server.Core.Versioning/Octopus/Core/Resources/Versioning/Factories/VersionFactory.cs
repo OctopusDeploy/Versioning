@@ -20,11 +20,9 @@ namespace Octopus.Core.Resources.Versioning.Factories
             {
                 case FeedType.Maven:
                     return CreateMavenVersion(input);
-                case FeedType.NuGet:
+                default:
                     return CreateSemanticVersion(input);
             }
-            
-            throw new ArgumentException($"Feed type {type} is not recognised");
         }
 
         public IVersion CreateVersion(string input, string packageId)
