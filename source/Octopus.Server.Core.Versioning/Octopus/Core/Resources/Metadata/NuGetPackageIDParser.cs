@@ -193,6 +193,7 @@ namespace Octopus.Core.Resources.Metadata
             var baseMetadata = BuildMetadata(id);
             
             var pkg = new PackageMetadata();
+            pkg.VersionDelimiter = PhysicalPackageMetadata.DEFAULT_VERSION_DELIMITER;
             pkg.PackageId = baseMetadata.PackageId;
             pkg.Version = version;
             pkg.FileExtension = extension;
