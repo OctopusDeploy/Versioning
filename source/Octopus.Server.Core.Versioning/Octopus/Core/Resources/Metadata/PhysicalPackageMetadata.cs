@@ -9,8 +9,6 @@ namespace Octopus.Core.Resources.Metadata
     public class PhysicalPackageMetadata : PackageMetadata
     {
         public const string DEFAULT_VERSION_DELIMITER = ".";
-        private string _hash;
-        private long? _size;
         
         [JsonConstructor]
         public PhysicalPackageMetadata(string packageId, string version, long size, string hash, string fileExtension)
@@ -62,31 +60,10 @@ namespace Octopus.Core.Resources.Metadata
             Version = metadata.Version;
             VersionDelimiter = metadata.VersionDelimiter;
         }
-        
-        public long Size {
-            get
-            {
-                if (_size == null)
-                {
-                    throw new NullReferenceException("_size can not be null");
-                }
-                return _size.Value;
-            }
-            set { _size = value; }
-        }
 
-        public string Hash
-        {
-            get
-            {
-                if (_hash == null)
-                {
-                    throw new NullReferenceException("_hash can not be null");
-                }
-                return _hash;
-            }
-            set { _hash = value; }
-        }
+        public long Size { get; set; }
+
+        public string Hash { get; set; }
         
         public bool Equals(PhysicalPackageMetadata other)
         {
