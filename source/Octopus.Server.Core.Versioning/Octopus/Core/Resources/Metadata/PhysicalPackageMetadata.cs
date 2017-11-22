@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace Octopus.Core.Resources.Metadata
 {
@@ -8,6 +9,8 @@ namespace Octopus.Core.Resources.Metadata
     public class PhysicalPackageMetadata : PackageMetadata
     {
         public const string DEFAULT_VERSION_DELIMITER = ".";
+        private string _hash;
+        private long? _size;
         
         [JsonConstructor]
         public PhysicalPackageMetadata(string packageId, string version, long size, string hash, string fileExtension)
@@ -47,21 +50,43 @@ namespace Octopus.Core.Resources.Metadata
 
         public PhysicalPackageMetadata(PackageMetadata metadata, long size, string hash)
         {
-            this.Hash = hash;
-            this.Size = size;
-            this.FeedType = metadata.FeedType;
-            this.FileExtension = metadata.FileExtension;
-            this.PackageAndVersionSearchPattern = metadata.PackageAndVersionSearchPattern;
-            this.PackageId = metadata.PackageId;
-            this.PackageSearchPattern = metadata.PackageSearchPattern;
-            this.ServerPackageFileName = metadata.ServerPackageFileName;
-            this.TargetPackageFileName = metadata.TargetPackageFileName;
-            this.Version = metadata.Version;
-            this.VersionDelimiter = metadata.VersionDelimiter;
+            Hash = hash;
+            Size = size;
+            FeedType = metadata.FeedType;
+            FileExtension = metadata.FileExtension;
+            PackageAndVersionSearchPattern = metadata.PackageAndVersionSearchPattern;
+            PackageId = metadata.PackageId;
+            PackageSearchPattern = metadata.PackageSearchPattern;
+            ServerPackageFileName = metadata.ServerPackageFileName;
+            TargetPackageFileName = metadata.TargetPackageFileName;
+            Version = metadata.Version;
+            VersionDelimiter = metadata.VersionDelimiter;
         }
         
-        public long Size { get; set; }
-        public string Hash { get; set; }
+        public long Size {
+            get
+            {
+                if (_size == null)
+                {
+                    throw new NullReferenceException("_size can not be null");
+                }
+                return _size.Value;
+            }
+            set { _size = value; }
+        }
+
+        public string Hash
+        {
+            get
+            {
+                if (_hash == null)
+                {
+                    throw new NullReferenceException("_hash can not be null");
+                }
+                return _hash;
+            }
+            set { _hash = value; }
+        }
         
         public bool Equals(PhysicalPackageMetadata other)
         {
