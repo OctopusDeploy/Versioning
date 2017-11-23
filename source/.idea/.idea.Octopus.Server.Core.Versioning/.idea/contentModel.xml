@@ -17,8 +17,10 @@
             <e p="Resources" t="Include">
               <e p="Metadata" t="Include">
                 <e p="BasePackageMetadata.cs" t="Include" />
+                <e p="IMetadataFactory.cs" t="Include" />
                 <e p="IPackageIDParser.cs" t="Include" />
                 <e p="MavenPackageIDParser.cs" t="Include" />
+                <e p="MetadataFactory.cs" t="Include" />
                 <e p="NuGetPackageIDParser.cs" t="Include" />
                 <e p="PackageIdentifier.cs" t="Include" />
                 <e p="PackageMetadata.cs" t="Include" />
