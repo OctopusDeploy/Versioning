@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dd6778c-89a3-421b-b23b-8691b04b3795" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IMetadataFactory.cs" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MetadataFactory.cs" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/contentModel.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus.Server.Core.Versioning.csproj" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus.Server.Core.Versioning.csproj" />
+      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IMetadataFactory.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IMetadataFactory.cs" />
+      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MetadataFactory.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MetadataFactory.cs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -164,25 +161,25 @@
       <file leaf-file-name="IMetadataFactory.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IMetadataFactory.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6840">
-              <caret line="120" column="9" lean-forward="false" selection-start-line="120" selection-start-column="9" selection-end-line="120" selection-end-column="9" />
+            <state relative-caret-position="228">
+              <caret line="4" column="56" lean-forward="false" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
               <folding>
-                <marker date="1511403590548" expanded="true" signature="67:9368" ph="{...}" />
-                <marker date="1511403590548" expanded="true" signature="107:9366" ph="{...}" />
-                <marker date="1511403590548" expanded="true" signature="122:370" ph="/// Extracts metadata from a package ID (i.e. no version information) ... " />
-                <marker date="1511403590548" expanded="true" signature="470:827" ph="/// Returns true or false based on whether or not we can parse the ... " />
-                <marker date="1511403590548" expanded="true" signature="949:1339" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
-                <marker date="1511403590548" expanded="true" signature="1469:1965" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
-                <marker date="1511403590548" expanded="true" signature="2127:2734" ph="/// The target Files cache has filenames like  ... " />
-                <marker date="1511403590548" expanded="true" signature="2855:3571" ph="/// The target Files cache has filenames like  ... " />
-                <marker date="1511403590548" expanded="true" signature="3721:4387" ph="/// The target Files cache has filenames like  ... " />
-                <marker date="1511403590548" expanded="true" signature="4518:5089" ph="/// The target Files cache has filenames like  ... " />
-                <marker date="1511403590548" expanded="true" signature="5199:5742" ph="/// The server side cache has filenames like  ... " />
-                <marker date="1511403590548" expanded="true" signature="5869:6317" ph="/// The server side cache has filenames like  ... " />
-                <marker date="1511403590548" expanded="true" signature="6423:7075" ph="/// The server side cache has filenames like  ... " />
-                <marker date="1511403590548" expanded="true" signature="7231:7738" ph="/// The server side cache has filenames like  ... " />
-                <marker date="1511403590548" expanded="true" signature="7875:8382" ph="/// The server side cache has filenames like  ... " />
-                <marker date="1511403590548" expanded="true" signature="8498:9147" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1511405529838" expanded="true" signature="67:9387" ph="{...}" />
+                <marker date="1511405529838" expanded="true" signature="126:9385" ph="{...}" />
+                <marker date="1511405529838" expanded="true" signature="141:389" ph="/// Extracts metadata from a package ID (i.e. no version information) ... " />
+                <marker date="1511405529838" expanded="true" signature="489:846" ph="/// Returns true or false based on whether or not we can parse the ... " />
+                <marker date="1511405529838" expanded="true" signature="968:1358" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
+                <marker date="1511405529838" expanded="true" signature="1488:1984" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
+                <marker date="1511405529838" expanded="true" signature="2146:2753" ph="/// The target Files cache has filenames like  ... " />
+                <marker date="1511405529838" expanded="true" signature="2874:3590" ph="/// The target Files cache has filenames like  ... " />
+                <marker date="1511405529838" expanded="true" signature="3740:4406" ph="/// The target Files cache has filenames like  ... " />
+                <marker date="1511405529838" expanded="true" signature="4537:5108" ph="/// The target Files cache has filenames like  ... " />
+                <marker date="1511405529838" expanded="true" signature="5218:5761" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1511405529838" expanded="true" signature="5888:6336" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1511405529838" expanded="true" signature="6442:7094" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1511405529838" expanded="true" signature="7250:7757" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1511405529838" expanded="true" signature="7894:8401" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1511405529838" expanded="true" signature="8517:9166" ph="/// The server side cache has filenames like  ... " />
               </folding>
             </state>
           </provider>
@@ -191,25 +188,95 @@
       <file leaf-file-name="MetadataFactory.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MetadataFactory.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="32" />
+            <state relative-caret-position="1639">
+              <caret line="394" column="114" lean-forward="false" selection-start-line="394" selection-start-column="114" selection-end-line="394" selection-end-column="114" />
               <folding>
-                <marker date="1511403931010" expanded="true" signature="67:5841" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="121:5839" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="417:636" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="756:1009" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="1137:1395" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="1567:1850" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="1969:2220" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="2380:2679" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="2808:3065" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="3173:3406" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="3531:3794" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="3898:4137" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="4303:4614" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="4749:5018" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="5132:5377" ph="{...}" />
-                <marker date="1511403931010" expanded="true" signature="5546:5833" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="67:16201" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="121:16199" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="409:626" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="746:997" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="1137:1394" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="1578:1859" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="1978:2227" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="2399:2696" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="2837:3092" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="3200:3431" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="3568:3829" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="3933:4170" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="4348:4677" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="4824:5091" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="5205:5448" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="5629:5914" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="5993:6561" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="6019:6310" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="6050:6215" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="6341:6551" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="6359:6456" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+                <marker date="1511405529864" expanded="true" signature="6662:7264" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="6688:6996" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="6719:6884" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="7027:7254" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="7045:7142" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+                <marker date="1511405529864" expanded="true" signature="7373:7981" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="7399:7710" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="7430:7595" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="7741:7971" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="7759:7856" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+                <marker date="1511405529864" expanded="true" signature="8146:8818" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="8172:8515" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="8203:8368" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="8546:8808" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="8564:8661" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+                <marker date="1511405529864" expanded="true" signature="8918:9518" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="8944:9251" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="8975:9140" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="9282:9508" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="9300:9397" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+                <marker date="1511405529864" expanded="true" signature="9659:10347" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="9685:10036" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="9716:9881" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="10067:10337" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="10085:10182" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+                <marker date="1511405529864" expanded="true" signature="10457:11063" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="10483:10793" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="10514:10679" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="10824:11053" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="10842:10939" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+                <marker date="1511405529864" expanded="true" signature="11152:11734" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="11178:11476" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="11209:11374" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="11507:11724" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="11525:11622" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+                <marker date="1511405529864" expanded="true" signature="11840:12452" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="11866:12179" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="11897:12062" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="12210:12442" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="12228:12325" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+                <marker date="1511405529864" expanded="true" signature="12537:13125" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="12563:12864" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="12594:12759" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="12895:13115" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="12913:13010" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+                <marker date="1511405529864" expanded="true" signature="13272:13972" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="13298:13655" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="13329:13494" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="13686:13962" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="13704:13801" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+                <marker date="1511405529864" expanded="true" signature="14088:14706" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="14114:14430" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="14145:14310" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="14461:14696" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="14479:14576" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+                <marker date="1511405529864" expanded="true" signature="14801:15395" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="14827:15131" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="14858:15023" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="15162:15385" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="15180:15277" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+                <marker date="1511405529864" expanded="true" signature="15557:16193" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="15583:15908" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="15614:15779" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+                <marker date="1511405529864" expanded="true" signature="15926:16183" ph="{...}" />
+                <marker date="1511405529864" expanded="true" signature="15957:16054" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
               </folding>
             </state>
           </provider>
@@ -369,7 +436,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Tuple</find>
       <find>CanGetMetadataFromPackageName</find>
       <find>CanGetMetadataFromServerPackageName</find>
       <find>SNAP</find>
@@ -399,6 +465,7 @@
       <find>VersionDelimiter</find>
       <find>GetMetadataFromServerPackageName</find>
       <find>ParseNuge</find>
+      <find>GetMetadataFromPackageID</find>
     </findStrings>
     <replaceStrings>
       <replace>version.Revision</replace>
@@ -683,7 +750,7 @@
       <workItem from="1510883202488" duration="767000" />
       <workItem from="1511303844808" duration="5433000" />
       <workItem from="1511391573441" duration="679000" />
-      <workItem from="1511395583387" duration="3176000" />
+      <workItem from="1511395583387" duration="4191000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed up a function name">
       <created>1510532881615</created>
@@ -696,7 +763,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104095000" />
+    <option name="totallyTimeSpent" value="105110000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1537,50 +1604,120 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IMetadataFactory.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6840">
-          <caret line="120" column="9" lean-forward="false" selection-start-line="120" selection-start-column="9" selection-end-line="120" selection-end-column="9" />
+        <state relative-caret-position="228">
+          <caret line="4" column="56" lean-forward="false" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
           <folding>
-            <marker date="1511403590548" expanded="true" signature="67:9368" ph="{...}" />
-            <marker date="1511403590548" expanded="true" signature="107:9366" ph="{...}" />
-            <marker date="1511403590548" expanded="true" signature="122:370" ph="/// Extracts metadata from a package ID (i.e. no version information) ... " />
-            <marker date="1511403590548" expanded="true" signature="470:827" ph="/// Returns true or false based on whether or not we can parse the ... " />
-            <marker date="1511403590548" expanded="true" signature="949:1339" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
-            <marker date="1511403590548" expanded="true" signature="1469:1965" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
-            <marker date="1511403590548" expanded="true" signature="2127:2734" ph="/// The target Files cache has filenames like  ... " />
-            <marker date="1511403590548" expanded="true" signature="2855:3571" ph="/// The target Files cache has filenames like  ... " />
-            <marker date="1511403590548" expanded="true" signature="3721:4387" ph="/// The target Files cache has filenames like  ... " />
-            <marker date="1511403590548" expanded="true" signature="4518:5089" ph="/// The target Files cache has filenames like  ... " />
-            <marker date="1511403590548" expanded="true" signature="5199:5742" ph="/// The server side cache has filenames like  ... " />
-            <marker date="1511403590548" expanded="true" signature="5869:6317" ph="/// The server side cache has filenames like  ... " />
-            <marker date="1511403590548" expanded="true" signature="6423:7075" ph="/// The server side cache has filenames like  ... " />
-            <marker date="1511403590548" expanded="true" signature="7231:7738" ph="/// The server side cache has filenames like  ... " />
-            <marker date="1511403590548" expanded="true" signature="7875:8382" ph="/// The server side cache has filenames like  ... " />
-            <marker date="1511403590548" expanded="true" signature="8498:9147" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1511405529838" expanded="true" signature="67:9387" ph="{...}" />
+            <marker date="1511405529838" expanded="true" signature="126:9385" ph="{...}" />
+            <marker date="1511405529838" expanded="true" signature="141:389" ph="/// Extracts metadata from a package ID (i.e. no version information) ... " />
+            <marker date="1511405529838" expanded="true" signature="489:846" ph="/// Returns true or false based on whether or not we can parse the ... " />
+            <marker date="1511405529838" expanded="true" signature="968:1358" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
+            <marker date="1511405529838" expanded="true" signature="1488:1984" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
+            <marker date="1511405529838" expanded="true" signature="2146:2753" ph="/// The target Files cache has filenames like  ... " />
+            <marker date="1511405529838" expanded="true" signature="2874:3590" ph="/// The target Files cache has filenames like  ... " />
+            <marker date="1511405529838" expanded="true" signature="3740:4406" ph="/// The target Files cache has filenames like  ... " />
+            <marker date="1511405529838" expanded="true" signature="4537:5108" ph="/// The target Files cache has filenames like  ... " />
+            <marker date="1511405529838" expanded="true" signature="5218:5761" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1511405529838" expanded="true" signature="5888:6336" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1511405529838" expanded="true" signature="6442:7094" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1511405529838" expanded="true" signature="7250:7757" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1511405529838" expanded="true" signature="7894:8401" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1511405529838" expanded="true" signature="8517:9166" ph="/// The server side cache has filenames like  ... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MetadataFactory.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="32" />
+        <state relative-caret-position="1639">
+          <caret line="394" column="114" lean-forward="false" selection-start-line="394" selection-start-column="114" selection-end-line="394" selection-end-column="114" />
           <folding>
-            <marker date="1511403931010" expanded="true" signature="67:5841" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="121:5839" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="417:636" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="756:1009" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="1137:1395" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="1567:1850" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="1969:2220" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="2380:2679" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="2808:3065" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="3173:3406" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="3531:3794" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="3898:4137" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="4303:4614" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="4749:5018" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="5132:5377" ph="{...}" />
-            <marker date="1511403931010" expanded="true" signature="5546:5833" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="67:16201" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="121:16199" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="409:626" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="746:997" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="1137:1394" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="1578:1859" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="1978:2227" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="2399:2696" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="2837:3092" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="3200:3431" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="3568:3829" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="3933:4170" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="4348:4677" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="4824:5091" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="5205:5448" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="5629:5914" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="5993:6561" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="6019:6310" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="6050:6215" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="6341:6551" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="6359:6456" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+            <marker date="1511405529864" expanded="true" signature="6662:7264" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="6688:6996" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="6719:6884" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="7027:7254" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="7045:7142" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+            <marker date="1511405529864" expanded="true" signature="7373:7981" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="7399:7710" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="7430:7595" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="7741:7971" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="7759:7856" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+            <marker date="1511405529864" expanded="true" signature="8146:8818" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="8172:8515" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="8203:8368" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="8546:8808" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="8564:8661" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+            <marker date="1511405529864" expanded="true" signature="8918:9518" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="8944:9251" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="8975:9140" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="9282:9508" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="9300:9397" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+            <marker date="1511405529864" expanded="true" signature="9659:10347" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="9685:10036" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="9716:9881" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="10067:10337" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="10085:10182" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+            <marker date="1511405529864" expanded="true" signature="10457:11063" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="10483:10793" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="10514:10679" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="10824:11053" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="10842:10939" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+            <marker date="1511405529864" expanded="true" signature="11152:11734" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="11178:11476" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="11209:11374" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="11507:11724" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="11525:11622" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+            <marker date="1511405529864" expanded="true" signature="11840:12452" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="11866:12179" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="11897:12062" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="12210:12442" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="12228:12325" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+            <marker date="1511405529864" expanded="true" signature="12537:13125" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="12563:12864" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="12594:12759" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="12895:13115" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="12913:13010" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+            <marker date="1511405529864" expanded="true" signature="13272:13972" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="13298:13655" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="13329:13494" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="13686:13962" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="13704:13801" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+            <marker date="1511405529864" expanded="true" signature="14088:14706" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="14114:14430" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="14145:14310" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="14461:14696" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="14479:14576" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+            <marker date="1511405529864" expanded="true" signature="14801:15395" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="14827:15131" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="14858:15023" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="15162:15385" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="15180:15277" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+            <marker date="1511405529864" expanded="true" signature="15557:16193" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="15583:15908" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="15614:15779" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
+            <marker date="1511405529864" expanded="true" signature="15926:16183" ph="{...}" />
+            <marker date="1511405529864" expanded="true" signature="15957:16054" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
           </folding>
         </state>
       </provider>

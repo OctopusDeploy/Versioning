@@ -2,7 +2,7 @@
 
 namespace Octopus.Core.Resources.Metadata
 {
-    public interface IMetadataFactory
+    public interface IMetadataFactory : IPackageIDParser
     {
         /// <summary>
         /// Extracts metadata from a package ID (i.e. no version information)
