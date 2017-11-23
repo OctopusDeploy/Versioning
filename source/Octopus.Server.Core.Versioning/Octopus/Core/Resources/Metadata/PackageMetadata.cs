@@ -8,6 +8,7 @@ namespace Octopus.Core.Resources
         private string _packageAndVersionSearchPattern;
         private string _serverPackageFileName;
         private string _targetPackageFileName;
+        private string _versionDelimiter;
 
         /// <summary>
         /// The package version
@@ -75,7 +76,18 @@ namespace Octopus.Core.Resources
         /// The delimiter to use between the packageid and the version
         /// </summary>
         [JsonIgnore]
-        public string VersionDelimiter { get; set; }
+        public string VersionDelimiter       
+        {
+            get
+            {
+                if (_versionDelimiter == null)
+                {
+                    throw new NullReferenceException("versionDelimiter can not be null");
+                }
+                return _versionDelimiter;
+            }
+            set => _versionDelimiter = value;
+        }
 
         public override string ToString()
         {
