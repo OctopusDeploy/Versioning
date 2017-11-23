@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Messaging;
 using Newtonsoft.Json;
 
 namespace Octopus.Core.Resources.Metadata
@@ -38,7 +39,7 @@ namespace Octopus.Core.Resources.Metadata
             Version = version;
             Size = size;
             Hash = hash;
-            VersionDelimiter = versionDelimiter;
+            VersionDelimiter = versionDelimiter ?? throw new ArgumentNullException(nameof(versionDelimiter));
         }
 
         public PhysicalPackageMetadata()

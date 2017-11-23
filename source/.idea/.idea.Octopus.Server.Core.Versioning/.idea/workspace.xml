@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dd6778c-89a3-421b-b23b-8691b04b3795" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageMetadata.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageMetadata.cs" />
+      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PhysicalPackageMetadata.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PhysicalPackageMetadata.cs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -264,10 +263,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PackageMetadata.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PackageMetadata.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageMetadata.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4731">
+            <state relative-caret-position="1030">
               <caret line="84" column="54" lean-forward="false" selection-start-line="84" selection-start-column="54" selection-end-line="84" selection-end-column="54" />
               <folding>
                 <marker date="1511395623731" expanded="false" signature="6:36" ph="..." />
@@ -297,26 +296,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PhysicalPackageMetadata.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PhysicalPackageMetadata.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PhysicalPackageMetadata.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+            <state relative-caret-position="741">
+              <caret line="40" column="24" lean-forward="true" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
               <folding>
-                <marker date="1511391622044" expanded="false" signature="6:36" ph="..." />
-                <marker date="1511391622044" expanded="true" signature="86:171" ph="/// Represents the metadata from a physical file ... " />
-                <marker date="1511391622044" expanded="true" signature="230:4022" ph="{...}" />
-                <marker date="1511391622044" expanded="true" signature="451:688" ph="{...}" />
-                <marker date="1511391622044" expanded="true" signature="706:1299" ph="/// Used when the file name representation of the pacakage does not use the Octopus/Nuget  ... " />
-                <marker date="1511391622044" expanded="true" signature="1443:1671" ph="{...}" />
-                <marker date="1511391622044" expanded="true" signature="1713:1791" ph="{...}" />
-                <marker date="1511391622044" expanded="true" signature="1881:2475" ph="{...}" />
-                <marker date="1511391622044" expanded="true" signature="2624:2983" ph="{...}" />
-                <marker date="1511391622044" expanded="true" signature="3032:3274" ph="{...}" />
-                <marker date="1511391622044" expanded="true" signature="3317:3693" ph="{...}" />
-                <marker date="1511391622044" expanded="true" signature="3349:3683" ph="{...}" />
-                <marker date="1511391622044" expanded="true" signature="3794:3854" ph="{...}" />
-                <marker date="1511391622044" expanded="true" signature="3955:4016" ph="{...}" />
+                <marker date="1511395826476" expanded="false" signature="6:77" ph="..." />
+                <marker date="1511395826476" expanded="true" signature="120:4126" ph="{...}" />
+                <marker date="1511395826476" expanded="true" signature="127:212" ph="/// Represents the metadata from a physical file ... " />
+                <marker date="1511395826476" expanded="true" signature="271:4124" ph="{...}" />
+                <marker date="1511395826476" expanded="true" signature="492:729" ph="{...}" />
+                <marker date="1511395826476" expanded="true" signature="747:1340" ph="/// Used when the file name representation of the pacakage does not use the Octopus/Nuget  ... " />
+                <marker date="1511395826476" expanded="true" signature="1484:1773" ph="{...}" />
+                <marker date="1511395826476" expanded="true" signature="1815:1893" ph="{...}" />
+                <marker date="1511395826476" expanded="true" signature="1983:2577" ph="{...}" />
+                <marker date="1511395826476" expanded="true" signature="2726:3085" ph="{...}" />
+                <marker date="1511395826476" expanded="true" signature="3134:3376" ph="{...}" />
+                <marker date="1511395826476" expanded="true" signature="3419:3795" ph="{...}" />
+                <marker date="1511395826476" expanded="true" signature="3451:3785" ph="{...}" />
+                <marker date="1511395826476" expanded="true" signature="3896:3956" ph="{...}" />
+                <marker date="1511395826476" expanded="true" signature="4057:4118" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -497,8 +497,8 @@
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Parsing/Maven/MavenPackageID.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Versioning/Factories/VersionFactory.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/NuGetPackageIDParser.cs" />
-        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PhysicalPackageMetadata.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageMetadata.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PhysicalPackageMetadata.cs" />
       </list>
     </option>
   </component>
@@ -615,7 +615,7 @@
       <workItem from="1510883202488" duration="767000" />
       <workItem from="1511303844808" duration="5433000" />
       <workItem from="1511391573441" duration="679000" />
-      <workItem from="1511395583387" duration="45000" />
+      <workItem from="1511395583387" duration="247000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed up a function name">
       <created>1510532881615</created>
@@ -628,7 +628,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100964000" />
+    <option name="totallyTimeSpent" value="101166000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1373,32 +1373,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PhysicalPackageMetadata.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <marker date="1511391622044" expanded="false" signature="6:36" ph="..." />
-            <marker date="1511391622044" expanded="true" signature="86:171" ph="/// Represents the metadata from a physical file ... " />
-            <marker date="1511391622044" expanded="true" signature="230:4022" ph="{...}" />
-            <marker date="1511391622044" expanded="true" signature="451:688" ph="{...}" />
-            <marker date="1511391622044" expanded="true" signature="706:1299" ph="/// Used when the file name representation of the pacakage does not use the Octopus/Nuget  ... " />
-            <marker date="1511391622044" expanded="true" signature="1443:1671" ph="{...}" />
-            <marker date="1511391622044" expanded="true" signature="1713:1791" ph="{...}" />
-            <marker date="1511391622044" expanded="true" signature="1881:2475" ph="{...}" />
-            <marker date="1511391622044" expanded="true" signature="2624:2983" ph="{...}" />
-            <marker date="1511391622044" expanded="true" signature="3032:3274" ph="{...}" />
-            <marker date="1511391622044" expanded="true" signature="3317:3693" ph="{...}" />
-            <marker date="1511391622044" expanded="true" signature="3349:3683" ph="{...}" />
-            <marker date="1511391622044" expanded="true" signature="3794:3854" ph="{...}" />
-            <marker date="1511391622044" expanded="true" signature="3955:4016" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageMetadata.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4731">
+        <state relative-caret-position="1030">
           <caret line="84" column="54" lean-forward="false" selection-start-line="84" selection-start-column="54" selection-end-line="84" selection-end-column="54" />
           <folding>
             <marker date="1511395623731" expanded="false" signature="6:36" ph="..." />
@@ -1423,6 +1400,30 @@
             <marker date="1511395623731" expanded="true" signature="2421:2664" ph="{...}" />
             <marker date="1511395623731" expanded="true" signature="2482:2608" ph="{...}" />
             <marker date="1511395623731" expanded="true" signature="2763:2845" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PhysicalPackageMetadata.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="40" column="24" lean-forward="true" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+          <folding>
+            <marker date="1511395826476" expanded="false" signature="6:77" ph="..." />
+            <marker date="1511395826476" expanded="true" signature="120:4126" ph="{...}" />
+            <marker date="1511395826476" expanded="true" signature="127:212" ph="/// Represents the metadata from a physical file ... " />
+            <marker date="1511395826476" expanded="true" signature="271:4124" ph="{...}" />
+            <marker date="1511395826476" expanded="true" signature="492:729" ph="{...}" />
+            <marker date="1511395826476" expanded="true" signature="747:1340" ph="/// Used when the file name representation of the pacakage does not use the Octopus/Nuget  ... " />
+            <marker date="1511395826476" expanded="true" signature="1484:1773" ph="{...}" />
+            <marker date="1511395826476" expanded="true" signature="1815:1893" ph="{...}" />
+            <marker date="1511395826476" expanded="true" signature="1983:2577" ph="{...}" />
+            <marker date="1511395826476" expanded="true" signature="2726:3085" ph="{...}" />
+            <marker date="1511395826476" expanded="true" signature="3134:3376" ph="{...}" />
+            <marker date="1511395826476" expanded="true" signature="3419:3795" ph="{...}" />
+            <marker date="1511395826476" expanded="true" signature="3451:3785" ph="{...}" />
+            <marker date="1511395826476" expanded="true" signature="3896:3956" ph="{...}" />
+            <marker date="1511395826476" expanded="true" signature="4057:4118" ph="{...}" />
           </folding>
         </state>
       </provider>
