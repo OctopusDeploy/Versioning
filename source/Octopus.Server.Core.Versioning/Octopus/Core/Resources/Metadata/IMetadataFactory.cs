@@ -2,12 +2,19 @@
 
 namespace Octopus.Core.Resources.Metadata
 {
+    /// <summary>
+    /// Defines a factory that can be used to extract the metadata of a package from a variety of
+    /// imports. The methods extended from IPackageIDParser will inspect the supplied paramaters
+    /// to work out which feed type the package id represents. The methods from this interface 
+    /// add a field called feedType that allows the feed type to be explictly defined.
+    /// </summary>
     public interface IMetadataFactory : IPackageIDParser
     {
         /// <summary>
         /// Extracts metadata from a package ID (i.e. no version information)
         /// </summary>
         /// <param name="packageID">The package id</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>The metadata assocaited with the package id</returns>
         BasePackageMetadata GetMetadataFromPackageID(string packageID, FeedType feedType);
         /// <summary>
@@ -16,6 +23,7 @@ namespace Octopus.Core.Resources.Metadata
         /// </summary>
         /// <param name="packageID">The package id</param>
         /// <param name="metadata">The parsed metadata if we returned true</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>True if this package id could be parsed</returns>
         bool CanGetMetadataFromPackageID(string packageID, out BasePackageMetadata metadata, FeedType feedType);
         /// <summary>
@@ -24,6 +32,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="packageID">The package id</param>
         /// <param name="version">The package version</param>
         /// <param name="extension">The package extension</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>The metadata assocaited with the package id</returns>
         PackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension, FeedType feedType);
         /// <summary>
@@ -34,6 +43,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="extension">The package extension</param>
         /// <param name="size">The file size</param>
         /// <param name="hash">The file hash</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>The metadata assocaited with the package id</returns>
         PhysicalPackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension, long size, string hash, FeedType feedType);
         /// <summary>
@@ -45,6 +55,7 @@ namespace Octopus.Core.Resources.Metadata
         /// </summary>
         /// <param name="packageFile">The package file name</param>
         /// <param name="extensions">The extensions that this parser should know about</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>The metadata assocaited with the package file</returns>
         PackageMetadata GetMetadataFromPackageName(string packageFile, string[] extensions, FeedType feedType);
         /// <summary>
@@ -57,6 +68,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="packageFile">The package file name</param>
         /// <param name="extensions">The extensions that this parser should know about</param>
         /// <param name="packageMetadata">The package metadata if the parsing was successful</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>True if the file could be parsed, and false otherwise</returns>
         bool CanGetMetadataFromPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata, FeedType feedType);
         /// <summary>
@@ -68,6 +80,7 @@ namespace Octopus.Core.Resources.Metadata
         /// </summary>
         /// <param name="packageFile">The package file name</param>
         /// <param name="extensions">The extensions that this parser should know about</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
         Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile, string[] extensions, FeedType feedType);
         /// <summary>
@@ -78,6 +91,7 @@ namespace Octopus.Core.Resources.Metadata
         /// This method will break down these filenames.
         /// </summary>
         /// <param name="packageFile">The package file name</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
         Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile, FeedType feedType);
         /// <summary>
@@ -88,6 +102,7 @@ namespace Octopus.Core.Resources.Metadata
         /// </summary>
         /// <param name="packageFile">The package file name</param>
         /// <param name="extensions">The extensions that this parser should know about</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>The metadata assocaited with the package file</returns>
         PackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions, FeedType feedType);
         /// <summary>
@@ -97,6 +112,7 @@ namespace Octopus.Core.Resources.Metadata
         /// This method will break down this filename.
         /// </summary>
         /// <param name="packageFile">The package file name</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>The metadata assocaited with the package file</returns>
         PackageMetadata GetMetadataFromServerPackageName(string packageFile, FeedType feedType);
         /// <summary>
@@ -108,6 +124,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="packageFile">The package file name</param>
         /// <param name="extensions">The extensions that this parser should know about</param>
         /// <param name="packageMetadata">The package metadata if the parsing was successful</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>True if the file could be parsed, and false otherwise</returns>
         bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata, FeedType feedType);
         /// <summary>
@@ -117,6 +134,7 @@ namespace Octopus.Core.Resources.Metadata
         /// This method will break down this filename.
         /// </summary>
         /// <param name="packageFile">The package file name</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
         Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions, FeedType feedType);
         /// <summary>
@@ -126,6 +144,7 @@ namespace Octopus.Core.Resources.Metadata
         /// This method will break down this filename.
         /// </summary>
         /// <param name="packageFile">The package file name</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
         Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, FeedType feedType);
         /// <summary>
@@ -138,6 +157,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="extensions">The extensions that this parser should know about</param>
         /// <param name="size">The file size</param>
         /// <param name="hash">The file hash</param>
+        /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>The metadata assocaited with the package file</returns>
         PhysicalPackageMetadata GetMetadataFromServerPackageName(
             string packageFile, 

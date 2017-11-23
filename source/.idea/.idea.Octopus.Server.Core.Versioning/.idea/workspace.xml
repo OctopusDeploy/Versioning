@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dd6778c-89a3-421b-b23b-8691b04b3795" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Octopus.Server.Core.Versioning/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IMetadataFactory.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IMetadataFactory.cs" />
-      <change beforePath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MetadataFactory.cs" afterPath="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MetadataFactory.cs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -158,34 +158,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IMetadataFactory.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="IMetadataFactory.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IMetadataFactory.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="4" column="56" lean-forward="false" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
+            <state relative-caret-position="456">
+              <caret line="8" column="86" lean-forward="false" selection-start-line="8" selection-start-column="86" selection-end-line="8" selection-end-column="86" />
               <folding>
-                <marker date="1511405529838" expanded="true" signature="67:9387" ph="{...}" />
-                <marker date="1511405529838" expanded="true" signature="126:9385" ph="{...}" />
-                <marker date="1511405529838" expanded="true" signature="141:389" ph="/// Extracts metadata from a package ID (i.e. no version information) ... " />
-                <marker date="1511405529838" expanded="true" signature="489:846" ph="/// Returns true or false based on whether or not we can parse the ... " />
-                <marker date="1511405529838" expanded="true" signature="968:1358" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
-                <marker date="1511405529838" expanded="true" signature="1488:1984" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
-                <marker date="1511405529838" expanded="true" signature="2146:2753" ph="/// The target Files cache has filenames like  ... " />
-                <marker date="1511405529838" expanded="true" signature="2874:3590" ph="/// The target Files cache has filenames like  ... " />
-                <marker date="1511405529838" expanded="true" signature="3740:4406" ph="/// The target Files cache has filenames like  ... " />
-                <marker date="1511405529838" expanded="true" signature="4537:5108" ph="/// The target Files cache has filenames like  ... " />
-                <marker date="1511405529838" expanded="true" signature="5218:5761" ph="/// The server side cache has filenames like  ... " />
-                <marker date="1511405529838" expanded="true" signature="5888:6336" ph="/// The server side cache has filenames like  ... " />
-                <marker date="1511405529838" expanded="true" signature="6442:7094" ph="/// The server side cache has filenames like  ... " />
-                <marker date="1511405529838" expanded="true" signature="7250:7757" ph="/// The server side cache has filenames like  ... " />
-                <marker date="1511405529838" expanded="true" signature="7894:8401" ph="/// The server side cache has filenames like  ... " />
-                <marker date="1511405529838" expanded="true" signature="8517:9166" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1511405738965" expanded="true" signature="67:11006" ph="{...}" />
+                <marker date="1511405738965" expanded="true" signature="74:484" ph="/// Defines a factory that can be used to extract the metadata of a package from a variety of ... " />
+                <marker date="1511405738965" expanded="true" signature="541:11004" ph="{...}" />
+                <marker date="1511405738965" expanded="true" signature="556:890" ph="/// Extracts metadata from a package ID (i.e. no version information) ... " />
+                <marker date="1511405738965" expanded="true" signature="990:1433" ph="/// Returns true or false based on whether or not we can parse the ... " />
+                <marker date="1511405738965" expanded="true" signature="1555:2031" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
+                <marker date="1511405738965" expanded="true" signature="2161:2743" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
+                <marker date="1511405738965" expanded="true" signature="2905:3598" ph="/// The target Files cache has filenames like  ... " />
+                <marker date="1511405738965" expanded="true" signature="3719:4521" ph="/// The target Files cache has filenames like  ... " />
+                <marker date="1511405738965" expanded="true" signature="4671:5423" ph="/// The target Files cache has filenames like  ... " />
+                <marker date="1511405738965" expanded="true" signature="5554:6211" ph="/// The target Files cache has filenames like  ... " />
+                <marker date="1511405738965" expanded="true" signature="6321:6950" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1511405738965" expanded="true" signature="7077:7611" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1511405738965" expanded="true" signature="7717:8455" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1511405738965" expanded="true" signature="8611:9204" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1511405738965" expanded="true" signature="9341:9934" ph="/// The server side cache has filenames like  ... " />
+                <marker date="1511405738965" expanded="true" signature="10050:10785" ph="/// The server side cache has filenames like  ... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MetadataFactory.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MetadataFactory.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MetadataFactory.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1639">
@@ -588,8 +589,8 @@
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PackageMetadata.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/PhysicalPackageMetadata.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/NuGetPackageIDParser.cs" />
-        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IMetadataFactory.cs" />
         <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MetadataFactory.cs" />
+        <option value="$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IMetadataFactory.cs" />
       </list>
     </option>
   </component>
@@ -750,7 +751,7 @@
       <workItem from="1510883202488" duration="767000" />
       <workItem from="1511303844808" duration="5433000" />
       <workItem from="1511391573441" duration="679000" />
-      <workItem from="1511395583387" duration="4191000" />
+      <workItem from="1511395583387" duration="4397000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed up a function name">
       <created>1510532881615</created>
@@ -763,7 +764,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105110000" />
+    <option name="totallyTimeSpent" value="105316000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1602,31 +1603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IMetadataFactory.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="4" column="56" lean-forward="false" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
-          <folding>
-            <marker date="1511405529838" expanded="true" signature="67:9387" ph="{...}" />
-            <marker date="1511405529838" expanded="true" signature="126:9385" ph="{...}" />
-            <marker date="1511405529838" expanded="true" signature="141:389" ph="/// Extracts metadata from a package ID (i.e. no version information) ... " />
-            <marker date="1511405529838" expanded="true" signature="489:846" ph="/// Returns true or false based on whether or not we can parse the ... " />
-            <marker date="1511405529838" expanded="true" signature="968:1358" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
-            <marker date="1511405529838" expanded="true" signature="1488:1984" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
-            <marker date="1511405529838" expanded="true" signature="2146:2753" ph="/// The target Files cache has filenames like  ... " />
-            <marker date="1511405529838" expanded="true" signature="2874:3590" ph="/// The target Files cache has filenames like  ... " />
-            <marker date="1511405529838" expanded="true" signature="3740:4406" ph="/// The target Files cache has filenames like  ... " />
-            <marker date="1511405529838" expanded="true" signature="4537:5108" ph="/// The target Files cache has filenames like  ... " />
-            <marker date="1511405529838" expanded="true" signature="5218:5761" ph="/// The server side cache has filenames like  ... " />
-            <marker date="1511405529838" expanded="true" signature="5888:6336" ph="/// The server side cache has filenames like  ... " />
-            <marker date="1511405529838" expanded="true" signature="6442:7094" ph="/// The server side cache has filenames like  ... " />
-            <marker date="1511405529838" expanded="true" signature="7250:7757" ph="/// The server side cache has filenames like  ... " />
-            <marker date="1511405529838" expanded="true" signature="7894:8401" ph="/// The server side cache has filenames like  ... " />
-            <marker date="1511405529838" expanded="true" signature="8517:9166" ph="/// The server side cache has filenames like  ... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/MetadataFactory.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1639">
@@ -1718,6 +1694,32 @@
             <marker date="1511405529864" expanded="true" signature="15614:15779" ph="/* Try parsing with Maven first. The package ids for Maven feeds are designed to fail ... */" />
             <marker date="1511405529864" expanded="true" signature="15926:16183" ph="{...}" />
             <marker date="1511405529864" expanded="true" signature="15957:16054" ph="/* If there was an exception, parse as a Nuget package id. ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Octopus.Server.Core.Versioning/Octopus/Core/Resources/Metadata/IMetadataFactory.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="8" column="86" lean-forward="false" selection-start-line="8" selection-start-column="86" selection-end-line="8" selection-end-column="86" />
+          <folding>
+            <marker date="1511405738965" expanded="true" signature="67:11006" ph="{...}" />
+            <marker date="1511405738965" expanded="true" signature="74:484" ph="/// Defines a factory that can be used to extract the metadata of a package from a variety of ... " />
+            <marker date="1511405738965" expanded="true" signature="541:11004" ph="{...}" />
+            <marker date="1511405738965" expanded="true" signature="556:890" ph="/// Extracts metadata from a package ID (i.e. no version information) ... " />
+            <marker date="1511405738965" expanded="true" signature="990:1433" ph="/// Returns true or false based on whether or not we can parse the ... " />
+            <marker date="1511405738965" expanded="true" signature="1555:2031" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
+            <marker date="1511405738965" expanded="true" signature="2161:2743" ph="/// Extracts metadata from a package ID and adds the supplied version and extension ... " />
+            <marker date="1511405738965" expanded="true" signature="2905:3598" ph="/// The target Files cache has filenames like  ... " />
+            <marker date="1511405738965" expanded="true" signature="3719:4521" ph="/// The target Files cache has filenames like  ... " />
+            <marker date="1511405738965" expanded="true" signature="4671:5423" ph="/// The target Files cache has filenames like  ... " />
+            <marker date="1511405738965" expanded="true" signature="5554:6211" ph="/// The target Files cache has filenames like  ... " />
+            <marker date="1511405738965" expanded="true" signature="6321:6950" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1511405738965" expanded="true" signature="7077:7611" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1511405738965" expanded="true" signature="7717:8455" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1511405738965" expanded="true" signature="8611:9204" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1511405738965" expanded="true" signature="9341:9934" ph="/// The server side cache has filenames like  ... " />
+            <marker date="1511405738965" expanded="true" signature="10050:10785" ph="/// The server side cache has filenames like  ... " />
           </folding>
         </state>
       </provider>
