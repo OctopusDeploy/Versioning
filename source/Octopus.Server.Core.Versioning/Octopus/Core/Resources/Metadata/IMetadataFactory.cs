@@ -1,4 +1,5 @@
-﻿using Octopus.Core.Util;
+﻿using Octopus.Core.Resources.Versioning;
+using Octopus.Core.Util;
 
 namespace Octopus.Core.Resources.Metadata
 {
@@ -16,7 +17,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="packageID">The package id</param>
         /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>The metadata assocaited with the package id</returns>
-        BasePackageMetadata GetMetadataFromPackageID(string packageID, FeedType feedType);
+        BasePackageMetadata GetMetadataFromPackageID(string packageID, VersionFormat versionFormat);
         /// <summary>
         /// Returns true or false based on whether or not we can parse the
         /// supplied package id.
@@ -25,7 +26,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="metadata">The parsed metadata if we returned true</param>
         /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>True if this package id could be parsed</returns>
-        bool CanGetMetadataFromPackageID(string packageID, out BasePackageMetadata metadata, FeedType feedType);
+        bool CanGetMetadataFromPackageID(string packageID, out BasePackageMetadata metadata, VersionFormat versionFormat);
         /// <summary>
         /// Extracts metadata from a package ID and adds the supplied version and extension
         /// </summary>
@@ -34,7 +35,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="extension">The package extension</param>
         /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>The metadata assocaited with the package id</returns>
-        PackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension, FeedType feedType);
+        PackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension, VersionFormat versionFormat);
         /// <summary>
         /// Extracts metadata from a package ID and adds the supplied version and extension
         /// </summary>
@@ -45,7 +46,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="hash">The file hash</param>
         /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>The metadata assocaited with the package id</returns>
-        PhysicalPackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension, long size, string hash, FeedType feedType);
+        PhysicalPackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension, long size, string hash, VersionFormat versionFormat);
         /// <summary>
         /// The target Files cache has filenames like 
         /// "com.google.guava#guava#23.3-jre.jar-e55fcd51-6081-4300-91a3-117b7930c023" or
@@ -57,7 +58,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="extensions">The extensions that this parser should know about</param>
         /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>The metadata assocaited with the package file</returns>
-        PackageMetadata GetMetadataFromPackageName(string packageFile, string[] extensions, FeedType feedType);
+        PackageMetadata GetMetadataFromPackageName(string packageFile, string[] extensions, VersionFormat versionFormat);
         /// <summary>
         /// The target Files cache has filenames like 
         /// "com.google.guava#guava#23.3-jre.jar-e55fcd51-6081-4300-91a3-117b7930c023" or
@@ -70,7 +71,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="packageMetadata">The package metadata if the parsing was successful</param>
         /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>True if the file could be parsed, and false otherwise</returns>
-        bool CanGetMetadataFromPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata, FeedType feedType);
+        bool CanGetMetadataFromPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata, VersionFormat versionFormat);
         /// <summary>
         /// The target Files cache has filenames like 
         /// "com.google.guava#guava#23.3-jre.jar-e55fcd51-6081-4300-91a3-117b7930c023" or
@@ -82,7 +83,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="extensions">The extensions that this parser should know about</param>
         /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
-        Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile, string[] extensions, FeedType feedType);
+        Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile, string[] extensions, VersionFormat versionFormat);
         /// <summary>
         /// The target Files cache has filenames like 
         /// "com.google.guava#guava#23.3-jre.jar-e55fcd51-6081-4300-91a3-117b7930c023" or
@@ -93,7 +94,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="packageFile">The package file name</param>
         /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
-        Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile, FeedType feedType);
+        Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile, VersionFormat versionFormat);
         /// <summary>
         /// The server side cache has filenames like 
         /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or
@@ -104,7 +105,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="extensions">The extensions that this parser should know about</param>
         /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>The metadata assocaited with the package file</returns>
-        PackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions, FeedType feedType);
+        PackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions, VersionFormat versionFormat);
         /// <summary>
         /// The server side cache has filenames like 
         /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or
@@ -114,7 +115,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="packageFile">The package file name</param>
         /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>The metadata assocaited with the package file</returns>
-        PackageMetadata GetMetadataFromServerPackageName(string packageFile, FeedType feedType);
+        PackageMetadata GetMetadataFromServerPackageName(string packageFile, VersionFormat versionFormat);
         /// <summary>
         /// The server side cache has filenames like 
         /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or
@@ -126,7 +127,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="packageMetadata">The package metadata if the parsing was successful</param>
         /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>True if the file could be parsed, and false otherwise</returns>
-        bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata, FeedType feedType);
+        bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata, VersionFormat versionFormat);
         /// <summary>
         /// The server side cache has filenames like 
         /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or
@@ -136,7 +137,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="packageFile">The package file name</param>
         /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
-        Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions, FeedType feedType);
+        Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions, VersionFormat versionFormat);
         /// <summary>
         /// The server side cache has filenames like 
         /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or
@@ -146,7 +147,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="packageFile">The package file name</param>
         /// <param name="feedType">The type of feed that supplied the package</param>
         /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
-        Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, FeedType feedType);
+        Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, VersionFormat versionFormat);
         /// <summary>
         /// The server side cache has filenames like 
         /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or
@@ -164,6 +165,6 @@ namespace Octopus.Core.Resources.Metadata
             string[] extensions,
             long size,
             string hash, 
-            FeedType feedType);
+            VersionFormat versionFormat);
     }
 }

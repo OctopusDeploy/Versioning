@@ -183,7 +183,7 @@ namespace Octopus.Core.Resources.Metadata
             return new BasePackageMetadata()
             {
                 PackageId = packageID,
-                FeedType = FeedType.NuGet,
+                VersionFormat = VersionFormat.Semver,
                 PackageSearchPattern = packageID + "*"
             };
         }
@@ -197,7 +197,7 @@ namespace Octopus.Core.Resources.Metadata
             pkg.PackageId = baseMetadata.PackageId;
             pkg.Version = version;
             pkg.FileExtension = extension;
-            pkg.FeedType = baseMetadata.FeedType;            
+            pkg.VersionFormat = baseMetadata.VersionFormat;
             pkg.PackageAndVersionSearchPattern = pkg.PackageId + "." + pkg.Version + "*";
             pkg.PackageSearchPattern = baseMetadata.PackageSearchPattern;
             pkg.ServerPackageFileName = pkg.PackageId + "." + pkg.Version + ServerConstants.SERVER_CACHE_DELIMITER;
@@ -212,7 +212,7 @@ namespace Octopus.Core.Resources.Metadata
             pkg.PackageId = basePackage.PackageId;
             pkg.Version = basePackage.Version;
             pkg.FileExtension = basePackage.FileExtension;
-            pkg.FeedType = basePackage.FeedType;
+            pkg.VersionFormat = basePackage.VersionFormat;
             pkg.PackageAndVersionSearchPattern = basePackage.PackageAndVersionSearchPattern;
             pkg.PackageSearchPattern = basePackage.PackageSearchPattern;
             pkg.ServerPackageFileName = basePackage.ServerPackageFileName;
@@ -250,7 +250,7 @@ namespace Octopus.Core.Resources.Metadata
 
             packageId = packageIdMatch.Value;
 
-            return VersionFactory.CanCreateSemanticVersion(versionMatch.Value, out version);
+            return VersionFactory.TryCreateSemanticVersion(versionMatch.Value, out version);
         }
     }
 }

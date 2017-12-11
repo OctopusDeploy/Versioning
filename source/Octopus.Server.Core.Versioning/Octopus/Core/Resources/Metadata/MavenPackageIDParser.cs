@@ -203,7 +203,7 @@ namespace Octopus.Core.Resources.Metadata
                 PackageId = groupAndArtifact[0] + JavaConstants.MavenFilenameDelimiter +
                             groupAndArtifact[1] + JavaConstants.MavenFilenameDelimiter +
                             groupAndArtifact[2],
-                FeedType = FeedType.Maven,
+                VersionFormat = VersionFormat.Maven,
                 PackageSearchPattern = packageID + "*"
             };
         }
@@ -216,7 +216,7 @@ namespace Octopus.Core.Resources.Metadata
             pkg.PackageId = baseMetadata.PackageId;
             pkg.Version = version;
             pkg.FileExtension = extension;
-            pkg.FeedType = baseMetadata.FeedType;
+            pkg.VersionFormat = baseMetadata.VersionFormat;
             pkg.PackageSearchPattern = baseMetadata.PackageSearchPattern;
             pkg.PackageAndVersionSearchPattern = pkg.PackageId + JavaConstants.MavenFilenameDelimiter +
                                                  pkg.Version + "*";
@@ -235,7 +235,7 @@ namespace Octopus.Core.Resources.Metadata
             pkg.PackageId = basePackage.PackageId;
             pkg.Version = basePackage.Version;
             pkg.FileExtension = basePackage.FileExtension;
-            pkg.FeedType = basePackage.FeedType;
+            pkg.VersionFormat = basePackage.VersionFormat;
             pkg.PackageAndVersionSearchPattern = basePackage.PackageAndVersionSearchPattern;
             pkg.PackageSearchPattern = basePackage.PackageSearchPattern;
             pkg.ServerPackageFileName = basePackage.ServerPackageFileName;

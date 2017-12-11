@@ -14,11 +14,11 @@ namespace Octopus.Core.Resources.Versioning.Factories
         static readonly IPackageIDParser MavenPackageIdParser = new MavenPackageIDParser();
         static readonly IPackageIDParser NugetPackageIdParser = new NuGetPackageIDParser();
 
-        public IVersion CreateVersion(string input, FeedType type)
+        public IVersion CreateVersion(string input, VersionFormat format)
         {
-            switch (type)
+            switch (format)
             {
-                case FeedType.Maven:
+                case VersionFormat.Maven:
                     return CreateMavenVersion(input);
                 default:
                     return CreateSemanticVersion(input);
@@ -40,13 +40,13 @@ namespace Octopus.Core.Resources.Versioning.Factories
             throw new ArgumentException($"Package id {packageId} is not recognised");
         }
 
-        public Maybe<IVersion> CreateOptionalVersion(string input, FeedType type)
+        public Maybe<IVersion> CreateOptionalVersion(string input, VersionFormat format)
         {
             try
             {
-                switch (type)
+                switch (format)
                 {
-                    case FeedType.Maven:
+                    case VersionFormat.Maven:
                         return Maybe<IVersion>.Some(CreateMavenVersion(input));
                     default:
                         return CreateSemanticVersionOrNone(input);
@@ -95,33 +95,33 @@ namespace Octopus.Core.Resources.Versioning.Factories
             return new SemanticVersion(major, minor, patch, revision, releaseLabels, metadata);
         }
 
-        public bool CanCreateVersion(string input, out IVersion version, FeedType type)
+        public bool TryCreateVersion(string input, VersionFormat format, out IVersion version)
         {
-            switch (type)
+            switch (format)
             {
-                case FeedType.Maven:
-                    return CanCreateMavenVersion(input, out version);
+                case VersionFormat.Maven:
+                    return TryCreateMavenVersion(input, out version);
                 default:
-                    return CanCreateSemanticVersion(input, out version);
+                    return TryCreateSemanticVersion(input, out version);
             }
         }
 
-        public bool CanCreateVersion(string input, out IVersion version, string packageId)
+        public bool TryCreateVersion(string input, string packageId, out IVersion version)
         {
             if (MavenPackageIdParser.CanGetMetadataFromPackageID(packageId, out var metadata))
             {
-                return CanCreateSemanticVersion(input, out version);
+                return TryCreateSemanticVersion(input, out version);
             }
             
             if (NugetPackageIdParser.CanGetMetadataFromPackageID(packageId, out var nugetMetdata))
             {
-                return CanCreateMavenVersion(input,  out version);
+                return TryCreateMavenVersion(input,  out version);
             }
 
             throw new ArgumentException($"Package id {packageId} is not recognised");
         }
 
-        public bool CanCreateMavenVersion(string input, out IVersion version)
+        public bool TryCreateMavenVersion(string input, out IVersion version)
         {
             /*
              * Any version is valid for Maven
@@ -130,7 +130,7 @@ namespace Octopus.Core.Resources.Versioning.Factories
             return true;
         }
 
-        public bool CanCreateSemanticVersion(string input, out IVersion version, bool preserveMissingComponents = false)
+        public bool TryCreateSemanticVersion(string input, out IVersion version, bool preserveMissingComponents = false)
         {
             var retValue = SemVerFactory.CanCreateVersion(input, out var semVersion, preserveMissingComponents);
             version = semVersion;

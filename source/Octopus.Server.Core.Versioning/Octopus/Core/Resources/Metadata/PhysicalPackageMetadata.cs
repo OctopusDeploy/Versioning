@@ -51,7 +51,7 @@ namespace Octopus.Core.Resources.Metadata
         {
             Hash = hash;
             Size = size;
-            FeedType = metadata.FeedType;
+            VersionFormat = metadata.VersionFormat;
             FileExtension = metadata.FileExtension;
             PackageAndVersionSearchPattern = metadata.PackageAndVersionSearchPattern;
             PackageId = metadata.PackageId;
