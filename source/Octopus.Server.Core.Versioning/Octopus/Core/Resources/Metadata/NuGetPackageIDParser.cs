@@ -250,7 +250,7 @@ namespace Octopus.Core.Resources.Metadata
 
             packageId = packageIdMatch.Value;
 
-            return VersionFactory.CanCreateSemanticVersion(versionMatch.Value, out version);
+            return VersionFactory.TryCreateSemanticVersion(versionMatch.Value, out version);
         }
     }
 }
