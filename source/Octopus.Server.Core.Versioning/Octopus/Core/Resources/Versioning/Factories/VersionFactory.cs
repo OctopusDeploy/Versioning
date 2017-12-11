@@ -27,12 +27,12 @@ namespace Octopus.Core.Resources.Versioning.Factories
 
         public IVersion CreateVersion(string input, string packageId)
         {
-            if (MavenPackageIdParser.CanGetMetadataFromPackageID(packageId, out var metadata))
+            if (MavenPackageIdParser.TryGetMetadataFromPackageID(packageId, out var metadata))
             {
                 return CreateMavenVersion(input);
             }
             
-            if (NugetPackageIdParser.CanGetMetadataFromPackageID(packageId, out var nugetMetdata))
+            if (NugetPackageIdParser.TryGetMetadataFromPackageID(packageId, out var nugetMetdata))
             {
                 return CreateSemanticVersion(input);
             }
@@ -108,12 +108,12 @@ namespace Octopus.Core.Resources.Versioning.Factories
 
         public bool CanCreateVersion(string input, out IVersion version, string packageId)
         {
-            if (MavenPackageIdParser.CanGetMetadataFromPackageID(packageId, out var metadata))
+            if (MavenPackageIdParser.TryGetMetadataFromPackageID(packageId, out var metadata))
             {
                 return CanCreateSemanticVersion(input, out version);
             }
             
-            if (NugetPackageIdParser.CanGetMetadataFromPackageID(packageId, out var nugetMetdata))
+            if (NugetPackageIdParser.TryGetMetadataFromPackageID(packageId, out var nugetMetdata))
             {
                 return CanCreateMavenVersion(input,  out version);
             }

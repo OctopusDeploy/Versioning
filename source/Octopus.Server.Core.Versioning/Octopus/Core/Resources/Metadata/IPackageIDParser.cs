@@ -29,7 +29,7 @@ namespace Octopus.Core.Resources
         /// <param name="packageID">The package id</param>
         /// <param name="metadata">The parsed metadata if we returned true</param>
         /// <returns>True if this package id could be parsed</returns>
-        bool CanGetMetadataFromPackageID(string packageID, out BasePackageMetadata metadata);
+        bool TryGetMetadataFromPackageID(string packageID, out BasePackageMetadata metadata);
         /// <summary>
         /// Extracts metadata from a package ID and adds the supplied version and extension
         /// </summary>
@@ -70,7 +70,7 @@ namespace Octopus.Core.Resources
         /// <param name="extensions">The extensions that this parser should know about</param>
         /// <param name="packageMetadata">The package metadata if the parsing was successful</param>
         /// <returns>True if the file could be parsed, and false otherwise</returns>
-        bool CanGetMetadataFromPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata);
+        bool TryGetMetadataFromPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata);
         /// <summary>
         /// The target Files cache has filenames like 
         /// "com.google.guava#guava#23.3-jre.jar-e55fcd51-6081-4300-91a3-117b7930c023" or
@@ -81,7 +81,7 @@ namespace Octopus.Core.Resources
         /// <param name="packageFile">The package file name</param>
         /// <param name="extensions">The extensions that this parser should know about</param>
         /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
-        Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile, string[] extensions);
+        Maybe<PackageMetadata> TryGetMetadataFromPackageName(string packageFile, string[] extensions);
         /// <summary>
         /// The target Files cache has filenames like 
         /// "com.google.guava#guava#23.3-jre.jar-e55fcd51-6081-4300-91a3-117b7930c023" or
@@ -91,7 +91,7 @@ namespace Octopus.Core.Resources
         /// </summary>
         /// <param name="packageFile">The package file name</param>
         /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
-        Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile);
+        Maybe<PackageMetadata> TryGetMetadataFromPackageName(string packageFile);
         /// <summary>
         /// The server side cache has filenames like 
         /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or
@@ -121,7 +121,7 @@ namespace Octopus.Core.Resources
         /// <param name="extensions">The extensions that this parser should know about</param>
         /// <param name="packageMetadata">The package metadata if the parsing was successful</param>
         /// <returns>True if the file could be parsed, and false otherwise</returns>
-        bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata);
+        bool TryGetMetadataFromServerPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata);
         /// <summary>
         /// The server side cache has filenames like 
         /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or
@@ -130,7 +130,7 @@ namespace Octopus.Core.Resources
         /// </summary>
         /// <param name="packageFile">The package file name</param>
         /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
-        Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions);
+        Maybe<PackageMetadata> TryGetMetadataFromServerPackageName(string packageFile, string[] extensions);
         /// <summary>
         /// The server side cache has filenames like 
         /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or
@@ -139,7 +139,7 @@ namespace Octopus.Core.Resources
         /// </summary>
         /// <param name="packageFile">The package file name</param>
         /// <returns>A tuple with a boolean indicating the success of the parsing, and the metadata if parsing was successful</returns>
-        Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile);
+        Maybe<PackageMetadata> TryGetMetadataFromServerPackageName(string packageFile);
         /// <summary>
         /// The server side cache has filenames like 
         /// "com.google.guava#guava#23.3-jre_9822965F2883AD43AD79DA4E8795319F.jar" or

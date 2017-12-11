@@ -30,6 +30,18 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
         private const string CHECK_SELECTED_VERSION = "check selected version";
 
         [Test]
+        public void testCustom()
+        {
+            var parser = new MavenVersionParser();
+            MavenVersionRange range1 = MavenVersionRange.CreateFromVersionSpec( "(,9.0.1)" );
+            Assert.IsTrue(range1.ContainsVersion(parser.Parse("8.0.1")));
+            Assert.IsFalse(range1.ContainsVersion(parser.Parse( "9.0.10.M27" )) );
+            Assert.IsFalse(range1.ContainsVersion(parser.Parse("10.0.0.M22" )));
+            Assert.IsTrue(range1.ContainsVersion(parser.Parse( "9.0.0.M25" )));
+            Assert.IsTrue(range1.ContainsVersion(parser.Parse( "9.0.0.M22" )));
+        }
+
+        [Test]
         public void testRange()
         {
             MavenVersionRange range = MavenVersionRange.CreateFromVersionSpec("(,1.0]");
