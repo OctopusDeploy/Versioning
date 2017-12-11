@@ -84,7 +84,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
         [Test]
         public void TestInvalidVersion()
         {
-            Assert.False(VersionFactory.CanCreateVersion("1.0.*", out var version, FeedType.NuGet));
+            Assert.False(VersionFactory.TryCreateVersion("1.0.*", out var version, FeedType.NuGet));
         }
     }
 }

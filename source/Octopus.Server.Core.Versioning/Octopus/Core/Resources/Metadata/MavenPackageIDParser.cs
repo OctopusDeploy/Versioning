@@ -17,7 +17,7 @@ namespace Octopus.Core.Resources.Metadata
             return BuildMetadata(packageID);
         }
 
-        public bool CanGetMetadataFromPackageID(string packageID, out BasePackageMetadata metadata)
+        public bool TryGetMetadataFromPackageID(string packageID, out BasePackageMetadata metadata)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace Octopus.Core.Resources.Metadata
                 extensions);
         }
 
-        public bool CanGetMetadataFromPackageName(string packageFile, string[] extensions,
+        public bool TryGetMetadataFromPackageName(string packageFile, string[] extensions,
             out PackageMetadata packageMetadata)
         {
             try
@@ -70,7 +70,7 @@ namespace Octopus.Core.Resources.Metadata
             }
         }
 
-        public Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile, string[] extensions)
+        public Maybe<PackageMetadata> TryGetMetadataFromPackageName(string packageFile, string[] extensions)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace Octopus.Core.Resources.Metadata
             }
         }
 
-        public Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile)
+        public Maybe<PackageMetadata> TryGetMetadataFromPackageName(string packageFile)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace Octopus.Core.Resources.Metadata
             }
         }
 
-        public Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions)
+        public Maybe<PackageMetadata> TryGetMetadataFromServerPackageName(string packageFile, string[] extensions)
         {
             try
             {
@@ -106,7 +106,7 @@ namespace Octopus.Core.Resources.Metadata
             }
         }
 
-        public Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile)
+        public Maybe<PackageMetadata> TryGetMetadataFromServerPackageName(string packageFile)
         {
             try
             {
@@ -134,7 +134,7 @@ namespace Octopus.Core.Resources.Metadata
                 new string[] {Path.GetExtension(packageFile)});
         }
 
-        public bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions,
+        public bool TryGetMetadataFromServerPackageName(string packageFile, string[] extensions,
             out PackageMetadata packageMetadata)
         {
             try

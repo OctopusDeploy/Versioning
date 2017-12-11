@@ -14,11 +14,11 @@ namespace Octopus.Core.Resources.Metadata
                 : NugetPackageIdParser.GetMetadataFromPackageID(packageID);
         }
 
-        public bool CanGetMetadataFromPackageID(string packageID, out BasePackageMetadata metadata, FeedType feedType)
+        public bool TryGetMetadataFromPackageID(string packageID, out BasePackageMetadata metadata, FeedType feedType)
         {
             return feedType == FeedType.Maven
-                ? MavenPackageIdParser.CanGetMetadataFromPackageID(packageID, out metadata)
-                : NugetPackageIdParser.CanGetMetadataFromPackageID(packageID, out metadata);
+                ? MavenPackageIdParser.TryGetMetadataFromPackageID(packageID, out metadata)
+                : NugetPackageIdParser.TryGetMetadataFromPackageID(packageID, out metadata);
         }
 
         public PackageMetadata GetMetadataFromPackageID(string packageID, string version, string extension,
@@ -45,28 +45,28 @@ namespace Octopus.Core.Resources.Metadata
                 : NugetPackageIdParser.GetMetadataFromPackageName(packageFile, extensions);
         }
 
-        public bool CanGetMetadataFromPackageName(string packageFile, string[] extensions,
+        public bool TryGetMetadataFromPackageName(string packageFile, string[] extensions,
             out PackageMetadata packageMetadata,
             FeedType feedType)
         {
             return feedType == FeedType.Maven
-                ? MavenPackageIdParser.CanGetMetadataFromPackageName(packageFile, extensions, out packageMetadata)
-                : NugetPackageIdParser.CanGetMetadataFromPackageName(packageFile, extensions, out packageMetadata);
+                ? MavenPackageIdParser.TryGetMetadataFromPackageName(packageFile, extensions, out packageMetadata)
+                : NugetPackageIdParser.TryGetMetadataFromPackageName(packageFile, extensions, out packageMetadata);
         }
 
-        public Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile, string[] extensions,
+        public Maybe<PackageMetadata> TryGetMetadataFromPackageName(string packageFile, string[] extensions,
             FeedType feedType)
         {
             return feedType == FeedType.Maven
-                ? MavenPackageIdParser.CanGetMetadataFromPackageName(packageFile, extensions)
-                : NugetPackageIdParser.CanGetMetadataFromPackageName(packageFile, extensions);
+                ? MavenPackageIdParser.TryGetMetadataFromPackageName(packageFile, extensions)
+                : NugetPackageIdParser.TryGetMetadataFromPackageName(packageFile, extensions);
         }
 
-        public Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile, FeedType feedType)
+        public Maybe<PackageMetadata> TryGetMetadataFromPackageName(string packageFile, FeedType feedType)
         {
             return feedType == FeedType.Maven
-                ? MavenPackageIdParser.CanGetMetadataFromPackageName(packageFile)
-                : NugetPackageIdParser.CanGetMetadataFromPackageName(packageFile);
+                ? MavenPackageIdParser.TryGetMetadataFromPackageName(packageFile)
+                : NugetPackageIdParser.TryGetMetadataFromPackageName(packageFile);
         }
 
         public PackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions,
@@ -84,29 +84,29 @@ namespace Octopus.Core.Resources.Metadata
                 : NugetPackageIdParser.GetMetadataFromServerPackageName(packageFile);
         }
 
-        public bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions,
+        public bool TryGetMetadataFromServerPackageName(string packageFile, string[] extensions,
             out PackageMetadata packageMetadata,
             FeedType feedType)
         {
             return feedType == FeedType.Maven
-                ? MavenPackageIdParser.CanGetMetadataFromServerPackageName(packageFile, extensions, out packageMetadata)
-                : NugetPackageIdParser.CanGetMetadataFromServerPackageName(packageFile, extensions,
+                ? MavenPackageIdParser.TryGetMetadataFromServerPackageName(packageFile, extensions, out packageMetadata)
+                : NugetPackageIdParser.TryGetMetadataFromServerPackageName(packageFile, extensions,
                     out packageMetadata);
         }
 
-        public Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions,
+        public Maybe<PackageMetadata> TryGetMetadataFromServerPackageName(string packageFile, string[] extensions,
             FeedType feedType)
         {
             return feedType == FeedType.Maven
-                ? MavenPackageIdParser.CanGetMetadataFromServerPackageName(packageFile, extensions)
-                : NugetPackageIdParser.CanGetMetadataFromServerPackageName(packageFile, extensions);
+                ? MavenPackageIdParser.TryGetMetadataFromServerPackageName(packageFile, extensions)
+                : NugetPackageIdParser.TryGetMetadataFromServerPackageName(packageFile, extensions);
         }
 
-        public Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, FeedType feedType)
+        public Maybe<PackageMetadata> TryGetMetadataFromServerPackageName(string packageFile, FeedType feedType)
         {
             return feedType == FeedType.Maven
-                ? MavenPackageIdParser.CanGetMetadataFromServerPackageName(packageFile)
-                : NugetPackageIdParser.CanGetMetadataFromServerPackageName(packageFile);
+                ? MavenPackageIdParser.TryGetMetadataFromServerPackageName(packageFile)
+                : NugetPackageIdParser.TryGetMetadataFromServerPackageName(packageFile);
         }
 
         public PhysicalPackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions,
@@ -137,7 +137,7 @@ namespace Octopus.Core.Resources.Metadata
             }
         }
 
-        public bool CanGetMetadataFromPackageID(string packageID, out BasePackageMetadata metadata)
+        public bool TryGetMetadataFromPackageID(string packageID, out BasePackageMetadata metadata)
         {
             try
             {
@@ -145,14 +145,14 @@ namespace Octopus.Core.Resources.Metadata
                  * Try parsing with Maven first. The package ids for Maven feeds are designed to fail
                  * for NuGet package id.
                  */
-                return MavenPackageIdParser.CanGetMetadataFromPackageID(packageID, out metadata);
+                return MavenPackageIdParser.TryGetMetadataFromPackageID(packageID, out metadata);
             }
             catch
             {
                 /*
                  * If there was an exception, parse as a Nuget package id.
                  */
-                return NugetPackageIdParser.CanGetMetadataFromPackageID(packageID, out metadata);
+                return NugetPackageIdParser.TryGetMetadataFromPackageID(packageID, out metadata);
             }
         }
 
@@ -217,7 +217,7 @@ namespace Octopus.Core.Resources.Metadata
             }
         }
 
-        public bool CanGetMetadataFromPackageName(string packageFile, string[] extensions,
+        public bool TryGetMetadataFromPackageName(string packageFile, string[] extensions,
             out PackageMetadata packageMetadata)
         {
             try
@@ -226,7 +226,7 @@ namespace Octopus.Core.Resources.Metadata
                  * Try parsing with Maven first. The package ids for Maven feeds are designed to fail
                  * for NuGet package id.
                  */
-                return MavenPackageIdParser.CanGetMetadataFromPackageName(packageFile, extensions,
+                return MavenPackageIdParser.TryGetMetadataFromPackageName(packageFile, extensions,
                     out packageMetadata);
             }
             catch
@@ -234,12 +234,12 @@ namespace Octopus.Core.Resources.Metadata
                 /*
                  * If there was an exception, parse as a Nuget package id.
                  */
-                return NugetPackageIdParser.CanGetMetadataFromPackageName(packageFile, extensions,
+                return NugetPackageIdParser.TryGetMetadataFromPackageName(packageFile, extensions,
                     out packageMetadata);
             }
         }
 
-        public Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile, string[] extensions)
+        public Maybe<PackageMetadata> TryGetMetadataFromPackageName(string packageFile, string[] extensions)
         {
             try
             {
@@ -247,18 +247,18 @@ namespace Octopus.Core.Resources.Metadata
                  * Try parsing with Maven first. The package ids for Maven feeds are designed to fail
                  * for NuGet package id.
                  */
-                return MavenPackageIdParser.CanGetMetadataFromPackageName(packageFile, extensions);
+                return MavenPackageIdParser.TryGetMetadataFromPackageName(packageFile, extensions);
             }
             catch
             {
                 /*
                  * If there was an exception, parse as a Nuget package id.
                  */
-                return NugetPackageIdParser.CanGetMetadataFromPackageName(packageFile, extensions);
+                return NugetPackageIdParser.TryGetMetadataFromPackageName(packageFile, extensions);
             }
         }
 
-        public Maybe<PackageMetadata> CanGetMetadataFromPackageName(string packageFile)
+        public Maybe<PackageMetadata> TryGetMetadataFromPackageName(string packageFile)
         {
             try
             {
@@ -266,14 +266,14 @@ namespace Octopus.Core.Resources.Metadata
                  * Try parsing with Maven first. The package ids for Maven feeds are designed to fail
                  * for NuGet package id.
                  */
-                return MavenPackageIdParser.CanGetMetadataFromPackageName(packageFile);
+                return MavenPackageIdParser.TryGetMetadataFromPackageName(packageFile);
             }
             catch
             {
                 /*
                  * If there was an exception, parse as a Nuget package id.
                  */
-                return NugetPackageIdParser.CanGetMetadataFromPackageName(packageFile);
+                return NugetPackageIdParser.TryGetMetadataFromPackageName(packageFile);
             }
         }
 
@@ -315,7 +315,7 @@ namespace Octopus.Core.Resources.Metadata
             }
         }
 
-        public bool CanGetMetadataFromServerPackageName(string packageFile, string[] extensions,
+        public bool TryGetMetadataFromServerPackageName(string packageFile, string[] extensions,
             out PackageMetadata packageMetadata)
         {
             try
@@ -324,7 +324,7 @@ namespace Octopus.Core.Resources.Metadata
                  * Try parsing with Maven first. The package ids for Maven feeds are designed to fail
                  * for NuGet package id.
                  */
-                return MavenPackageIdParser.CanGetMetadataFromServerPackageName(packageFile, extensions,
+                return MavenPackageIdParser.TryGetMetadataFromServerPackageName(packageFile, extensions,
                     out packageMetadata);
             }
             catch
@@ -332,12 +332,12 @@ namespace Octopus.Core.Resources.Metadata
                 /*
                  * If there was an exception, parse as a Nuget package id.
                  */
-                return NugetPackageIdParser.CanGetMetadataFromServerPackageName(packageFile, extensions,
+                return NugetPackageIdParser.TryGetMetadataFromServerPackageName(packageFile, extensions,
                     out packageMetadata);
             }
         }
 
-        public Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile, string[] extensions)
+        public Maybe<PackageMetadata> TryGetMetadataFromServerPackageName(string packageFile, string[] extensions)
         {
             try
             {
@@ -345,18 +345,18 @@ namespace Octopus.Core.Resources.Metadata
                  * Try parsing with Maven first. The package ids for Maven feeds are designed to fail
                  * for NuGet package id.
                  */
-                return MavenPackageIdParser.CanGetMetadataFromServerPackageName(packageFile, extensions);
+                return MavenPackageIdParser.TryGetMetadataFromServerPackageName(packageFile, extensions);
             }
             catch
             {
                 /*
                  * If there was an exception, parse as a Nuget package id.
                  */
-                return NugetPackageIdParser.CanGetMetadataFromServerPackageName(packageFile, extensions);
+                return NugetPackageIdParser.TryGetMetadataFromServerPackageName(packageFile, extensions);
             }
         }
 
-        public Maybe<PackageMetadata> CanGetMetadataFromServerPackageName(string packageFile)
+        public Maybe<PackageMetadata> TryGetMetadataFromServerPackageName(string packageFile)
         {
             try
             {
@@ -364,14 +364,14 @@ namespace Octopus.Core.Resources.Metadata
                  * Try parsing with Maven first. The package ids for Maven feeds are designed to fail
                  * for NuGet package id.
                  */
-                return MavenPackageIdParser.CanGetMetadataFromServerPackageName(packageFile);
+                return MavenPackageIdParser.TryGetMetadataFromServerPackageName(packageFile);
             }
             catch
             {
                 /*
                  * If there was an exception, parse as a Nuget package id.
                  */
-                return NugetPackageIdParser.CanGetMetadataFromServerPackageName(packageFile);
+                return NugetPackageIdParser.TryGetMetadataFromServerPackageName(packageFile);
             }
         }
 

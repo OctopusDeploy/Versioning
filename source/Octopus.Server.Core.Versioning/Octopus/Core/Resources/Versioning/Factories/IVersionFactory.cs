@@ -34,9 +34,9 @@ namespace Octopus.Core.Resources.Versioning.Factories
         IVersion CreateSemanticVersion(Version version, string releaseLabel = null, string metadata = null);        
         IVersion CreateSemanticVersion(Version version, IEnumerable<string> releaseLabels, string metadata, string originalVersion);
         Maybe<IVersion> CreateSemanticVersionOrNone(string input, bool preserveMissingComponents = false);
-        bool CanCreateVersion(string input, out IVersion version, FeedType type);        
-        bool CanCreateVersion(string input, out IVersion version, string packageId);        
-        bool CanCreateMavenVersion(string input, out IVersion version);
-        bool CanCreateSemanticVersion(string input, out IVersion version, bool preserveMissingComponents = false);
+        bool TryCreateVersion(string input, out IVersion version, FeedType type);        
+        bool TryCreateVersion(string input, out IVersion version, string packageId);        
+        bool TryCreateMavenVersion(string input, out IVersion version);
+        bool TryCreateSemanticVersion(string input, out IVersion version, bool preserveMissingComponents = false);
     }
 }

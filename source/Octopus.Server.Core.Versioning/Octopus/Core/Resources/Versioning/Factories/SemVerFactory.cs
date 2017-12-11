@@ -16,7 +16,7 @@ namespace Octopus.Core.Resources.Versioning.Factories
         public SemanticVersion CreateVersion(string input, bool preserveMissingComponents = false)
         {
             SemanticVersion ver = null;
-            if (!CanCreateVersion(input, out ver, preserveMissingComponents))
+            if (!TryCreateVersion(input, out ver, preserveMissingComponents))
             {
                 throw new ArgumentException($"'{input}' is not a valid version string", nameof(input));
             }
@@ -27,7 +27,7 @@ namespace Octopus.Core.Resources.Versioning.Factories
         public Maybe<IVersion> CreateVersionOrNone(string input, bool preserveMissingComponents = false)
         {
             SemanticVersion ver;
-            return CanCreateVersion(input, out ver, preserveMissingComponents)
+            return TryCreateVersion(input, out ver, preserveMissingComponents)
                 ? ((IVersion)ver).AsSome()
                 : Maybe<IVersion>.None;
         }
@@ -43,7 +43,7 @@ namespace Octopus.Core.Resources.Versioning.Factories
             }
 
             SemanticVersion ver = null;
-            if (!CanCreateVersion(value, out ver, preserveMissingComponents))
+            if (!TryCreateVersion(value, out ver, preserveMissingComponents))
             {
                 throw new ArgumentException($"'{value}' is not a valid version string", nameof(value));
             }
@@ -55,7 +55,7 @@ namespace Octopus.Core.Resources.Versioning.Factories
         /// Parses a version string using loose semantic versioning rules that allows 2-4 version components followed
         /// by an optional special version.
         /// </summary>
-        public bool CanCreateVersion(string value, out SemanticVersion version, bool preserveMissingComponents = false)
+        public bool TryCreateVersion(string value, out SemanticVersion version, bool preserveMissingComponents = false)
         {
             version = null;
 
@@ -126,7 +126,7 @@ namespace Octopus.Core.Resources.Versioning.Factories
             version = null;
 
             SemanticVersion semVer = null;
-            if (CanCreateVersion(value, out semVer))
+            if (TryCreateVersion(value, out semVer))
             {
                 version = new SemanticVersion(semVer.Major, semVer.Minor, semVer.Patch, 0, semVer.ReleaseLabels, semVer.Metadata);
             }
