@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Octopus.Core.Resources;
 using Octopus.Core.Resources.Metadata;
+using Octopus.Core.Resources.Versioning;
 
 namespace Octopus.Server.Core.Versioning.Tests.Parsers
 {
@@ -23,7 +24,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
         {
             var metadata = MavenParser.GetMetadataFromPackageID("Maven#com.google.guava#guava");
             Assert.AreEqual(metadata.PackageId, "Maven#com.google.guava#guava");
-            Assert.AreEqual(metadata.FeedType, FeedType.Maven);
+            Assert.AreEqual(metadata.VersionFormat, VersionFormat.Maven);
         }
         
         [Test]
@@ -31,7 +32,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
         {
             var metadata = NuGetParser.GetMetadataFromPackageID("NuGet.Package");
             Assert.AreEqual(metadata.PackageId, "NuGet.Package");
-            Assert.AreEqual(metadata.FeedType, FeedType.NuGet);
+            Assert.AreEqual(metadata.VersionFormat, VersionFormat.Semver);
         }
         
         [Test]
@@ -46,7 +47,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
             Assert.AreEqual(metadata.FileExtension, ".jar");
             Assert.AreEqual(metadata.PackageId, "Maven#com.google.guava#guava");
             Assert.AreEqual(metadata.Version, "23.3-jre");
-            Assert.AreEqual(metadata.FeedType, FeedType.Maven);
+            Assert.AreEqual(metadata.VersionFormat, VersionFormat.Maven);
             Assert.AreEqual(metadata.Size, 123);
             Assert.AreEqual(metadata.Hash, "hash");
         }        
@@ -78,7 +79,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
             Assert.AreEqual(metadata.FileExtension, ".zip");
             Assert.AreEqual(metadata.PackageId, "package.suffix");
             Assert.AreEqual(metadata.Version, "1.0.0");
-            Assert.AreEqual(metadata.FeedType, FeedType.NuGet);
+            Assert.AreEqual(metadata.VersionFormat, VersionFormat.Semver);
             Assert.AreEqual(metadata.Size, 123);
             Assert.AreEqual(metadata.Hash, "hash");
         }
@@ -91,7 +92,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
             Assert.AreEqual(metadata.FileExtension, ".jar");
             Assert.AreEqual(metadata.PackageId, "Maven#com.google.guava#guava");
             Assert.AreEqual(metadata.Version, "23.3-jre");
-            Assert.AreEqual(metadata.FeedType, FeedType.Maven);
+            Assert.AreEqual(metadata.VersionFormat, VersionFormat.Maven);
         }
         
         [Test]
@@ -102,7 +103,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
             Assert.AreEqual(metadata.FileExtension, ".jar");
             Assert.AreEqual(metadata.PackageId, "Maven#com.google.guava#guava");
             Assert.AreEqual(metadata.Version, "22.0");
-            Assert.AreEqual(metadata.FeedType, FeedType.Maven);
+            Assert.AreEqual(metadata.VersionFormat, VersionFormat.Maven);
         }
         
         [Test]
@@ -123,7 +124,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
             Assert.AreEqual(metadata.FileExtension, ".zip");
             Assert.AreEqual(metadata.PackageId, "package.suffix");
             Assert.AreEqual(metadata.Version, "1.0.0");
-            Assert.AreEqual(metadata.FeedType, FeedType.NuGet);
+            Assert.AreEqual(metadata.VersionFormat, VersionFormat.Semver);
         }
         
         [Test]
@@ -134,7 +135,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Parsers
             Assert.AreEqual(metadata.FileExtension, ".zip");
             Assert.AreEqual(metadata.PackageId, "package.suffix");
             Assert.AreEqual(metadata.Version, "1.0.0");
-            Assert.AreEqual(metadata.FeedType, FeedType.NuGet);
+            Assert.AreEqual(metadata.VersionFormat, VersionFormat.Semver);
         }
         
         [Test]

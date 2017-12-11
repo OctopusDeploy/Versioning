@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Octopus.Core.Resources.Versioning;
 
 namespace Octopus.Core.Resources
 {
@@ -10,7 +11,7 @@ namespace Octopus.Core.Resources
         public string PackageId { get; set; }
         
         [JsonIgnore]
-        public FeedType FeedType { get; set; }
+        public VersionFormat VersionFormat { get; set; }
         
         /// <summary>
         /// Used to define the search pattern for files on the target base only

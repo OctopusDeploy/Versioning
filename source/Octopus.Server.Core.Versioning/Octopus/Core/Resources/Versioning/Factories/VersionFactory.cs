@@ -14,11 +14,11 @@ namespace Octopus.Core.Resources.Versioning.Factories
         static readonly IPackageIDParser MavenPackageIdParser = new MavenPackageIDParser();
         static readonly IPackageIDParser NugetPackageIdParser = new NuGetPackageIDParser();
 
-        public IVersion CreateVersion(string input, FeedType type)
+        public IVersion CreateVersion(string input, VersionFormat format)
         {
-            switch (type)
+            switch (format)
             {
-                case FeedType.Maven:
+                case VersionFormat.Maven:
                     return CreateMavenVersion(input);
                 default:
                     return CreateSemanticVersion(input);
@@ -40,13 +40,13 @@ namespace Octopus.Core.Resources.Versioning.Factories
             throw new ArgumentException($"Package id {packageId} is not recognised");
         }
 
-        public Maybe<IVersion> CreateOptionalVersion(string input, FeedType type)
+        public Maybe<IVersion> CreateOptionalVersion(string input, VersionFormat format)
         {
             try
             {
-                switch (type)
+                switch (format)
                 {
-                    case FeedType.Maven:
+                    case VersionFormat.Maven:
                         return Maybe<IVersion>.Some(CreateMavenVersion(input));
                     default:
                         return CreateSemanticVersionOrNone(input);
@@ -95,11 +95,11 @@ namespace Octopus.Core.Resources.Versioning.Factories
             return new SemanticVersion(major, minor, patch, revision, releaseLabels, metadata);
         }
 
-        public bool TryCreateVersion(string input, out IVersion version, FeedType type)
+        public bool TryCreateVersion(string input, out IVersion version, VersionFormat format)
         {
-            switch (type)
+            switch (format)
             {
-                case FeedType.Maven:
+                case VersionFormat.Maven:
                     return TryCreateMavenVersion(input, out version);
                 default:
                     return TryCreateSemanticVersion(input, out version);
