@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="Octopus\Core\Constants\JavaConstants.cs" />
     <Compile Include="Octopus\Core\Constants\ServerConstants.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\FeedType.cs" />
+    <Compile Include="Octopus\Core\Resources\Versioning\VersionFormat.cs" />
     <Compile Include="Octopus\Core\Resources\Metadata\BasePackageMetadata.cs" />
     <Compile Include="Octopus\Core\Resources\Metadata\IMetadataFactory.cs" />
     <Compile Include="Octopus\Core\Resources\Metadata\MavenPackageIDParser.cs" />
