@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.Server.Core.Versioning", "Octopus.Server.Core.Versioning\Octopus.Server.Core.Versioning.csproj", "{BCE848C9-BD65-475D-A7E2-888C1729DBF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.Core.Versioning", "Octopus.Core.Versioning\Octopus.Core.Versioning.csproj", "{BCE848C9-BD65-475D-A7E2-888C1729DBF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.Server.Core.Versioning.Tests", "Octopus.Server.Core.Versioning.Tests\Octopus.Server.Core.Versioning.Tests.csproj", "{33B6721A-0478-4327-B79B-03312F73B437}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.Core.Versioning.Tests", "Octopus.Core.Versioning.Tests\Octopus.Core.Versioning.Tests.csproj", "{33B6721A-0478-4327-B79B-03312F73B437}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

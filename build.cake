@@ -21,8 +21,8 @@ var localPackagesDir = "../LocalPackages";
 var artifactsDir = "./artifacts";
 var assetDir = "./BuildAssets";
 var globalAssemblyFile = "./source/Solution Items/VersionInfo.cs";
-var solutionToBuild = "./source/Octopus.Server.Core.Versioning.sln";
-var fileToPublish = "./source/Octopus.Server.Core.Versioning/bin/Release/Octopus.Server.Core.Versioning.dll";
+var solutionToBuild = "./source/Octopus.Core.Versioning.sln";
+var fileToPublish = "./source/Octopus.Core.Versioning/bin/Release/Octopus.Core.Versioning.dll";
 var cleanups = new List<IDisposable>(); 
 
 
@@ -41,7 +41,7 @@ Setup(context =>
         BuildSystem.TeamCity.SetBuildNumber(gitVersionInfo.NuGetVersion);
     if(BuildSystem.IsRunningOnAppVeyor)
         AppVeyor.UpdateBuildVersion(gitVersionInfo.NuGetVersion);
-    Information("Building Octopus.Server.Core.Versioning v{0}", nugetVersion);
+    Information("Building Octopus.Core.Versioning v{0}", nugetVersion);
 });
 
 Teardown(context =>
@@ -103,7 +103,7 @@ Task("__Build")
 Task("__Pack")
     .Does(() => {
         var nugetPackDir = Path.Combine(publishDir, "nuget");
-        var nuspecFile = "Octopus.Server.Core.Versioning.nuspec";
+        var nuspecFile = "Octopus.Core.Versioning.nuspec";
         
 		CreateDirectory(nugetPackDir);
         CopyFileToDirectory(Path.Combine(assetDir, nuspecFile), nugetPackDir);
@@ -119,14 +119,14 @@ Task("__Publish")
     .WithCriteria(BuildSystem.IsRunningOnTeamCity)
     .Does(() =>
 {
-    NuGetPush($"{artifactsDir}/Octopus.Server.Core.Versioning.{nugetVersion}.nupkg", new NuGetPushSettings {
+    NuGetPush($"{artifactsDir}/Octopus.Core.Versioning.{nugetVersion}.nupkg", new NuGetPushSettings {
 		Source = "https://octopus.myget.org/F/octopus-dependencies/api/v3/index.json",
 		ApiKey = EnvironmentVariable("MyGetApiKey")
 	});
 	
     if (gitVersionInfo.PreReleaseLabel == "")
     {
-        NuGetPush($"{artifactsDir}/Octopus.Server.Core.Versioning.{nugetVersion}.nupkg", new NuGetPushSettings {
+        NuGetPush($"{artifactsDir}/Octopus.Core.Versioning.{nugetVersion}.nupkg", new NuGetPushSettings {
             Source = "https://www.nuget.org/api/v2/package",
             ApiKey = EnvironmentVariable("NuGetApiKey")
         });
@@ -139,7 +139,7 @@ Task("__CopyToLocalPackages")
     .Does(() =>
 {
     CreateDirectory(localPackagesDir);
-    CopyFileToDirectory(Path.Combine(artifactsDir, $"Octopus.Server.Core.Versioning.{nugetVersion}.nupkg"), localPackagesDir);
+    CopyFileToDirectory(Path.Combine(artifactsDir, $"Octopus.Core.Versioning.{nugetVersion}.nupkg"), localPackagesDir);
 });
 
 private class AutoRestoreFile : IDisposable

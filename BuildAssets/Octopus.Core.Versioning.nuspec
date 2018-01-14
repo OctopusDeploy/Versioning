@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd" xmlns:octopus="http://octopus.org">
   <metadata>
-    <id>Octopus.Server.Core.Versioning</id>
-    <title>Octopus Server Version Support</title>
+    <id>Octopus.Core.Versioning</id>
+    <title>Octopus Version Support</title>
     <version>$version$</version>
     <authors>Octopus Deploy</authors>
     <owners>Octopus Deploy</owners>
-    <summary>Octopus Deploy server version contracts.</summary>
+    <summary>Octopus Deploy version contracts.</summary>
     <description>
       Provides the agreed version contracts between Octopus Server and Calamari.
     </description>

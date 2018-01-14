@@ -8,8 +8,8 @@
     <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Octopus.Server.Core.Versioning.Tests</RootNamespace>
-    <AssemblyName>Octopus.Server.Core.Versioning.Tests</AssemblyName>
+    <RootNamespace>Octopus.Core.Versioning.Tests</RootNamespace>
+    <AssemblyName>Octopus.Core.Versioning.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -53,9 +53,9 @@
     <Compile Include="Versions\VersionTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Octopus.Server.Core.Versioning\Octopus.Server.Core.Versioning.csproj">
+    <ProjectReference Include="..\Octopus.Core.Versioning\Octopus.Core.Versioning.csproj">
       <Project>{BCE848C9-BD65-475D-A7E2-888C1729DBF7}</Project>
-      <Name>Octopus.Server.Core.Versioning</Name>
+      <Name>Octopus.Core.Versioning</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
