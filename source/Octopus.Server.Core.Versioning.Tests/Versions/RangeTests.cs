@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using Octopus.Core.Resources.Ranges;
-using Octopus.Core.Resources.Versioning;
-using Octopus.Core.Resources.Versioning.Maven;
+using Octopus.Core.Versioning;
+using Octopus.Core.Versioning.Maven;
+using Octopus.Core.Versioning.Ranges.Maven;
 
 namespace Octopus.Server.Core.Versioning.Tests.Versions
 {
@@ -684,7 +684,7 @@ namespace Octopus.Server.Core.Versioning.Tests.Versions
                 MavenVersionRange.CreateFromVersionSpec(version);
                 Assert.Fail("Version " + version + " should have failed to construct");
             }
-            catch (InvalidVersionSpecificationException expected)
+            catch (InvalidVersionSpecificationException)
             {
                 // expected
             }

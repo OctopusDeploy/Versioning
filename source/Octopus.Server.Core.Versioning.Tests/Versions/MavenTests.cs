@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Octopus.Core.Resources.Versioning.Maven;
+using Octopus.Core.Versioning.Maven;
 
 namespace Octopus.Server.Core.Versioning.Tests.Versions
 {

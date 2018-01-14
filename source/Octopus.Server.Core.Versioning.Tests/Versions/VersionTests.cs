@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
-using Octopus.Core.Resources;
-using Octopus.Core.Resources.Versioning;
-using Octopus.Core.Resources.Versioning.Factories;
+using Octopus.Core.Versioning;
+using Octopus.Core.Versioning.Factories;
 
 namespace Octopus.Server.Core.Versioning.Tests.Versions
 {

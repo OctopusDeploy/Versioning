@@ -8,9 +8,8 @@
     <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>
-    </RootNamespace>
-    <AssemblyName>Octopus.Server.Core.Versioning</AssemblyName>
+    <RootNamespace>Octopus.Core.Versioning</RootNamespace>
+    <AssemblyName>Octopus.Core.Versioning</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,47 +46,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Octopus\Core\Constants\JavaConstants.cs" />
-    <Compile Include="Octopus\Core\Constants\ServerConstants.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\VersionFormat.cs" />
-    <Compile Include="Octopus\Core\Resources\Metadata\BasePackageMetadata.cs" />
-    <Compile Include="Octopus\Core\Resources\Metadata\IMetadataFactory.cs" />
-    <Compile Include="Octopus\Core\Resources\Metadata\MavenPackageIDParser.cs" />
-    <Compile Include="Octopus\Core\Resources\Metadata\MetadataFactory.cs" />
-    <Compile Include="Octopus\Core\Resources\Metadata\NuGetPackageIDParser.cs" />
-    <Compile Include="Octopus\Core\Resources\Metadata\PackageIdentifier.cs" />
-    <Compile Include="Octopus\Core\Resources\Metadata\IPackageIDParser.cs" />
-    <Compile Include="Octopus\Core\Resources\Metadata\PackageMetadata.cs" />
-    <Compile Include="Octopus\Core\Resources\Metadata\PhysicalPackageMetadata.cs" />
-    <Compile Include="Octopus\Core\Resources\Parsing\Maven\IMetadataParser.cs" />
-    <Compile Include="Octopus\Core\Resources\Parsing\Maven\MavenPackageID.cs" />
-    <Compile Include="Octopus\Core\Resources\Parsing\Maven\MetadataParser.cs" />
-    <Compile Include="Octopus\Core\Resources\Ranges\InvalidVersionSpecificationException.cs" />
-    <Compile Include="Octopus\Core\Resources\Ranges\MavenVersionRange.cs" />
-    <Compile Include="Octopus\Core\Resources\Ranges\OverConstrainedVersionException.cs" />
-    <Compile Include="Octopus\Core\Resources\Ranges\Restriction.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Factories\IVersionFactory.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Factories\SemVerFactory.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Factories\StrictSemVerFactory.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Factories\VersionFactory.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\IVersion.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\IVersionComparer.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Maven\ComparableVersion.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Maven\MavenVersion.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Maven\MavenVersionParser.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Semver\ISemanticVersionUtils.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Semver\SemanticVersion.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Semver\SemanticVersionUtils.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Semver\StrictSemanticVersion.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Semver\StrictSemanticVersionBase.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Semver\VersionComparer.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\Semver\VersionComparison.cs" />
-    <Compile Include="Octopus\Core\Resources\Versioning\VersionFormatter.cs" />
+    <Compile Include="Ranges\IVersionRuleSpecification.cs" />
+    <Compile Include="Ranges\SemVer\FloatRange.cs" />
+    <Compile Include="Ranges\SemVer\IVersionRangeComparer.cs" />
+    <Compile Include="Ranges\SemVer\VersionRangeComparer.cs" />
+    <Compile Include="Ranges\Maven\MavenVersionRuleSpecification.cs" />
+    <Compile Include="Constants\JavaConstants.cs" />
+    <Compile Include="Constants\ServerConstants.cs" />
+    <Compile Include="Ranges\VersionRuleSpecificationStrategy.cs" />
+    <Compile Include="VersionFormat.cs" />
+    <Compile Include="Metadata\BasePackageMetadata.cs" />
+    <Compile Include="Metadata\IMetadataFactory.cs" />
+    <Compile Include="Metadata\MavenPackageIDParser.cs" />
+    <Compile Include="Metadata\MetadataFactory.cs" />
+    <Compile Include="Metadata\NuGetPackageIDParser.cs" />
+    <Compile Include="Metadata\PackageIdentifier.cs" />
+    <Compile Include="Metadata\IPackageIDParser.cs" />
+    <Compile Include="Metadata\PackageMetadata.cs" />
+    <Compile Include="Metadata\PhysicalPackageMetadata.cs" />
+    <Compile Include="Parsing\Maven\IMetadataParser.cs" />
+    <Compile Include="Parsing\Maven\MavenPackageID.cs" />
+    <Compile Include="Parsing\Maven\MetadataParser.cs" />
+    <Compile Include="Ranges\Maven\InvalidVersionSpecificationException.cs" />
+    <Compile Include="Ranges\Maven\MavenVersionRange.cs" />
+    <Compile Include="Ranges\Maven\OverConstrainedVersionException.cs" />
+    <Compile Include="Ranges\Maven\Restriction.cs" />
+    <Compile Include="Factories\IVersionFactory.cs" />
+    <Compile Include="Factories\SemVerFactory.cs" />
+    <Compile Include="Factories\StrictSemVerFactory.cs" />
+    <Compile Include="Factories\VersionFactory.cs" />
+    <Compile Include="IVersion.cs" />
+    <Compile Include="IVersionComparer.cs" />
+    <Compile Include="Maven\ComparableVersion.cs" />
+    <Compile Include="Maven\MavenVersion.cs" />
+    <Compile Include="Maven\MavenVersionParser.cs" />
+    <Compile Include="Semver\SemanticVersion.cs" />
+    <Compile Include="Semver\SemanticVersionUtils.cs" />
+    <Compile Include="Semver\StrictSemanticVersion.cs" />
+    <Compile Include="Semver\StrictSemanticVersionBase.cs" />
+    <Compile Include="Semver\VersionComparer.cs" />
+    <Compile Include="Semver\VersionComparison.cs" />
+    <Compile Include="VersionFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ranges\SemVer\NuGetVersionFloatBehaviour.cs" />
+    <Compile Include="Ranges\SemVer\SemverRuleSpecification.cs" />
+    <Compile Include="Ranges\SemVer\VersionRange.cs" />
+    <Compile Include="Ranges\SemVer\VersionRangeBase.cs" />
+    <Compile Include="Ranges\SemVer\VersionRangeFactory.cs" />
+    <Compile Include="Ranges\SemVer\VersionRangeFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

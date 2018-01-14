@@ -1,8 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
-using Octopus.Core.Resources;
-using Octopus.Core.Resources.Metadata;
-using Octopus.Core.Resources.Versioning;
+using Octopus.Core.Versioning;
+using Octopus.Core.Versioning.Metadata;
 
 namespace Octopus.Server.Core.Versioning.Tests.Parsers
 {
