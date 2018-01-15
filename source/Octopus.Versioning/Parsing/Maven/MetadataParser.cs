@@ -3,7 +3,7 @@ using System.Linq;
 using System.Xml;
 using Octopus.Core.Extensions;
 
-namespace Octopus.Core.Resources.Parsing.Maven
+namespace Octopus.Versioning.Parsing.Maven
 {
     public class MetadataParser : IMetadataParser
     {

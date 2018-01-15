@@ -1,6 +1,6 @@
 ﻿using System.Xml;
 
-namespace Octopus.Core.Resources.Parsing.Maven
+namespace Octopus.Versioning.Parsing.Maven
 {
     /// <summary>
     /// Defines a service for parsing metadata files

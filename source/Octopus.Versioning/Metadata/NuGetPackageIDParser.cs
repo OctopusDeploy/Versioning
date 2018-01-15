@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
-using Octopus.Core.Resources;
 using Octopus.Core.Util;
 using Octopus.Versioning.Constants;
 using Octopus.Versioning.Factories;

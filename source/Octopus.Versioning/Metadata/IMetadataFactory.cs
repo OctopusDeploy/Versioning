@@ -1,5 +1,4 @@
-﻿using Octopus.Core.Resources;
-using Octopus.Core.Util;
+﻿using Octopus.Core.Util;
 
 namespace Octopus.Versioning.Metadata
 {
