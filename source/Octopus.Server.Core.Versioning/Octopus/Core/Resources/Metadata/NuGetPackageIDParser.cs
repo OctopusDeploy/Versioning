@@ -231,7 +231,7 @@ namespace Octopus.Core.Resources.Metadata
         /// <param name="packageId">The parsed package ID</param>
         /// <param name="version">The parsed semantic version</param>
         /// <returns>True if parsing was successful, else False</returns>
-        bool TryParsePackageIdAndVersion(string idAndVersion, out string packageId, out IVersion version)
+        public static bool TryParsePackageIdAndVersion(string idAndVersion, out string packageId, out IVersion version)
         {
             packageId = null;
             version = null;
