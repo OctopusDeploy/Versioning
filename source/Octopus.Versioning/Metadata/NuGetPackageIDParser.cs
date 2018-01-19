@@ -235,7 +235,7 @@ namespace Octopus.Versioning.Metadata
             packageId = null;
             version = null;
 
-            const string packageIdPattern = @"(?<packageId>(\w+([_.-]\w+)*?))";
+            const string packageIdPattern = @"(?<packageId>(\w+([_.\+-]\w+)*?))";
             const string semanticVersionPattern = @"(?<semanticVersion>(\d+(\.\d+){0,3}" // Major Minor Patch
                                                   + @"(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?)" // Pre-release identifiers
                                                   + @"(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?)"; // Build Metadata
