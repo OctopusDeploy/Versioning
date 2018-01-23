@@ -129,6 +129,7 @@ namespace Octopus.Versioning.Semver
         public virtual bool HasMetadata => !string.IsNullOrEmpty(Metadata);
 
         public virtual string OriginalString => null;
+        public VersionFormat Format => VersionFormat.Semver;
 
         /// <summary>
         /// Build metadata attached to the version.

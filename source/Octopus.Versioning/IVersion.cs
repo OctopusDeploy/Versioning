@@ -39,5 +39,6 @@ namespace Octopus.Versioning
         string Release { get; }
         bool HasMetadata { get; }
         string OriginalString { get; }
+        VersionFormat Format { get; }
     }
 }
