@@ -7,7 +7,7 @@ using Octopus.Versioning.Constants;
 
 namespace Octopus.Versioning.Metadata
 {
-    public class PackageIdentifier
+    public class PackageIdentifierUtils
     {
         /// <summary>
         /// Given a package-file path and a list of valid extensions extracts the package-metadata component and the extension.  

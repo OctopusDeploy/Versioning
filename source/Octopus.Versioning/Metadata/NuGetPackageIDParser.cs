@@ -55,7 +55,7 @@ namespace Octopus.Versioning.Metadata
         {
             return GetMetadataFromPackageName(
                 packageFile,
-                PackageIdentifier.ExtractPackageExtensionAndMetadata(packageFile, extensions));
+                PackageIdentifierUtils.ExtractPackageExtensionAndMetadata(packageFile, extensions));
         }
 
         public bool TryGetMetadataFromPackageName(string packageFile, string[] extensions, out PackageMetadata packageMetadata)
@@ -124,7 +124,7 @@ namespace Octopus.Versioning.Metadata
         {
             return GetMetadataFromPackageName(
                 packageFile,
-                PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, new string[] {Path.GetExtension(packageFile)}));
+                PackageIdentifierUtils.ExtractPackageExtensionAndMetadataForServer(packageFile, new string[] {Path.GetExtension(packageFile)}));
         }
 
         public bool TryGetMetadataFromServerPackageName(string packageFile, string[] extensions,
@@ -146,14 +146,14 @@ namespace Octopus.Versioning.Metadata
         {
             return GetMetadataFromPackageName(
                 packageFile,
-                PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions));
+                PackageIdentifierUtils.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions));
         }
 
         public PhysicalPackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions, long size, string hash)
         {
             var baseDetails = GetMetadataFromPackageName(
                 packageFile,
-                PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions)); 
+                PackageIdentifierUtils.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions)); 
             return BuildMetadata(baseDetails.PackageId, baseDetails.Version, baseDetails.FileExtension, size, hash);
         }
 

@@ -54,7 +54,7 @@
     <Compile Include="Metadata\MavenPackageIDParser.cs" />
     <Compile Include="Metadata\MetadataFactory.cs" />
     <Compile Include="Metadata\NuGetPackageIDParser.cs" />
-    <Compile Include="Metadata\PackageIdentifier.cs" />
+    <Compile Include="Metadata\PackageIdentifierUtils.cs" />
     <Compile Include="Metadata\IPackageIDParser.cs" />
     <Compile Include="Metadata\PackageMetadata.cs" />
     <Compile Include="Metadata\PhysicalPackageMetadata.cs" />

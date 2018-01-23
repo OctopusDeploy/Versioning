@@ -14,7 +14,7 @@
         ///    Calamari.Integration.Packages.Java.JarExtractor class to see how this char
         ///    is used to parse a filename.
         /// 4. It has to be something that the NuGet parsing routines 
-        ///    (i.e. Calamari.Integration.Packages.PackageIdentifier.TryParsePackageIdAndVersion)
+        ///    (i.e. Calamari.Integration.Packages.PackageIdentifierUtils.TryParsePackageIdAndVersion)
         ///    will not parse successfully. We use the inability of the NuGet parsing routines
         ///    to fallback to a Maven parsing routine, which will handle all of the vagaries 
         ///    of Maven version strings.

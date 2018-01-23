@@ -49,7 +49,7 @@ namespace Octopus.Versioning.Metadata
         {
             return GetMetadataFromPackageName(
                 packageFile,
-                PackageIdentifier.ExtractPackageExtensionAndMetadata(packageFile, extensions),
+                PackageIdentifierUtils.ExtractPackageExtensionAndMetadata(packageFile, extensions),
                 extensions);
         }
 
@@ -120,7 +120,7 @@ namespace Octopus.Versioning.Metadata
         {
             return GetMetadataFromPackageName(
                 packageFile,
-                PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions),
+                PackageIdentifierUtils.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions),
                 extensions);
         }
 
@@ -128,7 +128,7 @@ namespace Octopus.Versioning.Metadata
         {
             return GetMetadataFromPackageName(
                 packageFile,
-                PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, new string[] {Path.GetExtension(packageFile)}),
+                PackageIdentifierUtils.ExtractPackageExtensionAndMetadataForServer(packageFile, new string[] {Path.GetExtension(packageFile)}),
                 new string[] {Path.GetExtension(packageFile)});
         }
 
@@ -152,7 +152,7 @@ namespace Octopus.Versioning.Metadata
         {
             var baseDetails = GetMetadataFromPackageName(
                 packageFile,
-                PackageIdentifier.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions),
+                PackageIdentifierUtils.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions),
                 extensions);
             return BuildMetadata(baseDetails.PackageId, baseDetails.Version, baseDetails.FileExtension, size, hash);
         }
