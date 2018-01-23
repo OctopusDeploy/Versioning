@@ -13,7 +13,7 @@ namespace Octopus.Versioning.Metadata
     /// </summary>
     public class NuGetPackageIDParser : IPackageIDParser
     {
-        static readonly IVersionFactory VersionFactory = new VersionFactory();
+        static readonly VersionFactory VersionFactory = new VersionFactory();
         
         /// <summary>
         /// NuGet is considered the fallback that will always match the supplied package id

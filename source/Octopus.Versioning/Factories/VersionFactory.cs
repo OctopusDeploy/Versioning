@@ -7,13 +7,12 @@ using SemanticVersion = Octopus.Versioning.Semver.SemanticVersion;
 
 namespace Octopus.Versioning.Factories
 {
-    public class VersionFactory : IVersionFactory
+    public class VersionFactory 
     {
-        static readonly SemVerFactory SemVerFactory = new SemVerFactory();
         static readonly IPackageIDParser MavenPackageIdParser = new MavenPackageIDParser();
         static readonly IPackageIDParser NugetPackageIdParser = new NuGetPackageIDParser();
 
-        public IVersion CreateVersion(string input, VersionFormat format)
+        public static IVersion CreateVersion(string input, VersionFormat format)
         {
             switch (format)
             {
@@ -24,7 +23,7 @@ namespace Octopus.Versioning.Factories
             }
         }
 
-        public IVersion CreateVersion(string input, string packageId)
+        public static IVersion CreateVersion(string input, string packageId)
         {
             if (MavenPackageIdParser.TryGetMetadataFromPackageID(packageId, out var metadata))
             {
@@ -39,7 +38,7 @@ namespace Octopus.Versioning.Factories
             throw new ArgumentException($"Package id {packageId} is not recognised");
         }
 
-        public Maybe<IVersion> CreateOptionalVersion(string input, VersionFormat format)
+        public static Maybe<IVersion> CreateOptionalVersion(string input, VersionFormat format)
         {
             try
             {
@@ -57,37 +56,37 @@ namespace Octopus.Versioning.Factories
             }
         }
 
-        public IVersion CreateMavenVersion(string input)
+        public static IVersion CreateMavenVersion(string input)
         {
             return new MavenVersionParser().Parse(input);
         }
 
-        public IVersion CreateSemanticVersion(string input, bool preserveMissingComponents = false)
+        public static IVersion CreateSemanticVersion(string input, bool preserveMissingComponents = false)
         {
             return SemVerFactory.CreateVersion(input, preserveMissingComponents);
         }
 
-        public IVersion CreateSemanticVersion(int major, int minor, int patch, string releaseLabel)
+        public static IVersion CreateSemanticVersion(int major, int minor, int patch, string releaseLabel)
         {
             return new SemanticVersion(major, minor, patch, releaseLabel);
         }
 
-        public IVersion CreateSemanticVersion(int major, int minor, int patch)
+        public static IVersion CreateSemanticVersion(int major, int minor, int patch)
         {
             return new SemanticVersion(major, minor, patch);
         }
 
-        public IVersion CreateSemanticVersion(int major, int minor, int patch, int revision)
+        public static IVersion CreateSemanticVersion(int major, int minor, int patch, int revision)
         {
             return new SemanticVersion(major, minor, patch, revision);
         }
 
-        public IVersion CreateSemanticVersion(Version version, string releaseLabel = null, string metadata = null)
+        public static IVersion CreateSemanticVersion(Version version, string releaseLabel = null, string metadata = null)
         {
             return new SemanticVersion(version, releaseLabel, metadata);
         }
 
-        public IVersion CreateSemanticVersion(int major, int minor, int patch, int revision,
+        public static IVersion CreateSemanticVersion(int major, int minor, int patch, int revision,
             IEnumerable<string> releaseLabels,
             string metadata, string originalVersion)
         {
@@ -120,7 +119,7 @@ namespace Octopus.Versioning.Factories
             throw new ArgumentException($"Package id {packageId} is not recognised");
         }
 
-        public bool TryCreateMavenVersion(string input, out IVersion version)
+        public static bool TryCreateMavenVersion(string input, out IVersion version)
         {
             /*
              * Any version is valid for Maven
@@ -129,19 +128,19 @@ namespace Octopus.Versioning.Factories
             return true;
         }
 
-        public bool TryCreateSemanticVersion(string input, out IVersion version, bool preserveMissingComponents = false)
+        public static bool TryCreateSemanticVersion(string input, out IVersion version, bool preserveMissingComponents = false)
         {
             var retValue = SemVerFactory.TryCreateVersion(input, out var semVersion, preserveMissingComponents);
             version = semVersion;
             return retValue;
         }
 
-        public Maybe<IVersion> CreateSemanticVersionOrNone(string input, bool preserveMissingComponents = false)
+        public static Maybe<IVersion> CreateSemanticVersionOrNone(string input, bool preserveMissingComponents = false)
         {
             return SemVerFactory.CreateVersionOrNone(input, preserveMissingComponents);
         }
 
-        public IVersion CreateSemanticVersion(Version version, IEnumerable<string> releaseLabels, string metadata,
+        public static IVersion CreateSemanticVersion(Version version, IEnumerable<string> releaseLabels, string metadata,
             string originalVersion)
         {
             return new SemanticVersion(

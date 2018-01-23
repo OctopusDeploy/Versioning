@@ -13,7 +13,7 @@ namespace Octopus.Versioning.Factories
     {
         static readonly ISemanticVersionUtils utils = new SemanticVersionUtils();
 
-        public SemanticVersion CreateVersion(string input, bool preserveMissingComponents = false)
+        public static SemanticVersion CreateVersion(string input, bool preserveMissingComponents = false)
         {
             SemanticVersion ver = null;
             if (!TryCreateVersion(input, out ver, preserveMissingComponents))
@@ -24,7 +24,7 @@ namespace Octopus.Versioning.Factories
             return ver;
         }
         
-        public Maybe<IVersion> CreateVersionOrNone(string input, bool preserveMissingComponents = false)
+        public static Maybe<IVersion> CreateVersionOrNone(string input, bool preserveMissingComponents = false)
         {
             SemanticVersion ver;
             return TryCreateVersion(input, out ver, preserveMissingComponents)
@@ -35,7 +35,7 @@ namespace Octopus.Versioning.Factories
         /// <summary>
         /// Creates a NuGetVersion from a string representing the semantic version.
         /// </summary>
-        public SemanticVersion Parse(string value, bool preserveMissingComponents = false)
+        public static SemanticVersion Parse(string value, bool preserveMissingComponents = false)
         {
             if (string.IsNullOrEmpty(value))
             {
@@ -55,7 +55,7 @@ namespace Octopus.Versioning.Factories
         /// Parses a version string using loose semantic versioning rules that allows 2-4 version components followed
         /// by an optional special version.
         /// </summary>
-        public bool TryCreateVersion(string value, out SemanticVersion version, bool preserveMissingComponents = false)
+        public static bool TryCreateVersion(string value, out SemanticVersion version, bool preserveMissingComponents = false)
         {
             version = null;
 
@@ -121,7 +121,7 @@ namespace Octopus.Versioning.Factories
         /// <summary>
         /// Parses a version string using strict SemVer rules.
         /// </summary>
-        public bool TryParseStrict(string value, out SemanticVersion version)
+        public static bool TryParseStrict(string value, out SemanticVersion version)
         {
             version = null;
 

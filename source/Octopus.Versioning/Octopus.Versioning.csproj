@@ -65,7 +65,6 @@
     <Compile Include="Ranges\MavenVersionRange.cs" />
     <Compile Include="Ranges\OverConstrainedVersionException.cs" />
     <Compile Include="Ranges\Restriction.cs" />
-    <Compile Include="Factories\IVersionFactory.cs" />
     <Compile Include="Factories\SemVerFactory.cs" />
     <Compile Include="Factories\StrictSemVerFactory.cs" />
     <Compile Include="Factories\VersionFactory.cs" />
