@@ -7,7 +7,7 @@ using SemanticVersion = Octopus.Versioning.Semver.SemanticVersion;
 
 namespace Octopus.Versioning.Factories
 {
-    public class VersionFactory 
+    public static class VersionFactory 
     {
         static readonly IPackageIDParser MavenPackageIdParser = new MavenPackageIDParser();
         static readonly IPackageIDParser NugetPackageIdParser = new NuGetPackageIDParser();
@@ -75,7 +75,7 @@ namespace Octopus.Versioning.Factories
             return new SemanticVersion(major, minor, patch, revision, releaseLabels, metadata);
         }
 
-        public bool TryCreateVersion(string input, out IVersion version, VersionFormat format)
+        public static bool TryCreateVersion(string input, out IVersion version, VersionFormat format)
         {
             switch (format)
             {
@@ -86,7 +86,7 @@ namespace Octopus.Versioning.Factories
             }
         }
 
-        public bool TryCreateVersion(string input, out IVersion version, string packageId)
+        public static bool TryCreateVersion(string input, out IVersion version, string packageId)
         {
             if (MavenPackageIdParser.TryGetMetadataFromPackageID(packageId, out var metadata))
             {

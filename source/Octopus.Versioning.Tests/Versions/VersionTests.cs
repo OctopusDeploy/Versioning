@@ -6,8 +6,6 @@ namespace Octopus.Versioning.Tests.Versions
     [TestFixture]
     public class VersionTests
     {
-        private static readonly VersionFactory VersionFactory = new VersionFactory();
-        
         [Test]
         public void TestVersionCreation()
         {
