@@ -38,24 +38,6 @@ namespace Octopus.Versioning.Factories
             throw new ArgumentException($"Package id {packageId} is not recognised");
         }
 
-        public static Maybe<IVersion> CreateOptionalVersion(string input, VersionFormat format)
-        {
-            try
-            {
-                switch (format)
-                {
-                    case VersionFormat.Maven:
-                        return Maybe<IVersion>.Some(CreateMavenVersion(input));
-                    default:
-                        return CreateSemanticVersionOrNone(input);
-                }
-            }
-            catch
-            {
-                return Maybe<IVersion>.None;
-            }
-        }
-
         public static IVersion CreateMavenVersion(string input)
         {
             return new MavenVersionParser().Parse(input);
