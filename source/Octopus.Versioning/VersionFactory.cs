@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using Octopus.Core.Util;
 using Octopus.Versioning.Maven;
+using Octopus.Versioning.Semver;
 using SemanticVersion = Octopus.Versioning.Semver.SemanticVersion;
 
-namespace Octopus.Versioning.Factories
+namespace Octopus.Versioning
 {
     public static class VersionFactory 
     {
@@ -16,6 +17,17 @@ namespace Octopus.Versioning.Factories
                     return CreateMavenVersion(input);
                 default:
                     return CreateSemanticVersion(input);
+            }
+        }
+
+        public static bool TryCreateVersion(string input, out IVersion version, VersionFormat format)
+        {
+            switch (format)
+            {
+                case VersionFormat.Maven:
+                    return TryCreateMavenVersion(input, out version);
+                default:
+                    return TryCreateSemanticVersion(input, out version);
             }
         }
 
@@ -56,16 +68,7 @@ namespace Octopus.Versioning.Factories
             return new SemanticVersion(major, minor, patch, revision, releaseLabels, metadata);
         }
 
-        public static bool TryCreateVersion(string input, out IVersion version, VersionFormat format)
-        {
-            switch (format)
-            {
-                case VersionFormat.Maven:
-                    return TryCreateMavenVersion(input, out version);
-                default:
-                    return TryCreateSemanticVersion(input, out version);
-            }
-        }
+        
 
         public static bool TryCreateMavenVersion(string input, out IVersion version)
         {

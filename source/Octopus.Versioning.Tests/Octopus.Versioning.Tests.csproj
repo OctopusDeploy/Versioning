@@ -42,12 +42,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Parsers\Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Versions\CustomRangeTests.cs" />
-    <Compile Include="Versions\MavenTests.cs" />
-    <Compile Include="Versions\RangeTests.cs" />
-    <Compile Include="Versions\VersionTests.cs" />
+    <Compile Include="Maven\Ranges\CustomRangeTests.cs" />
+    <Compile Include="Maven\MavenTests.cs" />
+    <Compile Include="Maven\Ranges\RangeTests.cs" />
+    <Compile Include="VersionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Octopus.Versioning\Octopus.Versioning.csproj">

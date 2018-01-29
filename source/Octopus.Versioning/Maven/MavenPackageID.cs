@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Octopus.Versioning.Constants;
-using Octopus.Versioning.Maven;
 
-namespace Octopus.Versioning.Parsing.Maven
+namespace Octopus.Versioning.Maven
 {
     /// <summary>
     /// Back when Octopus only support NuGet (or NuGet like) feeds, it was possible to make
@@ -41,10 +39,6 @@ namespace Octopus.Versioning.Parsing.Maven
         public string Packaging { get; private set; }
         public string Classifier { get; private set; }
         public string DisplayName => ToString(DISPLAY_DELIMITER);
-
-        public string FileSystemName => JavaConstants.MavenFeedPrefix +
-                                        JavaConstants.MavenFilenameDelimiter +
-                                        ToString(JavaConstants.MavenFilenameDelimiter);
 
         public IVersion SemanticVersion => new MavenVersionParser().Parse(Version);
 
@@ -285,8 +279,7 @@ namespace Octopus.Versioning.Parsing.Maven
         /// Parses an octopus package id into the maven package details.
         /// </summary>
         /// <param name="id">
-        /// The package id, either in a display format like "Group:Artifact"
-        /// or in a filesystem format like "Maven#Group#Artifact".
+        /// The package id is in the display format like "Group:Artifact".
         /// </param>
         public MavenPackageID(string id)
         {
@@ -296,7 +289,6 @@ namespace Octopus.Versioning.Parsing.Maven
             }
 
             var mavenDisplaySplit = id.Split(DISPLAY_DELIMITER);
-            var mavenSplit = id.Split(JavaConstants.MavenFilenameDelimiter);
 
             /*
              * When downloading for the first time, we will use the G:A:V format
@@ -321,30 +313,6 @@ namespace Octopus.Versioning.Parsing.Maven
                     Packaging = mavenDisplaySplit[2].Trim();
                     Classifier = mavenDisplaySplit[3].Trim();
                     Version = mavenDisplaySplit[4].Trim();
-                }
-            }
-            /*
-             * When pushing a delta we will be using the Maven#G#A#V format from
-             * the name of the file saved in the local cache.
-             */
-            else if (mavenSplit.Length >= 3 && mavenSplit[0] == JavaConstants.MavenFeedPrefix)
-            {
-                Group = mavenSplit[1].Trim();
-                Artifact = mavenSplit[2].Trim();
-                if (mavenDisplaySplit.Length == 4)
-                {
-                    Version = mavenDisplaySplit[3].Trim();
-                }
-                else if (mavenDisplaySplit.Length == 5)
-                {
-                    Packaging = mavenDisplaySplit[3].Trim();
-                    Version = mavenDisplaySplit[4].Trim();
-                }
-                else if (mavenDisplaySplit.Length == 6)
-                {
-                    Packaging = mavenDisplaySplit[3].Trim();
-                    Classifier = mavenDisplaySplit[4].Trim();
-                    Version = mavenDisplaySplit[5].Trim();
                 }
             }
             else

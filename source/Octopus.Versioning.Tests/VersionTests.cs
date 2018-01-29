@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Octopus.Versioning.Factories;
 
 namespace Octopus.Versioning.Tests.Versions
 {

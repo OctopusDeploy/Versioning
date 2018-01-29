@@ -46,24 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\JavaConstants.cs" />
-    <Compile Include="Constants\ServerConstants.cs" />
+    <Compile Include="Semver\SemVerFactory.cs" />
     <Compile Include="VersionFormat.cs" />
-    <Compile Include="Metadata\BasePackageMetadata.cs" />
-    <Compile Include="Metadata\MavenPackageIDParser.cs" />
-    <Compile Include="Metadata\PackageIdentifierUtils.cs" />
-    <Compile Include="Metadata\IPackageIDParser.cs" />
-    <Compile Include="Metadata\PackageMetadata.cs" />
-    <Compile Include="Parsing\Maven\IMetadataParser.cs" />
-    <Compile Include="Parsing\Maven\MavenPackageID.cs" />
-    <Compile Include="Parsing\Maven\MetadataParser.cs" />
-    <Compile Include="Ranges\InvalidVersionSpecificationException.cs" />
-    <Compile Include="Ranges\MavenVersionRange.cs" />
-    <Compile Include="Ranges\OverConstrainedVersionException.cs" />
-    <Compile Include="Ranges\Restriction.cs" />
-    <Compile Include="Factories\SemVerFactory.cs" />
-    <Compile Include="Factories\StrictSemVerFactory.cs" />
-    <Compile Include="Factories\VersionFactory.cs" />
+    <Compile Include="Maven\MavenPackageID.cs" />
+    <Compile Include="Maven\Ranges\InvalidVersionSpecificationException.cs" />
+    <Compile Include="Maven\Ranges\MavenVersionRange.cs" />
+    <Compile Include="Maven\Ranges\OverConstrainedVersionException.cs" />
+    <Compile Include="Maven\Ranges\Restriction.cs" />
+    <Compile Include="VersionFactory.cs" />
     <Compile Include="IVersion.cs" />
     <Compile Include="IVersionComparer.cs" />
     <Compile Include="Maven\ComparableVersion.cs" />

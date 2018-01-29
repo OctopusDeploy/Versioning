@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Octopus.Versioning.Maven;
-using Octopus.Versioning.Ranges;
+using Octopus.Versioning.Maven.Ranges;
 
-namespace Octopus.Versioning.Tests.Versions
+namespace Octopus.Versioning.Tests.Maven.Ranges
 {
     /// <summary>
     /// Based on https://github.com/apache/maven/blob/master/maven-artifact/src/test/java/org/apache/maven/artifact/versioning/VersionRangeTest.java

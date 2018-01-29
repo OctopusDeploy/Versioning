@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Octopus.Core.Util;
-using Octopus.Versioning.Semver;
 
-namespace Octopus.Versioning.Factories
+namespace Octopus.Versioning.Semver
 {
     /// <summary>
     /// This partial class contains all the log required to create SemanticVersion
@@ -125,8 +124,7 @@ namespace Octopus.Versioning.Factories
         {
             version = null;
 
-            SemanticVersion semVer = null;
-            if (TryCreateVersion(value, out semVer))
+            if (TryCreateVersion(value, out var semVer))
             {
                 version = new SemanticVersion(semVer.Major, semVer.Minor, semVer.Patch, 0, semVer.ReleaseLabels, semVer.Metadata);
             }

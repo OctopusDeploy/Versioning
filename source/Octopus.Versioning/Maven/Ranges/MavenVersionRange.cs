@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Octopus.Core.Extensions;
-using Octopus.Versioning.Maven;
 
-namespace Octopus.Versioning.Ranges
+namespace Octopus.Versioning.Maven.Ranges
 {   
     /// <summary>
     /// A copy of https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/versioning/VersionRange.java

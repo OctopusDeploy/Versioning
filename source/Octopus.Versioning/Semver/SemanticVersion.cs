@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Octopus.Versioning.Factories;
 
 namespace Octopus.Versioning.Semver
 {

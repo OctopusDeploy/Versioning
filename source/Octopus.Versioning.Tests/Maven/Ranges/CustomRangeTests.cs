@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using Octopus.Versioning.Maven;
-using Octopus.Versioning.Ranges;
+using Octopus.Versioning.Maven.Ranges;
 
-namespace Octopus.Versioning.Tests.Versions
+namespace Octopus.Versioning.Tests.Maven.Ranges
 {
     [TestFixture]
     public class CustomRangeTests

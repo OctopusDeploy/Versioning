@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Octopus.Versioning.Ranges
+namespace Octopus.Versioning.Maven.Ranges
 {
     /// <summary>
     /// Based on https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/versioning/Restriction.java
