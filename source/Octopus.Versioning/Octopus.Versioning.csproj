@@ -50,14 +50,10 @@
     <Compile Include="Constants\ServerConstants.cs" />
     <Compile Include="VersionFormat.cs" />
     <Compile Include="Metadata\BasePackageMetadata.cs" />
-    <Compile Include="Metadata\IMetadataFactory.cs" />
     <Compile Include="Metadata\MavenPackageIDParser.cs" />
-    <Compile Include="Metadata\MetadataFactory.cs" />
-    <Compile Include="Metadata\NuGetPackageIDParser.cs" />
     <Compile Include="Metadata\PackageIdentifierUtils.cs" />
     <Compile Include="Metadata\IPackageIDParser.cs" />
     <Compile Include="Metadata\PackageMetadata.cs" />
-    <Compile Include="Metadata\PhysicalPackageMetadata.cs" />
     <Compile Include="Parsing\Maven\IMetadataParser.cs" />
     <Compile Include="Parsing\Maven\MavenPackageID.cs" />
     <Compile Include="Parsing\Maven\MetadataParser.cs" />

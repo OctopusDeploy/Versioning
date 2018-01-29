@@ -35,16 +35,6 @@ namespace Octopus.Versioning.Metadata
             return BuildMetadata(baseDetails.PackageId, version, extension);
         }
 
-        public PhysicalPackageMetadata GetMetadataFromPackageID(
-            string packageID,
-            string version,
-            string extension,
-            long size,
-            string hash)
-        {
-            return BuildMetadata(packageID, version, extension, size, hash);
-        }
-
         public PackageMetadata GetMetadataFromPackageName(string packageFile, string[] extensions)
         {
             return GetMetadataFromPackageName(
@@ -147,16 +137,6 @@ namespace Octopus.Versioning.Metadata
             }
         }
 
-        public PhysicalPackageMetadata GetMetadataFromServerPackageName(string packageFile, string[] extensions,
-            long size, string hash)
-        {
-            var baseDetails = GetMetadataFromPackageName(
-                packageFile,
-                PackageIdentifierUtils.ExtractPackageExtensionAndMetadataForServer(packageFile, extensions),
-                extensions);
-            return BuildMetadata(baseDetails.PackageId, baseDetails.Version, baseDetails.FileExtension, size, hash);
-        }
-
         PackageMetadata GetMetadataFromPackageName(
             string packageFile, 
             Tuple<string, string> metadataAndExtension,
@@ -223,24 +203,6 @@ namespace Octopus.Versioning.Metadata
             pkg.TargetPackageFileName = pkg.PackageId + JavaConstants.MavenFilenameDelimiter +
                                         pkg.Version + extension;
             pkg.VersionDelimiter = JavaConstants.MavenFilenameDelimiter.ToString();
-            return pkg;
-        }
-
-        PhysicalPackageMetadata BuildMetadata(string id, string version, string extension, long size, string hash)
-        {
-            var basePackage = BuildMetadata(id, version, extension);
-            var pkg = new PhysicalPackageMetadata();
-            pkg.PackageId = basePackage.PackageId;
-            pkg.Version = basePackage.Version;
-            pkg.FileExtension = basePackage.FileExtension;
-            pkg.VersionFormat = basePackage.VersionFormat;
-            pkg.PackageAndVersionSearchPattern = basePackage.PackageAndVersionSearchPattern;
-            pkg.PackageSearchPattern = basePackage.PackageSearchPattern;
-            pkg.ServerPackageFileName = basePackage.ServerPackageFileName;
-            pkg.TargetPackageFileName = basePackage.TargetPackageFileName;
-            pkg.Size = size;
-            pkg.Hash = hash;
-            pkg.VersionDelimiter = basePackage.VersionDelimiter;
             return pkg;
         }
     }

@@ -2,16 +2,12 @@
 using System.Collections.Generic;
 using Octopus.Core.Util;
 using Octopus.Versioning.Maven;
-using Octopus.Versioning.Metadata;
 using SemanticVersion = Octopus.Versioning.Semver.SemanticVersion;
 
 namespace Octopus.Versioning.Factories
 {
     public static class VersionFactory 
     {
-        static readonly IPackageIDParser MavenPackageIdParser = new MavenPackageIDParser();
-        static readonly IPackageIDParser NugetPackageIdParser = new NuGetPackageIDParser();
-
         public static IVersion CreateVersion(string input, VersionFormat format)
         {
             switch (format)
@@ -21,21 +17,6 @@ namespace Octopus.Versioning.Factories
                 default:
                     return CreateSemanticVersion(input);
             }
-        }
-
-        public static IVersion CreateVersion(string input, string packageId)
-        {
-            if (MavenPackageIdParser.TryGetMetadataFromPackageID(packageId, out var metadata))
-            {
-                return CreateMavenVersion(input);
-            }
-            
-            if (NugetPackageIdParser.TryGetMetadataFromPackageID(packageId, out var nugetMetdata))
-            {
-                return CreateSemanticVersion(input);
-            }
-
-            throw new ArgumentException($"Package id {packageId} is not recognised");
         }
 
         public static IVersion CreateMavenVersion(string input)
@@ -84,21 +65,6 @@ namespace Octopus.Versioning.Factories
                 default:
                     return TryCreateSemanticVersion(input, out version);
             }
-        }
-
-        public static bool TryCreateVersion(string input, out IVersion version, string packageId)
-        {
-            if (MavenPackageIdParser.TryGetMetadataFromPackageID(packageId, out var metadata))
-            {
-                return TryCreateSemanticVersion(input, out version);
-            }
-            
-            if (NugetPackageIdParser.TryGetMetadataFromPackageID(packageId, out var nugetMetdata))
-            {
-                return TryCreateMavenVersion(input,  out version);
-            }
-
-            throw new ArgumentException($"Package id {packageId} is not recognised");
         }
 
         public static bool TryCreateMavenVersion(string input, out IVersion version)

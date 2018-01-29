@@ -7,13 +7,6 @@ namespace Octopus.Versioning.Tests.Versions
     public class VersionTests
     {
         [Test]
-        public void TestVersionCreation()
-        {
-            Assert.AreEqual(VersionFactory.CreateMavenVersion("1.0.0"), VersionFactory.CreateVersion("1.0.0", "Maven#group#artifact"));
-            Assert.AreEqual(VersionFactory.CreateSemanticVersion("1.0.0"), VersionFactory.CreateVersion("1.0.0", "NugetGetPackage"));
-        }
-
-        [Test]
         public void TestMavenComparasion()
         {
             var versionOne = VersionFactory.CreateMavenVersion("1.0.0");
