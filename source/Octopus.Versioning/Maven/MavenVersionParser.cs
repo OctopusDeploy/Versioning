@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Octopus.Core.Extensions;
+using Octopus.CoreUtilities.Extensions;
 
 namespace Octopus.Versioning.Maven
 {

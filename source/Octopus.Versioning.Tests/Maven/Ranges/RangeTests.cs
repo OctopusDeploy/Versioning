@@ -683,7 +683,7 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
                 MavenVersionRange.CreateFromVersionSpec(version);
                 Assert.Fail("Version " + version + " should have failed to construct");
             }
-            catch (InvalidVersionSpecificationException expected)
+            catch (InvalidVersionSpecificationException)
             {
                 // expected
             }

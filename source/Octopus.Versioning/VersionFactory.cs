@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Octopus.Core.Util;
+using Octopus.CoreUtilities;
 using Octopus.Versioning.Maven;
 using Octopus.Versioning.Semver;
 using SemanticVersion = Octopus.Versioning.Semver.SemanticVersion;

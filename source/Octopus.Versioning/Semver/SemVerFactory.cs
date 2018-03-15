@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Octopus.Core.Util;
+using Octopus.CoreUtilities;
 
 namespace Octopus.Versioning.Semver
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Octopus.Core.Extensions;
+using Octopus.CoreUtilities.Extensions;
 
 namespace Octopus.Versioning.Maven.Ranges
 {   

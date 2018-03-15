@@ -72,5 +72,18 @@ namespace Octopus.Versioning.Maven
         {
             return this.CompareTo(obj) == 0;
         }
+        
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = Major;
+                hashCode = (hashCode * 397) ^ Minor;
+                hashCode = (hashCode * 397) ^ Patch;
+                hashCode = (hashCode * 397) ^ Revision;
+                hashCode = (hashCode * 397) ^ (ReleaseLabels != null ? ReleaseLabels.GetHashCode() : 0);
+                return hashCode;
+            }
+        }
     }
 }

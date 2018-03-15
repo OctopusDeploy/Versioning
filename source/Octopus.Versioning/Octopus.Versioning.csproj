@@ -1,84 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BCE848C9-BD65-475D-A7E2-888C1729DBF7}</ProjectGuid>
-    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Octopus.Versioning</RootNamespace>
+    <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
     <AssemblyName>Octopus.Versioning</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <PackageId>Octopus.Versioning</PackageId>
+    <PackageIconUrl>http://i.octopusdeploy.com/resources/Avatar3_360.png</PackageIconUrl>
+    <Authors>Octopus Deploy</Authors>
+    <Title>Octopus Version Support</Title>
+    <Description>Octopus Deploy versioning library. Provides the agreed version contracts between Octopus Server and Calamari.</Description>
+    <RepositoryUrl>https://github.com/OctopusDeploy/Versioning</RepositoryUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Copyright>Copyright © Octopus Deploy 2017</Copyright>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Octopus.Server.Core.Utilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Octopus.Server.Core.Utilities.1.0.0\lib\net40\Octopus.Server.Core.Utilities.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Octopus.CoreUtilities" Version="1.1.1" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Semver\SemVerFactory.cs" />
-    <Compile Include="VersionFormat.cs" />
-    <Compile Include="Maven\MavenPackageID.cs" />
-    <Compile Include="Maven\Ranges\InvalidVersionSpecificationException.cs" />
-    <Compile Include="Maven\Ranges\MavenVersionRange.cs" />
-    <Compile Include="Maven\Ranges\OverConstrainedVersionException.cs" />
-    <Compile Include="Maven\Ranges\Restriction.cs" />
-    <Compile Include="VersionFactory.cs" />
-    <Compile Include="IVersion.cs" />
-    <Compile Include="IVersionComparer.cs" />
-    <Compile Include="Maven\ComparableVersion.cs" />
-    <Compile Include="Maven\MavenVersion.cs" />
-    <Compile Include="Maven\MavenVersionParser.cs" />
-    <Compile Include="Semver\ISemanticVersionUtils.cs" />
-    <Compile Include="Semver\SemanticVersion.cs" />
-    <Compile Include="Semver\SemanticVersionUtils.cs" />
-    <Compile Include="Semver\StrictSemanticVersion.cs" />
-    <Compile Include="Semver\StrictSemanticVersionBase.cs" />
-    <Compile Include="Semver\VersionComparer.cs" />
-    <Compile Include="Semver\VersionComparison.cs" />
-    <Compile Include="VersionFormatExtensions.cs" />
-    <Compile Include="VersionFormatter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
