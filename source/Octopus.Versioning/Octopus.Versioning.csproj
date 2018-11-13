@@ -15,6 +15,6 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Octopus.CoreUtilities" Version="1.1.1" />
+    <PackageReference Include="Octopus.CoreUtilities" Version="1.1.2" />
   </ItemGroup>
 </Project>
