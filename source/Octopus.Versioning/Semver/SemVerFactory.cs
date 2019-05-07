@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Octopus.CoreUtilities;
 
 namespace Octopus.Versioning.Semver
 {
@@ -21,14 +20,6 @@ namespace Octopus.Versioning.Semver
             }
 
             return ver;
-        }
-        
-        public static Maybe<IVersion> CreateVersionOrNone(string input, bool preserveMissingComponents = false)
-        {
-            SemanticVersion ver;
-            return TryCreateVersion(input, out ver, preserveMissingComponents)
-                ? ((IVersion)ver).AsSome()
-                : Maybe<IVersion>.None;
         }
         
         /// <summary>

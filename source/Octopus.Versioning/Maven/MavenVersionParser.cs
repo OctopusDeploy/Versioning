@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Octopus.CoreUtilities.Extensions;
 
 namespace Octopus.Versioning.Maven
 {
@@ -46,7 +45,7 @@ namespace Octopus.Versioning.Maven
                 Minor, 
                 Patch, 
                 BuildNumber, 
-                Qualifier.ToEnumerable(),
+                new [] {Qualifier},
                 version);
         }
 

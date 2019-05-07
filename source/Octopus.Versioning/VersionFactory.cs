@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Octopus.CoreUtilities;
 using Octopus.Versioning.Maven;
 using Octopus.Versioning.Semver;
 using SemanticVersion = Octopus.Versioning.Semver.SemanticVersion;
@@ -84,11 +83,6 @@ namespace Octopus.Versioning
             var retValue = SemVerFactory.TryCreateVersion(input, out var semVersion, preserveMissingComponents);
             version = semVersion;
             return retValue;
-        }
-
-        public static Maybe<IVersion> CreateSemanticVersionOrNone(string input, bool preserveMissingComponents = false)
-        {
-            return SemVerFactory.CreateVersionOrNone(input, preserveMissingComponents);
         }
 
         public static IVersion CreateSemanticVersion(Version version, IEnumerable<string> releaseLabels, string metadata,

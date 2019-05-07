@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Octopus.CoreUtilities.Extensions;
 
 namespace Octopus.Versioning.Maven.Ranges
 {   
@@ -482,9 +481,9 @@ namespace Octopus.Versioning.Maven.Ranges
                     buf.Append( ',' );
                 }                                
                 
-                return buf
-                    .ToString()
-                    .Map(s => s.Length != 0 ? s.Substring(s.Length - 1) : s);
+                var result = buf.ToString();
+
+                return result.Length != 0 ? result.Substring(result.Length - 1) : result;
             }
         }
     
