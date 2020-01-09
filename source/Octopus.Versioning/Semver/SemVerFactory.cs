@@ -60,7 +60,7 @@ namespace Octopus.Versioning.Semver
 
             if (value != null)
             {
-                Version systemVersion = null;
+                System.Version systemVersion = null;
 
                 // trim the value before passing it in since we not strict here
                 var sections = utils.ParseSections(value.Trim());
@@ -77,7 +77,7 @@ namespace Octopus.Versioning.Semver
                         versionPart += ".0";
                     }
 
-                    if (Version.TryParse(versionPart, out systemVersion))
+                    if (System.Version.TryParse(versionPart, out systemVersion))
                     {
                         // labels
                         if (sections.Item2 != null
