@@ -3,6 +3,7 @@
     public enum VersionFormat
     {
         Semver,
-        Maven
+        Maven,
+        Docker
     }
 }
