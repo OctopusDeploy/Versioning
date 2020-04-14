@@ -6,7 +6,7 @@ namespace Octopus.Versioning.Tests.Versions
     public class VersionTests
     {
         [Test]
-        public void TestMavenComparasion()
+        public void TestMavenComparison()
         {
             var versionOne = VersionFactory.CreateMavenVersion("1.0.0");
 
@@ -20,7 +20,7 @@ namespace Octopus.Versioning.Tests.Versions
         }
 
         [Test]
-        public void TestBunchMoreComparasions()
+        public void TestBunchMoreComparisons()
         {
             Assert.Less(VersionFactory.CreateMavenVersion("1.0-beta1-SNAPSHOT"),
                 VersionFactory.CreateMavenVersion("1.0-beta1"));
@@ -57,7 +57,7 @@ namespace Octopus.Versioning.Tests.Versions
         }
 
         [Test]
-        public void TestEquilivants()
+        public void TestEquivalents()
         {
             Assert.AreEqual(
                 VersionFactory.CreateMavenVersion("1.0.0.a1"),
@@ -74,6 +74,12 @@ namespace Octopus.Versioning.Tests.Versions
         public void TestInvalidVersion()
         {
             Assert.False(VersionFactory.TryCreateVersion("1.0.*", out var version, VersionFormat.Semver));
+        }
+
+        [Test]
+        public void TestDockerTagComparison()
+        {
+            Assert.AreEqual(VersionFactory.CreateDockerTag("latest"), VersionFactory.CreateDockerTag("latest"));
         }
     }
 }

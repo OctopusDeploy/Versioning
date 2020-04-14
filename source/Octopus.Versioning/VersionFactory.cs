@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Octopus.CoreUtilities;
+using Octopus.Versioning.Docker;
 using Octopus.Versioning.Maven;
 using Octopus.Versioning.Semver;
 using SemanticVersion = Octopus.Versioning.Semver.SemanticVersion;
@@ -15,6 +16,8 @@ namespace Octopus.Versioning
             {
                 case VersionFormat.Maven:
                     return CreateMavenVersion(input);
+                case VersionFormat.Docker:
+                    return CreateDockerTag(input);
                 default:
                     return CreateSemanticVersion(input);
             }
@@ -26,6 +29,8 @@ namespace Octopus.Versioning
             {
                 case VersionFormat.Maven:
                     return TryCreateMavenVersion(input, out version);
+                case VersionFormat.Docker:
+                    return TryCreateDockerTag(input, out version);
                 default:
                     return TryCreateSemanticVersion(input, out version);
             }
@@ -68,8 +73,6 @@ namespace Octopus.Versioning
             return new SemanticVersion(major, minor, patch, revision, releaseLabels, metadata);
         }
 
-        
-
         public static bool TryCreateMavenVersion(string input, out IVersion version)
         {
             /*
@@ -99,6 +102,17 @@ namespace Octopus.Versioning
                 releaseLabels,
                 metadata,
                 originalVersion);
+        }
+
+        public static IVersion CreateDockerTag(string input)
+        {
+            return new DockerTag(input);
+        }
+
+        public static bool TryCreateDockerTag(string input, out IVersion version)
+        {
+            version = new DockerTag(input);
+            return true;
         }
     }
 }
