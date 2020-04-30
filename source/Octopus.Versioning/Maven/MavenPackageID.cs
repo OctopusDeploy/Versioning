@@ -301,18 +301,18 @@ namespace Octopus.Versioning.Maven
 
                 if (mavenDisplaySplit.Length == 3) // groupId:artifactId:version
                 {
-                    Version = mavenDisplaySplit[2].Trim();
+                    Version = string.IsNullOrWhiteSpace(mavenDisplaySplit[2]) ? null : mavenDisplaySplit[2].Trim();
                 }
                 else if (mavenDisplaySplit.Length == 4) // groupId:artifactId:packaging:version
                 {
-                    Packaging = mavenDisplaySplit[2].Trim();
-                    Version = mavenDisplaySplit[3].Trim();
+                    Packaging = string.IsNullOrWhiteSpace(mavenDisplaySplit[2]) ? null : mavenDisplaySplit[2].Trim();
+                    Version = string.IsNullOrWhiteSpace(mavenDisplaySplit[3]) ? null : mavenDisplaySplit[3].Trim();
                 }
                 else if (mavenDisplaySplit.Length == 5) // groupId:artifactId:packaging:classifier:version
                 {
-                    Packaging = mavenDisplaySplit[2].Trim();
-                    Classifier = mavenDisplaySplit[3].Trim();
-                    Version = mavenDisplaySplit[4].Trim();
+                    Packaging = string.IsNullOrWhiteSpace(mavenDisplaySplit[2]) ? null : mavenDisplaySplit[2].Trim();
+                    Classifier = string.IsNullOrWhiteSpace(mavenDisplaySplit[3]) ? null : mavenDisplaySplit[3].Trim();
+                    Version = string.IsNullOrWhiteSpace(mavenDisplaySplit[4]) ? null : mavenDisplaySplit[4].Trim();
                 }
             }
             else
