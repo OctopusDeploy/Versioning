@@ -272,7 +272,7 @@ namespace Octopus.Versioning.Maven
 
         public MavenPackageID(string id, IVersion version) : this(id)
         {
-            Version = version.ToString();
+            Version = version?.ToString();
         }
 
         /// <summary>
