@@ -25,6 +25,30 @@ namespace Octopus.Versioning.Maven
     public class MavenPackageID
     {
         /// <summary>
+        /// Standard GAV coordinates are group:artifact:version. This can also be extended to include the packaging in the
+        /// format group:artifact:packaging:version.
+        ///
+        /// However, we never pass the version in the package id from the UI. Instead we pass a string like group:artifact or
+        /// group:artifact:packaging. This is because the version selection is a separate process from the package definition.
+        ///
+        /// It is here that we convert the package id sent from the UI into the standard Maven string.
+        /// </summary>
+        /// <param name="input">The input sent from the UI</param>
+        /// <param name="version">The optional version</param>
+        /// <returns>A MavenPackageID created to match the package id an optional packaging defined in the UI</returns>
+        /// <exception cref="ArgumentException">thrown if the input is not in the correct format</exception>
+        public static MavenPackageID CreatePackageIDFromUIInput(string input, IVersion version = null)
+        {
+            var splitVersion = input.Split(':').ToList();
+            if (!(splitVersion.Count == 2 || splitVersion.Count == 3))
+            {
+                throw new ArgumentException("Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+            }
+            splitVersion.Add(version != null ? version.ToString() : "");
+            return new MavenPackageID(string.Join(":", splitVersion));
+        }
+        
+        /// <summary>
         /// When we display the package ID to the user, this is the delimiter we use.
         /// The colon is the standard delimiter format for Maven packages, but it
         /// is not a valid file system character so we don't use it when saving
