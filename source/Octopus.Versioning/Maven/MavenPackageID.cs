@@ -294,7 +294,7 @@ namespace Octopus.Versioning.Maven
              * When downloading for the first time, we will use the G:A:V format
              * supplied by the end user.
              */
-            if (mavenDisplaySplit.Length >= 2 && mavenDisplaySplit.All(x => x != null && x.Trim().Length != 0))
+            if (mavenDisplaySplit.Length >= 2)
             {
                 Group = mavenDisplaySplit[0].Trim();
                 Artifact = mavenDisplaySplit[1].Trim();
