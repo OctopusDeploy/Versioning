@@ -310,7 +310,7 @@ namespace Octopus.Versioning.Maven
 
         public MavenPackageID(string id, IVersion version) : this(id)
         {
-            if (id == null || id.Trim().Length == 0 || id.Split(':').Length != 2)
+            if (string.IsNullOrWhiteSpace(id) || id.Split(':').Length != 2)
             {
                 throw new ArgumentException("Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
