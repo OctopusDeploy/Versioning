@@ -27,7 +27,9 @@ namespace Octopus.Versioning.Maven
     {
         /// <summary>
         /// Standard GAV coordinates are group:artifact:version. This can also be extended to include the packaging in the
-        /// format group:artifact:version:packaging.
+        /// format group:artifact:version:packaging or group:artifact:version:packaging:classifier. See
+        /// http://maven.apache.org/plugins/maven-dependency-plugin/get-mojo.html for this format defined in the Maven
+        /// documentation.
         ///
         /// However, we never pass the version in the package id from the UI. Instead we pass a string like group:artifact or
         /// group:artifact:packaging. This is because the version selection is a separate process from the package definition.
