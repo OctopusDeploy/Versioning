@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Octopus.Versioning.Maven
@@ -24,6 +25,43 @@ namespace Octopus.Versioning.Maven
     /// </summary>
     public class MavenPackageID
     {
+        /// <summary>
+        /// Standard GAV coordinates are group:artifact:version. This can also be extended to include the packaging in the
+        /// format group:artifact:version:packaging or group:artifact:version:packaging:classifier. See
+        /// http://maven.apache.org/plugins/maven-dependency-plugin/get-mojo.html for this format defined in the Maven
+        /// documentation.
+        ///
+        /// However, we never pass the version in the package id from the UI. Instead we pass a string like group:artifact or
+        /// group:artifact:packaging. This is because the version selection is a separate process from the package definition.
+        ///
+        /// It is here that we convert the package id sent from the UI into the standard Maven string.
+        /// </summary>
+        /// <param name="input">The input sent from the UI</param>
+        /// <param name="version">The optional version</param>
+        /// <returns>A MavenPackageID created to match the package id an optional packaging defined in the UI</returns>
+        /// <exception cref="ArgumentException">thrown if the input is not in the correct format</exception>
+        public static MavenPackageID CreatePackageIdFromOctopusInput(string input, IVersion version = null)
+        {
+            var splitVersion = input.Split(':').ToList();
+            if (!(splitVersion.Count == 2 || splitVersion.Count == 3))
+            {
+                throw new ArgumentException("Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+            }
+            
+            var mavenStandardVersion = new List<string>()
+            {
+                splitVersion[0], 
+                splitVersion[1], 
+                version != null ? version.ToString() : ""
+            };
+            if (splitVersion.Count == 3)
+            {
+                mavenStandardVersion.Add(splitVersion[2]);
+            }
+            
+            return new MavenPackageID(string.Join(":", mavenStandardVersion));
+        }
+        
         /// <summary>
         /// When we display the package ID to the user, this is the delimiter we use.
         /// The colon is the standard delimiter format for Maven packages, but it
@@ -272,11 +310,23 @@ namespace Octopus.Versioning.Maven
 
         public MavenPackageID(string id, IVersion version) : this(id)
         {
+            if (string.IsNullOrWhiteSpace(id) || id.Split(':').Length != 2)
+            {
+                throw new ArgumentException("Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+            }
+            
+            if (version == null)
+            {
+                throw new ArgumentException("version can not be null");
+            }
+            
             Version = version.ToString();
         }
 
         /// <summary>
         /// Parses an octopus package id into the maven package details.
+        /// The versioning syntax comes from http://maven.apache.org/plugins/maven-dependency-plugin/get-mojo.html being
+        /// groupId:artifactId:version[:packaging[:classifier]]
         /// </summary>
         /// <param name="id">
         /// The package id is in the display format like "Group:Artifact".
@@ -294,25 +344,25 @@ namespace Octopus.Versioning.Maven
              * When downloading for the first time, we will use the G:A:V format
              * supplied by the end user.
              */
-            if (mavenDisplaySplit.Length >= 2 && mavenDisplaySplit.All(x => x != null && x.Trim().Length != 0))
+            if (mavenDisplaySplit.Length >= 2)
             {
                 Group = mavenDisplaySplit[0].Trim();
                 Artifact = mavenDisplaySplit[1].Trim();
 
                 if (mavenDisplaySplit.Length == 3) // groupId:artifactId:version
                 {
-                    Version = mavenDisplaySplit[2].Trim();
+                    Version = string.IsNullOrWhiteSpace(mavenDisplaySplit[2]) ? null : mavenDisplaySplit[2].Trim();
                 }
-                else if (mavenDisplaySplit.Length == 4) // groupId:artifactId:packaging:version
+                else if (mavenDisplaySplit.Length == 4) // groupId:artifactId:version:packaging
                 {
-                    Packaging = mavenDisplaySplit[2].Trim();
-                    Version = mavenDisplaySplit[3].Trim();
+                    Version = string.IsNullOrWhiteSpace(mavenDisplaySplit[2]) ? null : mavenDisplaySplit[2].Trim();
+                    Packaging = string.IsNullOrWhiteSpace(mavenDisplaySplit[3]) ? null : mavenDisplaySplit[3].Trim();
                 }
-                else if (mavenDisplaySplit.Length == 5) // groupId:artifactId:packaging:classifier:version
+                else if (mavenDisplaySplit.Length == 5) // groupId:artifactId:version:packaging:classifier
                 {
-                    Packaging = mavenDisplaySplit[2].Trim();
-                    Classifier = mavenDisplaySplit[3].Trim();
-                    Version = mavenDisplaySplit[4].Trim();
+                    Version = string.IsNullOrWhiteSpace(mavenDisplaySplit[2]) ? null : mavenDisplaySplit[2].Trim();
+                    Packaging = string.IsNullOrWhiteSpace(mavenDisplaySplit[3]) ? null : mavenDisplaySplit[3].Trim();
+                    Classifier = string.IsNullOrWhiteSpace(mavenDisplaySplit[4]) ? null : mavenDisplaySplit[4].Trim();
                 }
             }
             else
