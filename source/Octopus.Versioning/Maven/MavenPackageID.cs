@@ -95,7 +95,7 @@ namespace Octopus.Versioning.Maven
                     throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
-                if (Artifact == null || Artifact.Trim().Length == 0)
+                if (string.IsNullOrWhiteSpace(Artifact))
                 {
                     throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
@@ -119,12 +119,12 @@ namespace Octopus.Versioning.Maven
                     throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
-                if (Artifact == null || Artifact.Trim().Length == 0)
+                if (string.IsNullOrWhiteSpace(Artifact))
                 {
                     throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
-                if (Version == null || Version.Trim().Length == 0)
+                if (string.IsNullOrWhiteSpace(Version))
                 {
                     throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
@@ -149,12 +149,12 @@ namespace Octopus.Versioning.Maven
                     throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
-                if (Artifact == null || Artifact.Trim().Length == 0)
+                if (string.IsNullOrWhiteSpace(Artifact))
                 {
                     throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
-                if (Version == null || Version.Trim().Length == 0)
+                if (string.IsNullOrWhiteSpace(Version))
                 {
                     throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
@@ -176,12 +176,12 @@ namespace Octopus.Versioning.Maven
                 throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
 
-            if (Artifact == null || Artifact.Trim().Length == 0)
+            if (string.IsNullOrWhiteSpace(Artifact))
             {
                 throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
 
-            if (Version == null || Version.Trim().Length == 0)
+            if (string.IsNullOrWhiteSpace(Version))
             {
                 throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
@@ -203,12 +203,12 @@ namespace Octopus.Versioning.Maven
                     throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
-                if (Artifact == null || Artifact.Trim().Length == 0)
+                if (string.IsNullOrWhiteSpace(Artifact))
                 {
                     throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
 
-                if (Version == null || Version.Trim().Length == 0)
+                if (string.IsNullOrWhiteSpace(Version))
                 {
                     throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
                 }
@@ -230,12 +230,12 @@ namespace Octopus.Versioning.Maven
                 throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
 
-            if (Artifact == null || Artifact.Trim().Length == 0)
+            if (string.IsNullOrWhiteSpace(Artifact))
             {
                 throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
 
-            if (Version == null || Version.Trim().Length == 0)
+            if (string.IsNullOrWhiteSpace(Version))
             {
                 throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
             }
@@ -248,12 +248,12 @@ namespace Octopus.Versioning.Maven
 
         public MavenPackageID(string group, string artifact)
         {
-            if (group == null || group.Trim().Length == 0)
+            if (string.IsNullOrWhiteSpace(group))
             {
                 throw new ArgumentException("Group can not be empty");
             }
 
-            if (artifact == null || artifact.Trim().Length == 0)
+            if (string.IsNullOrWhiteSpace(artifact))
             {
                 throw new ArgumentException("Artifact can not be empty.");
             }
