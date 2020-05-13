@@ -243,7 +243,7 @@ namespace Octopus.Versioning.Maven
             return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
                 "/" + Artifact +
                 "/" + Version +
-                "/" + Artifact + (string.IsNullOrWhiteSpace(Classifier) ? "" : "-" + Classifier) + "-" + value + "." + Packaging;
+                "/" + Artifact + "-" + value + (string.IsNullOrWhiteSpace(Classifier) ? "" : "-" + Classifier) + "." + Packaging;
         }
 
         public MavenPackageID(string group, string artifact)
