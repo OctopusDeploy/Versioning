@@ -7,6 +7,17 @@ namespace Octopus.Versioning.Tests.Versions
     public class MavenCoordinateTests
     {
         [Test]
+        public void CoordinatesAreParsed()
+        {
+            var mavenId = new MavenPackageID("group", "artifact", "version", "packaging" ,"classifier");
+            Assert.AreEqual("group", mavenId.Group);
+            Assert.AreEqual("artifact", mavenId.Artifact);
+            Assert.AreEqual("version", mavenId.Version);
+            Assert.AreEqual("packaging", mavenId.Packaging);
+            Assert.AreEqual("classifier", mavenId.Classifier);
+        }
+        
+        [Test]
         public void GroupAndArtifactCoordinatesAreParsed()
         {
             var mavenId = new MavenPackageID("group:artifact");

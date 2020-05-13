@@ -292,7 +292,7 @@ namespace Octopus.Versioning.Maven
                 throw new ArgumentException("Packaging can not be empty");
             }
 
-            Group = group.Trim();
+            Classifier = classifier.Trim();
         }
 
         public MavenPackageID(string id, IVersion version) : this(id)
