@@ -287,12 +287,7 @@ namespace Octopus.Versioning.Maven
         public MavenPackageID(string group, string artifact, string version, string packaging, string classifier) : 
             this(group, artifact, version, packaging)
         {
-            if (string.IsNullOrWhiteSpace(classifier))
-            {
-                throw new ArgumentException("Packaging can not be empty");
-            }
-
-            Classifier = classifier.Trim();
+            Classifier = string.IsNullOrWhiteSpace(classifier) ? null : classifier.Trim();
         }
 
         public MavenPackageID(string id, IVersion version) : this(id)
