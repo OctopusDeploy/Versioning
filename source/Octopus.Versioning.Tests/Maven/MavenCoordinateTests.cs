@@ -7,6 +7,17 @@ namespace Octopus.Versioning.Tests.Versions
     public class MavenCoordinateTests
     {
         [Test]
+        public void CoordinatesAreParsed()
+        {
+            var mavenId = new MavenPackageID("group", "artifact", "version", "packaging" ,"classifier");
+            Assert.AreEqual("group", mavenId.Group);
+            Assert.AreEqual("artifact", mavenId.Artifact);
+            Assert.AreEqual("version", mavenId.Version);
+            Assert.AreEqual("packaging", mavenId.Packaging);
+            Assert.AreEqual("classifier", mavenId.Classifier);
+        }
+        
+        [Test]
         public void GroupAndArtifactCoordinatesAreParsed()
         {
             var mavenId = new MavenPackageID("group:artifact");
@@ -58,12 +69,33 @@ namespace Octopus.Versioning.Tests.Versions
         }
         
         [Test]
+        public void OctopusSpecificCoordinatesAndClassifierAreParsed()
+        {
+            var mavenId = MavenPackageID.CreatePackageIdFromOctopusInput("group:artifact:packaging:classifier");
+            Assert.AreEqual("group", mavenId.Group);
+            Assert.AreEqual("artifact", mavenId.Artifact);
+            Assert.AreEqual("packaging", mavenId.Packaging);
+            Assert.AreEqual("classifier", mavenId.Classifier);
+        }
+        
+        [Test]
         public void OctopusSpecificCoordinatesWithVersionAreParsed()
         {
             var mavenId = MavenPackageID.CreatePackageIdFromOctopusInput("group:artifact:packaging", new MavenVersionParser().Parse("1.0.0"));
             Assert.AreEqual("group", mavenId.Group);
             Assert.AreEqual("artifact", mavenId.Artifact);
             Assert.AreEqual("packaging", mavenId.Packaging);
+            Assert.AreEqual("1.0.0", mavenId.Version);
+        }
+        
+        [Test]
+        public void OctopusSpecificCoordinatesWithVersionAndClassifierAreParsed()
+        {
+            var mavenId = MavenPackageID.CreatePackageIdFromOctopusInput("group:artifact:packaging:classifier", new MavenVersionParser().Parse("1.0.0"));
+            Assert.AreEqual("group", mavenId.Group);
+            Assert.AreEqual("artifact", mavenId.Artifact);
+            Assert.AreEqual("packaging", mavenId.Packaging);
+            Assert.AreEqual("classifier", mavenId.Classifier);
             Assert.AreEqual("1.0.0", mavenId.Version);
         }
     }
