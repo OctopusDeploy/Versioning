@@ -80,7 +80,19 @@ function MD5HashFile([string] $filePath)
     }
 }
 
+function GetProxyEnabledWebClient
+{
+    $wc = New-Object System.Net.WebClient
+    $proxy = [System.Net.WebRequest]::GetSystemWebProxy()
+    $proxy.Credentials = [System.Net.CredentialCache]::DefaultCredentials
+    $wc.Proxy = $proxy
+    return $wc
+}
+
 Write-Host "Preparing to run build script..."
+
+# Enable TLS 1.2 in this script. NuGet is now requiring it.
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor [System.Net.SecurityProtocolType]::Tls12
 
 if(!$PSScriptRoot){
     $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
@@ -122,9 +134,12 @@ if ((Test-Path $PSScriptRoot) -and !(Test-Path $TOOLS_DIR)) {
 # Make sure that packages.config exist.
 if (!(Test-Path $PACKAGES_CONFIG)) {
     Write-Verbose -Message "Downloading packages.config..."
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    try { (New-Object System.Net.WebClient).DownloadFile("http://cakebuild.net/download/bootstrapper/packages", $PACKAGES_CONFIG) } catch {
-        Throw "Could not download packages.config."
+    try {
+        $wc = GetProxyEnabledWebClient
+        $wc.DownloadFile("https://cakebuild.net/download/bootstrapper/packages", $PACKAGES_CONFIG)
+    } catch {
+        Write-Host "Could not download packages.config."
+        Throw $_
     }
 }
 
@@ -143,9 +158,12 @@ if (!(Test-Path $NUGET_EXE)) {
 if (!(Test-Path $NUGET_EXE)) {
     Write-Verbose -Message "Downloading NuGet.exe..."
     try {
-        (New-Object System.Net.WebClient).DownloadFile($NUGET_URL, $NUGET_EXE)
+        $wc = GetProxyEnabledWebClient
+        # Note: nuget.org requires TLS 1.2, so this depends on the settings in [System.Net.ServicePointManager]::SecurityProtocol
+        $wc.DownloadFile($NUGET_URL, $NUGET_EXE)
     } catch {
-        Throw "Could not download NuGet.exe."
+        Write-Host "Could not download NuGet.exe."
+        Throw $_
     }
 }
 
