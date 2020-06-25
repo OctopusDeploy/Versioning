@@ -11,9 +11,9 @@ namespace Octopus.Versioning.Maven.Ranges
         public static readonly Restriction EVERYTHING = new Restriction(null, false, null, false);
 
         public Restriction(
-            IVersion lowerBound, 
+            IVersion? lowerBound, 
             bool lowerBoundInclusive, 
-            IVersion upperBound,
+            IVersion? upperBound,
             bool upperBoundInclusive)
         {
             LowerBound = lowerBound;
@@ -22,9 +22,9 @@ namespace Octopus.Versioning.Maven.Ranges
             IsUpperBoundInclusive = upperBoundInclusive;
         }
 
-        public IVersion LowerBound { get; }
+        public IVersion? LowerBound { get; }
         public bool IsLowerBoundInclusive { get; }
-        public IVersion UpperBound { get; }
+        public IVersion? UpperBound { get; }
         public bool IsUpperBoundInclusive { get; }
 
         public bool ContainsVersion(IVersion version)

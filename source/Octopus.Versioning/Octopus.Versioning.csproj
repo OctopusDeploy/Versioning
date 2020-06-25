@@ -8,11 +8,13 @@
     <Title>Octopus Version Support</Title>
     <Description>Octopus Deploy versioning library. Provides the agreed version contracts between Octopus Server and Calamari.</Description>
     <RepositoryUrl>https://github.com/OctopusDeploy/Versioning</RepositoryUrl>
-    <PackageLicenseUrl>https://github.com/OctopusDeploy/Versioning/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/OctopusDeploy/Versioning</PackageProjectUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Copyright>Copyright © Octopus Deploy 2017</Copyright>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <LangVersion>8</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha">

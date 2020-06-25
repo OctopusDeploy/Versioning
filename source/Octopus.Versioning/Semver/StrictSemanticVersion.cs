@@ -14,9 +14,9 @@ namespace Octopus.Versioning.Semver
     public partial class StrictSemanticVersion : IVersion
     {
         static readonly ISemanticVersionUtils utils = new SemanticVersionUtils();
-        readonly IEnumerable<string> _releaseLabels;
-        readonly string _metadata;
-        protected readonly Version _version;
+        readonly IEnumerable<string>? releaseLabels;
+        readonly string? metadata;
+        protected readonly Version version;
 
         /// <summary>
         /// Creates a SemanticVersion X.Y.Z
@@ -37,57 +37,57 @@ namespace Octopus.Versioning.Semver
         /// <param name="patch">x.y.Z</param>
         /// <param name="releaseLabels">Release labels that have been split by the dot separator</param>
         /// <param name="metadata">Build metadata</param>
-        StrictSemanticVersion(int major, int minor, int patch, IEnumerable<string> releaseLabels, string metadata)
+        StrictSemanticVersion(int major, int minor, int patch, IEnumerable<string> releaseLabels, string? metadata)
             : this(new Version(major, minor, patch, 0), releaseLabels, metadata)
         {
         }
 
-        public StrictSemanticVersion(Version version, IEnumerable<string> releaseLabels, string metadata, bool preserveMissingComponents = false)
+        public StrictSemanticVersion(Version version, IEnumerable<string>? releaseLabels, string? metadata, bool preserveMissingComponents = false)
         {
             if (version == null)
             {
                throw new ArgumentException("version can not be null");
             }         
 
-            _version = preserveMissingComponents
+            this.version = preserveMissingComponents
                 ? version
                 : utils.NormalizeVersionValue(version);
 
-            _metadata = metadata;
+            this.metadata = metadata;
 
             if (releaseLabels != null)
             {
                 // enumerate the list
-                _releaseLabels = releaseLabels.ToArray();
+                this.releaseLabels = releaseLabels.ToArray();
             }
         }
 
         /// <summary>
         /// Major version X (X.y.z)
         /// </summary>
-        public int Major => _version.Major;
+        public int Major => version.Major;
 
         /// <summary>
         /// Minor version Y (x.Y.z)
         /// </summary>
-        public int Minor => _version.Minor;
+        public int Minor => version.Minor;
 
         /// <summary>
         /// Patch version Z (x.y.Z)
         /// </summary>
-        public int Patch => _version.Build;
+        public int Patch => version.Build;
 
         /// <summary>
         /// Revision version R (x.y.z.R)
         /// </summary>
-        public int Revision => _version.Revision;
+        public int Revision => version.Revision;
 
         /// <summary>
         /// A collection of pre-release labels attached to the version.
         /// </summary>
         public IEnumerable<string> ReleaseLabels
         {
-            get { return _releaseLabels ?? Enumerable.Empty<string>(); }
+            get { return releaseLabels ?? Enumerable.Empty<string>(); }
         }
 
         /// <summary>
@@ -97,9 +97,9 @@ namespace Octopus.Versioning.Semver
         {
             get
             {
-                if (_releaseLabels != null)
+                if (releaseLabels != null)
                 {
-                    return String.Join(".", _releaseLabels);
+                    return String.Join(".", releaseLabels);
                 }
 
                 return string.Empty;
@@ -128,12 +128,12 @@ namespace Octopus.Versioning.Semver
         /// </summary>
         public virtual bool HasMetadata => !string.IsNullOrEmpty(Metadata);
 
-        public virtual string OriginalString => null;
+        public virtual string? OriginalString => null;
         public VersionFormat Format => VersionFormat.Semver;
 
         /// <summary>
         /// Build metadata attached to the version.
         /// </summary>
-        public virtual string Metadata => _metadata;
+        public virtual string? Metadata => metadata;
     }
 }

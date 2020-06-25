@@ -35,10 +35,10 @@ namespace Octopus.Versioning
         int Revision { get; }
         bool IsPrerelease { get; }
         IEnumerable<string> ReleaseLabels { get; }
-        string Metadata { get; }
+        string? Metadata { get; }
         string Release { get; }
         bool HasMetadata { get; }
-        string OriginalString { get; }
+        string? OriginalString { get; }
         VersionFormat Format { get; }
     }
 }

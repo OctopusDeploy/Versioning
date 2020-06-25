@@ -42,12 +42,12 @@ namespace Octopus.Versioning.Maven
             }
         }
 
-        public string Metadata => null;
+        public string? Metadata => null;
         public bool HasMetadata => false;
         public string OriginalString => originalVersion;
         public VersionFormat Format => VersionFormat.Maven;
 
-        public MavenVersion(int major, int minor, int patch, int revision, IEnumerable<string> releaseLabels, string originalVersion)
+        public MavenVersion(int major, int minor, int patch, int revision, IEnumerable<string>? releaseLabels, string originalVersion)
         {
             Major = major;
             Minor = minor;

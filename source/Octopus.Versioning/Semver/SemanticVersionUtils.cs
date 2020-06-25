@@ -9,9 +9,9 @@ namespace Octopus.Versioning.Semver
 {
     public class SemanticVersionUtils : ISemanticVersionUtils
     {
-        public IEnumerable<string> ParseReleaseLabels(string releaseLabels)
+        public IEnumerable<string>? ParseReleaseLabels(string? releaseLabels)
         {
-            if (!string.IsNullOrEmpty(releaseLabels))
+            if (releaseLabels != null && !string.IsNullOrEmpty(releaseLabels))
             {
                 return releaseLabels.Split('.');
             }
@@ -19,7 +19,7 @@ namespace Octopus.Versioning.Semver
             return null;
         }
 
-        public string GetLegacyString(Version version, IEnumerable<string> releaseLabels, string metadata)
+        public string GetLegacyString(Version version, IEnumerable<string>? releaseLabels, string? metadata)
         {
             var sb = new StringBuilder(version.ToString());
 
@@ -53,11 +53,11 @@ namespace Octopus.Versioning.Semver
             return normalized;
         }
 
-        public Tuple<string, string[], string> ParseSections(string value)
+        public Tuple<string, string[], string?> ParseSections(string value)
         {
-            string versionString = null;
-            string[] releaseLabels = null;
-            string buildMetadata = null;
+            string versionString = string.Empty;
+            string[] releaseLabels = new string[0];
+            string? buildMetadata = null;
 
             var dashPos = -1;
             var plusPos = -1;
@@ -107,7 +107,7 @@ namespace Octopus.Versioning.Semver
                 }
             }
 
-            return new Tuple<string, string[], string>(versionString, releaseLabels, buildMetadata);
+            return new Tuple<string, string[], string?>(versionString, releaseLabels, buildMetadata);
         }
 
         public bool IsValid(string s, bool allowLeadingZeros)

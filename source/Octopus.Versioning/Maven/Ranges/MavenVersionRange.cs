@@ -10,29 +10,27 @@ namespace Octopus.Versioning.Maven.Ranges
     /// </summary>
     public class MavenVersionRange
     {
-        readonly IVersion recommendedVersion;
+        readonly IVersion? recommendedVersion;
 
         readonly List<Restriction> restrictions;
     
         private MavenVersionRange( 
-            IVersion recommendedVersion,
+            IVersion? recommendedVersion,
             List<Restriction> restrictions )
         {
             this.recommendedVersion = recommendedVersion;
             this.restrictions = restrictions;
         }
     
-        public IVersion RecommendedVersion => recommendedVersion;
+        public IVersion? RecommendedVersion => recommendedVersion;
         public List<Restriction> Restrictions => restrictions;
     
         public MavenVersionRange CloneOf()
         {
-            List<Restriction> copiedRestrictions = null;
+            List<Restriction> copiedRestrictions = new List<Restriction>();
     
             if ( restrictions != null )
             {
-                copiedRestrictions = new List<Restriction>();
-    
                 if ( restrictions.Count != 0 )
                 {
                     copiedRestrictions.AddRange( restrictions );
@@ -60,7 +58,7 @@ namespace Octopus.Versioning.Maven.Ranges
          * @throws InvalidVersionSpecificationException
          *
          */
-        public static MavenVersionRange CreateFromVersionSpec( string spec )
+        public static MavenVersionRange? CreateFromVersionSpec( string spec )
         {
             if ( spec == null )
             {
@@ -69,9 +67,9 @@ namespace Octopus.Versioning.Maven.Ranges
     
             List<Restriction> restrictions = new List<Restriction>();
             string process = spec;
-            IVersion version = null;
-            IVersion upperBound = null;
-            IVersion lowerBound = null;
+            IVersion? version = null;
+            IVersion? upperBound = null;
+            IVersion? lowerBound = null;
     
             while ( process.StartsWith( "[" ) || process.StartsWith( "(" ) )
             {
@@ -163,12 +161,12 @@ namespace Octopus.Versioning.Maven.Ranges
                     throw new InvalidVersionSpecificationException( "Range cannot have identical boundaries: " + spec );
                 }
     
-                IVersion lowerVersion = null;
+                IVersion? lowerVersion = null;
                 if ( lowerBound.Length > 0 )
                 {
                     lowerVersion = new MavenVersionParser().Parse( lowerBound );
                 }
-                IVersion upperVersion = null;
+                IVersion? upperVersion = null;
                 if ( upperBound.Length > 0 )
                 {
                     upperVersion = new MavenVersionParser().Parse( upperBound );
@@ -234,7 +232,7 @@ namespace Octopus.Versioning.Maven.Ranges
                 restrictions = Intersection( r1, r2 );
             }
     
-            IVersion version = null;
+            IVersion? version = null;
             if ( restrictions.Count > 0 )
             {
                 foreach (var r in restrictions)
@@ -296,8 +294,8 @@ namespace Octopus.Versioning.Maven.Ranges
                     if ( res1.UpperBound == null || res2.LowerBound == null
                         || res1.UpperBound.CompareTo( res2.LowerBound ) >= 0 )
                     {
-                        IVersion lower;
-                        IVersion upper;
+                        IVersion? lower;
+                        IVersion? upper;
                         bool lowerInclusive;
                         bool upperInclusive;
     
@@ -428,9 +426,9 @@ namespace Octopus.Versioning.Maven.Ranges
             return restrictions;
         }
     
-        public IVersion GetSelectedVersion(  )
+        public IVersion? GetSelectedVersion(  )
         {
-            IVersion version;
+            IVersion? version = null;
             if ( recommendedVersion != null )
             {
                 version = recommendedVersion;
@@ -441,8 +439,6 @@ namespace Octopus.Versioning.Maven.Ranges
                 {
                     throw new OverConstrainedVersionException( $"The artifact has no valid ranges" );
                 }
-    
-                version = null;
             }
             return version;
         }
@@ -488,11 +484,11 @@ namespace Octopus.Versioning.Maven.Ranges
             }
         }
     
-        public IVersion MatchVersion( List<IVersion> versions )
+        public IVersion? MatchVersion( List<IVersion> versions )
         {
             // TODO could be more efficient by sorting the list and then moving along the restrictions in order?
     
-            IVersion matched = null;
+            IVersion? matched = null;
             foreach (var version in versions)
             {
                 if ( ContainsVersion( version ) )

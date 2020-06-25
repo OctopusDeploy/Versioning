@@ -5,11 +5,11 @@ namespace Octopus.Versioning.Semver
 {
     public interface ISemanticVersionUtils
     {
-        IEnumerable<string> ParseReleaseLabels(string releaseLabels);
+        IEnumerable<string>? ParseReleaseLabels(string? releaseLabels);
         /// <summary>
         /// Creates a legacy version string using System.Version
         /// </summary>
-        string GetLegacyString(Version version, IEnumerable<string> releaseLabels, string metadata);
+        string GetLegacyString(Version version, IEnumerable<string>? releaseLabels, string? metadata);
 
         Version NormalizeVersionValue(Version version);
 
@@ -19,7 +19,7 @@ namespace Octopus.Versioning.Semver
         /// to parsing and validating a semver. Regex would be much cleaner, but
         /// due to the number of versions created in NuGet Regex is too slow.
         /// </summary>
-        Tuple<string, string[], string> ParseSections(string value);
+        Tuple<string, string[], string?> ParseSections(string value);
 
         bool IsValid(string s, bool allowLeadingZeros);
         bool IsValidPart(string s, bool allowLeadingZeros);

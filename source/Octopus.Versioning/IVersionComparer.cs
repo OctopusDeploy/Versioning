@@ -9,7 +9,7 @@ namespace Octopus.Versioning
     /// IVersionComparer represents a version comparer capable of sorting and determining the equality of
     /// SemanticVersion objects.
     /// </summary>
-    public interface IVersionComparer : IEqualityComparer<IVersion>, IComparer<IVersion>
+    public interface IVersionComparer : IEqualityComparer<IVersion?>, IComparer<IVersion?>
     {
     }
 }

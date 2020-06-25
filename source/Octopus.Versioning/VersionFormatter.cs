@@ -10,14 +10,14 @@ namespace Octopus.Versioning
 {
     public class VersionFormatter : IFormatProvider, ICustomFormatter
     {
-        public string Format(string format, object arg, IFormatProvider formatProvider)
+        public string? Format(string format, object arg, IFormatProvider formatProvider)
         {
             if (arg == null)
             {
                 throw new ArgumentException("arg can not be null");
             }    
 
-            string formatted = null;
+            string? formatted = null;
             var argType = arg.GetType();
 
             if (argType == typeof(IFormattable))
@@ -59,7 +59,7 @@ namespace Octopus.Versioning
             return formatted;
         }
 
-        public object GetFormat(Type formatType)
+        public object? GetFormat(Type formatType)
         {
             if (formatType == typeof(ICustomFormatter) ||
                 typeof(IVersion).IsAssignableFrom(formatType))
@@ -91,9 +91,9 @@ namespace Octopus.Versioning
             return sb.ToString();
         }
 
-        private static string Format(char c, IVersion version)
+        private static string? Format(char c, IVersion version)
         {
-            string s = null;
+            string? s = null;
 
             switch (c)
             {
@@ -133,7 +133,7 @@ namespace Octopus.Versioning
             var legacy = nuGetVersion != null && nuGetVersion.IsLegacyVersion;
 
             return String.Format(CultureInfo.InvariantCulture, "{0}.{1}.{2}{3}", version.Major, version.Minor, version.Patch,
-                legacy ? String.Format(CultureInfo.InvariantCulture, ".{0}", nuGetVersion.Version.Revision) : null);
+                legacy ? String.Format(CultureInfo.InvariantCulture, ".{0}", nuGetVersion?.Version.Revision) : null);
         }
     }
 }

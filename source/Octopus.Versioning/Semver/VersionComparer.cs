@@ -12,14 +12,14 @@ namespace Octopus.Versioning.Semver
     /// </summary>
     public sealed class VersionComparer : IVersionComparer
     {
-        private readonly VersionComparison _mode;
+        private readonly VersionComparison mode;
 
         /// <summary>
         /// Creates a VersionComparer using the default mode.
         /// </summary>
         public VersionComparer()
         {
-            _mode = VersionComparison.Default;
+            mode = VersionComparison.Default;
         }
 
         /// <summary>
@@ -28,13 +28,13 @@ namespace Octopus.Versioning.Semver
         /// <param name="versionComparison">comparison mode</param>
         public VersionComparer(VersionComparison versionComparison)
         {
-            _mode = versionComparison;
+            mode = versionComparison;
         }
 
         /// <summary>
         /// Determines if both versions are equal.
         /// </summary>
-        public bool Equals(IVersion x, IVersion y)
+        public bool Equals(IVersion? x, IVersion? y)
         {
             return Compare(x, y) == 0;
         }
@@ -42,7 +42,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Compares the given versions using the VersionComparison mode.
         /// </summary>
-        public static int Compare(IVersion version1, IVersion version2, VersionComparison versionComparison)
+        public static int Compare(IVersion? version1, IVersion? version2, VersionComparison versionComparison)
         {
             IVersionComparer comparer = new VersionComparer(versionComparison);
             return comparer.Compare(version1, version2);
@@ -51,7 +51,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Gives a hash code based on the normalized version string.
         /// </summary>
-        public int GetHashCode(IVersion version)
+        public int GetHashCode(IVersion? version)
         {
             if (ReferenceEquals(version, null))
             {
@@ -65,15 +65,14 @@ namespace Octopus.Versioning.Semver
             combiner.AddObject(version.Patch);
 
             var nuGetVersion = version as SemanticVersion;
-            if (nuGetVersion != null
-                && nuGetVersion.Revision > 0)
+            if (nuGetVersion != null && nuGetVersion.Revision > 0)
             {
                 combiner.AddObject(nuGetVersion.Revision);
             }
 
-            if (_mode == VersionComparison.Default
-                || _mode == VersionComparison.VersionRelease
-                || _mode == VersionComparison.VersionReleaseMetadata)
+            if (mode == VersionComparison.Default
+                || mode == VersionComparison.VersionRelease
+                || mode == VersionComparison.VersionReleaseMetadata)
             {
                 if (version.IsPrerelease)
                 {
@@ -81,7 +80,7 @@ namespace Octopus.Versioning.Semver
                 }
             }
 
-            if (_mode == VersionComparison.Default ||_mode == VersionComparison.VersionReleaseMetadata)
+            if (mode == VersionComparison.Default ||mode == VersionComparison.VersionReleaseMetadata)
             {
                 if (version.HasMetadata)
                 {
@@ -95,7 +94,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Compare versions.
         /// </summary>
-        public int Compare(IVersion x, IVersion y)
+        public int Compare(IVersion? x, IVersion? y)
         {
             if (ReferenceEquals(x, y))
             {
@@ -140,7 +139,7 @@ namespace Octopus.Versioning.Semver
                 return result;
             }
 
-            if (_mode != VersionComparison.Version)
+            if (mode != VersionComparison.Version)
             {
                 // compare release labels
                 if (x.IsPrerelease
@@ -166,7 +165,7 @@ namespace Octopus.Versioning.Semver
                 }
 
                 // compare the metadata
-                if (_mode == VersionComparison.Default || _mode == VersionComparison.VersionReleaseMetadata)
+                if (mode == VersionComparison.Default || mode == VersionComparison.VersionReleaseMetadata)
                 {
                     result = StringComparer.OrdinalIgnoreCase.Compare(x.Metadata ?? string.Empty, y.Metadata ?? string.Empty);
                     if (result != 0)
@@ -182,7 +181,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Compares the 4th digit of the version number.
         /// </summary>
-        private static int CompareLegacyVersion(SemanticVersion legacyX, SemanticVersion legacyY)
+        private static int CompareLegacyVersion(SemanticVersion? legacyX, SemanticVersion? legacyY)
         {
             var result = 0;
 

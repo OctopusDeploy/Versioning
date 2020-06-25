@@ -26,7 +26,7 @@ namespace Octopus.Versioning.Maven
 
         public int BuildNumber { get; private set; }
 
-        public String Qualifier { get; private set; }
+        public string? Qualifier { get; private set; }
 
         public MavenVersion Parse(string version)
         {
@@ -46,7 +46,7 @@ namespace Octopus.Versioning.Maven
                 Minor, 
                 Patch, 
                 BuildNumber, 
-                Qualifier.ToEnumerable(),
+                Qualifier == null ? null : Qualifier.ToEnumerable(),
                 version);
         }
 
