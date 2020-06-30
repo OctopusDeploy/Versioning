@@ -1,10 +1,12 @@
 //////////////////////////////////////////////////////////////////////
 // TOOLS
 //////////////////////////////////////////////////////////////////////
-#tool "nuget:?package=GitVersion.CommandLine&version=5.2.4"
+#module nuget:?package=Cake.DotNetTool.Module&version=0.4.0
+#tool "dotnet:?package=GitVersion.Tool&version=5.3.6"
 
 using Path = System.IO.Path;
 using IO = System.IO;
+using Cake.Common.Tools;
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -17,26 +19,23 @@ var configuration = Argument("configuration", "Release");
 ///////////////////////////////////////////////////////////////////////////////
 var artifactsDir = "./artifacts";
 var localPackagesDir = "../LocalPackages";
+var packageName = "Octopus.Versioning";
 
-GitVersion gitVersionInfo;
-string nugetVersion;
+var gitVersionInfo = GitVersion(new GitVersionSettings {
+    OutputType = GitVersionOutput.Json
+});
+
+var nugetVersion = gitVersionInfo.NuGetVersion;
 
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN
 ///////////////////////////////////////////////////////////////////////////////
 Setup(context =>
 {
-    gitVersionInfo = GitVersion(new GitVersionSettings {
-        OutputType = GitVersionOutput.Json
-    });
-
     if(BuildSystem.IsRunningOnTeamCity)
         BuildSystem.TeamCity.SetBuildNumber(gitVersionInfo.NuGetVersion);
 
-    nugetVersion = gitVersionInfo.NuGetVersion;
-
-    Information("Building Octopus.Versioning v{0}", nugetVersion);
-    Information("Informational Version {0}", gitVersionInfo.InformationalVersion);
+    Information("Building " + packageName + " v{0}", nugetVersion);
 });
 
 Teardown(context =>
@@ -49,7 +48,15 @@ Teardown(context =>
 // TASKS
 //////////////////////////////////////////////////////////////////////
 
-Task("Clean")
+Task("__Default")
+    .IsDependentOn("__Clean")
+    .IsDependentOn("__Restore")
+    .IsDependentOn("__Build")
+    .IsDependentOn("__Test")
+    .IsDependentOn("__Pack")
+    .IsDependentOn("__CopyToLocalPackages");
+
+Task("__Clean")
     .Does(() =>
 {
     CleanDirectory(artifactsDir);
@@ -57,15 +64,10 @@ Task("Clean")
     CleanDirectories("./source/**/obj");
 });
 
-Task("Restore")
-    .IsDependentOn("Clean")
-    .Does(() => {
-        DotNetCoreRestore("source");
-    });
-
-Task("Build")
-    .IsDependentOn("Restore")
-    .IsDependentOn("Clean")
+Task("__Restore")
+    .Does(() => DotNetCoreRestore("source"));
+	
+Task("__Build")
     .Does(() =>
 {
     DotNetCoreBuild("./source", new DotNetCoreBuildSettings
@@ -75,19 +77,19 @@ Task("Build")
     });
 });
 
-Task("Test")
-    .IsDependentOn("Build")
+Task("__Test")
+    .IsDependentOn("__Build")
     .Does(() =>
     {
-        DotNetCoreTest("./source/Octopus.Versioning.Tests/Octopus.Versioning.Tests.csproj", new DotNetCoreTestSettings
+        DotNetCoreTest("source", new DotNetCoreTestSettings
         {
             Configuration = configuration,
             NoBuild = true
         });
     });
 
-Task("Pack")
-    .IsDependentOn("Test")
+Task("__Pack")
+    .IsDependentOn("__Test")
     .Does(() =>
 {
     DotNetCorePack("./source/Octopus.Versioning", new DotNetCorePackSettings
@@ -99,36 +101,18 @@ Task("Pack")
     });
 });
 
-Task("CopyToLocalPackages")
-    .IsDependentOn("Pack")
+Task("__CopyToLocalPackages")
+    .IsDependentOn("__Pack")
     .WithCriteria(BuildSystem.IsLocalBuild)
     .Does(() =>
 {
     CreateDirectory(localPackagesDir);
-    CopyFileToDirectory($"{artifactsDir}/Octopus.Versioning.{nugetVersion}.nupkg", localPackagesDir);
+    CopyFileToDirectory(Path.Combine(artifactsDir, $"{packageName}.{nugetVersion}.nupkg"), localPackagesDir);
 });
 
-Task("Publish")
-    .IsDependentOn("CopyToLocalPackages")
-    .WithCriteria(BuildSystem.IsRunningOnTeamCity)
-    .Does(() =>
-{
-	NuGetPush($"{artifactsDir}/Octopus.Versioning.{nugetVersion}.nupkg", new NuGetPushSettings {
-        Source = "https://f.feedz.io/octopus-deploy/dependencies/nuget",
-        ApiKey = EnvironmentVariable("FeedzIoApiKey")
-	});
-
-    if (gitVersionInfo.PreReleaseTag == "")
-    {
-          NuGetPush($"{artifactsDir}/Octopus.Versioning.{nugetVersion}.nupkg", new NuGetPushSettings {
-            Source = "https://www.nuget.org/api/v2/package",
-            ApiKey = EnvironmentVariable("NuGetApiKey")
-        });
-    }
-});
 
 Task("Default")
-    .IsDependentOn("Publish");
+    .IsDependentOn("__Default");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
