@@ -6,6 +6,7 @@
 
 using Path = System.IO.Path;
 using IO = System.IO;
+using Cake.Common.Tools;
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -18,26 +19,23 @@ var configuration = Argument("configuration", "Release");
 ///////////////////////////////////////////////////////////////////////////////
 var artifactsDir = "./artifacts";
 var localPackagesDir = "../LocalPackages";
+var packageName = "Octopus.Versioning";
 
-GitVersion gitVersionInfo;
-string nugetVersion;
+var gitVersionInfo = GitVersion(new GitVersionSettings {
+    OutputType = GitVersionOutput.Json
+});
+
+var nugetVersion = gitVersionInfo.NuGetVersion;
 
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN
 ///////////////////////////////////////////////////////////////////////////////
 Setup(context =>
 {
-    gitVersionInfo = GitVersion(new GitVersionSettings {
-        OutputType = GitVersionOutput.Json
-    });
-
     if(BuildSystem.IsRunningOnTeamCity)
         BuildSystem.TeamCity.SetBuildNumber(gitVersionInfo.NuGetVersion);
 
-    nugetVersion = gitVersionInfo.NuGetVersion;
-
-    Information("Building Octopus.Versioning v{0}", nugetVersion);
-    Information("Informational Version {0}", gitVersionInfo.InformationalVersion);
+    Information("Building " + packageName + " v{0}", nugetVersion);
 });
 
 Teardown(context =>
@@ -67,14 +65,9 @@ Task("__Clean")
 });
 
 Task("__Restore")
-    .IsDependentOn("__Clean")
-    .Does(() => {
-        DotNetCoreRestore("source");
-    });
-
+    .Does(() => DotNetCoreRestore("source"));
+	
 Task("__Build")
-    .IsDependentOn("__Clean")
-    .IsDependentOn("__Restore")
     .Does(() =>
 {
     DotNetCoreBuild("./source", new DotNetCoreBuildSettings
@@ -114,7 +107,7 @@ Task("__CopyToLocalPackages")
     .Does(() =>
 {
     CreateDirectory(localPackagesDir);
-    CopyFileToDirectory($"{artifactsDir}/Octopus.Versioning.{nugetVersion}.nupkg", localPackagesDir);
+    CopyFileToDirectory(Path.Combine(artifactsDir, $"{packageName}.{nugetVersion}.nupkg"), localPackagesDir);
 });
 
 
