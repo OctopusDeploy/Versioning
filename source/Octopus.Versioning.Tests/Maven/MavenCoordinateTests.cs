@@ -16,15 +16,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual("packaging", mavenId.Packaging);
             Assert.AreEqual("classifier", mavenId.Classifier);
         }
-        
-        [Test]
-        public void GroupAndArtifactCoordinatesAreParsed()
-        {
-            var mavenId = new MavenPackageID("group:artifact");
-            Assert.AreEqual("group", mavenId.Group);
-            Assert.AreEqual("artifact", mavenId.Artifact);
-        }
-        
+
         [Test]
         public void GavCoordinatesAreParsed()
         {
@@ -33,7 +25,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual("artifact", mavenId.Artifact);
             Assert.AreEqual("version", mavenId.Version);
         }
-        
+
         [Test]
         public void GavWithPackagingCoordinatesAreParsed()
         {
@@ -43,7 +35,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual("version", mavenId.Version);
             Assert.AreEqual("packaging", mavenId.Packaging);
         }
-        
+
         [Test]
         public void GavWithPackagingAndClassifierCoordinatesAreParsed()
         {
@@ -54,7 +46,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual("packaging", mavenId.Packaging);
             Assert.AreEqual("classifier", mavenId.Classifier);
         }
-        
+
         /// <summary>
         /// This test is an example of the non-standard group:artifact:packaging format used by
         /// Octopus because versions are not supplied when selecting a package.
@@ -67,7 +59,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual("artifact", mavenId.Artifact);
             Assert.AreEqual("packaging", mavenId.Packaging);
         }
-        
+
         [Test]
         public void OctopusSpecificCoordinatesAndClassifierAreParsed()
         {
@@ -77,7 +69,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual("packaging", mavenId.Packaging);
             Assert.AreEqual("classifier", mavenId.Classifier);
         }
-        
+
         [Test]
         public void OctopusSpecificCoordinatesWithVersionAreParsed()
         {
@@ -87,7 +79,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual("packaging", mavenId.Packaging);
             Assert.AreEqual("1.0.0", mavenId.Version);
         }
-        
+
         [Test]
         public void OctopusSpecificCoordinatesWithVersionAndClassifierAreParsed()
         {
