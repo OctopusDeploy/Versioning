@@ -5,11 +5,10 @@ using System;
 
 namespace Octopus.Versioning.Semver
 {
-
     /// <summary>
     /// A base version operations
     /// </summary>
-    public partial class StrictSemanticVersion : IFormattable, IComparable<Semver.StrictSemanticVersion>, IEquatable<Semver.StrictSemanticVersion>
+    public partial class StrictSemanticVersion : IFormattable, IComparable<StrictSemanticVersion>, IEquatable<StrictSemanticVersion>
     {
         /// <summary>
         /// Gives a normalized representation of the version.
@@ -32,9 +31,7 @@ namespace Octopus.Versioning.Semver
         protected string? TryFormatter(string format, IFormatProvider formatProvider)
         {
             if (formatProvider?.GetFormat(GetType()) is ICustomFormatter formatter)
-            {
                 return formatter.Format(format, this, formatProvider);
-            }
             return null;
         }
 
@@ -45,20 +42,20 @@ namespace Octopus.Versioning.Semver
 
         public virtual int CompareTo(object obj)
         {
-            return CompareTo(obj as Semver.StrictSemanticVersion);
+            return CompareTo(obj as StrictSemanticVersion);
         }
 
-        public virtual int CompareTo(Semver.StrictSemanticVersion? other)
+        public virtual int CompareTo(StrictSemanticVersion? other)
         {
             return CompareTo(other, VersionComparison.Default);
         }
 
         public override bool Equals(object obj)
         {
-            return Equals(obj as Semver.StrictSemanticVersion);
+            return Equals(obj as StrictSemanticVersion);
         }
 
-        public virtual bool Equals(Semver.StrictSemanticVersion? other)
+        public virtual bool Equals(StrictSemanticVersion? other)
         {
             return Equals(other, VersionComparison.Default);
         }
@@ -66,7 +63,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// True if the VersionBase objects are equal based on the given comparison mode.
         /// </summary>
-        public virtual bool Equals(Semver.StrictSemanticVersion? other, VersionComparison versionComparison)
+        public virtual bool Equals(StrictSemanticVersion? other, VersionComparison versionComparison)
         {
             return CompareTo(other, versionComparison) == 0;
         }
@@ -74,7 +71,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Compares NuGetVersion objects using the given comparison mode.
         /// </summary>
-        public virtual int CompareTo(Semver.StrictSemanticVersion? other, VersionComparison versionComparison)
+        public virtual int CompareTo(StrictSemanticVersion? other, VersionComparison versionComparison)
         {
             var comparer = new VersionComparer(versionComparison);
             return comparer.Compare(this, other);
@@ -83,7 +80,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// ==
         /// </summary>
-        public static bool operator ==(Semver.StrictSemanticVersion? version1, Semver.StrictSemanticVersion? version2)
+        public static bool operator ==(StrictSemanticVersion? version1, StrictSemanticVersion? version2)
         {
             return Compare(version1, version2) == 0;
         }
@@ -91,17 +88,17 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// !=
         /// </summary>
-        public static bool operator !=(Semver.StrictSemanticVersion? version1, Semver.StrictSemanticVersion? version2)
+        public static bool operator !=(StrictSemanticVersion? version1, StrictSemanticVersion? version2)
         {
             return Compare(version1, version2) != 0;
         }
 
-        public static bool operator <(Semver.StrictSemanticVersion? version1, Semver.StrictSemanticVersion? version2)
+        public static bool operator <(StrictSemanticVersion? version1, StrictSemanticVersion? version2)
         {
             return Compare(version1, version2) < 0;
         }
 
-        public static bool operator <=(Semver.StrictSemanticVersion? version1, Semver.StrictSemanticVersion? version2)
+        public static bool operator <=(StrictSemanticVersion? version1, StrictSemanticVersion? version2)
         {
             return Compare(version1, version2) <= 0;
         }
@@ -109,7 +106,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// >
         /// </summary>
-        public static bool operator >(Semver.StrictSemanticVersion? version1, Semver.StrictSemanticVersion? version2)
+        public static bool operator >(StrictSemanticVersion? version1, StrictSemanticVersion? version2)
         {
             return Compare(version1, version2) > 0;
         }
@@ -117,12 +114,12 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// >=
         /// </summary>
-        public static bool operator >=(Semver.StrictSemanticVersion? version1, Semver.StrictSemanticVersion? version2)
+        public static bool operator >=(StrictSemanticVersion? version1, StrictSemanticVersion? version2)
         {
             return Compare(version1, version2) >= 0;
         }
 
-        private static int Compare(Semver.StrictSemanticVersion? version1, Semver.StrictSemanticVersion? version2)
+        static int Compare(StrictSemanticVersion? version1, StrictSemanticVersion? version2)
         {
             IVersionComparer comparer = new VersionComparer();
             return comparer.Compare(version1, version2);

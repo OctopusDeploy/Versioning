@@ -6,6 +6,7 @@ namespace Octopus.Versioning.Semver
     public interface ISemanticVersionUtils
     {
         IEnumerable<string>? ParseReleaseLabels(string? releaseLabels);
+
         /// <summary>
         /// Creates a legacy version string using System.Version
         /// </summary>

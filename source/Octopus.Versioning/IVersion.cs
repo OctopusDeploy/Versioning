@@ -8,7 +8,7 @@ namespace Octopus.Versioning
     /// The terminolgy here comes from SemVer, but can be mapped to other
     /// versioning schemes like Maven.
     /// 
-    /// All classes should reference this interface, but there are some 
+    /// All classes should reference this interface, but there are some
     /// exceptions.
     /// 
     /// Some modelling classes need to reference the SemanticVersionConverter

@@ -7,7 +7,6 @@ using System.Linq;
 
 namespace Octopus.Versioning.Semver
 {
-
     /// <summary>
     /// A strict SemVer implementation
     /// </summary>
@@ -15,7 +14,6 @@ namespace Octopus.Versioning.Semver
     {
         static readonly ISemanticVersionUtils utils = new SemanticVersionUtils();
         readonly IEnumerable<string>? releaseLabels;
-        readonly string? metadata;
         protected readonly Version version;
 
         /// <summary>
@@ -25,7 +23,11 @@ namespace Octopus.Versioning.Semver
         /// <param name="minor">x.Y.z</param>
         /// <param name="patch">x.y.Z</param>
         public StrictSemanticVersion(int major, int minor, int patch)
-            : this(major, minor, patch, Enumerable.Empty<string>(), null)
+            : this(major,
+                minor,
+                patch,
+                Enumerable.Empty<string>(),
+                null)
         {
         }
 
@@ -37,7 +39,11 @@ namespace Octopus.Versioning.Semver
         /// <param name="patch">x.y.Z</param>
         /// <param name="releaseLabels">Release labels that have been split by the dot separator</param>
         /// <param name="metadata">Build metadata</param>
-        StrictSemanticVersion(int major, int minor, int patch, IEnumerable<string> releaseLabels, string? metadata)
+        StrictSemanticVersion(int major,
+            int minor,
+            int patch,
+            IEnumerable<string> releaseLabels,
+            string? metadata)
             : this(new Version(major, minor, patch, 0), releaseLabels, metadata)
         {
         }
@@ -45,21 +51,17 @@ namespace Octopus.Versioning.Semver
         public StrictSemanticVersion(Version version, IEnumerable<string>? releaseLabels, string? metadata, bool preserveMissingComponents = false)
         {
             if (version == null)
-            {
-               throw new ArgumentException("version can not be null");
-            }         
+                throw new ArgumentException("version can not be null");
 
             this.version = preserveMissingComponents
                 ? version
                 : utils.NormalizeVersionValue(version);
 
-            this.metadata = metadata;
+            Metadata = metadata;
 
             if (releaseLabels != null)
-            {
                 // enumerate the list
                 this.releaseLabels = releaseLabels.ToArray();
-            }
         }
 
         /// <summary>
@@ -85,10 +87,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// A collection of pre-release labels attached to the version.
         /// </summary>
-        public IEnumerable<string> ReleaseLabels
-        {
-            get { return releaseLabels ?? Enumerable.Empty<string>(); }
-        }
+        public IEnumerable<string> ReleaseLabels => releaseLabels ?? Enumerable.Empty<string>();
 
         /// <summary>
         /// The full pre-release label for the version.
@@ -98,9 +97,7 @@ namespace Octopus.Versioning.Semver
             get
             {
                 if (releaseLabels != null)
-                {
-                    return String.Join(".", releaseLabels);
-                }
+                    return string.Join(".", releaseLabels);
 
                 return string.Empty;
             }
@@ -116,7 +113,7 @@ namespace Octopus.Versioning.Semver
                 if (ReleaseLabels != null)
                 {
                     var enumerator = ReleaseLabels.GetEnumerator();
-                    return (enumerator.MoveNext() && !string.IsNullOrEmpty(enumerator.Current));
+                    return enumerator.MoveNext() && !string.IsNullOrEmpty(enumerator.Current);
                 }
 
                 return false;
@@ -134,6 +131,6 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Build metadata attached to the version.
         /// </summary>
-        public virtual string? Metadata => metadata;
+        public virtual string? Metadata { get; }
     }
 }

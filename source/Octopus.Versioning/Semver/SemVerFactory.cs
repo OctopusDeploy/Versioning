@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Octopus.CoreUtilities;
 
 namespace Octopus.Versioning.Semver
 {
@@ -16,33 +15,27 @@ namespace Octopus.Versioning.Semver
         {
             var ver = TryCreateVersion(input, preserveMissingComponents);
             if (ver == null)
-            {
                 throw new ArgumentException($"'{input}' is not a valid version string", nameof(input));
-            }
 
             return ver;
         }
-        
+
         public static IVersion? CreateVersionOrNone(string input, bool preserveMissingComponents = false)
         {
             return TryCreateVersion(input, preserveMissingComponents);
         }
-        
+
         /// <summary>
         /// Creates a NuGetVersion from a string representing the semantic version.
         /// </summary>
         public static SemanticVersion Parse(string value, bool preserveMissingComponents = false)
         {
             if (string.IsNullOrEmpty(value))
-            {
                 throw new ArgumentException("Value cannot be null or an empty string", nameof(value));
-            }
 
             var ver = TryCreateVersion(value, preserveMissingComponents);
             if (ver == null)
-            {
                 throw new ArgumentException($"'{value}' is not a valid version string", nameof(value));
-            }
 
             return ver;
         }
@@ -69,26 +62,20 @@ namespace Octopus.Versioning.Semver
                     var versionPart = sections.Item1;
 
                     if (versionPart.IndexOf('.') < 0)
-                    {
                         // System.Version requires at least a 2 part version to parse.
                         versionPart += ".0";
-                    }
 
                     if (Version.TryParse(versionPart, out systemVersion))
                     {
                         // labels
                         if (sections.Item2 != null
                             && !sections.Item2.All(s => utils.IsValidPart(s, true)))
-                        {
                             return null;
-                        }
 
                         // build metadata
                         if (sections.Item3 != null
                             && !utils.IsValid(sections.Item3, true))
-                        {
                             return null;
-                        }
 
                         var ver = preserveMissingComponents
                             ? systemVersion
@@ -97,9 +84,7 @@ namespace Octopus.Versioning.Semver
                         var originalVersion = value;
 
                         if (originalVersion.IndexOf(' ') > -1)
-                        {
                             originalVersion = value.Replace(" ", "");
-                        }
 
                         version = new SemanticVersion(version: ver,
                             releaseLabels: sections.Item2,
@@ -120,7 +105,14 @@ namespace Octopus.Versioning.Semver
         public static SemanticVersion? TryParseStrict(string value)
         {
             var semVer = TryCreateVersion(value);
-            return semVer != null ? new SemanticVersion(semVer.Major, semVer.Minor, semVer.Patch, 0, semVer.ReleaseLabels, semVer.Metadata) : null;
+            return semVer != null
+                ? new SemanticVersion(semVer.Major,
+                    semVer.Minor,
+                    semVer.Patch,
+                    0,
+                    semVer.ReleaseLabels,
+                    semVer.Metadata)
+                : null;
         }
     }
 }

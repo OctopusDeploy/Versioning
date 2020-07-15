@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Octopus.Versioning.Maven;
 
 namespace Octopus.Versioning.Tests.Versions
@@ -9,7 +10,11 @@ namespace Octopus.Versioning.Tests.Versions
         [Test]
         public void CoordinatesAreParsed()
         {
-            var mavenId = new MavenPackageID("group", "artifact", "version", "packaging" ,"classifier");
+            var mavenId = new MavenPackageID("group",
+                "artifact",
+                "version",
+                "packaging",
+                "classifier");
             Assert.AreEqual("group", mavenId.Group);
             Assert.AreEqual("artifact", mavenId.Artifact);
             Assert.AreEqual("version", mavenId.Version);

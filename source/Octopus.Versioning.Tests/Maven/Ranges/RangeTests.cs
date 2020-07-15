@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using NUnit.Framework;
 using Octopus.Versioning.Maven;
 using Octopus.Versioning.Maven.Ranges;
@@ -12,41 +11,41 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
     [TestFixture]
     public class RangeTests
     {
-        private const string CHECK_NUM_RESTRICTIONS = "check number of restrictions";
+        const string CHECK_NUM_RESTRICTIONS = "check number of restrictions";
 
-        private const string CHECK_UPPER_BOUND = "check upper bound";
+        const string CHECK_UPPER_BOUND = "check upper bound";
 
-        private const string CHECK_UPPER_BOUND_INCLUSIVE = "check upper bound is inclusive";
+        const string CHECK_UPPER_BOUND_INCLUSIVE = "check upper bound is inclusive";
 
-        private const string CHECK_LOWER_BOUND = "check lower bound";
+        const string CHECK_LOWER_BOUND = "check lower bound";
 
-        private const string CHECK_LOWER_BOUND_INCLUSIVE = "check lower bound is inclusive";
+        const string CHECK_LOWER_BOUND_INCLUSIVE = "check lower bound is inclusive";
 
-        private const string CHECK_VERSION_RECOMMENDATION = "check version recommended";
+        const string CHECK_VERSION_RECOMMENDATION = "check version recommended";
 
-        private const string CHECK_SELECTED_VERSION_KNOWN = "check selected version known";
+        const string CHECK_SELECTED_VERSION_KNOWN = "check selected version known";
 
-        private const string CHECK_SELECTED_VERSION = "check selected version";
+        const string CHECK_SELECTED_VERSION = "check selected version";
 
         [Test]
         public void testCustom()
         {
             var parser = new MavenVersionParser();
-            MavenVersionRange range1 = MavenVersionRange.CreateFromVersionSpec( "(,9.0.1)" );
+            var range1 = MavenVersionRange.CreateFromVersionSpec("(,9.0.1)");
             Assert.IsTrue(range1.ContainsVersion(parser.Parse("8.0.1")));
-            Assert.IsFalse(range1.ContainsVersion(parser.Parse( "9.0.10.M27" )) );
-            Assert.IsFalse(range1.ContainsVersion(parser.Parse("10.0.0.M22" )));
-            Assert.IsTrue(range1.ContainsVersion(parser.Parse( "9.0.0.M25" )));
-            Assert.IsTrue(range1.ContainsVersion(parser.Parse( "9.0.0.M22" )));
+            Assert.IsFalse(range1.ContainsVersion(parser.Parse("9.0.10.M27")));
+            Assert.IsFalse(range1.ContainsVersion(parser.Parse("10.0.0.M22")));
+            Assert.IsTrue(range1.ContainsVersion(parser.Parse("9.0.0.M25")));
+            Assert.IsTrue(range1.ContainsVersion(parser.Parse("9.0.0.M22")));
         }
 
         [Test]
         public void testRange()
         {
-            MavenVersionRange range = MavenVersionRange.CreateFromVersionSpec("(,1.0]");
-            List<Restriction> restrictions = range.Restrictions;
+            var range = MavenVersionRange.CreateFromVersionSpec("(,1.0]");
+            var restrictions = range.Restrictions;
             Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
-            Restriction restriction = restrictions[0];
+            var restriction = restrictions[0];
             Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
             Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
             Assert.AreEqual("1.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
@@ -165,15 +164,15 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
         [Test]
         public void testIntersections()
         {
-            MavenVersionRange range1 = MavenVersionRange.CreateFromVersionSpec("1.0");
-            MavenVersionRange range2 = MavenVersionRange.CreateFromVersionSpec("1.1");
-            MavenVersionRange mergedRange = range1.Restrict(range2);
+            var range1 = MavenVersionRange.CreateFromVersionSpec("1.0");
+            var range2 = MavenVersionRange.CreateFromVersionSpec("1.1");
+            var mergedRange = range1.Restrict(range2);
             // TODO current policy is to retain the original version - is this correct, do we need strategies or is that handled elsewhere?
 //        Assert.AreEqual( "1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION );
             Assert.AreEqual("1.0", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
-            List<Restriction> restrictions = mergedRange.Restrictions;
+            var restrictions = mergedRange.Restrictions;
             Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
-            Restriction restriction = restrictions[0];
+            var restriction = restrictions[0];
             Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
             Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
             Assert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
@@ -647,7 +646,7 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
         [Test]
         public void testReleaseRangeBoundsContainsSnapshots()
         {
-            MavenVersionRange range = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2]");
+            var range = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2]");
 
             Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.1-SNAPSHOT")));
             Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.2-SNAPSHOT")));
@@ -657,7 +656,7 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
         [Test]
         public void testSnapshotRangeBoundsCanContainSnapshots()
         {
-            MavenVersionRange range = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2-SNAPSHOT]");
+            var range = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2-SNAPSHOT]");
 
             Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.1-SNAPSHOT")));
             Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.2-SNAPSHOT")));
@@ -671,12 +670,12 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
         [Test]
         public void testSnapshotSoftVersionCanContainSnapshot()
         {
-            MavenVersionRange range = MavenVersionRange.CreateFromVersionSpec("1.0-SNAPSHOT");
+            var range = MavenVersionRange.CreateFromVersionSpec("1.0-SNAPSHOT");
 
             Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.0-SNAPSHOT")));
         }
 
-        private void checkInvalidRange(string version)
+        void checkInvalidRange(string version)
         {
             try
             {
@@ -704,7 +703,7 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
             Assert.IsFalse(enforceVersion("[2.0,2.0.5)", actualVersion));
         }
 
-        public bool enforceVersion(String requiredMavenVersionRange, IVersion actualVersion)
+        public bool enforceVersion(string requiredMavenVersionRange, IVersion actualVersion)
         {
             MavenVersionRange vr = null;
 

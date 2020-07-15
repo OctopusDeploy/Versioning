@@ -11,8 +11,8 @@ namespace Octopus.Versioning.Maven.Ranges
         public static readonly Restriction EVERYTHING = new Restriction(null, false, null, false);
 
         public Restriction(
-            IVersion? lowerBound, 
-            bool lowerBoundInclusive, 
+            IVersion? lowerBound,
+            bool lowerBoundInclusive,
             IVersion? upperBound,
             bool upperBoundInclusive)
         {
@@ -31,29 +31,22 @@ namespace Octopus.Versioning.Maven.Ranges
         {
             if (LowerBound != null)
             {
-                int comparison = LowerBound.CompareTo(version);
+                var comparison = LowerBound.CompareTo(version);
 
-                if ((comparison == 0) && !IsLowerBoundInclusive)
-                {
+                if (comparison == 0 && !IsLowerBoundInclusive)
                     return false;
-                }
                 if (comparison > 0)
-                {
                     return false;
-                }
             }
+
             if (UpperBound != null)
             {
-                int comparison = UpperBound.CompareTo(version);
+                var comparison = UpperBound.CompareTo(version);
 
-                if ((comparison == 0) && !IsUpperBoundInclusive)
-                {
+                if (comparison == 0 && !IsUpperBoundInclusive)
                     return false;
-                }
                 if (comparison < 0)
-                {
                     return false;
-                }
             }
 
             return true;
@@ -61,52 +54,38 @@ namespace Octopus.Versioning.Maven.Ranges
 
         public override int GetHashCode()
         {
-            int result = 13;
+            var result = 13;
 
             if (LowerBound == null)
-            {
                 result += 1;
-            }
             else
-            {
                 result += LowerBound.GetHashCode();
-            }
 
             result *= IsLowerBoundInclusive ? 1 : 2;
 
             if (UpperBound == null)
-            {
                 result -= 3;
-            }
             else
-            {
                 result -= UpperBound.GetHashCode();
-            }
 
             result *= IsUpperBoundInclusive ? 2 : 3;
 
             return result;
         }
 
-        public override bool Equals(Object other)
+        public override bool Equals(object other)
         {
             if (this == other)
-            {
                 return true;
-            }
 
             if (!(other is Restriction))
-            {
                 return false;
-            }
 
-            Restriction restriction = (Restriction) other;
+            Restriction restriction = (Restriction)other;
             if (LowerBound != null)
             {
                 if (!LowerBound.Equals(restriction.LowerBound))
-                {
                     return false;
-                }
             }
             else if (restriction.LowerBound != null)
             {
@@ -114,16 +93,12 @@ namespace Octopus.Versioning.Maven.Ranges
             }
 
             if (IsLowerBoundInclusive != restriction.IsLowerBoundInclusive)
-            {
                 return false;
-            }
 
             if (UpperBound != null)
             {
                 if (!UpperBound.Equals(restriction.UpperBound))
-                {
                     return false;
-                }
             }
             else if (restriction.UpperBound != null)
             {
@@ -133,20 +108,16 @@ namespace Octopus.Versioning.Maven.Ranges
             return IsUpperBoundInclusive == restriction.IsUpperBoundInclusive;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             StringBuilder buf = new StringBuilder();
 
             buf.Append(IsLowerBoundInclusive ? '[' : '(');
             if (LowerBound != null)
-            {
                 buf.Append(LowerBound.ToString());
-            }
             buf.Append(',');
             if (UpperBound != null)
-            {
                 buf.Append(UpperBound.ToString());
-            }
             buf.Append(IsUpperBoundInclusive ? ']' : ')');
 
             return buf.ToString();

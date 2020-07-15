@@ -12,9 +12,7 @@ namespace Octopus.Versioning.Semver
         public IEnumerable<string>? ParseReleaseLabels(string? releaseLabels)
         {
             if (releaseLabels != null && !string.IsNullOrEmpty(releaseLabels))
-            {
                 return releaseLabels.Split('.');
-            }
 
             return null;
         }
@@ -24,14 +22,10 @@ namespace Octopus.Versioning.Semver
             var sb = new StringBuilder(version.ToString());
 
             if (releaseLabels != null)
-            {
-                sb.AppendFormat(CultureInfo.InvariantCulture, "-{0}", String.Join(".", releaseLabels));
-            }
+                sb.AppendFormat(CultureInfo.InvariantCulture, "-{0}", string.Join(".", releaseLabels));
 
             if (!string.IsNullOrEmpty(metadata))
-            {
                 sb.AppendFormat(CultureInfo.InvariantCulture, "+{0}", metadata);
-            }
 
             return sb.ToString();
         }
@@ -42,14 +36,11 @@ namespace Octopus.Versioning.Semver
 
             if (version.Build < 0
                 || version.Revision < 0)
-            {
                 normalized = new Version(
                     version.Major,
                     version.Minor,
                     Math.Max(version.Build, 0),
                     Math.Max(version.Revision, 0));
-            }
-
             return normalized;
         }
 
@@ -67,7 +58,7 @@ namespace Octopus.Versioning.Semver
             var end = false;
             for (var i = 0; i < chars.Length; i++)
             {
-                end = (i == chars.Length - 1);
+                end = i == chars.Length - 1;
 
                 if (dashPos < 0)
                 {
@@ -81,9 +72,7 @@ namespace Octopus.Versioning.Semver
                         dashPos = i;
 
                         if (chars[i] == '+')
-                        {
                             plusPos = i;
-                        }
                     }
                 }
                 else if (plusPos < 0)
@@ -122,29 +111,18 @@ namespace Octopus.Versioning.Semver
 
         public bool IsValidPart(char[] chars, bool allowLeadingZeros)
         {
-            var result = true;
+            var result = chars.Length != 0;
 
-            if (chars.Length == 0)
-            {
-                // empty labels are not allowed
-                result = false;
-            }
-
-            // 0 is fine, but 00 is not. 
+            // 0 is fine, but 00 is not.
             // 0A counts as an alpha numeric string where zeros are not counted
             if (!allowLeadingZeros
                 && chars.Length > 1
                 && chars[0] == '0'
                 && chars.All(c => Char.IsDigit(c)))
-            {
                 // no leading zeros in labels allowed
                 result = false;
-            }
             else
-            {
                 result &= chars.All(c => IsLetterOrDigitOrDash(c));
-            }
-
             return result;
         }
 
@@ -153,7 +131,7 @@ namespace Octopus.Versioning.Semver
             var x = (int)c;
 
             // "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-"
-            return (x >= 48 && x <= 57) || (x >= 65 && x <= 90) || (x >= 97 && x <= 122) || x == 45;
+            return x >= 48 && x <= 57 || x >= 65 && x <= 90 || x >= 97 && x <= 122 || x == 45;
         }
 
         public string IncrementRelease(string release)

@@ -5,7 +5,7 @@ namespace Octopus.Versioning
     public static class VersionFormatExtensions
     {
         /// <summary>
-        /// Returns the precedence of a feed type. Feeds with higher precedence will be 
+        /// Returns the precedence of a feed type. Feeds with higher precedence will be
         /// prefered when multiple feeds can support the same extension type.
         /// 
         /// Typically the only precedence that matters is between NuGet (which is also considered

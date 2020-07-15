@@ -51,14 +51,16 @@ namespace Octopus.Versioning.Maven
             this(group, artifact, version)
         {
             if (string.IsNullOrWhiteSpace(packaging))
-            {
                 throw new ArgumentException("Packaging can not be empty");
-            }
 
             Packaging = packaging.Trim();
         }
 
-        public MavenPackageID(string group, string artifact, string version, string packaging, string classifier) :
+        public MavenPackageID(string group,
+            string artifact,
+            string version,
+            string packaging,
+            string classifier) :
             this(group, artifact, version, packaging)
         {
             Classifier = string.IsNullOrWhiteSpace(classifier) ? null : classifier.Trim();
@@ -67,14 +69,10 @@ namespace Octopus.Versioning.Maven
         public MavenPackageID(string id, IVersion version) : this(id)
         {
             if (string.IsNullOrWhiteSpace(id) || id.Split(':').Length != 2)
-            {
                 throw new ArgumentException("Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-            }
 
             if (version == null)
-            {
                 throw new ArgumentException("version can not be null");
-            }
 
             Version = version.ToString();
         }
@@ -104,7 +102,9 @@ namespace Octopus.Versioning.Maven
                 Artifact = mavenDisplaySplit[1].Trim();
 
                 if (mavenDisplaySplit.Length == 3) // groupId:artifactId:version
+                {
                     Version = mavenDisplaySplit[2].Trim();
+                }
                 else if (mavenDisplaySplit.Length == 4) // groupId:artifactId:version:packaging
                 {
                     Version = mavenDisplaySplit[2].Trim();
@@ -117,21 +117,102 @@ namespace Octopus.Versioning.Maven
                     Classifier = string.IsNullOrWhiteSpace(mavenDisplaySplit[4]) ? null : mavenDisplaySplit[4].Trim();
                 }
                 else
+                {
                     throw new Exception("Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+                }
             }
             else
+            {
                 throw new Exception("Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+            }
         }
 
-        public string Group { get; private set; }
+        public string Group { get; }
         public string[]? Groups => Group?.Split('.');
-        public string Artifact { get; private set; }
-        public string Version { get; private set; }
-        public string? Packaging { get; private set; }
-        public string? Classifier { get; private set; }
+        public string Artifact { get; }
+        public string Version { get; }
+        public string? Packaging { get; }
+        public string? Classifier { get; }
         public string DisplayName => ToString(DISPLAY_DELIMITER);
 
         public IVersion? SemanticVersion => Version == null ? null : new MavenVersionParser().Parse(Version);
+
+        /// <summary>
+        /// The path to the metadata file for the artifact
+        /// </summary>
+        public string GroupMetadataPath
+        {
+            get
+            {
+                if (Groups == null || Groups.Length == 0)
+                    throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+
+                if (string.IsNullOrWhiteSpace(Artifact))
+                    throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+
+                return $"/{Groups?.Aggregate((result, item) => result + "/" + item)}/{Artifact}/maven-metadata.xml";
+            }
+        }
+
+        /// <summary>
+        /// The path to the metadata file for a particular artifact and version
+        /// </summary>
+        public string GroupVersionMetadataPath
+        {
+            get
+            {
+                if (Groups == null || Groups.Length == 0)
+                    throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+
+                if (string.IsNullOrWhiteSpace(Artifact))
+                    throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+
+                if (string.IsNullOrWhiteSpace(Version))
+                    throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+
+                return $"/{Groups?.Aggregate((result, item) => result + "/" + item)}/{Artifact}/{Version}/maven-metadata.xml";
+            }
+        }
+
+        /// <summary>
+        /// The path to the metadata file for the artifact
+        /// </summary>
+        public string DefaultGroupVersionPomPath
+        {
+            get
+            {
+                if (Groups == null || Groups.Length == 0)
+                    throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+
+                if (string.IsNullOrWhiteSpace(Artifact))
+                    throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+
+                if (string.IsNullOrWhiteSpace(Version))
+                    throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+
+                return $"/{Groups?.Aggregate((result, item) => result + "/" + item)}/{Artifact}/{Version}/{Artifact}-{Version}.pom";
+            }
+        }
+
+        /// <summary>
+        /// The path to the archive file for the artifact
+        /// </summary>
+        public string DefaultArtifactPath
+        {
+            get
+            {
+                if (Groups == null || Groups.Length == 0)
+                    throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+
+                if (string.IsNullOrWhiteSpace(Artifact))
+                    throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+
+                if (string.IsNullOrWhiteSpace(Version))
+                    throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
+
+                return $"/{Groups?.Aggregate((result, item) => result + "/" + item)}/{Artifact}/{Version}/{Artifact}-{Version}{(string.IsNullOrWhiteSpace(Classifier) ? "" : "-" + Classifier)}.{Packaging}";
+            }
+        }
 
         /// <summary>
         /// Standard GAV coordinates are group:artifact:version. This can also be extended to include the packaging in the
@@ -152,108 +233,20 @@ namespace Octopus.Versioning.Maven
         {
             var splitVersion = input.Split(':').ToList();
             if (!(splitVersion.Count >= 2 && splitVersion.Count <= 4))
-            {
                 throw new ArgumentException("Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-            }
 
-            var mavenStandardVersion = new List<string>()
+            var mavenStandardVersion = new List<string>
             {
                 splitVersion[0],
                 splitVersion[1],
                 version != null ? version.ToString() : ""
             };
             if (splitVersion.Count >= 3)
-            {
                 mavenStandardVersion.Add(splitVersion[2]);
-            }
             if (splitVersion.Count >= 4)
-            {
                 mavenStandardVersion.Add(splitVersion[3]);
-            }
 
             return new MavenPackageID(string.Join(":", mavenStandardVersion));
-        }
-
-        /// <summary>
-        /// The path to the metadata file for the artifact
-        /// </summary>
-        public string GroupMetadataPath {
-            get
-            {
-                if (Groups == null || Groups.Length == 0)
-                {
-                    throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-                }
-
-                if (string.IsNullOrWhiteSpace(Artifact))
-                {
-                    throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-                }
-
-                return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
-                       "/" +
-                       Artifact +
-                       "/maven-metadata.xml";
-            }
-        }
-
-        /// <summary>
-        /// The path to the metadata file for a particular artifact and version
-        /// </summary>
-        public string GroupVersionMetadataPath
-        {
-            get
-            {
-                if (Groups == null || Groups.Length == 0)
-                {
-                    throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-                }
-
-                if (string.IsNullOrWhiteSpace(Artifact))
-                {
-                    throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-                }
-
-                if (string.IsNullOrWhiteSpace(Version))
-                {
-                    throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-                }
-
-                return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
-                       "/" +
-                       Artifact +
-                       "/" + Version +
-                       "/maven-metadata.xml";
-            }
-        }
-
-        /// <summary>
-        /// The path to the metadata file for the artifact
-        /// </summary>
-        public string DefaultGroupVersionPomPath
-        {
-            get
-            {
-                if (Groups == null || Groups.Length == 0)
-                {
-                    throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-                }
-
-                if (string.IsNullOrWhiteSpace(Artifact))
-                {
-                    throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-                }
-
-                if (string.IsNullOrWhiteSpace(Version))
-                {
-                    throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-                }
-
-                return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
-                       "/" + Artifact +
-                       "/" + Version +
-                       "/" + Artifact + "-" + Version + ".pom";
-            }
         }
 
         /// <summary>
@@ -262,52 +255,15 @@ namespace Octopus.Versioning.Maven
         public string SnapshotGroupVersionPomPath(string value)
         {
             if (Groups == null || Groups.Length == 0)
-            {
                 throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-            }
 
             if (string.IsNullOrWhiteSpace(Artifact))
-            {
                 throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-            }
 
             if (string.IsNullOrWhiteSpace(Version))
-            {
                 throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-            }
 
-            return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
-                   "/" + Artifact +
-                   "/" + Version +
-                   "/" + Artifact + "-" + value + ".pom";
-        }
-
-        /// <summary>
-        /// The path to the archive file for the artifact
-        /// </summary>
-        public string DefaultArtifactPath {
-            get
-            {
-                if (Groups == null || Groups.Length == 0)
-                {
-                    throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-                }
-
-                if (string.IsNullOrWhiteSpace(Artifact))
-                {
-                    throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-                }
-
-                if (string.IsNullOrWhiteSpace(Version))
-                {
-                    throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-                }
-
-                return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
-                       "/" + Artifact +
-                       "/" + Version +
-                       "/" + Artifact + "-" + Version + (string.IsNullOrWhiteSpace(Classifier) ? "" : "-" + Classifier) + "." + Packaging;
-            }
+            return $"/{Groups?.Aggregate((result, item) => result + "/" + item)}/{Artifact}/{Version}/{Artifact}-{value}.pom";
         }
 
         /// <summary>
@@ -316,24 +272,15 @@ namespace Octopus.Versioning.Maven
         public string SnapshotArtifactPath(string value)
         {
             if (Groups == null || Groups.Length == 0)
-            {
                 throw new ArgumentException("Groups can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-            }
 
             if (string.IsNullOrWhiteSpace(Artifact))
-            {
                 throw new ArgumentException("Artifact can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-            }
 
             if (string.IsNullOrWhiteSpace(Version))
-            {
                 throw new ArgumentException("Version can not be null or empty. Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
-            }
 
-            return "/" + Groups?.Aggregate((result, item) => result + "/" + item) +
-                "/" + Artifact +
-                "/" + Version +
-                "/" + Artifact + "-" + value + (string.IsNullOrWhiteSpace(Classifier) ? "" : "-" + Classifier) + "." + Packaging;
+            return $"/{Groups?.Aggregate((result, item) => result + "/" + item)}/{Artifact}/{Version}/{Artifact}-{value}{(string.IsNullOrWhiteSpace(Classifier) ? "" : "-" + Classifier)}.{Packaging}";
         }
 
         public override string ToString()
@@ -345,7 +292,7 @@ namespace Octopus.Versioning.Maven
         {
             return string.Join(
                 delimiter.ToString(),
-                new[] {Group, Artifact, Packaging, Classifier}
+                new[] { Group, Artifact, Packaging, Classifier }
                     .Where(item => item != null && item.Trim().Length != 0));
         }
     }

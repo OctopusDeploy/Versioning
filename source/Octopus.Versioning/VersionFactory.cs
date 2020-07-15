@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using Octopus.Versioning.Docker;
 using Octopus.Versioning.Maven;
 using Octopus.Versioning.Semver;
-using SemanticVersion = Octopus.Versioning.Semver.SemanticVersion;
 
 namespace Octopus.Versioning
 {
-    public static class VersionFactory 
+    public static class VersionFactory
     {
         public static IVersion CreateVersion(string input, VersionFormat format)
         {
@@ -65,11 +64,20 @@ namespace Octopus.Versioning
             return new SemanticVersion(version, releaseLabel, metadata);
         }
 
-        public static IVersion CreateSemanticVersion(int major, int minor, int patch, int revision,
+        public static IVersion CreateSemanticVersion(int major,
+            int minor,
+            int patch,
+            int revision,
             IEnumerable<string> releaseLabels,
-            string metadata, string originalVersion)
+            string metadata,
+            string originalVersion)
         {
-            return new SemanticVersion(major, minor, patch, revision, releaseLabels, metadata);
+            return new SemanticVersion(major,
+                minor,
+                patch,
+                revision,
+                releaseLabels,
+                metadata);
         }
 
         public static IVersion TryCreateMavenVersion(string input)
@@ -90,7 +98,9 @@ namespace Octopus.Versioning
             return SemVerFactory.CreateVersionOrNone(input, preserveMissingComponents);
         }
 
-        public static IVersion CreateSemanticVersion(Version version, IEnumerable<string> releaseLabels, string metadata,
+        public static IVersion CreateSemanticVersion(Version version,
+            IEnumerable<string> releaseLabels,
+            string metadata,
             string originalVersion)
         {
             return new SemanticVersion(
