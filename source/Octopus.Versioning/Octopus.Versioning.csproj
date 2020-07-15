@@ -16,6 +16,9 @@
     <Nullable>enable</Nullable>
     <WarningsAsErrors>true</WarningsAsErrors>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net40' ">
+    <NoWarn>CS8600;CS8601;CS8602;CS8603;CS8604</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha">
       <PrivateAssets>all</PrivateAssets>

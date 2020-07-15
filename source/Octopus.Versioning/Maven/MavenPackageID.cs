@@ -60,7 +60,7 @@ namespace Octopus.Versioning.Maven
             string artifact,
             string version,
             string packaging,
-            string classifier) :
+            string? classifier) :
             this(group, artifact, version, packaging)
         {
             Classifier = string.IsNullOrWhiteSpace(classifier) ? null : classifier.Trim();
