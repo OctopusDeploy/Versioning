@@ -14,6 +14,7 @@
     <Copyright>Copyright © Octopus Deploy 2017</Copyright>
     <LangVersion>8</LangVersion>
     <Nullable>enable</Nullable>
+    <WarningsAsErrors>true</WarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha">
