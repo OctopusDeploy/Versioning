@@ -5,7 +5,7 @@ namespace Octopus.Versioning.Maven.Ranges
     /// <summary>
     /// Based on https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/versioning/OverConstrainedVersionException.java
     /// </summary>
-    public class OverConstrainedVersionException: Exception
+    public class OverConstrainedVersionException : Exception
     {
         public OverConstrainedVersionException()
         {

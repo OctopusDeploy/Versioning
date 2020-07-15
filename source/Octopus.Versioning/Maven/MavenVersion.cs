@@ -7,8 +7,21 @@ namespace Octopus.Versioning.Maven
 {
     public class MavenVersion : IVersion
     {
-        readonly string originalVersion;
-        
+        public MavenVersion(int major,
+            int minor,
+            int patch,
+            int revision,
+            IEnumerable<string>? releaseLabels,
+            string originalVersion)
+        {
+            Major = major;
+            Minor = minor;
+            Patch = patch;
+            Revision = revision;
+            ReleaseLabels = releaseLabels ?? Enumerable.Empty<string>();
+            OriginalString = originalVersion;
+        }
+
         public int Major { get; }
         public int Minor { get; }
         public int Patch { get; }
@@ -16,15 +29,16 @@ namespace Octopus.Versioning.Maven
 
         public bool IsPrerelease => ReleaseLabels.Any(label =>
         {
-            return label != null && (label.Equals("SNAPSHOT", StringComparison.OrdinalIgnoreCase) ||
-                   label.StartsWith("ALPHA", StringComparison.OrdinalIgnoreCase) ||
-                   Regex.Match(label, "^[Aa]\\d+").Success ||
-                   label.StartsWith("BETA", StringComparison.OrdinalIgnoreCase) ||
-                   Regex.Match(label, "^[Bb]\\d+").Success ||
-                   label.StartsWith("MILESTONE", StringComparison.OrdinalIgnoreCase) ||
-                   Regex.Match(label, "^[Mm]\\d+").Success ||
-                   label.StartsWith("CR", StringComparison.OrdinalIgnoreCase) ||
-                   label.StartsWith("RC", StringComparison.OrdinalIgnoreCase));
+            return label != null &&
+                (label.Equals("SNAPSHOT", StringComparison.OrdinalIgnoreCase) ||
+                    label.StartsWith("ALPHA", StringComparison.OrdinalIgnoreCase) ||
+                    Regex.Match(label, "^[Aa]\\d+").Success ||
+                    label.StartsWith("BETA", StringComparison.OrdinalIgnoreCase) ||
+                    Regex.Match(label, "^[Bb]\\d+").Success ||
+                    label.StartsWith("MILESTONE", StringComparison.OrdinalIgnoreCase) ||
+                    Regex.Match(label, "^[Mm]\\d+").Success ||
+                    label.StartsWith("CR", StringComparison.OrdinalIgnoreCase) ||
+                    label.StartsWith("RC", StringComparison.OrdinalIgnoreCase));
         });
 
         public IEnumerable<string> ReleaseLabels { get; }
@@ -34,45 +48,34 @@ namespace Octopus.Versioning.Maven
             get
             {
                 if (ReleaseLabels != null)
-                {
-                    return String.Join(".", ReleaseLabels);
-                }
+                    return string.Join(".", ReleaseLabels);
 
                 return string.Empty;
             }
         }
 
-        public string Metadata => null;
+        public string? Metadata => null;
         public bool HasMetadata => false;
-        public string OriginalString => originalVersion;
-        public VersionFormat Format => VersionFormat.Maven;
+        public string OriginalString { get; }
 
-        public MavenVersion(int major, int minor, int patch, int revision, IEnumerable<string> releaseLabels, string originalVersion)
-        {
-            Major = major;
-            Minor = minor;
-            Patch = patch;
-            Revision = revision;
-            ReleaseLabels = releaseLabels ?? Enumerable.Empty<string>();
-            this.originalVersion = originalVersion;
-        }
+        public VersionFormat Format => VersionFormat.Maven;
 
         public int CompareTo(object obj)
         {
-            return new ComparableVersion(originalVersion)
-                .CompareTo(new ComparableVersion((obj as MavenVersion)?.originalVersion ?? ""));
+            return new ComparableVersion(OriginalString)
+                .CompareTo(new ComparableVersion((obj as MavenVersion)?.OriginalString ?? ""));
         }
 
         public override string ToString()
         {
-            return originalVersion ?? "";
-        } 
-        
+            return OriginalString ?? "";
+        }
+
         public override bool Equals(object obj)
         {
-            return this.CompareTo(obj) == 0;
+            return CompareTo(obj) == 0;
         }
-        
+
         public override int GetHashCode()
         {
             unchecked

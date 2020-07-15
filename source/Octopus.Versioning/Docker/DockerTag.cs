@@ -9,6 +9,7 @@ namespace Octopus.Versioning.Docker
         {
             Tag = tag;
         }
+
         public string Tag { get; }
         public int Major => throw new NotSupportedException("Docker tags do not support major version parts");
         public int Minor => throw new NotSupportedException("Docker tags do not support minor version parts");
@@ -27,22 +28,25 @@ namespace Octopus.Versioning.Docker
             return Tag ?? "latest";
         }
 
-        private bool Equals(DockerTag other)
+        bool Equals(DockerTag other)
         {
             return Tag == other.Tag;
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((DockerTag) obj);
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            if (obj.GetType() != GetType())
+                return false;
+            return Equals((DockerTag)obj);
         }
 
         public override int GetHashCode()
         {
-            return (Tag != null ? Tag.GetHashCode() : 0);
+            return Tag != null ? Tag.GetHashCode() : 0;
         }
 
         public int CompareTo(object obj)

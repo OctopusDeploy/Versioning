@@ -18,17 +18,18 @@ namespace Octopus.Versioning.Maven
         const int LIST_ITEM = 2;
         
         string value;
-        string canonical;
-        ListItem items;
+        string canonical = string.Empty;
+        ListItem items = new ListItem();
 
         public ComparableVersion(string version)
         {
+            value = version;
             ParseVersion(version);
         }
 
         interface Item
         {
-            int CompareTo(Item item);
+            int CompareTo(Item? item);
 
             int GetItemType();
 
@@ -66,7 +67,7 @@ namespace Octopus.Versioning.Maven
                 return BigInteger_ZERO.Equals(value);
             }
 
-            public int CompareTo(Item item)
+            public int CompareTo(Item? item)
             {
                 if (item == null)
                 {
@@ -100,9 +101,7 @@ namespace Octopus.Versioning.Maven
          */
         class StringItem : Item
         {
-            static readonly String[] QUALIFIERS = {"alpha", "beta", "milestone", "rc", "snapshot", "", "sp"};
-
-            static readonly IList<String> _QUALIFIERS = QUALIFIERS.ToList();
+            static readonly IList<string> QUALIFIERS = new [] {"alpha", "beta", "milestone", "rc", "snapshot", "", "sp"};
 
             static readonly Dictionary<string, string> ALIASES = new Dictionary<string, string>()
             {
@@ -115,7 +114,7 @@ namespace Octopus.Versioning.Maven
              * A comparable value for the empty-string qualifier. This one is used to determine if a given qualifier makes
              * the version older than one without a qualifier, or more recent.
              */
-            static readonly String RELEASE_VERSION_INDEX = _QUALIFIERS.IndexOf("").ToString();
+            static readonly String RELEASE_VERSION_INDEX = QUALIFIERS.IndexOf("").ToString();
 
             string value;
 
@@ -165,12 +164,12 @@ namespace Octopus.Versioning.Maven
              */
             public static string ComparableQualifier(string qualifier)
             {
-                int i = _QUALIFIERS.IndexOf(qualifier);
+                int i = QUALIFIERS.IndexOf(qualifier);
 
-                return i == -1 ? _QUALIFIERS.Count + "-" + qualifier : i.ToString();
+                return i == -1 ? QUALIFIERS.Count + "-" + qualifier : i.ToString();
             }
 
-            public int CompareTo(Item item)
+            public int CompareTo(Item? item)
             {
                 if (item == null)
                 {
@@ -223,7 +222,7 @@ namespace Octopus.Versioning.Maven
                 }               
             }
 
-            public int CompareTo(Item item)
+            public int CompareTo(Item? item)
             {
                 if (item == null)
                 {
@@ -246,11 +245,21 @@ namespace Octopus.Versioning.Maven
                         ListItem listItem = (ListItem) item;
                         for (int index = 0; index < Math.Max(Count, listItem.Count); ++index)
                         {
-                            Item l = index < Count ? this[index] : null;
-                            Item r = index < listItem.Count ? listItem[index] : null;
+                            Item? left = index < Count ? this[index] : null;
+                            Item? right = index < listItem.Count ? listItem[index] : null;
 
                             // if this is shorter, then invert the compare and mul with -1
-                            int result = l == null ? -1 * r.CompareTo(l) : l.CompareTo(r);
+                            var result = 0;
+                            if (left != null) 
+                                result = left.CompareTo(right);
+                            else if (right != null)
+                            {
+                                result = -1 * right.CompareTo(left);
+                            }
+                            else
+                            {
+                                throw new ArgumentException("Something went wrong with the list indexing");
+                            }
 
                             if (result != 0)
                             {
@@ -273,10 +282,6 @@ namespace Octopus.Versioning.Maven
       
         void ParseVersion(string version)
         {
-            value = version;
-
-            items = new ListItem();
-
             version = version.ToLower();
 
             ListItem list = items;

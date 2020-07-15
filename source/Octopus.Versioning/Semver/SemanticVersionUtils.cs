@@ -9,29 +9,23 @@ namespace Octopus.Versioning.Semver
 {
     public class SemanticVersionUtils : ISemanticVersionUtils
     {
-        public IEnumerable<string> ParseReleaseLabels(string releaseLabels)
+        public IEnumerable<string>? ParseReleaseLabels(string? releaseLabels)
         {
-            if (!string.IsNullOrEmpty(releaseLabels))
-            {
+            if (releaseLabels != null && !string.IsNullOrEmpty(releaseLabels))
                 return releaseLabels.Split('.');
-            }
 
             return null;
         }
 
-        public string GetLegacyString(Version version, IEnumerable<string> releaseLabels, string metadata)
+        public string GetLegacyString(Version version, IEnumerable<string>? releaseLabels, string? metadata)
         {
             var sb = new StringBuilder(version.ToString());
 
             if (releaseLabels != null)
-            {
-                sb.AppendFormat(CultureInfo.InvariantCulture, "-{0}", String.Join(".", releaseLabels));
-            }
+                sb.AppendFormat(CultureInfo.InvariantCulture, "-{0}", string.Join(".", releaseLabels));
 
             if (!string.IsNullOrEmpty(metadata))
-            {
                 sb.AppendFormat(CultureInfo.InvariantCulture, "+{0}", metadata);
-            }
 
             return sb.ToString();
         }
@@ -42,22 +36,19 @@ namespace Octopus.Versioning.Semver
 
             if (version.Build < 0
                 || version.Revision < 0)
-            {
                 normalized = new Version(
                     version.Major,
                     version.Minor,
                     Math.Max(version.Build, 0),
                     Math.Max(version.Revision, 0));
-            }
-
             return normalized;
         }
 
-        public Tuple<string, string[], string> ParseSections(string value)
+        public Tuple<string, string[], string?> ParseSections(string value)
         {
-            string versionString = null;
-            string[] releaseLabels = null;
-            string buildMetadata = null;
+            string versionString = string.Empty;
+            string[] releaseLabels = new string[0];
+            string? buildMetadata = null;
 
             var dashPos = -1;
             var plusPos = -1;
@@ -67,7 +58,7 @@ namespace Octopus.Versioning.Semver
             var end = false;
             for (var i = 0; i < chars.Length; i++)
             {
-                end = (i == chars.Length - 1);
+                end = i == chars.Length - 1;
 
                 if (dashPos < 0)
                 {
@@ -81,9 +72,7 @@ namespace Octopus.Versioning.Semver
                         dashPos = i;
 
                         if (chars[i] == '+')
-                        {
                             plusPos = i;
-                        }
                     }
                 }
                 else if (plusPos < 0)
@@ -107,7 +96,7 @@ namespace Octopus.Versioning.Semver
                 }
             }
 
-            return new Tuple<string, string[], string>(versionString, releaseLabels, buildMetadata);
+            return new Tuple<string, string[], string?>(versionString, releaseLabels, buildMetadata);
         }
 
         public bool IsValid(string s, bool allowLeadingZeros)
@@ -122,29 +111,18 @@ namespace Octopus.Versioning.Semver
 
         public bool IsValidPart(char[] chars, bool allowLeadingZeros)
         {
-            var result = true;
+            var result = chars.Length != 0;
 
-            if (chars.Length == 0)
-            {
-                // empty labels are not allowed
-                result = false;
-            }
-
-            // 0 is fine, but 00 is not. 
+            // 0 is fine, but 00 is not.
             // 0A counts as an alpha numeric string where zeros are not counted
             if (!allowLeadingZeros
                 && chars.Length > 1
                 && chars[0] == '0'
                 && chars.All(c => Char.IsDigit(c)))
-            {
                 // no leading zeros in labels allowed
                 result = false;
-            }
             else
-            {
                 result &= chars.All(c => IsLetterOrDigitOrDash(c));
-            }
-
             return result;
         }
 
@@ -153,7 +131,7 @@ namespace Octopus.Versioning.Semver
             var x = (int)c;
 
             // "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-"
-            return (x >= 48 && x <= 57) || (x >= 65 && x <= 90) || (x >= 97 && x <= 122) || x == 45;
+            return x >= 48 && x <= 57 || x >= 65 && x <= 90 || x >= 97 && x <= 122 || x == 45;
         }
 
         public string IncrementRelease(string release)

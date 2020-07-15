@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Octopus.Versioning.Tests.Versions
 {
@@ -73,7 +74,7 @@ namespace Octopus.Versioning.Tests.Versions
         [Test]
         public void TestInvalidVersion()
         {
-            Assert.False(VersionFactory.TryCreateVersion("1.0.*", out var version, VersionFormat.Semver));
+            Assert.Null(VersionFactory.TryCreateVersion("1.0.*", VersionFormat.Semver));
         }
 
         [Test]

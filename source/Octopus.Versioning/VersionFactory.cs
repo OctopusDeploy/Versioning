@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Octopus.CoreUtilities;
 using Octopus.Versioning.Docker;
 using Octopus.Versioning.Maven;
 using Octopus.Versioning.Semver;
-using SemanticVersion = Octopus.Versioning.Semver.SemanticVersion;
 
 namespace Octopus.Versioning
 {
-    public static class VersionFactory 
+    public static class VersionFactory
     {
         public static IVersion CreateVersion(string input, VersionFormat format)
         {
@@ -23,16 +21,16 @@ namespace Octopus.Versioning
             }
         }
 
-        public static bool TryCreateVersion(string input, out IVersion version, VersionFormat format)
+        public static IVersion? TryCreateVersion(string input, VersionFormat format)
         {
             switch (format)
             {
                 case VersionFormat.Maven:
-                    return TryCreateMavenVersion(input, out version);
+                    return TryCreateMavenVersion(input);
                 case VersionFormat.Docker:
-                    return TryCreateDockerTag(input, out version);
+                    return TryCreateDockerTag(input);
                 default:
-                    return TryCreateSemanticVersion(input, out version);
+                    return TryCreateSemanticVersion(input);
             }
         }
 
@@ -61,40 +59,48 @@ namespace Octopus.Versioning
             return new SemanticVersion(major, minor, patch, revision);
         }
 
-        public static IVersion CreateSemanticVersion(Version version, string releaseLabel = null, string metadata = null)
+        public static IVersion CreateSemanticVersion(Version version, string? releaseLabel = null, string? metadata = null)
         {
             return new SemanticVersion(version, releaseLabel, metadata);
         }
 
-        public static IVersion CreateSemanticVersion(int major, int minor, int patch, int revision,
+        public static IVersion CreateSemanticVersion(int major,
+            int minor,
+            int patch,
+            int revision,
             IEnumerable<string> releaseLabels,
-            string metadata, string originalVersion)
+            string metadata,
+            string originalVersion)
         {
-            return new SemanticVersion(major, minor, patch, revision, releaseLabels, metadata);
+            return new SemanticVersion(major,
+                minor,
+                patch,
+                revision,
+                releaseLabels,
+                metadata);
         }
 
-        public static bool TryCreateMavenVersion(string input, out IVersion version)
+        public static IVersion TryCreateMavenVersion(string input)
         {
             /*
              * Any version is valid for Maven
              */
-            version = new MavenVersionParser().Parse(input);
-            return true;
+            return new MavenVersionParser().Parse(input);
         }
 
-        public static bool TryCreateSemanticVersion(string input, out IVersion version, bool preserveMissingComponents = false)
+        public static IVersion? TryCreateSemanticVersion(string input, bool preserveMissingComponents = false)
         {
-            var retValue = SemVerFactory.TryCreateVersion(input, out var semVersion, preserveMissingComponents);
-            version = semVersion;
-            return retValue;
+            return SemVerFactory.TryCreateVersion(input, preserveMissingComponents);
         }
 
-        public static Maybe<IVersion> CreateSemanticVersionOrNone(string input, bool preserveMissingComponents = false)
+        public static IVersion? CreateSemanticVersionOrNone(string input, bool preserveMissingComponents = false)
         {
             return SemVerFactory.CreateVersionOrNone(input, preserveMissingComponents);
         }
 
-        public static IVersion CreateSemanticVersion(Version version, IEnumerable<string> releaseLabels, string metadata,
+        public static IVersion CreateSemanticVersion(Version version,
+            IEnumerable<string> releaseLabels,
+            string metadata,
             string originalVersion)
         {
             return new SemanticVersion(
@@ -109,10 +115,9 @@ namespace Octopus.Versioning
             return new DockerTag(input);
         }
 
-        public static bool TryCreateDockerTag(string input, out IVersion version)
+        public static IVersion TryCreateDockerTag(string input)
         {
-            version = new DockerTag(input);
-            return true;
+            return new DockerTag(input);
         }
     }
 }

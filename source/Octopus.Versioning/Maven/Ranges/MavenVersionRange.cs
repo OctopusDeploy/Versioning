@@ -4,44 +4,35 @@ using System.Text;
 using Octopus.CoreUtilities.Extensions;
 
 namespace Octopus.Versioning.Maven.Ranges
-{   
+{
     /// <summary>
     /// A copy of https://github.com/apache/maven/blob/master/maven-artifact/src/main/java/org/apache/maven/artifact/versioning/VersionRange.java
     /// </summary>
     public class MavenVersionRange
     {
-        readonly IVersion recommendedVersion;
-
-        readonly List<Restriction> restrictions;
-    
-        private MavenVersionRange( 
-            IVersion recommendedVersion,
+        MavenVersionRange(
+            IVersion? recommendedVersion,
             List<Restriction> restrictions )
         {
-            this.recommendedVersion = recommendedVersion;
-            this.restrictions = restrictions;
+            RecommendedVersion = recommendedVersion;
+            Restrictions = restrictions;
         }
-    
-        public IVersion RecommendedVersion => recommendedVersion;
-        public List<Restriction> Restrictions => restrictions;
-    
+
+        public IVersion? RecommendedVersion { get; }
+
+        public List<Restriction> Restrictions { get; }
+
         public MavenVersionRange CloneOf()
         {
-            List<Restriction> copiedRestrictions = null;
-    
-            if ( restrictions != null )
-            {
-                copiedRestrictions = new List<Restriction>();
-    
-                if ( restrictions.Count != 0 )
-                {
-                    copiedRestrictions.AddRange( restrictions );
-                }
-            }
-    
-            return new MavenVersionRange( recommendedVersion, copiedRestrictions );
+            var copiedRestrictions = new List<Restriction>();
+
+            if ( Restrictions != null )
+                if ( Restrictions.Count != 0 )
+                    copiedRestrictions.AddRange( Restrictions );
+
+            return new MavenVersionRange( RecommendedVersion, copiedRestrictions );
         }
-    
+
         /**
          * <p>
          * Create a version range from a string representation
@@ -60,137 +51,107 @@ namespace Octopus.Versioning.Maven.Ranges
          * @throws InvalidVersionSpecificationException
          *
          */
-        public static MavenVersionRange CreateFromVersionSpec( string spec )
+        public static MavenVersionRange? CreateFromVersionSpec( string spec )
         {
             if ( spec == null )
-            {
                 return null;
-            }
-    
-            List<Restriction> restrictions = new List<Restriction>();
-            string process = spec;
-            IVersion version = null;
-            IVersion upperBound = null;
-            IVersion lowerBound = null;
-    
+
+            var restrictions = new List<Restriction>();
+            var process = spec;
+            IVersion? version = null;
+            IVersion? upperBound = null;
+            IVersion? lowerBound = null;
+
             while ( process.StartsWith( "[" ) || process.StartsWith( "(" ) )
             {
-                int index1 = process.IndexOf( ')' );
-                int index2 = process.IndexOf( ']' );
-    
-                int index = index2;
+                var index1 = process.IndexOf( ')' );
+                var index2 = process.IndexOf( ']' );
+
+                var index = index2;
                 if ( index2 < 0 || index1 < index2 )
-                {
                     if ( index1 >= 0 )
-                    {
                         index = index1;
-                    }
-                }
-    
+
                 if ( index < 0 )
-                {
                     throw new InvalidVersionSpecificationException( "Unbounded range: " + spec );
-                }
-    
-                Restriction restriction = ParseRestriction( process.Substring( 0, index + 1 ) );
+
+                var restriction = ParseRestriction( process.Substring( 0, index + 1 ) );
                 if ( lowerBound == null )
-                {
                     lowerBound = restriction.LowerBound;
-                }
                 if ( upperBound != null )
-                {
                     if ( restriction.LowerBound == null || restriction.LowerBound.CompareTo( upperBound ) < 0 )
-                    {
                         throw new InvalidVersionSpecificationException( "Ranges overlap: " + spec );
-                    }
-                }
                 restrictions.Add( restriction );
                 upperBound = restriction.UpperBound;
-    
+
                 process = process.Substring( index + 1 ).Trim();
-    
+
                 if ( process.Length > 0 && process.StartsWith( "," ) )
-                {
                     process = process.Substring( 1 ).Trim();
-                }
             }
-    
+
             if ( process.Length > 0 )
             {
                 if ( restrictions.Count > 0 )
-                {
                     throw new InvalidVersionSpecificationException(
                         "Only fully-qualified sets allowed in multiple set scenario: " + spec );
-                }
-                else
-                {
-                    version = new MavenVersionParser().Parse( process );
-                    restrictions.Add( Restriction.EVERYTHING );
-                }
+
+                version = new MavenVersionParser().Parse( process );
+                restrictions.Add( Restriction.EVERYTHING );
             }
-    
+
             return new MavenVersionRange( version, restrictions );
         }
-    
-        private static Restriction ParseRestriction( string spec )
+
+        static Restriction ParseRestriction( string spec )
         {
-            bool lowerBoundInclusive = spec.StartsWith( "[" );
-            bool upperBoundInclusive = spec.EndsWith( "]" );
-    
-            string process = spec.Substring( 1, spec.Length - 2 ).Trim();
-    
+            var lowerBoundInclusive = spec.StartsWith( "[" );
+            var upperBoundInclusive = spec.EndsWith( "]" );
+
+            var process = spec.Substring( 1, spec.Length - 2 ).Trim();
+
             Restriction restriction;
-    
-            int index = process.IndexOf( ',' );
-    
+
+            var index = process.IndexOf( ',' );
+
             if ( index < 0 )
             {
                 if ( !lowerBoundInclusive || !upperBoundInclusive )
-                {
                     throw new InvalidVersionSpecificationException( "Single version must be surrounded by []: " + spec );
-                }
-    
+
                 IVersion version = new MavenVersionParser().Parse( process );
-    
+
                 restriction = new Restriction( version, lowerBoundInclusive, version, upperBoundInclusive );
             }
             else
             {
-                string lowerBound = process.Substring( 0, index ).Trim();
-                string upperBound = process.Substring( index + 1 ).Trim();
+                var lowerBound = process.Substring( 0, index ).Trim();
+                var upperBound = process.Substring( index + 1 ).Trim();
                 if ( lowerBound.Equals( upperBound ) )
-                {
                     throw new InvalidVersionSpecificationException( "Range cannot have identical boundaries: " + spec );
-                }
-    
-                IVersion lowerVersion = null;
+
+                IVersion? lowerVersion = null;
                 if ( lowerBound.Length > 0 )
-                {
                     lowerVersion = new MavenVersionParser().Parse( lowerBound );
-                }
-                IVersion upperVersion = null;
+                IVersion? upperVersion = null;
                 if ( upperBound.Length > 0 )
-                {
                     upperVersion = new MavenVersionParser().Parse( upperBound );
-                }
-    
+
                 if ( upperVersion != null && lowerVersion != null && upperVersion.CompareTo( lowerVersion ) < 0 )
-                {
                     throw new InvalidVersionSpecificationException( "Range defies version ordering: " + spec );
-                }
-    
+
                 restriction = new Restriction( lowerVersion, lowerBoundInclusive, upperVersion, upperBoundInclusive );
             }
-    
+
             return restriction;
         }
-    
+
         public static MavenVersionRange CreateFromVersion( string version )
         {
-            List<Restriction> restrictions = new List<Restriction>();
+            var restrictions = new List<Restriction>();
             return new MavenVersionRange( new MavenVersionParser().Parse( version ), restrictions );
         }
-    
+
         /**
          * Creates and returns a new <code>MavenVersionRange</code> that is a restriction of this
          * version range and the specified version range.
@@ -221,28 +182,23 @@ namespace Octopus.Versioning.Maven.Ranges
          */
         public MavenVersionRange Restrict( MavenVersionRange restriction )
         {
-            List<Restriction> r1 = this.restrictions;
-            List<Restriction> r2 = restriction.restrictions;
+            var r1 = Restrictions;
+            var r2 = restriction.Restrictions;
             List<Restriction> restrictions;
-    
+
             if ( r1.Count == 0 || r2.Count == 0 )
-            {
                 restrictions = new List<Restriction>();
-            }
             else
-            {
                 restrictions = Intersection( r1, r2 );
-            }
-    
-            IVersion version = null;
+
+            IVersion? version = null;
             if ( restrictions.Count > 0 )
             {
                 foreach (var r in restrictions)
-                {
-                    if ( recommendedVersion != null && r.ContainsVersion( recommendedVersion ) )
+                    if ( RecommendedVersion != null && r.ContainsVersion( RecommendedVersion ) )
                     {
                         // if we find the original, use that
-                        version = recommendedVersion;
+                        version = RecommendedVersion;
                         break;
                     }
                     else if ( version == null && restriction.RecommendedVersion != null
@@ -251,19 +207,18 @@ namespace Octopus.Versioning.Maven.Ranges
                         // use this if we can, but prefer the original if possible
                         version = restriction.RecommendedVersion;
                     }
-                }
             }
             // Either the original or the specified version ranges have no restrictions
-            else if ( recommendedVersion != null )
+            else if ( RecommendedVersion != null )
             {
                 // Use the original recommended version since it exists
-                version = recommendedVersion;
+                version = RecommendedVersion;
             }
-            else if ( restriction.recommendedVersion != null )
+            else if ( restriction.RecommendedVersion != null )
             {
                 // Use the recommended version from the specified MavenVersionRange since there is no
                 // original recommended version
-                version = restriction.recommendedVersion;
+                version = restriction.RecommendedVersion;
             }
     /* TODO should throw this immediately, but need artifact
             else
@@ -271,36 +226,35 @@ namespace Octopus.Versioning.Maven.Ranges
                 throw new OverConstrainedVersionException( "Restricting incompatible version ranges" );
             }
     */
-    
+
             return new MavenVersionRange( version, restrictions );
         }
-    
-        private List<Restriction> Intersection( List<Restriction> r1, List<Restriction> r2 )
+
+        List<Restriction> Intersection( List<Restriction> r1, List<Restriction> r2 )
         {
-            List<Restriction> restrictions = new List<Restriction>( r1.Count + r2.Count );
-            List<Restriction>.Enumerator i1 = r1.GetEnumerator();
-            List<Restriction>.Enumerator i2 = r2.GetEnumerator();
+            var restrictions = new List<Restriction>( r1.Count + r2.Count );
+            var i1 = r1.GetEnumerator();
+            var i2 = r2.GetEnumerator();
 
             i1.MoveNext();
             i2.MoveNext();
-            
-            Restriction res1 = i1.Current;
-            Restriction res2 = i2.Current;
-    
-            bool done = false;
+
+            var res1 = i1.Current;
+            var res2 = i2.Current;
+
+            var done = false;
             while ( !done )
-            {
                 if ( res1.LowerBound == null || res2.UpperBound == null
                     || res1.LowerBound.CompareTo( res2.UpperBound ) <= 0 )
                 {
                     if ( res1.UpperBound == null || res2.LowerBound == null
                         || res1.UpperBound.CompareTo( res2.LowerBound ) >= 0 )
                     {
-                        IVersion lower;
-                        IVersion upper;
+                        IVersion? lower;
+                        IVersion? upper;
                         bool lowerInclusive;
                         bool upperInclusive;
-    
+
                         // overlaps
                         if ( res1.LowerBound == null )
                         {
@@ -314,7 +268,7 @@ namespace Octopus.Versioning.Maven.Ranges
                         }
                         else
                         {
-                            int comparison = res1.LowerBound.CompareTo( res2.LowerBound );
+                            var comparison = res1.LowerBound.CompareTo( res2.LowerBound );
                             if ( comparison < 0 )
                             {
                                 lower = res2.LowerBound;
@@ -331,7 +285,7 @@ namespace Octopus.Versioning.Maven.Ranges
                                 lowerInclusive = res1.IsLowerBoundInclusive;
                             }
                         }
-    
+
                         if ( res1.UpperBound == null )
                         {
                             upper = res2.UpperBound;
@@ -344,7 +298,7 @@ namespace Octopus.Versioning.Maven.Ranges
                         }
                         else
                         {
-                            int comparison = res1.UpperBound.CompareTo( res2.UpperBound );
+                            var comparison = res1.UpperBound.CompareTo( res2.UpperBound );
                             if ( comparison < 0 )
                             {
                                 upper = res1.UpperBound;
@@ -361,195 +315,150 @@ namespace Octopus.Versioning.Maven.Ranges
                                 upperInclusive = res2.IsUpperBoundInclusive;
                             }
                         }
-    
+
                         // don't add if they are equal and one is not inclusive
                         if ( lower == null || upper == null || lower.CompareTo( upper ) != 0 )
-                        {
                             restrictions.Add( new Restriction( lower, lowerInclusive, upper, upperInclusive ) );
-                        }
                         else if ( lowerInclusive && upperInclusive )
-                        {
                             restrictions.Add( new Restriction( lower, lowerInclusive, upper, upperInclusive ) );
-                        }
-    
+
                         //noinspection ObjectEquality
                         if ( upper == res2.UpperBound )
                         {
                             // advance res2
                             if ( i2.MoveNext() )
-                            {
                                 res2 = i2.Current;
-                            }
                             else
-                            {
                                 done = true;
-                            }
                         }
                         else
                         {
                             // advance res1
                             if ( i1.MoveNext() )
-                            {
                                 res1 = i1.Current;
-                            }
                             else
-                            {
                                 done = true;
-                            }
                         }
                     }
                     else
                     {
                         // move on to next in r1
                         if ( i1.MoveNext() )
-                        {
                             res1 = i1.Current;
-                        }
                         else
-                        {
                             done = true;
-                        }
                     }
                 }
                 else
                 {
                     // move on to next in r2
                     if ( i2.MoveNext() )
-                    {
                         res2 = i2.Current;
-                    }
                     else
-                    {
                         done = true;
-                    }
                 }
-            }
-    
+
             return restrictions;
         }
-    
-        public IVersion GetSelectedVersion(  )
+
+        public IVersion? GetSelectedVersion(  )
         {
-            IVersion version;
-            if ( recommendedVersion != null )
+            IVersion? version = null;
+            if ( RecommendedVersion != null )
             {
-                version = recommendedVersion;
+                version = RecommendedVersion;
             }
             else
             {
-                if ( restrictions.Count == 0 )
-                {
-                    throw new OverConstrainedVersionException( $"The artifact has no valid ranges" );
-                }
-    
-                version = null;
+                if ( Restrictions.Count == 0 )
+                    throw new OverConstrainedVersionException( "The artifact has no valid ranges" );
             }
             return version;
         }
-    
+
         public bool IsSelectedVersionKnown( )
         {
-            bool value = false;
-            if ( recommendedVersion != null )
+            var value = false;
+            if ( RecommendedVersion != null )
             {
                 value = true;
             }
             else
             {
-                if ( restrictions.Count == 0 )
-                {
-                    throw new OverConstrainedVersionException( $"The artifact has no valid ranges" );
-                }
+                if ( Restrictions.Count == 0 )
+                    throw new OverConstrainedVersionException( "The artifact has no valid ranges" );
             }
             return value;
         }
-    
+
         public override string ToString()
         {
-            if ( recommendedVersion != null )
+            if ( RecommendedVersion != null )
+                return RecommendedVersion.ToString();
+
+            var buf = new StringBuilder();
+            for ( var i = Restrictions.GetEnumerator(); i.MoveNext(); )
             {
-                return recommendedVersion.ToString();
+                var r = i.Current;
+
+                buf.Append( r.ToString() );
+
+                buf.Append( ',' );
             }
-            else
-            {
-                StringBuilder buf = new StringBuilder();
-                for ( List<Restriction>.Enumerator i = restrictions.GetEnumerator(); i.MoveNext(); )
-                {
-                    Restriction r = i.Current;
-    
-                    buf.Append( r.ToString() );
-    
-                    buf.Append( ',' );
-                }                                
-                
-                return buf
-                    .ToString()
-                    .Map(s => s.Length != 0 ? s.Substring(s.Length - 1) : s);
-            }
+
+            return buf
+                .ToString()
+                .Map(s => s.Length != 0 ? s.Substring(s.Length - 1) : s);
         }
-    
-        public IVersion MatchVersion( List<IVersion> versions )
+
+        public IVersion? MatchVersion( List<IVersion> versions )
         {
             // TODO could be more efficient by sorting the list and then moving along the restrictions in order?
-    
-            IVersion matched = null;
+
+            IVersion? matched = null;
             foreach (var version in versions)
-            {
                 if ( ContainsVersion( version ) )
-                {
                     // valid - check if it is greater than the currently matched version
                     if ( matched == null || version.CompareTo( matched ) > 0 )
-                    {
                         matched = version;
-                    }
-                }
-            }
             return matched;
         }
-    
+
         public bool ContainsVersion( IVersion version )
         {
-            foreach (var restriction in restrictions)
-            {
+            foreach (var restriction in Restrictions)
                 if ( restriction.ContainsVersion( version ) )
-                {
                     return true;
-                }
-            }
             return false;
         }
-    
+
         public bool HasRestrictions()
         {
-            return restrictions.Count != 0 && recommendedVersion == null;
+            return Restrictions.Count != 0 && RecommendedVersion == null;
         }
-    
-        public override bool Equals( Object obj )
+
+        public override bool Equals( object obj )
         {
             if ( this == obj )
-            {
                 return true;
-            }
             if ( !( obj is MavenVersionRange ) )
-            {
                 return false;
-            }
-            MavenVersionRange other = (MavenVersionRange) obj;
-    
-            bool equals =
-                recommendedVersion == other.recommendedVersion
-                    || ( ( recommendedVersion != null ) && recommendedVersion.Equals( other.recommendedVersion ) );
+            var other = (MavenVersionRange) obj;
+
+            var equals =
+                RecommendedVersion == other.RecommendedVersion
+                    || RecommendedVersion != null && RecommendedVersion.Equals( other.RecommendedVersion );
             equals &=
-                restrictions == other.restrictions
-                    || ( ( restrictions != null ) && restrictions.Equals( other.restrictions ) );
+                Restrictions == other.Restrictions
+                    || Restrictions != null && Restrictions.Equals( other.Restrictions );
             return equals;
         }
-    
+
         public override int GetHashCode()
         {
-            int hash = 7;
-            hash = 31 * hash + ( recommendedVersion == null ? 0 : recommendedVersion.GetHashCode() );
-            hash = 31 * hash + ( restrictions == null ? 0 : restrictions.GetHashCode() );
+            var hash = 7;
+            hash = 31 * hash + ( RecommendedVersion == null ? 0 : RecommendedVersion.GetHashCode() );
+            hash = 31 * hash + ( Restrictions == null ? 0 : Restrictions.GetHashCode() );
             return hash;
         }
     }

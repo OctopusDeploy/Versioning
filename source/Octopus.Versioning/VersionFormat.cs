@@ -1,4 +1,6 @@
-﻿namespace Octopus.Versioning
+﻿using System;
+
+namespace Octopus.Versioning
 {
     public enum VersionFormat
     {
