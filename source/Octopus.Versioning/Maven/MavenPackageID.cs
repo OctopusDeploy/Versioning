@@ -103,16 +103,16 @@ namespace Octopus.Versioning.Maven
 
                 if (mavenDisplaySplit.Length == 3) // groupId:artifactId:version
                 {
-                    Version = mavenDisplaySplit[2].Trim();
+                    Version = string.IsNullOrWhiteSpace(mavenDisplaySplit[2]) ? null : mavenDisplaySplit[2].Trim();
                 }
                 else if (mavenDisplaySplit.Length == 4) // groupId:artifactId:version:packaging
                 {
-                    Version = mavenDisplaySplit[2].Trim();
+                    Version = string.IsNullOrWhiteSpace(mavenDisplaySplit[2]) ? null : mavenDisplaySplit[2].Trim();
                     Packaging = string.IsNullOrWhiteSpace(mavenDisplaySplit[3]) ? null : mavenDisplaySplit[3].Trim();
                 }
                 else if (mavenDisplaySplit.Length == 5) // groupId:artifactId:version:packaging:classifier
                 {
-                    Version = mavenDisplaySplit[2].Trim();
+                    Version = string.IsNullOrWhiteSpace(mavenDisplaySplit[2]) ? null : mavenDisplaySplit[2].Trim();
                     Packaging = string.IsNullOrWhiteSpace(mavenDisplaySplit[3]) ? null : mavenDisplaySplit[3].Trim();
                     Classifier = string.IsNullOrWhiteSpace(mavenDisplaySplit[4]) ? null : mavenDisplaySplit[4].Trim();
                 }
@@ -130,7 +130,7 @@ namespace Octopus.Versioning.Maven
         public string Group { get; }
         public string[]? Groups => Group?.Split('.');
         public string Artifact { get; }
-        public string Version { get; }
+        public string? Version { get; }
         public string? Packaging { get; }
         public string? Classifier { get; }
         public string DisplayName => ToString(DISPLAY_DELIMITER);
