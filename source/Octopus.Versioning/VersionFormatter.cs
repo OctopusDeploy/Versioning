@@ -51,11 +51,7 @@ namespace Octopus.Versioning
 
         public object? GetFormat(Type formatType)
         {
-            if (formatType == typeof(ICustomFormatter) ||
-                typeof(IVersion).IsAssignableFrom(formatType))
-                return this;
-
-            return null;
+            return formatType == typeof(ICustomFormatter) ? this : null;
         }
 
         static string GetNormalizedString(IVersion version)

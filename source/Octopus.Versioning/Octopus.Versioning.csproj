@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net40</TargetFrameworks>
+    <TargetFrameworks>net40;netstandard1.3</TargetFrameworks>
     <AssemblyName>Octopus.Versioning</AssemblyName>
     <PackageId>Octopus.Versioning</PackageId>
     <PackageIconUrl>http://i.octopusdeploy.com/resources/Avatar3_360.png</PackageIconUrl>
@@ -24,6 +24,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Octopus.CoreUtilities" Version="1.1.2" />
+    <PackageReference Include="Octopus.CoreUtilities" Version="1.1.3-netstandard13-0012" />
   </ItemGroup>
 </Project>
