@@ -6,6 +6,7 @@ namespace Octopus.Versioning
     {
         Semver,
         Maven,
-        Docker
+        Docker,
+        Octopus
     }
 }
