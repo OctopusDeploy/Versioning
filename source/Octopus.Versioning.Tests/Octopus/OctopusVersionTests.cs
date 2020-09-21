@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using NUnit.Framework;
 using Octopus.Versioning.Maven;
 using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
@@ -8,10 +11,10 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
     [TestFixture]
     public class OctopusVersionTests
     {
+        static readonly Random Random = new Random();
+        static readonly Regex NonNumbers = new Regex("[^0-9]");
         static readonly OctopusVersionParser OctopusVersionParser = new OctopusVersionParser();
         static readonly SemVerFactory SemVerFactory = new SemVerFactory();
-        static readonly MavenVersionParser MavenVersionParser = new MavenVersionParser();
-
         [Test]
         [TestCase("0.0.4", 0, 0, 4, 0, "", "", "", "")]
         [TestCase("0.0.4.1", 0, 0, 4, 1, "", "", "", "")]
@@ -98,7 +101,7 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
             string metadata)
         {
             var parsed = OctopusVersionParser.Parse(version);
-            var mavenParsed = MavenVersionParser.Parse(version);
+            var mavenParsed = new MavenVersionParser().Parse(version);
 
             Assert.AreEqual(major, parsed.Major);
             Assert.AreEqual(major, mavenParsed.Major);
@@ -142,7 +145,7 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
             string metadata)
         {
             var parsed = OctopusVersionParser.Parse(version);
-            var mavenParsed = MavenVersionParser.Parse(version);
+            var mavenParsed = new MavenVersionParser().Parse(version);
 
             Assert.AreEqual(major, parsed.Major);
             Assert.AreEqual(major, mavenParsed.Major);
@@ -235,6 +238,34 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
             Assert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
 
             Assert.IsNull(SemVerFactory.TryCreateVersion(version));
+        }
+
+        /// <summary>
+        /// All strings should parse to something
+        /// </summary>
+        [Test]
+        [Repeat(1000)]
+        public void RandomStringTest()
+        {
+            var version = RandomString(20);
+            var parsed = OctopusVersionParser.Parse(version);
+
+            var hasMajor = parsed.Major != 0;
+            var hasMinor = parsed.Minor != 0;
+            var hasPatch = parsed.Patch != 0;
+            var hasRevision = parsed.Revision != 0;
+            var hasRelease = !string.IsNullOrEmpty(parsed.Release);
+            var hasMetadata = !string.IsNullOrEmpty(parsed.Metadata);
+
+            Assert.IsTrue(hasMajor || hasMinor || hasPatch || hasRevision || hasRelease || hasMetadata);
+        }
+
+
+        public static string RandomString(int length)
+        {
+            const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|:\"<>?-=[]\\;',./";
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[Random.Next(s.Length)]).ToArray());
         }
     }
 }
