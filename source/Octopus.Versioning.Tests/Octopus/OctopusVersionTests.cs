@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 using NUnit.Framework;
 using Octopus.Versioning.Maven;
 using Octopus.Versioning.Octopus;
@@ -12,9 +11,8 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
     public class OctopusVersionTests
     {
         static readonly Random Random = new Random();
-        static readonly Regex NonNumbers = new Regex("[^0-9]");
         static readonly OctopusVersionParser OctopusVersionParser = new OctopusVersionParser();
-        static readonly SemVerFactory SemVerFactory = new SemVerFactory();
+
         [Test]
         [TestCase("0.0.4", 0, 0, 4, 0, "", "", "", "")]
         [TestCase("0.0.4.1", 0, 0, 4, 1, "", "", "", "")]
@@ -90,6 +88,7 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
         [TestCase("1.0-cr", 1, 0, 0, 0, "cr", "cr", "", "")]
         [TestCase("1.0-rc", 1, 0, 0, 0, "rc", "rc", "", "")]
         [TestCase("1.0-rc1", 1, 0, 0, 0, "rc1", "rc1", "", "")]
+        [TestCase("19.0.0.Final", 19, 0, 0, 0, "Final", "Final", "", "", Description = "https://hub.docker.com/r/jboss/wildfly/tags")]
         public void TestMavenVersions(string version,
             int major,
             int minor,
