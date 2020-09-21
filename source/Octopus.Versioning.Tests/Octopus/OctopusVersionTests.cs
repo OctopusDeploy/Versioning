@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Octopus.Versioning.Maven;
 using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
 
@@ -9,6 +10,7 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
     {
         static readonly OctopusVersionParser OctopusVersionParser = new OctopusVersionParser();
         static readonly SemVerFactory SemVerFactory = new SemVerFactory();
+        static readonly MavenVersionParser MavenVersionParser = new MavenVersionParser();
 
         [Test]
         [TestCase("0.0.4", 0, 0, 4, 0, "", "", "", "")]
@@ -44,6 +46,11 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
         [TestCase("99999999.99999999.99999999", 99999999, 99999999, 99999999, 0, "", "", "", "")]
         [TestCase("0.0.0-foo", 0, 0, 0, 0, "foo", "foo", "", "")]
         [TestCase("0.0.0", 0, 0, 0, 0, "", "", "", "")]
+        [TestCase("1.2", 1, 2, 0, 0, "", "", "", "")]
+        [TestCase("1", 1, 0, 0, 0, "", "", "", "")]
+        [TestCase("01.1.1", 1, 1, 1, 0, "", "", "", "")]
+        [TestCase("1.01.1", 1, 1, 1, 0, "", "", "", "")]
+        [TestCase("1.1.01", 1, 1, 1, 0, "", "", "", "")]
         public void TestSemverVersions(string version, int major, int minor, int patch, int revision, string prerelease, string prereleasePrefix, string prereleaseCounter, string metadata)
         {
             var parsed = OctopusVersionParser.Parse(version);
@@ -64,12 +71,104 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
 
             Assert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
             Assert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
-
         }
 
         [Test]
-        [TestCase("1.0.0-0A.is.legal", 1, 0, 0, 0, "0A.is.legal", "A.is.legal", "A", "is.legal", "")]
-        public void TestIncompatibilitiesVersions(string version, int major, int minor, int patch, int revision, string semverPrerelease, string prerelease, string prereleasePrefix, string prereleaseCounter, string metadata)
+        [TestCase("NotAVersionSting", 0, 0, 0, 0, "NotAVersionSting", "NotAVersionSting", "", "")]
+        [TestCase("1.0-alpha", 1, 0, 0, 0, "alpha", "alpha", "", "")]
+        [TestCase("1.0-alpha1", 1, 0, 0, 0, "alpha1", "alpha1", "", "")]
+        [TestCase("1.0-a1", 1, 0, 0, 0, "a1", "a1", "", "")]
+        [TestCase("1.0-beta", 1, 0, 0, 0, "beta", "beta", "", "")]
+        [TestCase("1.0-beta1", 1, 0, 0, 0, "beta1", "beta1", "", "")]
+        [TestCase("1.0-b1", 1, 0, 0, 0, "b1", "b1", "", "")]
+        [TestCase("1.0-whatever", 1, 0, 0, 0, "whatever", "whatever", "", "")]
+        [TestCase("1.0-SNAPSHOT", 1, 0, 0, 0, "SNAPSHOT", "SNAPSHOT", "", "")]
+        [TestCase("1.0-cr1", 1, 0, 0, 0, "cr1", "cr1", "", "")]
+        [TestCase("1.0-cr", 1, 0, 0, 0, "cr", "cr", "", "")]
+        [TestCase("1.0-rc", 1, 0, 0, 0, "rc", "rc", "", "")]
+        [TestCase("1.0-rc1", 1, 0, 0, 0, "rc1", "rc1", "", "")]
+        public void TestMavenVersions(string version,
+            int major,
+            int minor,
+            int patch,
+            int revision,
+            string prerelease,
+            string prereleasePrefix,
+            string prereleaseCounter,
+            string metadata)
+        {
+            var parsed = OctopusVersionParser.Parse(version);
+            var mavenParsed = MavenVersionParser.Parse(version);
+
+            Assert.AreEqual(major, parsed.Major);
+            Assert.AreEqual(major, mavenParsed.Major);
+            Assert.AreEqual(minor, parsed.Minor);
+            Assert.AreEqual(minor, mavenParsed.Minor);
+            Assert.AreEqual(patch, parsed.Patch);
+            Assert.AreEqual(patch, mavenParsed.Patch);
+            Assert.AreEqual(revision, parsed.Revision);
+            Assert.AreEqual(revision, mavenParsed.Revision);
+            Assert.AreEqual(prerelease, parsed.Release);
+            Assert.AreEqual(prerelease, mavenParsed.Release);
+            Assert.AreEqual(metadata, parsed.Metadata);
+            Assert.AreEqual(metadata, mavenParsed.Metadata ?? string.Empty);
+
+            Assert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
+            Assert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
+        }
+
+        /// <summary>
+        /// This test identifies examples where valid maven is processed differently from the octopus version
+        /// </summary>
+        [Test]
+        [TestCase("1-0-alpha", 1, 0, 0, 0, 0, 0, 0, "-alpha", "alpha", "alpha", "", "")]
+        [TestCase("1_0_alpha", 1, 0, 0, 0, 0, 0, 0, "", "alpha", "alpha", "", "")]
+        [TestCase("1_0alpha", 1, 0, 0, 0, 0, 0, 0, "", "alpha", "alpha", "", "")]
+        [TestCase("1.0a1-SNAPSHOT", 1, 0, 0, 0, 0, 0, 0, "","a1-SNAPSHOT", "a1", "SNAPSHOT", "")]
+        [TestCase("1-2.3-SNAPSHOT", 1, 0, 2, 0, 3, 2, 0, ".3-SNAPSHOT", "SNAPSHOT", "SNAPSHOT", "", "")]
+        [TestCase("1.0.2.3-rc1", 1, 0, 0, 2, 2, 0, 3, "3-rc1", "rc1", "rc1", "", "")]
+        public void TestIncompatibleMavenVersions(string version,
+            int major,
+            int mavenMinor,
+            int minor,
+            int mavenPatch,
+            int patch,
+            int mavenRevision,
+            int revision,
+            string mavenPrerelease,
+            string prerelease,
+            string prereleasePrefix,
+            string prereleaseCounter,
+            string metadata)
+        {
+            var parsed = OctopusVersionParser.Parse(version);
+            var mavenParsed = MavenVersionParser.Parse(version);
+
+            Assert.AreEqual(major, parsed.Major);
+            Assert.AreEqual(major, mavenParsed.Major);
+            Assert.AreEqual(minor, parsed.Minor);
+            Assert.AreEqual(mavenMinor, mavenParsed.Minor);
+            Assert.AreEqual(patch, parsed.Patch);
+            Assert.AreEqual(mavenPatch, mavenParsed.Patch);
+            Assert.AreEqual(revision, parsed.Revision);
+            Assert.AreEqual(mavenRevision, mavenParsed.Revision);
+            Assert.AreEqual(prerelease, parsed.Release);
+            Assert.AreEqual(mavenPrerelease, mavenParsed.Release);
+            Assert.AreEqual(metadata, parsed.Metadata);
+            Assert.AreEqual(metadata, mavenParsed.Metadata ?? string.Empty);
+
+            Assert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
+            Assert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
+        }
+
+        /// <summary>
+        /// This test identifies examples where valid semver is processed differently from the octopus version
+        /// </summary>
+        [Test]
+        [TestCase("1.0.0-0A.is.legal", 1, 0, 0, 0, 0, "0A.is.legal", "A.is.legal", "A", "is.legal", "")]
+        [TestCase("1.2.3-0123", 1, 2, 3, 0, 0123, "0123", "", "", "", "")]
+        [TestCase("1.2.3-0123.0123", 1, 2, 3, 0, 0123, "0123.0123", "0123", "0123", "", "")]
+        public void TestIncompatibilitiesVersions(string version, int major, int minor, int patch, int semverRevision, int revision, string semverPrerelease, string prerelease, string prereleasePrefix, string prereleaseCounter, string metadata)
         {
             var parsed = OctopusVersionParser.Parse(version);
             var semverParsed = SemVerFactory.Parse(version);
@@ -81,7 +180,7 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
             Assert.AreEqual(patch, parsed.Patch);
             Assert.AreEqual(patch, semverParsed.Patch);
             Assert.AreEqual(revision, parsed.Revision);
-            Assert.AreEqual(revision, semverParsed.Revision);
+            Assert.AreEqual(semverRevision, semverParsed.Revision);
             Assert.AreEqual(prerelease, parsed.Release);
             Assert.AreEqual(semverPrerelease, semverParsed.Release);
             Assert.AreEqual(metadata, parsed.Metadata);
@@ -92,6 +191,9 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
 
         }
 
+        /// <summary>
+        /// Tests of versions that are invalid semver
+        /// </summary>
         [Test]
         [TestCase("1.0.0-beta.", 1, 0, 0, 0, "beta.", "beta", "", "")]
         [TestCase("v0.0.0", 0, 0, 0, 0, "", "", "", "")]
@@ -101,6 +203,15 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
         [TestCase("v1.0.0", 1, 0, 0, 0, "", "", "", "")]
         [TestCase("v0.0.0-foo", 0, 0, 0, 0, "foo", "foo", "", "")]
         [TestCase("V0.0.0-foo", 0, 0, 0, 0, "foo", "foo", "", "")]
+        [TestCase("1.1.2+.123", 1, 1, 2, 0, "", "", "", ".123")]
+        [TestCase("+invalid", 0, 0, 0, 0, "", "", "", "invalid")]
+        [TestCase("-invalid", 0, 0, 0, 0, "invalid", "invalid", "", "")]
+        [TestCase("-invalid+invalid", 0, 0, 0, 0, "invalid", "invalid", "", "invalid")]
+        [TestCase("-invalid.01", 0, 0, 0, 0, "invalid.01", "invalid", "01", "")]
+        [TestCase("alpha..", 0, 0, 0, 0, "alpha..", "alpha", ".", "")]
+        [TestCase("1.0.0-alpha.......1", 1, 0, 0, 0, "alpha.......1", "alpha", "......1", "")]
+        [TestCase("19.0.0.Final", 19, 0, 0, 0, "Final", "Final", "", "", Description = "https://hub.docker.com/r/jboss/wildfly/tags")]
+        [TestCase("284.0.0-debian_component_based", 284, 0, 0, 0, "debian_component_based", "debian", "component_based", "", Description = "https://hub.docker.com/r/google/cloud-sdk/tags")]
         public void TestInvalidSemverVersions(string version,
             int major,
             int minor,
@@ -122,6 +233,8 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
 
             Assert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
             Assert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
+
+            Assert.IsNull(SemVerFactory.TryCreateVersion(version));
         }
     }
 }
