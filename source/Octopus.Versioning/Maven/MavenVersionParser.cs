@@ -46,7 +46,7 @@ namespace Octopus.Versioning.Maven
                 Minor,
                 Patch,
                 BuildNumber,
-                Qualifier == null ? null : Qualifier.ToEnumerable(),
+                Qualifier?.ToEnumerable(),
                 version);
         }
 
