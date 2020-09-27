@@ -35,6 +35,11 @@ namespace Octopus.Versioning.Octopus
                 if (Minor.CompareTo(objVersion.Minor) != 0) return Minor.CompareTo(objVersion.Minor);
                 if (Patch.CompareTo(objVersion.Patch) != 0) return Patch.CompareTo(objVersion.Patch);
                 if (Revision.CompareTo(objVersion.Revision) != 0) return Revision.CompareTo(objVersion.Revision);
+
+                // anything with a release field is lower than anything without a release field
+                if (!string.IsNullOrEmpty(Release) && string.IsNullOrEmpty(objVersion.Release)) return -1;
+                if (!string.IsNullOrEmpty(objVersion.Release) && string.IsNullOrEmpty(Release)) return 1;
+
                 if (string.Compare(Release ?? string.Empty, objVersion.Release ?? string.Empty, StringComparison.Ordinal) != 0)
                     return string.Compare(Release ?? string.Empty, objVersion.Release ?? string.Empty, StringComparison.Ordinal);
                 if (string.Compare(Metadata ?? string.Empty, objVersion.Metadata ?? string.Empty, StringComparison.Ordinal) != 0)
