@@ -27,8 +27,8 @@ namespace Octopus.Versioning.Docker
             if (obj is IVersion objVersion)
             {
                 if (OriginalString == Latest && objVersion.OriginalString == Latest) return 0;
-                if (OriginalString == Latest) return -1;
-                if (objVersion.OriginalString == Latest) return 1;
+                if (OriginalString == Latest) return 1;
+                if (objVersion.OriginalString == Latest) return -1;
             }
 
             return base.CompareTo(obj);
