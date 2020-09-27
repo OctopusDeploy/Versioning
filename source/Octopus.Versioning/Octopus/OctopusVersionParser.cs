@@ -30,7 +30,7 @@ namespace Octopus.Versioning.Octopus
 
         public OctopusVersion Parse(string version)
         {
-            var result = VersionRegex.Match(version);
+            var result = VersionRegex.Match(version?.Trim() ?? string.Empty);
             return new OctopusVersion(
                 result.Groups[Major].Success ? int.Parse(result.Groups[Major].Value) : 0,
                 result.Groups[Minor].Success ? int.Parse(result.Groups[Minor].Value) : 0,

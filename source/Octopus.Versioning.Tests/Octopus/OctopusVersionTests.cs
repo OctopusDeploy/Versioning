@@ -214,6 +214,9 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
         [TestCase("1.0.0-alpha.......1", 1, 0, 0, 0, "alpha.......1", "alpha", "......1", "")]
         [TestCase("19.0.0.Final", 19, 0, 0, 0, "Final", "Final", "", "", Description = "https://hub.docker.com/r/jboss/wildfly/tags")]
         [TestCase("284.0.0-debian_component_based", 284, 0, 0, 0, "debian_component_based", "debian", "component_based", "", Description = "https://hub.docker.com/r/google/cloud-sdk/tags")]
+        [TestCase(" ", 0, 0, 0, 0, "", "", "", "")]
+        [TestCase("", 0, 0, 0, 0, "", "", "", "")]
+        [TestCase(null, 0, 0, 0, 0, "", "", "", "")]
         public void TestInvalidSemverVersions(string version,
             int major,
             int minor,
