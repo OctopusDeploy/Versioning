@@ -51,6 +51,22 @@ namespace Octopus.Versioning.Octopus
             return -1;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj is IVersion objVersion)
+            {
+                if (Major != objVersion.Major ||
+                    Minor != objVersion.Minor ||
+                    Patch != objVersion.Patch ||
+                    Revision != objVersion.Revision ||
+                    Release != objVersion.Release) return false;
+
+                return true;
+            }
+
+            return false;
+        }
+
         public int Major { get; }
         public int Minor { get; }
         public int Patch { get; }
