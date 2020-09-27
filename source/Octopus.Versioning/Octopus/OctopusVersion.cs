@@ -68,6 +68,11 @@ namespace Octopus.Versioning.Octopus
             return -1;
         }
 
+        public override string ToString()
+        {
+            return OriginalString;
+        }
+
         public override bool Equals(object obj)
         {
             if (obj is IVersion objVersion)
