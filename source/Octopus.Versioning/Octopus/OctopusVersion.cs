@@ -40,8 +40,25 @@ namespace Octopus.Versioning.Octopus
                 if (!string.IsNullOrEmpty(Release) && string.IsNullOrEmpty(objVersion.Release)) return -1;
                 if (!string.IsNullOrEmpty(objVersion.Release) && string.IsNullOrEmpty(Release)) return 1;
 
-                if (string.Compare(Release ?? string.Empty, objVersion.Release ?? string.Empty, StringComparison.Ordinal) != 0)
-                    return string.Compare(Release ?? string.Empty, objVersion.Release ?? string.Empty, StringComparison.Ordinal);
+
+                if (obj is OctopusVersion objOctoVersion)
+                {
+                    // octopus versions break down the release into a prefix and counter that can be compared
+
+                    if (string.Compare(ReleasePrefix ?? string.Empty, objOctoVersion.ReleasePrefix ?? string.Empty, StringComparison.Ordinal) != 0)
+                        return string.Compare(ReleasePrefix ?? string.Empty, objOctoVersion.ReleasePrefix ?? string.Empty, StringComparison.Ordinal);
+
+                    if (string.Compare(ReleaseCounter ?? string.Empty, objOctoVersion.ReleaseCounter ?? string.Empty, StringComparison.Ordinal) != 0)
+                        return string.Compare(ReleaseCounter ?? string.Empty, objOctoVersion.ReleaseCounter ?? string.Empty, StringComparison.Ordinal);
+                }
+                else
+                {
+                    // otherwise string compare the release field
+
+                    if (string.Compare(Release ?? string.Empty, objVersion.Release ?? string.Empty, StringComparison.Ordinal) != 0)
+                        return string.Compare(Release ?? string.Empty, objVersion.Release ?? string.Empty, StringComparison.Ordinal);
+                }
+
                 if (string.Compare(Metadata ?? string.Empty, objVersion.Metadata ?? string.Empty, StringComparison.Ordinal) != 0)
                     return string.Compare(Metadata ?? string.Empty, objVersion.Metadata ?? string.Empty, StringComparison.Ordinal);
 
