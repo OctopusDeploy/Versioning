@@ -53,5 +53,7 @@ namespace Octopus.Versioning.Docker
 
             return base.CompareTo(obj);
         }
+
+        public bool IsPrerelease => !string.IsNullOrEmpty(Release) && Release != Latest;
     }
 }
