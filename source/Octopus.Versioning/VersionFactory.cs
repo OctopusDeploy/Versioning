@@ -113,12 +113,12 @@ namespace Octopus.Versioning
 
         public static IVersion CreateDockerTag(string input)
         {
-            return new OctopusVersionParser().Parse(input);
+            return new DockerTag(new OctopusVersionParser().Parse(input));
         }
 
         public static IVersion TryCreateDockerTag(string input)
         {
-            return new OctopusVersionParser().Parse(input);
+            return CreateDockerTag(input);
         }
     }
 }

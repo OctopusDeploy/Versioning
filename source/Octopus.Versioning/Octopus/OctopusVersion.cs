@@ -27,7 +27,7 @@ namespace Octopus.Versioning.Octopus
             OriginalString = originalVersion;
         }
 
-        public int CompareTo(object obj)
+        public virtual int CompareTo(object obj)
         {
             if (obj is IVersion objVersion)
             {

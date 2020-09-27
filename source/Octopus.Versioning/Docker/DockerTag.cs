@@ -7,6 +7,19 @@ namespace Octopus.Versioning.Docker
     {
         const string Latest = "latest";
 
+        public DockerTag(OctopusVersion version)
+            : base(version.Major,
+                version.Minor,
+                version.Patch,
+                version.Revision,
+                version.Release,
+                version.ReleasePrefix,
+                version.ReleaseCounter,
+                version.Metadata ?? string.Empty,
+                version.OriginalString ?? string.Empty)
+        {
+        }
+
         public DockerTag(int major,
             int minor,
             int patch,
@@ -15,14 +28,21 @@ namespace Octopus.Versioning.Docker
             string prereleasePrefix,
             string prereleaseCounter,
             string metadata,
-            string originalVersion) : base(major, minor, patch, revision, prerelease, prereleasePrefix, prereleaseCounter, metadata, originalVersion)
+            string originalVersion) : base(major,
+            minor,
+            patch,
+            revision,
+            prerelease,
+            prereleasePrefix,
+            prereleaseCounter,
+            metadata,
+            originalVersion)
         {
-
         }
 
         public VersionFormat Format => VersionFormat.Docker;
 
-        public int CompareTo(object obj)
+        public override int CompareTo(object obj)
         {
             if (obj is IVersion objVersion)
             {

@@ -12,7 +12,10 @@ namespace Octopus.Versioning.Tests.Versions.Docker
         [TestCase("latest", "latest", 0)]
         public void TestSemverVersions(string version1, string version2, int result)
         {
-            Assert.AreEqual(result, VersionFactory.CreateDockerTag(version1).CompareTo(VersionFactory.CreateDockerTag(version2)));
+            var ver1 = VersionFactory.CreateDockerTag(version1);
+            var ver2 = VersionFactory.CreateDockerTag(version2);
+
+            Assert.AreEqual(result, ver1.CompareTo(ver2));
         }
     }
 }
