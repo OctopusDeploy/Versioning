@@ -1,57 +1,37 @@
 using System;
-using System.Collections.Generic;
+using Octopus.Versioning.Octopus;
 
 namespace Octopus.Versioning.Docker
 {
-    public class DockerTag : IVersion
+    public class DockerTag : OctopusVersion
     {
-        public DockerTag(string tag)
+        const string Latest = "latest";
+
+        public DockerTag(int major,
+            int minor,
+            int patch,
+            int revision,
+            string prerelease,
+            string prereleasePrefix,
+            string prereleaseCounter,
+            string metadata,
+            string originalVersion) : base(major, minor, patch, revision, prerelease, prereleasePrefix, prereleaseCounter, metadata, originalVersion)
         {
-            Tag = tag;
+
         }
 
-        public string Tag { get; }
-        public int Major => throw new NotSupportedException("Docker tags do not support major version parts");
-        public int Minor => throw new NotSupportedException("Docker tags do not support minor version parts");
-        public int Patch => throw new NotSupportedException("Docker tags do not support patch version parts");
-        public int Revision => throw new NotSupportedException("Docker tags do not support revision version parts");
-        public bool IsPrerelease => throw new NotSupportedException("Docker tags do not support pre-release versions");
-        public IEnumerable<string> ReleaseLabels => throw new NotSupportedException("Docker tags do not support release labels");
-        public string Metadata => throw new NotSupportedException("Docker tags do not support metadata version parts");
-        public string Release => throw new NotSupportedException("Docker tags do not support release version parts");
-        public bool HasMetadata => false;
-        public string OriginalString => Tag;
         public VersionFormat Format => VersionFormat.Docker;
-
-        public override string ToString()
-        {
-            return Tag ?? "latest";
-        }
-
-        bool Equals(DockerTag other)
-        {
-            return Tag == other.Tag;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj))
-                return false;
-            if (ReferenceEquals(this, obj))
-                return true;
-            if (obj.GetType() != GetType())
-                return false;
-            return Equals((DockerTag)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return Tag != null ? Tag.GetHashCode() : 0;
-        }
 
         public int CompareTo(object obj)
         {
-            return string.Compare((obj as DockerTag)?.Tag ?? "", Tag, StringComparison.Ordinal);
+            if (obj is IVersion objVersion)
+            {
+                if (OriginalString == Latest && objVersion.OriginalString == Latest) return 0;
+                if (OriginalString == Latest) return -1;
+                if (objVersion.OriginalString == Latest) return 1;
+            }
+
+            return base.CompareTo(obj);
         }
     }
 }

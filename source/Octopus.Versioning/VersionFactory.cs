@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Octopus.Versioning.Docker;
 using Octopus.Versioning.Maven;
+using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
 
 namespace Octopus.Versioning
@@ -112,12 +113,12 @@ namespace Octopus.Versioning
 
         public static IVersion CreateDockerTag(string input)
         {
-            return new DockerTag(input);
+            return new OctopusVersionParser().Parse(input);
         }
 
         public static IVersion TryCreateDockerTag(string input)
         {
-            return new DockerTag(input);
+            return new OctopusVersionParser().Parse(input);
         }
     }
 }
