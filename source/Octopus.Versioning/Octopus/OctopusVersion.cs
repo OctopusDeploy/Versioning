@@ -88,7 +88,7 @@ namespace Octopus.Versioning.Octopus
         public int Minor { get; }
         public int Patch { get; }
         public int Revision { get; }
-        public bool IsPrerelease { get; }
+        public bool IsPrerelease => !string.IsNullOrEmpty(Release);
         public IEnumerable<string> ReleaseLabels => Enumerable.Empty<string>();
         public string? Metadata { get; }
         public string Release { get; }
