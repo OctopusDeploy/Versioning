@@ -17,6 +17,8 @@ namespace Octopus.Versioning
                     return CreateMavenVersion(input);
                 case VersionFormat.Docker:
                     return CreateDockerTag(input);
+                case VersionFormat.Octopus:
+                    return CreateOctopusVersion(input);
                 default:
                     return CreateSemanticVersion(input);
             }
@@ -30,6 +32,8 @@ namespace Octopus.Versioning
                     return TryCreateMavenVersion(input);
                 case VersionFormat.Docker:
                     return TryCreateDockerTag(input);
+                case VersionFormat.Octopus:
+                    return TryCreateOctopusVersion(input);
                 default:
                     return TryCreateSemanticVersion(input);
             }
@@ -119,6 +123,16 @@ namespace Octopus.Versioning
         public static IVersion TryCreateDockerTag(string input)
         {
             return CreateDockerTag(input);
+        }
+
+        public static IVersion CreateOctopusVersion(string input)
+        {
+            return new OctopusVersionParser().Parse(input);
+        }
+
+        public static IVersion TryCreateOctopusVersion(string input)
+        {
+            return CreateOctopusVersion(input);
         }
     }
 }
