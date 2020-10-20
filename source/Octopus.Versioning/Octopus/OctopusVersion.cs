@@ -89,18 +89,18 @@ namespace Octopus.Versioning.Octopus
             return false;
         }
 
-        public int Major { get; }
-        public int Minor { get; }
-        public int Patch { get; }
-        public int Revision { get; }
+        public virtual int Major { get; }
+        public virtual int Minor { get; }
+        public virtual int Patch { get; }
+        public virtual int Revision { get; }
         public virtual bool IsPrerelease => !string.IsNullOrEmpty(Release);
-        public IEnumerable<string> ReleaseLabels => Enumerable.Empty<string>();
-        public string? Metadata { get; }
-        public string Release { get; }
-        public string ReleasePrefix { get; }
-        public string ReleaseCounter { get; }
-        public bool HasMetadata => string.IsNullOrWhiteSpace(Metadata);
-        public string? OriginalString { get; }
+        public virtual IEnumerable<string> ReleaseLabels => Enumerable.Empty<string>();
+        public virtual string? Metadata { get; }
+        public virtual string Release { get; }
+        public virtual string ReleasePrefix { get; }
+        public virtual string ReleaseCounter { get; }
+        public virtual bool HasMetadata => string.IsNullOrWhiteSpace(Metadata);
+        public virtual string? OriginalString { get; }
         public VersionFormat Format => VersionFormat.Octopus;
     }
 }
