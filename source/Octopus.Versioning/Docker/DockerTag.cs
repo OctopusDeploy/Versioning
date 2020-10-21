@@ -53,7 +53,7 @@ namespace Octopus.Versioning.Docker
             string.IsNullOrEmpty(base.ReleaseCounter) &&
             string.IsNullOrEmpty(base.Metadata);
 
-        public VersionFormat Format => VersionFormat.Docker;
+        public override VersionFormat Format => VersionFormat.Docker;
 
         public override int CompareTo(object obj)
         {

@@ -101,6 +101,6 @@ namespace Octopus.Versioning.Octopus
         public virtual string ReleaseCounter { get; }
         public virtual bool HasMetadata => string.IsNullOrWhiteSpace(Metadata);
         public virtual string? OriginalString { get; }
-        public VersionFormat Format => VersionFormat.Octopus;
+        public virtual VersionFormat Format => VersionFormat.Octopus;
     }
 }
