@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Octopus.Versioning.Octopus
 {
@@ -30,17 +31,24 @@ namespace Octopus.Versioning.Octopus
 
         public OctopusVersion Parse(string version)
         {
-            var result = VersionRegex.Match(version?.Trim() ?? string.Empty);
-            return new OctopusVersion(
-                result.Groups[Major].Success ? long.Parse(result.Groups[Major].Value) : 0,
-                result.Groups[Minor].Success ? long.Parse(result.Groups[Minor].Value) : 0,
-                result.Groups[Patch].Success ? long.Parse(result.Groups[Patch].Value) : 0,
-                result.Groups[Revision].Success ? long.Parse(result.Groups[Revision].Value) : 0,
-                result.Groups[Prerelease].Success ? result.Groups[Prerelease].Value : string.Empty,
-                result.Groups[PrereleasePrefix].Success ? result.Groups[PrereleasePrefix].Value : string.Empty,
-                result.Groups[PrereleaseCounter].Success ? result.Groups[PrereleaseCounter].Value : string.Empty,
-                result.Groups[Meta].Success ? result.Groups[Meta].Value : string.Empty,
-                version);
+            try
+            {
+                var result = VersionRegex.Match(version?.Trim() ?? string.Empty);
+                return new OctopusVersion(
+                    result.Groups[Major].Success ? long.Parse(result.Groups[Major].Value) : 0,
+                    result.Groups[Minor].Success ? long.Parse(result.Groups[Minor].Value) : 0,
+                    result.Groups[Patch].Success ? long.Parse(result.Groups[Patch].Value) : 0,
+                    result.Groups[Revision].Success ? long.Parse(result.Groups[Revision].Value) : 0,
+                    result.Groups[Prerelease].Success ? result.Groups[Prerelease].Value : string.Empty,
+                    result.Groups[PrereleasePrefix].Success ? result.Groups[PrereleasePrefix].Value : string.Empty,
+                    result.Groups[PrereleaseCounter].Success ? result.Groups[PrereleaseCounter].Value : string.Empty,
+                    result.Groups[Meta].Success ? result.Groups[Meta].Value : string.Empty,
+                    version);
+            }
+            catch (OverflowException ex)
+            {
+                throw new OverflowException($"Failed to parse the version {version?.Trim()} because the major, minor, patch or revision fields were too large.", ex);
+            }
         }
     }
 }
