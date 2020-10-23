@@ -7,10 +7,10 @@ namespace Octopus.Versioning.Maven
 {
     public class MavenVersion : IVersion
     {
-        public MavenVersion(int major,
-            int minor,
-            int patch,
-            int revision,
+        public MavenVersion(long major,
+            long minor,
+            long patch,
+            long revision,
             IEnumerable<string>? releaseLabels,
             string originalVersion)
         {
@@ -22,10 +22,10 @@ namespace Octopus.Versioning.Maven
             OriginalString = originalVersion;
         }
 
-        public int Major { get; }
-        public int Minor { get; }
-        public int Patch { get; }
-        public int Revision { get; }
+        public long Major { get; }
+        public long Minor { get; }
+        public long Patch { get; }
+        public long Revision { get; }
 
         public bool IsPrerelease => ReleaseLabels.Any(label =>
         {
@@ -85,7 +85,7 @@ namespace Octopus.Versioning.Maven
                 hashCode = (hashCode * 397) ^ Patch;
                 hashCode = (hashCode * 397) ^ Revision;
                 hashCode = (hashCode * 397) ^ (ReleaseLabels != null ? ReleaseLabels.GetHashCode() : 0);
-                return hashCode;
+                return (int)hashCode;
             }
         }
     }
