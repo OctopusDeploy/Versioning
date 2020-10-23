@@ -43,7 +43,7 @@ namespace Octopus.Versioning.Octopus
                     result.Groups[PrereleasePrefix].Success ? result.Groups[PrereleasePrefix].Value : string.Empty,
                     result.Groups[PrereleaseCounter].Success ? result.Groups[PrereleaseCounter].Value : string.Empty,
                     result.Groups[Meta].Success ? result.Groups[Meta].Value : string.Empty,
-                    version);
+                    version ?? string.Empty);
             }
             catch (OverflowException ex)
             {
