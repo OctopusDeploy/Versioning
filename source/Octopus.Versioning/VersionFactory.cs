@@ -130,9 +130,17 @@ namespace Octopus.Versioning
             return new OctopusVersionParser().Parse(input);
         }
 
-        public static IVersion TryCreateOctopusVersion(string input)
+        public static IVersion? TryCreateOctopusVersion(string input)
         {
-            return CreateOctopusVersion(input);
+            try
+            {
+                return CreateOctopusVersion(input);
+            }
+            catch
+            {
+                // Version fields that are larger than ints are not supported and will result in an exception.
+                return null;
+            }
         }
     }
 }

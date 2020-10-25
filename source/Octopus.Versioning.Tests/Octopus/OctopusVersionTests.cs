@@ -249,17 +249,43 @@ namespace Octopus.Versioning.Tests.Octopus
         [Repeat(1000)]
         public void RandomStringTest()
         {
-            var version = RandomString(20);
-            var parsed = OctopusVersionParser.Parse(version);
+            try
+            {
+                var version = RandomString(20);
+                var parsed = OctopusVersionParser.Parse(version);
 
-            var hasMajor = parsed.Major != 0;
-            var hasMinor = parsed.Minor != 0;
-            var hasPatch = parsed.Patch != 0;
-            var hasRevision = parsed.Revision != 0;
-            var hasRelease = !string.IsNullOrEmpty(parsed.Release);
-            var hasMetadata = !string.IsNullOrEmpty(parsed.Metadata);
+                var hasMajor = parsed.Major != 0;
+                var hasMinor = parsed.Minor != 0;
+                var hasPatch = parsed.Patch != 0;
+                var hasRevision = parsed.Revision != 0;
+                var hasRelease = !string.IsNullOrEmpty(parsed.Release);
+                var hasMetadata = !string.IsNullOrEmpty(parsed.Metadata);
 
-            Assert.IsTrue(hasMajor || hasMinor || hasPatch || hasRevision || hasRelease || hasMetadata);
+                Assert.IsTrue(hasMajor || hasMinor || hasPatch || hasRevision || hasRelease || hasMetadata);
+            }
+            catch (OverflowException)
+            {
+                // There is a small chance we created a random string with version fields larger than an int, but this is ok.
+            }
+        }
+
+        [Test]
+        [TestCase("2147483648.1.1")]
+        [TestCase("1.2147483648.1")]
+        [TestCase("1.1.2147483648")]
+        [TestCase("1.1.1.2147483648")]
+        [TestCase("1.1.9999999999")]
+        public void LargeVersionNumbersWillFail(string version)
+        {
+            try
+            {
+                OctopusVersionParser.Parse(version);
+                Assert.Fail("Should have thrown an exception");
+            }
+            catch (OverflowException)
+            {
+                Assert.Pass("Exception was expected");
+            }
         }
 
 
