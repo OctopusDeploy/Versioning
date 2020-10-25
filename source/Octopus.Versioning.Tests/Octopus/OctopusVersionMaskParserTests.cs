@@ -14,6 +14,8 @@ namespace Octopus.Versioning.Tests.Octopus
         [Test]
         [TestCase("1.2.3-alpha.i", null, "1.2.3-alpha.0")]
         [TestCase("1.2.3-alpha.i", "1.2.3-alpha.25", "1.2.3-alpha.26")]
+        [TestCase("1.2.3-alpha-i", "1.2.3-alpha.25", "1.2.3-alpha.26")]
+        [TestCase("1.2.3-alpha_i", "1.2.3-alpha.25", "1.2.3-alpha.26")]
         [TestCase("i.2.3-alpha.i", "1.2.3-alpha.25", "2.2.3-alpha.26")]
         [TestCase("1.i.3-alpha.i", "1.2.3-alpha.25", "1.3.3-alpha.26")]
         [TestCase("1.2.i-alpha.i", "1.2.3-alpha.25", "1.2.4-alpha.26")]
