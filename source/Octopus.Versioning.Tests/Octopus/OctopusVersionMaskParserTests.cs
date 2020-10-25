@@ -23,6 +23,10 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.c.3-alpha.i", "1.2.3-alpha.25", "1.2.3-alpha.26")]
         [TestCase("1.2.c-alpha.i", "1.2.3-alpha.25", "1.2.3-alpha.26")]
         [TestCase("i.i.i-alpha.i", "1.2.3-alpha.25", "2.0.0-alpha.26")]
+        [TestCase("c.c.i-alpha.c", "1.2.3-alpha.25", "1.2.4-alpha.25")]
+        [TestCase("i.c.c", "1.2.3-alpha.25", "2.0.3")]
+        [TestCase("c.i.c", "1.2.3-alpha.25", "1.3.0")]
+        [TestCase("c.c.i", "1.2.3-alpha.25", "1.2.4")]
         public void ShouldApplyMask(string mask, string latestVersion, string expected)
         {
             var result = OctopusVersionMaskParser.ApplyMask(mask, latestVersion != null ? new SemanticVersion(latestVersion) : null);

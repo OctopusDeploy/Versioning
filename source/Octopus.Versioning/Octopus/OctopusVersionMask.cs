@@ -205,8 +205,8 @@ namespace Octopus.Versioning.Octopus
 
                 public override string EvaluateFromCurrent(Component current, Component prevMaskComponent)
                 {
-                    if (!IsPresent)
-                        return "";
+                    if (!IsPresent && !string.IsNullOrEmpty(Value))
+                        return string.Empty;
 
                     return "-" + Substitute(current);
                 }
