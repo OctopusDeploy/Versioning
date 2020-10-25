@@ -40,10 +40,10 @@ namespace Octopus.Versioning.Docker
         {
         }
 
-        public override long Major => IsLatest ? long.MaxValue : base.Major;
-        public override long Minor => IsLatest ? long.MaxValue : base.Minor;
-        public override long Patch => IsLatest ? long.MaxValue : base.Patch;
-        public override long Revision => IsLatest ? long.MaxValue : base.Revision;
+        public override int Major => IsLatest ? int.MaxValue : base.Major;
+        public override int Minor => IsLatest ? int.MaxValue : base.Minor;
+        public override int Patch => IsLatest ? int.MaxValue : base.Patch;
+        public override int Revision => IsLatest ? int.MaxValue : base.Revision;
 
         bool IsLatest => base.Major == 0 &&
             base.Minor == 0 &&

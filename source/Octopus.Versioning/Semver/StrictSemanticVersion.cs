@@ -67,22 +67,22 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Major version X (X.y.z)
         /// </summary>
-        public long Major => version.Major;
+        public int Major => version.Major;
 
         /// <summary>
         /// Minor version Y (x.Y.z)
         /// </summary>
-        public long Minor => version.Minor;
+        public int Minor => version.Minor;
 
         /// <summary>
         /// Patch version Z (x.y.Z)
         /// </summary>
-        public long Patch => version.Build;
+        public int Patch => version.Build;
 
         /// <summary>
         /// Revision version R (x.y.z.R)
         /// </summary>
-        public long Revision => version.Revision;
+        public int Revision => version.Revision;
 
         /// <summary>
         /// A collection of pre-release labels attached to the version.

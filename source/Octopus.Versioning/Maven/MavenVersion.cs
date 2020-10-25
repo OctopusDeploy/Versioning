@@ -7,10 +7,10 @@ namespace Octopus.Versioning.Maven
 {
     public class MavenVersion : IVersion
     {
-        public MavenVersion(long major,
-            long minor,
-            long patch,
-            long revision,
+        public MavenVersion(int major,
+            int minor,
+            int patch,
+            int revision,
             IEnumerable<string>? releaseLabels,
             string originalVersion)
         {
@@ -22,10 +22,10 @@ namespace Octopus.Versioning.Maven
             OriginalString = originalVersion;
         }
 
-        public long Major { get; }
-        public long Minor { get; }
-        public long Patch { get; }
-        public long Revision { get; }
+        public int Major { get; }
+        public int Minor { get; }
+        public int Patch { get; }
+        public int Revision { get; }
 
         public bool IsPrerelease => ReleaseLabels.Any(label =>
         {

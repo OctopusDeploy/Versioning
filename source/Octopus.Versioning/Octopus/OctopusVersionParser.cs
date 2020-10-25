@@ -35,10 +35,10 @@ namespace Octopus.Versioning.Octopus
             {
                 var result = VersionRegex.Match(version?.Trim() ?? string.Empty);
                 return new OctopusVersion(
-                    result.Groups[Major].Success ? long.Parse(result.Groups[Major].Value) : 0,
-                    result.Groups[Minor].Success ? long.Parse(result.Groups[Minor].Value) : 0,
-                    result.Groups[Patch].Success ? long.Parse(result.Groups[Patch].Value) : 0,
-                    result.Groups[Revision].Success ? long.Parse(result.Groups[Revision].Value) : 0,
+                    result.Groups[Major].Success ? int.Parse(result.Groups[Major].Value) : 0,
+                    result.Groups[Minor].Success ? int.Parse(result.Groups[Minor].Value) : 0,
+                    result.Groups[Patch].Success ? int.Parse(result.Groups[Patch].Value) : 0,
+                    result.Groups[Revision].Success ? int.Parse(result.Groups[Revision].Value) : 0,
                     result.Groups[Prerelease].Success ? result.Groups[Prerelease].Value : string.Empty,
                     result.Groups[PrereleasePrefix].Success ? result.Groups[PrereleasePrefix].Value : string.Empty,
                     result.Groups[PrereleaseCounter].Success ? result.Groups[PrereleaseCounter].Value : string.Empty,
