@@ -180,8 +180,8 @@ namespace Octopus.Versioning.Octopus
 
                 public override string EvaluateFromMask(string separator = "")
                 {
-                    if (!IsPresent)
-                        return "";
+                    if (!IsPresent || string.IsNullOrEmpty(Value))
+                        return string.Empty;
 
                     var identifiers = Value.Split('.');
                     var substitutedIdentifiers = new List<string>();
@@ -255,8 +255,8 @@ namespace Octopus.Versioning.Octopus
 
                 public override string EvaluateFromCurrent(Component current, Component prevMaskComponent)
                 {
-                    if (!IsPresent)
-                        return "";
+                    if (!IsPresent || string.IsNullOrEmpty(Value))
+                        return string.Empty;
 
                     return "+" + Substitute(current);
                 }
