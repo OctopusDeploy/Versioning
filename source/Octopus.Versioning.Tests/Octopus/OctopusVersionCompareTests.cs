@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Octopus.Versioning.Octopus;
 
-namespace Octopus.Versioning.Tests.Versions.Octopus
+namespace Octopus.Versioning.Tests.Octopus
 {
     [TestFixture]
     public class OctopusVersionCompareTests

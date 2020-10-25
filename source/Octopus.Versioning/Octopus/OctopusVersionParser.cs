@@ -29,7 +29,7 @@ namespace Octopus.Versioning.Octopus
             // The metadata is everything after the plus
             $@"(?:\+(?<{Meta}>[^\s]*?))?$");
 
-        public OctopusVersion Parse(string version)
+        public OctopusVersion Parse(string? version)
         {
             try
             {

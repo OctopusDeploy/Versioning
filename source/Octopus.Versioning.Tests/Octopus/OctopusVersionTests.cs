@@ -5,7 +5,7 @@ using Octopus.Versioning.Maven;
 using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
 
-namespace Octopus.Versioning.Tests.Versions.Octopus
+namespace Octopus.Versioning.Tests.Octopus
 {
     [TestFixture]
     public class OctopusVersionTests
