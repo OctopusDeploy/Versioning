@@ -11,6 +11,7 @@ namespace Octopus.Versioning.Octopus
     /// </summary>
     public class OctopusVersionMask
     {
+        public string Prefix { get; }
         public Component Major { get; }
         public Component Minor { get; }
         public Component Patch { get; }
@@ -21,13 +22,15 @@ namespace Octopus.Versioning.Octopus
         public bool IsMask =>
             Major.IsSubstitute || Minor.IsSubstitute || Patch.IsSubstitute || Release.IsSubstitute || Revision.IsSubstitute || Metadata.IsSubstitute;
 
-        public OctopusVersionMask(Component major,
+        public OctopusVersionMask(string? prefix,
+            Component major,
             Component minor,
             Component patch,
             Component revision,
             TagComponent prerelease,
             MetadataComponent metadata)
         {
+            Prefix = prefix ?? string.Empty;
             Major = major;
             Minor = minor;
             Patch = patch;
@@ -79,25 +82,27 @@ namespace Octopus.Versioning.Octopus
         public IVersion GenerateVersionFromMask()
         {
             var result = new StringBuilder();
+            result.Append(Prefix);
             result.Append(Major.EvaluateFromMask());
             result.Append(Minor.EvaluateFromMask("."));
             result.Append(Patch.EvaluateFromMask("."));
             result.Append(Revision.EvaluateFromMask("."));
             result.Append(Release.EvaluateFromMask("-"));
             result.Append(Metadata.EvaluateFromMask("+"));
-            return VersionFactory.CreateSemanticVersion(result.ToString());
+            return VersionFactory.CreateOctopusVersion(result.ToString());
         }
 
         public IVersion GenerateVersionFromCurrent(OctopusVersionMask current)
         {
             var result = new StringBuilder();
+            result.Append(Prefix);
             result.Append(Major.Substitute(current.Major));
             result.Append(Minor.EvaluateFromCurrent(current.Minor, Major));
             result.Append(Patch.EvaluateFromCurrent(current.Patch, Minor));
             result.Append(Revision.EvaluateFromCurrent(current.Revision, Patch));
             result.Append(Release.EvaluateFromCurrent(current.Release, Revision));
             result.Append(Metadata.EvaluateFromCurrent(current.Metadata, Revision));
-            return new OctopusVersionParser().Parse(result.ToString());
+            return VersionFactory.CreateOctopusVersion(result.ToString());
         }
 
         public class Component

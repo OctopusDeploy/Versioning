@@ -6,6 +6,7 @@ namespace Octopus.Versioning.Octopus
     {
         public const string PatternIncrement = "i";
         public const string PatternCurrent = "c";
+        const string Prefix = "prefix";
         const string Major = "major";
         const string Minor = "minor";
         const string Patch = "patch";
@@ -16,7 +17,7 @@ namespace Octopus.Versioning.Octopus
         const string Meta = "buildmetadata";
         static readonly Regex VersionRegex = new Regex(@$"^(?:" +
             // Versions can start with an optional V
-            @$"(v|V)?" +
+            @$"(?<{Prefix}>v|V)?" +
             // Get the major version number
             @$"(?<{Major}>\d+|{PatternIncrement}|{PatternCurrent})" +
             // Get the minor version number, delimited by a period, comma, dash or underscore
@@ -34,6 +35,7 @@ namespace Octopus.Versioning.Octopus
         {
             var result = VersionRegex.Match(version?.Trim() ?? string.Empty);
                 return new OctopusVersionMask(
+                    result.Groups[Prefix].Success ? result.Groups[Prefix].Value : string.Empty,
                     new OctopusVersionMask.Component(result.Groups[Major]),
                     new OctopusVersionMask.Component(result.Groups[Minor]),
                     new OctopusVersionMask.Component(result.Groups[Patch]),
