@@ -122,7 +122,15 @@ namespace Octopus.Versioning
 
         public static IVersion TryCreateDockerTag(string input)
         {
-            return CreateDockerTag(input);
+            try
+            {
+                return CreateDockerTag(input);
+            }
+            catch
+            {
+                // Version fields that are larger than ints are not supported and will result in an exception.
+                return null;
+            }
         }
 
         public static IVersion CreateOctopusVersion(string input)
