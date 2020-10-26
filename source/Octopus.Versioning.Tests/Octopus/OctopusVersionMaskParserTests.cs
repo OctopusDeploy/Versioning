@@ -58,6 +58,8 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("vc.i.c", "V1.2.3-alpha.25", "v1.3.0")]
         [TestCase("vc.c.i", "v1.2.3-alpha.25", "v1.2.4")]
         [TestCase("c.c.c-test", "alpha.25", "0-test")]
+        [TestCase("i.c.c-test", "alpha.25", "1-test")]
+        [TestCase("c.c.i-test", "alpha.25", "0.0.1-test")]
         public void ShouldApplyMask(string mask, string latestVersion, string expected)
         {
             var result = OctopusVersionMaskParser.ApplyMask(mask, latestVersion != null ? new OctopusVersionParser().Parse(latestVersion) : null);
