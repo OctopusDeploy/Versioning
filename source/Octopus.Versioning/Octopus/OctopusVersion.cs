@@ -42,27 +42,18 @@ namespace Octopus.Versioning.Octopus
                 if (!string.IsNullOrEmpty(Release) && string.IsNullOrEmpty(objVersion.Release)) return -1;
                 if (!string.IsNullOrEmpty(objVersion.Release) && string.IsNullOrEmpty(Release)) return 1;
 
-
-                if (obj is OctopusVersion objOctoVersion)
-                {
-                    // octopus versions break down the release into a prefix and counter that can be compared
-
-                    if (string.Compare(ReleasePrefix ?? string.Empty, objOctoVersion.ReleasePrefix ?? string.Empty, StringComparison.Ordinal) != 0)
-                        return string.Compare(ReleasePrefix ?? string.Empty, objOctoVersion.ReleasePrefix ?? string.Empty, StringComparison.Ordinal);
-
-                    if (string.Compare(ReleaseCounter ?? string.Empty, objOctoVersion.ReleaseCounter ?? string.Empty, StringComparison.Ordinal) != 0)
-                        return string.Compare(ReleaseCounter ?? string.Empty, objOctoVersion.ReleaseCounter ?? string.Empty, StringComparison.Ordinal);
-                }
-                else
-                {
-                    // otherwise string compare the release field
-
-                    if (string.Compare(Release ?? string.Empty, objVersion.Release ?? string.Empty, StringComparison.Ordinal) != 0)
-                        return string.Compare(Release ?? string.Empty, objVersion.Release ?? string.Empty, StringComparison.Ordinal);
-                }
-
-                if (string.Compare(Metadata ?? string.Empty, objVersion.Metadata ?? string.Empty, StringComparison.Ordinal) != 0)
-                    return string.Compare(Metadata ?? string.Empty, objVersion.Metadata ?? string.Empty, StringComparison.Ordinal);
+                /*
+                 * We only consider alpha numeric characters when comparing two versions. This means characters used in
+                 * in typical version ranges like [1.0,2.0] or 1.0->2.0 (i.e. the comma, square brackets and greater than)
+                 * have no meaning for equality and comparison checks. This in turn means that if versions do have these
+                 * special characters, they can be replaced with any placeholder character that has no special meaning in
+                 * the context of a range check.
+                 *
+                 * For example, the version 1.0-prerelease[10] can be placed in a version range like [1.0-prerelease-10-],
+                 * because the square brackets have the same value as a dash when comparing versions.
+                 */
+                if (string.Compare(Release.AlphaNumericOnly(), (objVersion.Release ?? string.Empty).AlphaNumericOnly(), StringComparison.Ordinal) != 0)
+                    return string.Compare(Release.AlphaNumericOnly(), (objVersion.Release ?? string.Empty).AlphaNumericOnly(), StringComparison.Ordinal);
 
                 return 0;
             }
@@ -79,13 +70,7 @@ namespace Octopus.Versioning.Octopus
         {
             if (obj is IVersion objVersion)
             {
-                if (Major != objVersion.Major ||
-                    Minor != objVersion.Minor ||
-                    Patch != objVersion.Patch ||
-                    Revision != objVersion.Revision ||
-                    Release != objVersion.Release) return false;
-
-                return true;
+                return CompareTo(objVersion) == 0;
             }
 
             return false;
