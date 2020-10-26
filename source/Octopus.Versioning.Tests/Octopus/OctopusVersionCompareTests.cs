@@ -57,12 +57,8 @@ namespace Octopus.Versioning.Tests.Octopus
         }
 
         [Test]
-        [TestCase("1.1.1", "1-1-1", 0, Description = "Separators compare the same")]
-        [TestCase("1.1.1.1", "1_1-1.1", 0, Description = "Separators compare the same")]
-        [TestCase("1.2.3.4", "2_1-1.1", -1, Description = "Version components are significant")]
         [TestCase("1.1.1-prerelease!@#$%^&*()[]{};':\",./<>?", "1-1-1-prerelease][)(*&^%$#@!{};':\",./<>?", 0, Description = "Non alphanumeric chars compare the same")]
         [TestCase("1.1.1-大きい", "1-1-1-小さい", -1, Description = "UTF chars have meaning")]
-        [TestCase("1.1.1-aaa", "1-1-1-bbb", -1, Description = "prerelease tags are compared")]
         [TestCase("1.1.1-!@#.10", "1-1-1-#@!.11", -1, Description = "prerelease tags are compared")]
         public void CompareVersionsWithEquivalentChars(string version1, string version2, int expected)
         {
