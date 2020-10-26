@@ -288,32 +288,6 @@ namespace Octopus.Versioning.Tests.Octopus
             }
         }
 
-        [Test]
-        [TestCase("1.1.1", "1-1-1", 0, Description = "Separators compare the same")]
-        [TestCase("1.1.1.1", "1_1-1.1", 0, Description = "Separators compare the same")]
-        [TestCase("1.2.3.4", "2_1-1.1", -1, Description = "Version components are significant")]
-        [TestCase("1.1.1-prerelease!@#$%^&*()[]{};':\",./<>?", "1-1-1-prerelease][)(*&^%$#@!{};':\",./<>?", 0, Description = "Non alphanumeric chars compare the same")]
-        [TestCase("1.1.1-大きい", "1-1-1-小さい", -1, Description = "UTF chars have meaning")]
-        [TestCase("1.1.1-aaa", "1-1-1-bbb", -1, Description = "prerelease tags are compared")]
-        [TestCase("1.1.1-!@#.10", "1-1-1-#@!.11", -1, Description = "prerelease tags are compared")]
-        [TestCase("1.1.1-aaa+whatever", "1-1-1-aaa+blah", 0, Description = "metadata is not compared")]
-        public void CompareVersions(string version1, string version2, int expected)
-        {
-            var result = OctopusVersionParser.Parse(version1).CompareTo(OctopusVersionParser.Parse(version2));
-            if (expected < 0)
-            {
-                Assert.LessOrEqual(result, -1);
-            }
-            else if (expected > 0)
-            {
-                Assert.GreaterOrEqual(result, 1);
-            }
-            else
-            {
-                Assert.AreEqual(0, result);
-            }
-        }
-
         public static string RandomString(int length)
         {
             const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|:\"<>?-=[]\\;',./`~";
