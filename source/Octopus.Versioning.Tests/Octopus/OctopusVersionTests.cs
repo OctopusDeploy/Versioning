@@ -217,6 +217,8 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase(" ", 0, 0, 0, 0, "", "", "", "")]
         [TestCase("", 0, 0, 0, 0, "", "", "", "")]
         [TestCase(null, 0, 0, 0, 0, "", "", "", "")]
+        [TestCase("latest", 0, 0, 0, 0, "latest", "latest", "", "")]
+        [TestCase("stable", 0, 0, 0, 0, "stable", "stable", "", "")]
         public void TestInvalidSemverVersions(string version,
             int major,
             int minor,
