@@ -244,6 +244,17 @@ namespace Octopus.Versioning.Tests.Octopus
             Assert.IsNull(SemVerFactory.TryCreateVersion(version));
         }
 
+        [TestCase("stable", false)]
+        [TestCase("1.0.0", false)]
+        [TestCase("1.0.0-something", false)]
+        [TestCase("1.0.0-something+meta", true)]
+        [TestCase("1.0.0-something+", false)]
+        public void TestHasMetadata(string version, bool hasMetadata)
+        {
+            var parsed = OctopusVersionParser.Parse(version);
+            Assert.AreEqual(hasMetadata, parsed.HasMetadata);
+        }
+
         /// <summary>
         /// All strings should parse to something
         /// </summary>

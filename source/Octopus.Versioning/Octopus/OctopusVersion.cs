@@ -87,7 +87,7 @@ namespace Octopus.Versioning.Octopus
         public virtual string Release { get; }
         public virtual string ReleasePrefix { get; }
         public virtual string ReleaseCounter { get; }
-        public virtual bool HasMetadata => string.IsNullOrWhiteSpace(Metadata);
+        public virtual bool HasMetadata => !string.IsNullOrWhiteSpace(Metadata);
         public virtual string OriginalString { get; }
         public virtual VersionFormat Format => VersionFormat.Octopus;
     }
