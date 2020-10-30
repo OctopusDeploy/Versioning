@@ -5,7 +5,7 @@ using Octopus.Versioning.Maven;
 using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
 
-namespace Octopus.Versioning.Tests.Versions.Octopus
+namespace Octopus.Versioning.Tests.Octopus
 {
     [TestFixture]
     public class OctopusVersionTests
@@ -214,6 +214,11 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
         [TestCase("1.0.0-alpha.......1", 1, 0, 0, 0, "alpha.......1", "alpha", "......1", "")]
         [TestCase("19.0.0.Final", 19, 0, 0, 0, "Final", "Final", "", "", Description = "https://hub.docker.com/r/jboss/wildfly/tags")]
         [TestCase("284.0.0-debian_component_based", 284, 0, 0, 0, "debian_component_based", "debian", "component_based", "", Description = "https://hub.docker.com/r/google/cloud-sdk/tags")]
+        [TestCase(" ", 0, 0, 0, 0, "", "", "", "")]
+        [TestCase("", 0, 0, 0, 0, "", "", "", "")]
+        [TestCase(null, 0, 0, 0, 0, "", "", "", "")]
+        [TestCase("latest", 0, 0, 0, 0, "latest", "latest", "", "")]
+        [TestCase("stable", 0, 0, 0, 0, "stable", "stable", "", "")]
         public void TestInvalidSemverVersions(string version,
             int major,
             int minor,
@@ -239,6 +244,17 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
             Assert.IsNull(SemVerFactory.TryCreateVersion(version));
         }
 
+        [TestCase("stable", false)]
+        [TestCase("1.0.0", false)]
+        [TestCase("1.0.0-something", false)]
+        [TestCase("1.0.0-something+meta", true)]
+        [TestCase("1.0.0-something+", false)]
+        public void TestHasMetadata(string version, bool hasMetadata)
+        {
+            var parsed = OctopusVersionParser.Parse(version);
+            Assert.AreEqual(hasMetadata, parsed.HasMetadata);
+        }
+
         /// <summary>
         /// All strings should parse to something
         /// </summary>
@@ -246,19 +262,44 @@ namespace Octopus.Versioning.Tests.Versions.Octopus
         [Repeat(1000)]
         public void RandomStringTest()
         {
-            var version = RandomString(20);
-            var parsed = OctopusVersionParser.Parse(version);
+            try
+            {
+                var version = RandomString(20);
+                var parsed = OctopusVersionParser.Parse(version);
 
-            var hasMajor = parsed.Major != 0;
-            var hasMinor = parsed.Minor != 0;
-            var hasPatch = parsed.Patch != 0;
-            var hasRevision = parsed.Revision != 0;
-            var hasRelease = !string.IsNullOrEmpty(parsed.Release);
-            var hasMetadata = !string.IsNullOrEmpty(parsed.Metadata);
+                var hasMajor = parsed.Major != 0;
+                var hasMinor = parsed.Minor != 0;
+                var hasPatch = parsed.Patch != 0;
+                var hasRevision = parsed.Revision != 0;
+                var hasRelease = !string.IsNullOrEmpty(parsed.Release);
+                var hasMetadata = !string.IsNullOrEmpty(parsed.Metadata);
 
-            Assert.IsTrue(hasMajor || hasMinor || hasPatch || hasRevision || hasRelease || hasMetadata);
+                Assert.IsTrue(hasMajor || hasMinor || hasPatch || hasRevision || hasRelease || hasMetadata);
+            }
+            catch (OverflowException)
+            {
+                // There is a small chance we created a random string with version fields larger than an int, but this is ok.
+            }
         }
 
+        [Test]
+        [TestCase("2147483648.1.1")]
+        [TestCase("1.2147483648.1")]
+        [TestCase("1.1.2147483648")]
+        [TestCase("1.1.1.2147483648")]
+        [TestCase("1.1.9999999999")]
+        public void LargeVersionNumbersWillFail(string version)
+        {
+            try
+            {
+                OctopusVersionParser.Parse(version);
+                Assert.Fail("Should have thrown an exception");
+            }
+            catch (OverflowException)
+            {
+                Assert.Pass("Exception was expected");
+            }
+        }
 
         public static string RandomString(int length)
         {

@@ -1,57 +1,75 @@
 using System;
-using System.Collections.Generic;
+using Octopus.Versioning.Octopus;
 
 namespace Octopus.Versioning.Docker
 {
-    public class DockerTag : IVersion
+    public class DockerTag : OctopusVersion
     {
-        public DockerTag(string tag)
+        const string Latest = "latest";
+
+        public DockerTag(OctopusVersion version)
+            : base(version.Prefix,
+                version.Major,
+                version.Minor,
+                version.Patch,
+                version.Revision,
+                version.Release,
+                version.ReleasePrefix,
+                version.ReleaseCounter,
+                version.Metadata,
+                version.OriginalString)
         {
-            Tag = tag;
         }
 
-        public string Tag { get; }
-        public int Major => throw new NotSupportedException("Docker tags do not support major version parts");
-        public int Minor => throw new NotSupportedException("Docker tags do not support minor version parts");
-        public int Patch => throw new NotSupportedException("Docker tags do not support patch version parts");
-        public int Revision => throw new NotSupportedException("Docker tags do not support revision version parts");
-        public bool IsPrerelease => throw new NotSupportedException("Docker tags do not support pre-release versions");
-        public IEnumerable<string> ReleaseLabels => throw new NotSupportedException("Docker tags do not support release labels");
-        public string Metadata => throw new NotSupportedException("Docker tags do not support metadata version parts");
-        public string Release => throw new NotSupportedException("Docker tags do not support release version parts");
-        public bool HasMetadata => false;
-        public string OriginalString => Tag;
-        public VersionFormat Format => VersionFormat.Docker;
-
-        public override string ToString()
+        public DockerTag(string? prefix,
+            int major,
+            int minor,
+            int patch,
+            int revision,
+            string? prerelease,
+            string? prereleasePrefix,
+            string? prereleaseCounter,
+            string? metadata,
+            string? originalVersion) : base(prefix,
+            major,
+            minor,
+            patch,
+            revision,
+            prerelease,
+            prereleasePrefix,
+            prereleaseCounter,
+            metadata,
+            originalVersion)
         {
-            return Tag ?? "latest";
         }
 
-        bool Equals(DockerTag other)
+        public override int Major => IsLatest ? int.MaxValue : base.Major;
+        public override int Minor => IsLatest ? int.MaxValue : base.Minor;
+        public override int Patch => IsLatest ? int.MaxValue : base.Patch;
+        public override int Revision => IsLatest ? int.MaxValue : base.Revision;
+
+        bool IsLatest => base.Major == 0 &&
+            base.Minor == 0 &&
+            base.Patch == 0 &&
+            base.Revision == 0 &&
+            base.ReleasePrefix == Latest &&
+            string.IsNullOrEmpty(base.ReleaseCounter) &&
+            string.IsNullOrEmpty(base.Metadata);
+
+        public override VersionFormat Format => VersionFormat.Docker;
+
+        public override int CompareTo(object obj)
         {
-            return Tag == other.Tag;
+            if (obj is IVersion objVersion)
+            {
+                if (OriginalString == Latest && objVersion.OriginalString == Latest) return 0;
+                if (OriginalString == Latest) return 1;
+                if (objVersion.OriginalString == Latest) return -1;
+            }
+
+            return base.CompareTo(obj);
         }
 
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj))
-                return false;
-            if (ReferenceEquals(this, obj))
-                return true;
-            if (obj.GetType() != GetType())
-                return false;
-            return Equals((DockerTag)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return Tag != null ? Tag.GetHashCode() : 0;
-        }
-
-        public int CompareTo(object obj)
-        {
-            return string.Compare((obj as DockerTag)?.Tag ?? "", Tag, StringComparison.Ordinal);
-        }
+        public override bool IsPrerelease => !string.IsNullOrEmpty(Release) && OriginalString != Latest;
     }
 }

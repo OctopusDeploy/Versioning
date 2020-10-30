@@ -1,49 +1,94 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace Octopus.Versioning.Octopus
 {
     public class OctopusVersion : IVersion
     {
-        public OctopusVersion(int major,
+        public OctopusVersion(string? prefix,
+            int major,
             int minor,
             int patch,
             int revision,
-            string prerelease,
-            string prereleasePrefix,
-            string prereleaseCounter,
-            string metadata,
-            string originalVersion)
+            string? prerelease,
+            string? prereleasePrefix,
+            string? prereleaseCounter,
+            string? metadata,
+            string? originalVersion)
         {
+            Prefix = prefix ?? string.Empty;
             Major = major;
             Minor = minor;
             Patch = patch;
             Revision = revision;
-            Release = prerelease;
-            ReleasePrefix = prereleasePrefix;
-            ReleaseCounter = prereleaseCounter;
-            Metadata = metadata;
-            OriginalString = originalVersion;
+            Release = prerelease ?? string.Empty;
+            ReleasePrefix = prereleasePrefix ?? string.Empty;
+            ReleaseCounter = prereleaseCounter ?? string.Empty;
+            Metadata = metadata ?? string.Empty;
+            OriginalString = originalVersion ?? string.Empty;
         }
 
-        public int CompareTo(object obj)
+        public virtual int CompareTo(object obj)
         {
-            throw new System.NotImplementedException();
+            if (obj is IVersion objVersion)
+            {
+                if (Major.CompareTo(objVersion.Major) != 0) return Major.CompareTo(objVersion.Major);
+                if (Minor.CompareTo(objVersion.Minor) != 0) return Minor.CompareTo(objVersion.Minor);
+                if (Patch.CompareTo(objVersion.Patch) != 0) return Patch.CompareTo(objVersion.Patch);
+                if (Revision.CompareTo(objVersion.Revision) != 0) return Revision.CompareTo(objVersion.Revision);
+
+                // anything with a release field is lower than anything without a release field
+                if (!string.IsNullOrEmpty(Release) && string.IsNullOrEmpty(objVersion.Release)) return -1;
+                if (!string.IsNullOrEmpty(objVersion.Release) && string.IsNullOrEmpty(Release)) return 1;
+
+                /*
+                 * We only consider alpha numeric characters when comparing two versions. This means characters used in
+                 * in typical version ranges like [1.0,2.0] or 1.0->2.0 (i.e. the comma, square brackets and greater than)
+                 * have no meaning for equality and comparison checks. This in turn means that if versions do have these
+                 * special characters, they can be replaced with any placeholder character that has no special meaning in
+                 * the context of a range check.
+                 *
+                 * For example, the version 1.0-prerelease[10] can be placed in a version range like [1.0-prerelease-10-],
+                 * because the square brackets have the same value as a dash when comparing versions.
+                 */
+                if (string.Compare(Release.AlphaNumericOnly(), (objVersion.Release ?? string.Empty).AlphaNumericOnly(), StringComparison.Ordinal) != 0)
+                    return string.Compare(Release.AlphaNumericOnly(), (objVersion.Release ?? string.Empty).AlphaNumericOnly(), StringComparison.Ordinal);
+
+                return 0;
+            }
+
+            return -1;
         }
 
-        public int Major { get; }
-        public int Minor { get; }
-        public int Patch { get; }
-        public int Revision { get; }
-        public bool IsPrerelease { get; }
-        public IEnumerable<string> ReleaseLabels => Enumerable.Empty<string>();
-        public string? Metadata { get; }
-        public string Release { get; }
-        public string ReleasePrefix { get; }
-        public string ReleaseCounter { get; }
-        public bool HasMetadata => string.IsNullOrWhiteSpace(Metadata);
-        public string? OriginalString { get; }
-        public VersionFormat Format => VersionFormat.Octopus;
+        public override string ToString()
+        {
+            return OriginalString;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is IVersion objVersion)
+            {
+                return CompareTo(objVersion) == 0;
+            }
+
+            return false;
+        }
+
+        public virtual string Prefix { get; }
+        public virtual int Major { get; }
+        public virtual int Minor { get; }
+        public virtual int Patch { get; }
+        public virtual int Revision { get; }
+        public virtual bool IsPrerelease => !string.IsNullOrEmpty(Release);
+        public virtual IEnumerable<string> ReleaseLabels => Enumerable.Empty<string>();
+        public virtual string Metadata { get; }
+        public virtual string Release { get; }
+        public virtual string ReleasePrefix { get; }
+        public virtual string ReleaseCounter { get; }
+        public virtual bool HasMetadata => !string.IsNullOrWhiteSpace(Metadata);
+        public virtual string OriginalString { get; }
+        public virtual VersionFormat Format => VersionFormat.Octopus;
     }
 }

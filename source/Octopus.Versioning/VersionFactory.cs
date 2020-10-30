@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Octopus.Versioning.Docker;
 using Octopus.Versioning.Maven;
+using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
 
 namespace Octopus.Versioning
@@ -16,6 +17,8 @@ namespace Octopus.Versioning
                     return CreateMavenVersion(input);
                 case VersionFormat.Docker:
                     return CreateDockerTag(input);
+                case VersionFormat.Octopus:
+                    return CreateOctopusVersion(input);
                 default:
                     return CreateSemanticVersion(input);
             }
@@ -29,6 +32,8 @@ namespace Octopus.Versioning
                     return TryCreateMavenVersion(input);
                 case VersionFormat.Docker:
                     return TryCreateDockerTag(input);
+                case VersionFormat.Octopus:
+                    return TryCreateOctopusVersion(input);
                 default:
                     return TryCreateSemanticVersion(input);
             }
@@ -112,12 +117,38 @@ namespace Octopus.Versioning
 
         public static IVersion CreateDockerTag(string input)
         {
-            return new DockerTag(input);
+            return new DockerTag(new OctopusVersionParser().Parse(input));
         }
 
         public static IVersion TryCreateDockerTag(string input)
         {
-            return new DockerTag(input);
+            try
+            {
+                return CreateDockerTag(input);
+            }
+            catch
+            {
+                // Version fields that are larger than ints are not supported and will result in an exception.
+                return null;
+            }
+        }
+
+        public static IVersion CreateOctopusVersion(string input)
+        {
+            return new OctopusVersionParser().Parse(input);
+        }
+
+        public static IVersion? TryCreateOctopusVersion(string input)
+        {
+            try
+            {
+                return CreateOctopusVersion(input);
+            }
+            catch
+            {
+                // Version fields that are larger than ints are not supported and will result in an exception.
+                return null;
+            }
         }
     }
 }
