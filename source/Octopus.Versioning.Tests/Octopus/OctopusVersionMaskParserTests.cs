@@ -15,8 +15,8 @@ namespace Octopus.Versioning.Tests.Octopus
         /// This test used to live in Octopus server. You can find it at commit 43e42a5769083dffa65e2c9ab4d513641c37248a
         /// in the SemanticVersionMaskFixture.cs file.
         ///
-        /// Tests here, with the exception of versions that start with a 'v' or 'V', should also pass in
-        /// that old commit.
+        /// Tests here, with the exception of masks that start with a 'v' or 'V' and initial versions that are not valid semver,
+        /// should also pass in that old commit.
         /// </summary>
         [Test]
         [TestCase("1.2.3-alpha.i", null, "1.2.3-alpha.0", Description = "An increment of the prerelease counter.")]
@@ -94,6 +94,8 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("v1.2.3_c", "whatever", "v1.2.3_c", Description = "The version does not use the dot notation with a dash before the prerelease, and so is not a mask.")]
         [TestCase("v1-2_3-i", "whatever", "v1-2_3-i", Description = "The prerelease counter version does not use a dot separator, and so is not a mask.")]
         [TestCase("v1.2.3_i", "whatever", "v1.2.3_i", Description = "The version does not use the dot notation with a dash before the prerelease, and so is not a mask.")]
+        [TestCase("1.2.3-initial.8", "1.0.0.0", "1.2.3.0-initial.8", Description = "The version picks up the revision from the previous version.")]
+        [TestCase("v1.2.3-initial.8", "v1.0.0.0", "v1.2.3.0-initial.8", Description = "The version picks up the revision from the previous version.")]
         public void ShouldApplyMask(string mask, string latestVersion, string expected)
         {
             var result = OctopusVersionMaskParser.ApplyMask(mask, latestVersion != null ? new OctopusVersionParser().Parse(latestVersion) : null);
