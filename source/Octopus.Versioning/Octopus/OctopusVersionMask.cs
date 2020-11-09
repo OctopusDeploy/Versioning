@@ -179,7 +179,7 @@ namespace Octopus.Versioning.Octopus
                         if (!IsPresent)
                             return false;
 
-                        return Regex.IsMatch(matchGroup.Value, @$"[.\-_]{OctopusVersionMaskParser.PatternIncrement}|{OctopusVersionMaskParser.PatternCurrent}$");
+                        return Regex.IsMatch(matchGroup.Value, @$"{OctopusVersionMaskParser.PatternIncrement}|{OctopusVersionMaskParser.PatternCurrent}$");
                     }
                 }
 
@@ -188,7 +188,7 @@ namespace Octopus.Versioning.Octopus
                     if (!IsPresent || string.IsNullOrEmpty(Value))
                         return string.Empty;
 
-                    var identifiers = Value.Split('.', '-', '_');
+                    var identifiers = Value.Split('.');
                     var substitutedIdentifiers = new List<string>();
 
                     for (var i = 0; i < identifiers.Length; i++)
@@ -218,7 +218,7 @@ namespace Octopus.Versioning.Octopus
 
                 public override string Substitute(Component current)
                 {
-                    var identifiers = Value.Split('.', '-', '_');
+                    var identifiers = Value.Split('.');
                     var currentIdentifiers = current.IsPresent ? current.Value.Split('.') : new string[0];
                     var substitutedIdentifiers = new List<string>();
 

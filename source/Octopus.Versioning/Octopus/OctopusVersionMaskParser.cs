@@ -21,27 +21,27 @@ namespace Octopus.Versioning.Octopus
             // Get the major version number
             @$"(?<{Major}>\d+|{PatternIncrement}|{PatternCurrent})" +
             // Get the minor version number, delimited by a period, comma, dash or underscore
-            @$"(?:[.\-_](?<{Minor}>\d+|{PatternIncrement}|{PatternCurrent}))?" +
+            @$"(?:\.(?<{Minor}>\d+|{PatternIncrement}|{PatternCurrent}))?" +
             // Get the patch version number, delimited by a period, comma, dash or underscore
-            @$"(?:[.\-_](?<{Patch}>\d+|{PatternIncrement}|{PatternCurrent}))?" +
+            @$"(?:\.(?<{Patch}>\d+|{PatternIncrement}|{PatternCurrent}))?" +
             // Get the revision version number, delimited by a period, comma, dash or underscore
-            @$"(?:[.\-_](?<{Revision}>\d+|{PatternIncrement}|{PatternCurrent}))?)?" +
+            @$"(?:\.(?<{Revision}>\d+|{PatternIncrement}|{PatternCurrent}))?)?" +
             // Everything after the last digit and before the plus is the prerelease
-            @$"(?:[.\-_])?(?<{Prerelease}>(?<{PrereleasePrefix}>[^+.\-_\s]*?)([.\-_](?<{PrereleaseCounter}>[^+\s]*?)?)?)?" +
+            @$"(?:-(?<{Prerelease}>(?<{PrereleasePrefix}>[^+.\-_\s]*?)([.\-_](?<{PrereleaseCounter}>[^+\s]*?)?)?)?)?" +
             // The metadata is everything after the plus
             $@"(?:\+(?<{Meta}>[^\s]*?))?$");
 
         public OctopusVersionMask Parse(string? version)
         {
             var result = VersionRegex.Match(version?.Trim() ?? string.Empty);
-                return new OctopusVersionMask(
-                    result.Groups[Prefix].Success ? result.Groups[Prefix].Value : string.Empty,
-                    new OctopusVersionMask.Component(result.Groups[Major]),
-                    new OctopusVersionMask.Component(result.Groups[Minor]),
-                    new OctopusVersionMask.Component(result.Groups[Patch]),
-                    new OctopusVersionMask.Component(result.Groups[Revision]),
-                    new OctopusVersionMask.TagComponent(result.Groups[Prerelease]),
-                    new OctopusVersionMask.MetadataComponent(result.Groups[Meta]));
+            return new OctopusVersionMask(
+                result.Groups[Prefix].Success ? result.Groups[Prefix].Value : string.Empty,
+                new OctopusVersionMask.Component(result.Groups[Major]),
+                new OctopusVersionMask.Component(result.Groups[Minor]),
+                new OctopusVersionMask.Component(result.Groups[Patch]),
+                new OctopusVersionMask.Component(result.Groups[Revision]),
+                new OctopusVersionMask.TagComponent(result.Groups[Prerelease]),
+                new OctopusVersionMask.MetadataComponent(result.Groups[Meta]));
         }
 
         public IVersion ApplyMask(string? mask, IVersion? currentVersion)
