@@ -15,15 +15,12 @@ namespace Octopus.Versioning.Tests.Octopus
         /// This test used to live in Octopus server. You can find it at commit 43e42a5769083dffa65e2c9ab4d513641c37248a
         /// in the SemanticVersionMaskFixture.cs file.
         ///
-        /// Tests here, with the exception of versions that start with a 'v' or 'V', or that include a version in the
-        /// prerelease separated by a dash or underscore (e.g. 1.2.3-blah-1 or 1.2.3-blah_2), should also pass in
+        /// Tests here, with the exception of versions that start with a 'v' or 'V', should also pass in
         /// that old commit.
         /// </summary>
         [Test]
         [TestCase("1.2.3-alpha.i", null, "1.2.3-alpha.0", Description = "An increment of the prerelease counter.")]
         [TestCase("1.2.3-alpha.i", "1.2.3-alpha.25", "1.2.3-alpha.26", Description = "An increment of the prerelease counter.")]
-        [TestCase("1.2.3-alpha-i", "1.2.3-alpha.25", "1.2.3-alpha.26", Description = "An increment of the prerelease counter. This is separated by a dash.")]
-        [TestCase("1.2.3-alpha_i", "1.2.3-alpha.25", "1.2.3-alpha.26", Description = "An increment of the prerelease counter. This is separated by an underscore.")]
         [TestCase("i.2.3-alpha.i", "1.2.3-alpha.25", "2.2.3-alpha.26", Description = "An increment of the major and prerelease counter.")]
         [TestCase("1.i.3-alpha.i", "1.2.3-alpha.25", "1.3.3-alpha.26", Description = "An increment of the minor and prerelease counter.")]
         [TestCase("1.2.i-alpha.i", "1.2.3-alpha.25", "1.2.4-alpha.26", Description = "An increment of the patch and prerelease counter.")]
@@ -37,8 +34,6 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("c.c.i", "1.2.3-alpha.25", "1.2.4", Description = "Keep the current major and minor, and increment the patch.")]
         [TestCase("v1.2.3-alpha.i", null, "v1.2.3-alpha.0", Description = "An example of a previous test, but with a 'v' prefix.")]
         [TestCase("v1.2.3-alpha.i", "1.2.3-alpha.25", "v1.2.3-alpha.26", Description = "An example of a previous test, but with a 'v' prefix.")]
-        [TestCase("v1.2.3-alpha-i", "1.2.3-alpha.25", "v1.2.3-alpha.26", Description = "An example of a previous test, but with a 'v' prefix.")]
-        [TestCase("v1.2.3-alpha_i", "1.2.3-alpha.25", "v1.2.3-alpha.26", Description = "An example of a previous test, but with a 'v' prefix.")]
         [TestCase("vi.2.3-alpha.i", "1.2.3-alpha.25", "v2.2.3-alpha.26", Description = "An example of a previous test, but with a 'v' prefix.")]
         [TestCase("v1.i.3-alpha.i", "1.2.3-alpha.25", "v1.3.3-alpha.26", Description = "An example of a previous test, but with a 'v' prefix.")]
         [TestCase("v1.2.i-alpha.i", "1.2.3-alpha.25", "v1.2.4-alpha.26", Description = "An example of a previous test, but with a 'v' prefix.")]
@@ -51,11 +46,11 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("vc.i.c", "1.2.3-alpha.25", "v1.3.0", Description = "An example of a previous test, but with a 'v' prefix.")]
         [TestCase("vc.c.i", "1.2.3-alpha.25", "v1.2.4", Description = "An example of a previous test, but with a 'v' prefix.")]
         [TestCase("c.c.c-test", "alpha.25", "0.0.0-test", Description = "Existing versions with only plain text are assumed to be 0.0.0.")]
-        [TestCase("c.c.c-test", "0.0.0.0-alpha.25", "0.0.0-test", Description = "Same as the tests above, but explicitly setting the version to 0.0.0.0.")]
+        [TestCase("c.c.c-test", "0.0.0.0-alpha.25", "0.0.0.0-test", Description = "Same as the tests above, but explicitly setting the version to 0.0.0.0.")]
         [TestCase("i.c.c-test", "alpha.25", "1.0.0-test", Description = "Existing versions with only plain text are assumed to be 0.0.0.")]
-        [TestCase("i.c.c-test", "0.0.0.0-alpha.25", "1.0.0-test", Description = "Same as the tests above, but explicitly setting the version to 0.0.0.0.")]
+        [TestCase("i.c.c-test", "0.0.0.0-alpha.25", "1.0.0.0-test", Description = "Same as the tests above, but explicitly setting the version to 0.0.0.0.")]
         [TestCase("c.c.i-test", "alpha.25", "0.0.1-test", Description = "Existing versions with only plain text are assumed to be 0.0.0.")]
-        [TestCase("c.c.i-test", "0.0.0.0-alpha.25", "0.0.1-test", Description = "Same as the tests above, but explicitly setting the version to 0.0.0.0.")]
+        [TestCase("c.c.i-test", "0.0.0.0-alpha.25", "0.0.1.0-test", Description = "Same as the tests above, but explicitly setting the version to 0.0.0.0.")]
         [TestCase("0.1.0-initial", "whatever", "0.1.0-initial", Description = "Existing versions with only plain text are assumed to be 0.0.0.")]
         [TestCase("c.c.i-initial", "whatever", "0.0.1-initial", Description = "Existing versions with only plain text are assumed to be 0.0.0.")]
         [TestCase("c.c.i-current", "whatever", "0.0.1-current", Description = "Existing versions with only plain text are assumed to be 0.0.0.")]
@@ -94,9 +89,11 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("v1.2.3_c", "whatever", "v1.2.3_c", Description = "An example of a previous test, but with a 'v' prefix.")]
         [TestCase("V1.2.3.i", "whatever", "V1.2.3.1", Description = "An example of a previous test, but with a 'v' prefix.")]
         [TestCase("v1.2.3.c", "whatever", "v1.2.3.0", Description = "An example of a previous test, but with a 'v' prefix.")]
-        [TestCase("v1-2_3.c", "whatever", "v1-2_3.c", Description = "The version does not use the dot notation with a dash before the prerelease, and so is not a mask.")]
-        [TestCase("v1-2_3-c", "whatever", "v1-2_3-c", Description = "The version does not use the dot notation with a dash before the prerelease, and so is not a mask.")]
+        [TestCase("v1-2_3.c", "whatever", "v1-2_3.0", Description = "Increment the prerelease counter")]
+        [TestCase("v1-2_3-c", "whatever", "v1-2_3-c", Description = "The prerelease counter version does not use a dot separator, and so is not a mask.")]
         [TestCase("v1.2.3_c", "whatever", "v1.2.3_c", Description = "The version does not use the dot notation with a dash before the prerelease, and so is not a mask.")]
+        [TestCase("v1-2_3-i", "whatever", "v1-2_3-i", Description = "The prerelease counter version does not use a dot separator, and so is not a mask.")]
+        [TestCase("v1.2.3_i", "whatever", "v1.2.3_i", Description = "The version does not use the dot notation with a dash before the prerelease, and so is not a mask.")]
         public void ShouldApplyMask(string mask, string latestVersion, string expected)
         {
             var result = OctopusVersionMaskParser.ApplyMask(mask, latestVersion != null ? new OctopusVersionParser().Parse(latestVersion) : null);
