@@ -53,7 +53,7 @@ namespace Octopus.Versioning.Octopus
                  * because the square brackets have the same value as a dash when comparing versions.
                  */
                 if (string.Compare(Release.AlphaNumericOnly(), (objVersion.Release ?? string.Empty).AlphaNumericOnly(), StringComparison.Ordinal) != 0)
-                    return string.Compare(Release.AlphaNumericOnly(), (objVersion.Release ?? string.Empty).AlphaNumericOnly(), StringComparison.Ordinal);
+                    return CompareReleaseLabels(Release.AlphaNumericOnly().Split('.', '-', '_'), (objVersion.Release ?? string.Empty).AlphaNumericOnly().Split('.', '-', '_'));
 
                 return 0;
             }
@@ -74,6 +74,76 @@ namespace Octopus.Versioning.Octopus
             }
 
             return false;
+        }
+        
+        /// <summary>
+        /// Compares sets of release labels.
+        /// </summary>
+        static int CompareReleaseLabels(IEnumerable<string> version1, IEnumerable<string> version2)
+        {
+            var result = 0;
+
+            var a = version1.GetEnumerator();
+            var b = version2.GetEnumerator();
+
+            var aExists = a.MoveNext();
+            var bExists = b.MoveNext();
+
+            while (aExists || bExists)
+            {
+                if (!aExists && bExists)
+                    return -1;
+
+                if (aExists && !bExists)
+                    return 1;
+
+                // compare the labels
+                result = CompareRelease(a.Current, b.Current);
+
+                if (result != 0)
+                    return result;
+
+                aExists = a.MoveNext();
+                bExists = b.MoveNext();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Release labels are compared as numbers if they are numeric, otherwise they will be compared
+        /// as strings.
+        /// </summary>
+        static int CompareRelease(string version1, string version2)
+        {
+            var version1Num = 0;
+            var version2Num = 0;
+            var result = 0;
+
+            // check if the identifiers are numeric
+            var v1IsNumeric = int.TryParse(version1, out version1Num);
+            var v2IsNumeric = int.TryParse(version2, out version2Num);
+
+            // if both are numeric compare them as numbers
+            if (v1IsNumeric && v2IsNumeric)
+            {
+                result = version1Num.CompareTo(version2Num);
+            }
+            else if (v1IsNumeric || v2IsNumeric)
+            {
+                // numeric labels come before alpha labels
+                if (v1IsNumeric)
+                    result = -1;
+                else
+                    result = 1;
+            }
+            else
+            {
+                // Ignoring 2.0.0 case sensitive compare. Everything will be compared case insensitively as 2.0.1 specifies.
+                result = StringComparer.OrdinalIgnoreCase.Compare(version1, version2);
+            }
+
+            return result;
         }
 
         public virtual string Prefix { get; }
