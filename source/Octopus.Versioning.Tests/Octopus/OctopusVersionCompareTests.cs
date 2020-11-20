@@ -64,9 +64,9 @@ namespace Octopus.Versioning.Tests.Octopus
         /// </summary>
         [Test]
         [TestCase("1.0.0-test.1", "1.0.0-test.2")]
-        [TestCase("1.0.0-alpha", "1.0.0-alpha.1" )]
-        [TestCase("1.0.0-alpha.1", "1.0.0-alpha.beta" )]
-        [TestCase("1.0.0-alpha.beta", "1.0.0-beta" )]
+        [TestCase("1.0.0-alpha", "1.0.0-alpha.1")]
+        [TestCase("1.0.0-alpha.1", "1.0.0-alpha.beta")]
+        [TestCase("1.0.0-alpha.beta", "1.0.0-beta")]
         [TestCase("1.0.0-beta", "1.0.0-beta.2")]
         [TestCase("1.0.0-beta.2", "1.0.0-beta.11")]
         [TestCase("1.0.0-beta.11", "1.0.0-rc.1")]
@@ -75,16 +75,15 @@ namespace Octopus.Versioning.Tests.Octopus
         {
             var semver1 = SemVerFactory.CreateVersionOrNone(version1);
             var semver2 = SemVerFactory.CreateVersionOrNone(version2);
-            
+
             Assert.LessOrEqual(semver1.CompareTo(semver2), -1);
 
             var octopus1 = OctopusVersionParser.Parse(version1);
             var octopus2 = OctopusVersionParser.Parse(version2);
-            
-            Assert.LessOrEqual(octopus1.CompareTo(octopus2), -1);
 
+            Assert.LessOrEqual(octopus1.CompareTo(octopus2), -1);
         }
-        
+
         /// <summary>
         /// Like the TestSemverCompare above, but allowing splits on underscores
         /// and dashes.
@@ -96,7 +95,7 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.0.0-test-1", "1.0.0-test_2")]
         [TestCase("1.0.0-test_1", "1.0.0-test-2")]
         [TestCase("1.0.0-test_1", "1.0.0-test_2")]
-        [TestCase("1.0.0-alpha", "1.0.0-alpha_1" )]
+        [TestCase("1.0.0-alpha", "1.0.0-alpha_1")]
         [TestCase("1.0.0-beta.2", "1.0.0-beta-11")]
         [TestCase("1.0.0-beta.2", "1.0.0-beta_11")]
         [TestCase("1.0.0-beta-2", "1.0.0-beta-11")]
@@ -107,9 +106,8 @@ namespace Octopus.Versioning.Tests.Octopus
         {
             var octopus1 = OctopusVersionParser.Parse(version1);
             var octopus2 = OctopusVersionParser.Parse(version2);
-            
-            Assert.LessOrEqual(octopus1.CompareTo(octopus2), -1);
 
+            Assert.LessOrEqual(octopus1.CompareTo(octopus2), -1);
         }
 
         [Test]
@@ -120,17 +118,11 @@ namespace Octopus.Versioning.Tests.Octopus
         {
             var result = OctopusVersionParser.Parse(version1).CompareTo(OctopusVersionParser.Parse(version2));
             if (expected < 0)
-            {
                 Assert.LessOrEqual(result, -1);
-            }
             else if (expected > 0)
-            {
                 Assert.GreaterOrEqual(result, 1);
-            }
             else
-            {
                 Assert.AreEqual(0, result);
-            }
         }
     }
 }

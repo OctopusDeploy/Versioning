@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -11,17 +12,6 @@ namespace Octopus.Versioning.Octopus
     /// </summary>
     public class OctopusVersionMask
     {
-        public string Prefix { get; }
-        public Component Major { get; }
-        public Component Minor { get; }
-        public Component Patch { get; }
-        public Component Revision { get; }
-        public MetadataComponent Metadata { get; }
-        public TagComponent Release { get; }
-
-        public bool IsMask =>
-            Major.IsSubstitute || Minor.IsSubstitute || Patch.IsSubstitute || Release.IsSubstitute || Revision.IsSubstitute || Metadata.IsSubstitute;
-
         public OctopusVersionMask(string? prefix,
             Component major,
             Component minor,
@@ -39,6 +29,17 @@ namespace Octopus.Versioning.Octopus
             Metadata = metadata;
         }
 
+        public string Prefix { get; }
+        public Component Major { get; }
+        public Component Minor { get; }
+        public Component Patch { get; }
+        public Component Revision { get; }
+        public MetadataComponent Metadata { get; }
+        public TagComponent Release { get; }
+
+        public bool IsMask =>
+            Major.IsSubstitute || Minor.IsSubstitute || Patch.IsSubstitute || Release.IsSubstitute || Revision.IsSubstitute || Metadata.IsSubstitute;
+
         public IVersion? GetLatestMaskedVersion(List<IVersion> versions)
         {
             var maskMajor = Major.IsPresent && !Major.IsSubstitute ? int.Parse(Major.Value) : 0;
@@ -47,7 +48,7 @@ namespace Octopus.Versioning.Octopus
             var maskRevision = Revision.IsPresent && !Revision.IsSubstitute ? int.Parse(Revision.Value) : 0;
 
             return versions
-                .Where (v => v != null)
+                .Where(v => v != null)
                 .Where(v =>
                 {
                     if (Major.IsSubstitute)
@@ -75,8 +76,9 @@ namespace Octopus.Versioning.Octopus
                         return false;
 
                     return true;
-                }).OrderByDescending(o => o).FirstOrDefault();
-
+                })
+                .OrderByDescending(o => o)
+                .FirstOrDefault();
         }
 
         public IVersion GenerateVersionFromMask()
@@ -106,165 +108,159 @@ namespace Octopus.Versioning.Octopus
         }
 
         public class Component
+        {
+            protected readonly Group matchGroup;
+
+            public Component(Group matchGroup)
             {
-                protected readonly Group matchGroup;
+                this.matchGroup = matchGroup;
+            }
 
-                public Component(Group matchGroup)
+            public bool IsPresent => matchGroup.Success;
+
+            public virtual bool IsSubstitute
+            {
+                get
                 {
-                    this.matchGroup = matchGroup;
+                    if (!IsPresent)
+                        return false;
+
+                    return matchGroup.Value == OctopusVersionMaskParser.PatternIncrement || matchGroup.Value == OctopusVersionMaskParser.PatternCurrent;
+                }
+            }
+
+            public string Value => matchGroup.Value;
+
+            public virtual string EvaluateFromMask(string separator = "")
+            {
+                return IsPresent ? string.Format("{0}{1}", separator, IsSubstitute ? "0" : Value) : string.Empty;
+            }
+
+            public virtual string EvaluateFromCurrent(Component current, Component prevMaskComponent)
+            {
+                if (IsPresent)
+                {
+                    if (prevMaskComponent.Value != OctopusVersionMaskParser.PatternIncrement || !IsSubstitute)
+                        return $".{Substitute(current)}";
+
+                    return ".0";
                 }
 
-                public bool IsPresent => matchGroup.Success;
+                if (current.IsPresent && prevMaskComponent.IsPresent)
+                    return ".0";
 
-                public virtual bool IsSubstitute
+                return string.Empty;
+            }
+
+            public virtual string Substitute(Component current)
+            {
+                var currentValue = current.IsPresent ? long.Parse(current.Value) : 0;
+
+                if (Value == OctopusVersionMaskParser.PatternIncrement)
+                    return (currentValue + 1).ToString(CultureInfo.InvariantCulture);
+                if (Value == OctopusVersionMaskParser.PatternCurrent)
+                    return currentValue.ToString(CultureInfo.InvariantCulture);
+                return Value;
+            }
+        }
+
+        public class TagComponent : Component
+        {
+            public TagComponent(Group matchGroup) : base(matchGroup)
+            {
+            }
+
+            public override bool IsSubstitute
+            {
+                get
                 {
-                    get
-                    {
-                        if (!IsPresent)
-                            return false;
+                    if (!IsPresent)
+                        return false;
 
-                        return matchGroup.Value == OctopusVersionMaskParser.PatternIncrement || matchGroup.Value == OctopusVersionMaskParser.PatternCurrent;
-                    }
+                    return Regex.IsMatch(matchGroup.Value, @$"{OctopusVersionMaskParser.PatternIncrement}|{OctopusVersionMaskParser.PatternCurrent}$");
                 }
+            }
 
-                public string Value => matchGroup.Value;
-
-                public virtual string EvaluateFromMask(string separator = "")
-                {
-                    return IsPresent ?
-                        string.Format("{0}{1}", separator, IsSubstitute ? "0" : Value) :
-                        string.Empty;
-                }
-
-                public virtual string EvaluateFromCurrent(Component current, Component prevMaskComponent)
-                {
-                    if (IsPresent)
-                    {
-                        if (prevMaskComponent.Value != OctopusVersionMaskParser.PatternIncrement || !IsSubstitute)
-                            return $".{Substitute(current)}";
-
-                        return ".0";
-                    }
-
-                    if (current.IsPresent && prevMaskComponent.IsPresent)
-                    {
-                        return ".0";
-                    }
-
+            public override string EvaluateFromMask(string separator = "")
+            {
+                if (!IsPresent || string.IsNullOrEmpty(Value))
                     return string.Empty;
-                }
 
-                public virtual string Substitute(Component current)
-                {
-                    var currentValue = current.IsPresent ? long.Parse(current.Value) : 0;
+                var identifiers = Value.Split('.');
+                var substitutedIdentifiers = new List<string>();
 
-                    if (Value == OctopusVersionMaskParser.PatternIncrement)
-                        return (currentValue + 1).ToString(CultureInfo.InvariantCulture);
-                    if (Value == OctopusVersionMaskParser.PatternCurrent)
-                        return currentValue.ToString(CultureInfo.InvariantCulture);
-                    return Value;
-                }
+                for (var i = 0; i < identifiers.Length; i++)
+                    switch (identifiers[i])
+                    {
+                        case OctopusVersionMaskParser.PatternIncrement:
+                        case OctopusVersionMaskParser.PatternCurrent:
+                            substitutedIdentifiers.Add("0");
+                            break;
+                        default:
+                            substitutedIdentifiers.Add(identifiers[i]);
+                            break;
+                    }
+
+                return separator + string.Join(".", substitutedIdentifiers);
             }
 
-            public class TagComponent : Component
+            public override string EvaluateFromCurrent(Component current, Component prevMaskComponent)
             {
-                public TagComponent(Group matchGroup) : base(matchGroup)
-                {
-                }
+                if (!IsPresent || string.IsNullOrEmpty(Value))
+                    return string.Empty;
 
-                public override bool IsSubstitute
-                {
-                    get
-                    {
-                        if (!IsPresent)
-                            return false;
-
-                        return Regex.IsMatch(matchGroup.Value, @$"{OctopusVersionMaskParser.PatternIncrement}|{OctopusVersionMaskParser.PatternCurrent}$");
-                    }
-                }
-
-                public override string EvaluateFromMask(string separator = "")
-                {
-                    if (!IsPresent || string.IsNullOrEmpty(Value))
-                        return string.Empty;
-
-                    var identifiers = Value.Split('.');
-                    var substitutedIdentifiers = new List<string>();
-
-                    for (var i = 0; i < identifiers.Length; i++)
-                    {
-                        switch (identifiers[i])
-                        {
-                            case OctopusVersionMaskParser.PatternIncrement:
-                            case OctopusVersionMaskParser.PatternCurrent:
-                                substitutedIdentifiers.Add("0");
-                                break;
-                            default:
-                                substitutedIdentifiers.Add(identifiers[i]);
-                                break;
-                        }
-                    }
-
-                    return separator + string.Join(".", substitutedIdentifiers);
-                }
-
-                public override string EvaluateFromCurrent(Component current, Component prevMaskComponent)
-                {
-                    if (!IsPresent || string.IsNullOrEmpty(Value))
-                        return string.Empty;
-
-                    return "-" + Substitute(current);
-                }
-
-                public override string Substitute(Component current)
-                {
-                    var identifiers = Value.Split('.');
-                    var currentIdentifiers = current.IsPresent ? current.Value.Split('.') : new string[0];
-                    var substitutedIdentifiers = new List<string>();
-
-                    for (var i = 0; i < identifiers.Length; i++)
-                    {
-                        if (i > 0 && identifiers[i-1] == OctopusVersionMaskParser.PatternIncrement && IsSubstitute)
-                        {
-                                substitutedIdentifiers.Add("0");
-                                continue;
-                        }
-
-                        var currentIdentifierValue = 0;
-                        if (currentIdentifiers.Length > i)
-                            int.TryParse(currentIdentifiers[i], out currentIdentifierValue);
-
-                        switch (identifiers[i])
-                        {
-                            case OctopusVersionMaskParser.PatternIncrement:
-                                substitutedIdentifiers.Add((currentIdentifierValue+1).ToString(CultureInfo.InvariantCulture));
-                                break;
-                            case OctopusVersionMaskParser.PatternCurrent:
-                                substitutedIdentifiers.Add(currentIdentifierValue.ToString(CultureInfo.InvariantCulture));
-                                break;
-                            default:
-                                substitutedIdentifiers.Add(identifiers[i]);
-                                break;
-                        }
-                    }
-
-                    return string.Join(".", substitutedIdentifiers);
-                }
+                return "-" + Substitute(current);
             }
 
-            public class MetadataComponent : TagComponent
+            public override string Substitute(Component current)
             {
-                public MetadataComponent(Group matchGroup) : base(matchGroup)
+                var identifiers = Value.Split('.');
+                var currentIdentifiers = current.IsPresent ? current.Value.Split('.') : new string[0];
+                var substitutedIdentifiers = new List<string>();
+
+                for (var i = 0; i < identifiers.Length; i++)
                 {
+                    if (i > 0 && identifiers[i - 1] == OctopusVersionMaskParser.PatternIncrement && IsSubstitute)
+                    {
+                        substitutedIdentifiers.Add("0");
+                        continue;
+                    }
+
+                    var currentIdentifierValue = 0;
+                    if (currentIdentifiers.Length > i)
+                        int.TryParse(currentIdentifiers[i], out currentIdentifierValue);
+
+                    switch (identifiers[i])
+                    {
+                        case OctopusVersionMaskParser.PatternIncrement:
+                            substitutedIdentifiers.Add((currentIdentifierValue + 1).ToString(CultureInfo.InvariantCulture));
+                            break;
+                        case OctopusVersionMaskParser.PatternCurrent:
+                            substitutedIdentifiers.Add(currentIdentifierValue.ToString(CultureInfo.InvariantCulture));
+                            break;
+                        default:
+                            substitutedIdentifiers.Add(identifiers[i]);
+                            break;
+                    }
                 }
 
-                public override string EvaluateFromCurrent(Component current, Component prevMaskComponent)
-                {
-                    if (!IsPresent || string.IsNullOrEmpty(Value))
-                        return string.Empty;
-
-                    return "+" + Substitute(current);
-                }
+                return string.Join(".", substitutedIdentifiers);
             }
+        }
+
+        public class MetadataComponent : TagComponent
+        {
+            public MetadataComponent(Group matchGroup) : base(matchGroup)
+            {
+            }
+
+            public override string EvaluateFromCurrent(Component current, Component prevMaskComponent)
+            {
+                if (!IsPresent || string.IsNullOrEmpty(Value))
+                    return string.Empty;
+
+                return "+" + Substitute(current);
+            }
+        }
     }
 }

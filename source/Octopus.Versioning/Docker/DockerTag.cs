@@ -58,6 +58,8 @@ namespace Octopus.Versioning.Docker
 
         public override VersionFormat Format => VersionFormat.Docker;
 
+        public override bool IsPrerelease => !string.IsNullOrEmpty(Release) && OriginalString != Latest;
+
         public override int CompareTo(object obj)
         {
             if (obj is IVersion objVersion)
@@ -69,7 +71,5 @@ namespace Octopus.Versioning.Docker
 
             return base.CompareTo(obj);
         }
-
-        public override bool IsPrerelease => !string.IsNullOrEmpty(Release) && OriginalString != Latest;
     }
 }

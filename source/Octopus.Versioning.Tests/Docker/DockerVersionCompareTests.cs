@@ -19,7 +19,7 @@ namespace Octopus.Versioning.Tests.Versions.Docker
         }
 
         [Test]
-        [TestCase("latest",false)]
+        [TestCase("latest", false)]
         [TestCase("1.0.0", false)]
         [TestCase("1.0.0-latest", true)]
         public void TestPrerelease(string version1, bool result)

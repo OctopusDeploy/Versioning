@@ -86,10 +86,10 @@ namespace Octopus.Versioning.Semver
                         if (originalVersion.IndexOf(' ') > -1)
                             originalVersion = value.Replace(" ", "");
 
-                        version = new SemanticVersion(version: ver,
-                            releaseLabels: sections.Item2,
-                            metadata: sections.Item3 ?? string.Empty,
-                            originalVersion: originalVersion);
+                        version = new SemanticVersion(ver,
+                            sections.Item2,
+                            sections.Item3 ?? string.Empty,
+                            originalVersion);
 
                         return version;
                     }
@@ -106,9 +106,9 @@ namespace Octopus.Versioning.Semver
         {
             var semVer = TryCreateVersion(value);
             return semVer != null
-                ? new SemanticVersion((int)semVer.Major,
-                    (int)semVer.Minor,
-                    (int)semVer.Patch,
+                ? new SemanticVersion(semVer.Major,
+                    semVer.Minor,
+                    semVer.Patch,
                     0,
                     semVer.ReleaseLabels,
                     semVer.Metadata)

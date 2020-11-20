@@ -29,6 +29,21 @@ namespace Octopus.Versioning.Octopus
             OriginalString = originalVersion ?? string.Empty;
         }
 
+        public virtual string Prefix { get; }
+        public virtual int Major { get; }
+        public virtual int Minor { get; }
+        public virtual int Patch { get; }
+        public virtual int Revision { get; }
+        public virtual bool IsPrerelease => !string.IsNullOrEmpty(Release);
+        public virtual IEnumerable<string> ReleaseLabels => Enumerable.Empty<string>();
+        public virtual string Metadata { get; }
+        public virtual string Release { get; }
+        public virtual string ReleasePrefix { get; }
+        public virtual string ReleaseCounter { get; }
+        public virtual bool HasMetadata => !string.IsNullOrWhiteSpace(Metadata);
+        public virtual string OriginalString { get; }
+        public virtual VersionFormat Format => VersionFormat.Octopus;
+
         public virtual int CompareTo(object obj)
         {
             if (obj is IVersion objVersion)
@@ -69,13 +84,11 @@ namespace Octopus.Versioning.Octopus
         public override bool Equals(object obj)
         {
             if (obj is IVersion objVersion)
-            {
                 return CompareTo(objVersion) == 0;
-            }
 
             return false;
         }
-        
+
         /// <summary>
         /// Compares sets of release labels.
         /// </summary>
@@ -145,20 +158,5 @@ namespace Octopus.Versioning.Octopus
 
             return result;
         }
-
-        public virtual string Prefix { get; }
-        public virtual int Major { get; }
-        public virtual int Minor { get; }
-        public virtual int Patch { get; }
-        public virtual int Revision { get; }
-        public virtual bool IsPrerelease => !string.IsNullOrEmpty(Release);
-        public virtual IEnumerable<string> ReleaseLabels => Enumerable.Empty<string>();
-        public virtual string Metadata { get; }
-        public virtual string Release { get; }
-        public virtual string ReleasePrefix { get; }
-        public virtual string ReleaseCounter { get; }
-        public virtual bool HasMetadata => !string.IsNullOrWhiteSpace(Metadata);
-        public virtual string OriginalString { get; }
-        public virtual VersionFormat Format => VersionFormat.Octopus;
     }
 }

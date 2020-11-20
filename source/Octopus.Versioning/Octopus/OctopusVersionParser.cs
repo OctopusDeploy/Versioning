@@ -14,7 +14,8 @@ namespace Octopus.Versioning.Octopus
         const string PrereleasePrefix = "prereleaseprefix";
         const string PrereleaseCounter = "prereleasecounter";
         const string Meta = "buildmetadata";
-        static readonly Regex VersionRegex = new Regex(@$"^(?:" +
+
+        static readonly Regex VersionRegex = new Regex(@"^(?:" +
             // Versions can start with an optional V
             @$"(?<{Prefix}>v|V)?" +
             // Get the major version number

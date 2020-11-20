@@ -1,7 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
 using Octopus.Versioning.Octopus;
-using Octopus.Versioning.Semver;
 
 namespace Octopus.Versioning.Tests.Octopus
 {

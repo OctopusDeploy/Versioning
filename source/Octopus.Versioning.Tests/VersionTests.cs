@@ -71,7 +71,8 @@ namespace Octopus.Versioning.Tests.Versions
                 VersionFactory.CreateMavenVersion("1.0.0.milestone3"));
             Assert.AreEqual(
                 VersionFactory.CreateMavenVersion("1.0.0"),
-                VersionFactory.CreateMavenVersion("1.0.0.0"), "Another `.0` after patch isn't counted");
+                VersionFactory.CreateMavenVersion("1.0.0.0"),
+                "Another `.0` after patch isn't counted");
         }
 
         [Test]
@@ -79,7 +80,8 @@ namespace Octopus.Versioning.Tests.Versions
         {
             Assert.AreEqual(
                 VersionFactory.CreateSemanticVersion("1.0.0"),
-                VersionFactory.CreateSemanticVersion("1.0.0.0"), "Another `.0` after patch isn't counted");
+                VersionFactory.CreateSemanticVersion("1.0.0.0"),
+                "Another `.0` after patch isn't counted");
         }
 
         [Test]
