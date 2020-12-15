@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Octopus.Versioning.Maven
@@ -33,7 +34,7 @@ namespace Octopus.Versioning.Maven
         /// </summary>
         public const char DISPLAY_DELIMITER = ':';
 
-        public MavenPackageID(string group, string artifact, string version)
+        public MavenPackageID([NotNull]string? group, [NotNull]string? artifact, [NotNull]string? version)
         {
             if (string.IsNullOrWhiteSpace(group))
                 throw new ArgumentException("Group can not be empty");
@@ -47,7 +48,7 @@ namespace Octopus.Versioning.Maven
             Version = version.Trim();
         }
 
-        public MavenPackageID(string group, string artifact, string version, string packaging) :
+        public MavenPackageID([NotNull]string? group, [NotNull]string? artifact, [NotNull]string? version, [NotNull]string? packaging) :
             this(group, artifact, version)
         {
             if (string.IsNullOrWhiteSpace(packaging))
@@ -56,17 +57,17 @@ namespace Octopus.Versioning.Maven
             Packaging = packaging.Trim();
         }
 
-        public MavenPackageID(string group,
-            string artifact,
-            string version,
-            string packaging,
+        public MavenPackageID([NotNull]string? group,
+            [NotNull]string? artifact,
+            [NotNull]string? version,
+            [NotNull]string? packaging,
             string? classifier) :
             this(group, artifact, version, packaging)
         {
             Classifier = string.IsNullOrWhiteSpace(classifier) ? null : classifier.Trim();
         }
 
-        public MavenPackageID(string id, IVersion version) : this(id)
+        public MavenPackageID([NotNull]string? id, IVersion version) : this(id)
         {
             if (string.IsNullOrWhiteSpace(id) || id.Split(':').Length != 2)
                 throw new ArgumentException("Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
@@ -85,7 +86,7 @@ namespace Octopus.Versioning.Maven
         /// <param name="id">
         /// The package id is in the display format like "Group:Artifact".
         /// </param>
-        public MavenPackageID(string id)
+        public MavenPackageID([NotNull]string? id)
         {
             if (string.IsNullOrWhiteSpace(id))
                 throw new ArgumentException("id can not be empty");
