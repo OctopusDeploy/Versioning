@@ -4,8 +4,22 @@ using System.Linq;
 
 namespace Octopus.Versioning.Octopus
 {
+    
     public class OctopusVersion : IVersion
     {
+        public OctopusVersion()
+        {
+            Major = 0;
+            Minor = 0;
+            Patch = 0;
+            Revision = 0;
+            Release = string.Empty;
+            ReleasePrefix = string.Empty;
+            ReleaseCounter = string.Empty;
+            Metadata = string.Empty;
+            OriginalString = "0.0.0";
+        }
+        
         public OctopusVersion(string? prefix,
             int major,
             int minor,

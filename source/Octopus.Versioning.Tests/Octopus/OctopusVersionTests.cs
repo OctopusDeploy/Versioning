@@ -14,6 +14,13 @@ namespace Octopus.Versioning.Tests.Octopus
         static readonly OctopusVersionParser OctopusVersionParser = new OctopusVersionParser();
 
         [Test]
+        public void TryParseTest()
+        {
+            Assert.IsFalse(OctopusVersionParser.TryParse("99999999999999999999999999999999999", out OctopusVersion version));
+            Assert.IsTrue(OctopusVersionParser.TryParse("1.1.1.1", out OctopusVersion version2));
+        }
+        
+        [Test]
         [TestCase("0.0.4",
             0,
             0,

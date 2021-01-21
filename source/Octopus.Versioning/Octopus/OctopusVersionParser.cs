@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text.RegularExpressions;
 
 namespace Octopus.Versioning.Octopus
@@ -51,6 +52,20 @@ namespace Octopus.Versioning.Octopus
             catch (OverflowException ex)
             {
                 throw new OverflowException($"Failed to parse the version {version?.Trim()} because the major, minor, patch or revision fields were too large.", ex);
+            }
+        }
+
+        public bool TryParse(string version, out OctopusVersion parsedVersion)
+        {
+            try
+            {
+                parsedVersion = Parse(version);
+                return true;
+            }
+            catch
+            {
+                parsedVersion = new OctopusVersion();
+                return false;
             }
         }
     }
