@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net40</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net40</TargetFrameworks>
     <AssemblyName>Octopus.Versioning</AssemblyName>
     <PackageId>Octopus.Versioning</PackageId>
     <PackageIconUrl>http://i.octopusdeploy.com/resources/Avatar3_360.png</PackageIconUrl>
