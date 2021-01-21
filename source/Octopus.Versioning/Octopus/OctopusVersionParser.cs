@@ -64,7 +64,17 @@ namespace Octopus.Versioning.Octopus
             }
             catch
             {
-                parsedVersion = new OctopusVersion();
+                parsedVersion = new OctopusVersion(
+                    string.Empty,
+                    0,
+                    0,
+                    0,
+                    0,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    "0.0.0");
                 return false;
             }
         }
