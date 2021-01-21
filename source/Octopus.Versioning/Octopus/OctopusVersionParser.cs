@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text.RegularExpressions;
 
 namespace Octopus.Versioning.Octopus
