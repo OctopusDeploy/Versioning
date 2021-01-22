@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Octopus.Versioning.Octopus
 {
+    
     public class OctopusVersion : IVersion
     {
         public OctopusVersion(string? prefix,

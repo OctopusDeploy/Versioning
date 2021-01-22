@@ -53,5 +53,29 @@ namespace Octopus.Versioning.Octopus
                 throw new OverflowException($"Failed to parse the version {version?.Trim()} because the major, minor, patch or revision fields were too large.", ex);
             }
         }
+
+        public bool TryParse(string version, out OctopusVersion parsedVersion)
+        {
+            try
+            {
+                parsedVersion = Parse(version);
+                return true;
+            }
+            catch
+            {
+                parsedVersion = new OctopusVersion(
+                    string.Empty,
+                    0,
+                    0,
+                    0,
+                    0,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    "0.0.0");
+                return false;
+            }
+        }
     }
 }
