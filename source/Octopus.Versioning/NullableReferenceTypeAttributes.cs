@@ -7,7 +7,7 @@ using System;
 
 namespace Octopus.Versioning
 {
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.ReturnValue, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.ReturnValue)]
     public sealed class NotNullAttribute : Attribute
     {
     }
