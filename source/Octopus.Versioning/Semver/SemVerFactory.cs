@@ -106,9 +106,9 @@ namespace Octopus.Versioning.Semver
         {
             var semVer = TryCreateVersion(value);
             return semVer != null
-                ? new SemanticVersion(semVer.Major,
-                    semVer.Minor,
-                    semVer.Patch,
+                ? new SemanticVersion((int)semVer.Major,
+                    (int)semVer.Minor,
+                    (int)semVer.Patch,
                     0,
                     semVer.ReleaseLabels,
                     semVer.Metadata)

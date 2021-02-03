@@ -29,10 +29,10 @@ namespace Octopus.Versioning
     /// </summary>
     public interface IVersion : IComparable
     {
-        int Major { get; }
-        int Minor { get; }
-        int Patch { get; }
-        int Revision { get; }
+        long Major { get; }
+        long Minor { get; }
+        long Patch { get; }
+        long Revision { get; }
         bool IsPrerelease { get; }
         IEnumerable<string> ReleaseLabels { get; }
         string? Metadata { get; }

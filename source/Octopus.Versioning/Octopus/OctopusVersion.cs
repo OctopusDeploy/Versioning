@@ -7,10 +7,10 @@ namespace Octopus.Versioning.Octopus
     public class OctopusVersion : IVersion
     {
         public OctopusVersion(string? prefix,
-            int major,
-            int minor,
-            int patch,
-            int revision,
+            long major,
+            long minor,
+            long patch,
+            long revision,
             string? prerelease,
             string? prereleasePrefix,
             string? prereleaseCounter,
@@ -30,10 +30,10 @@ namespace Octopus.Versioning.Octopus
         }
 
         public virtual string Prefix { get; }
-        public virtual int Major { get; }
-        public virtual int Minor { get; }
-        public virtual int Patch { get; }
-        public virtual int Revision { get; }
+        public virtual long Major { get; }
+        public virtual long Minor { get; }
+        public virtual long Patch { get; }
+        public virtual long Revision { get; }
         public virtual bool IsPrerelease => !string.IsNullOrEmpty(Release);
         public virtual IEnumerable<string> ReleaseLabels => Enumerable.Empty<string>();
         public virtual string Metadata { get; }

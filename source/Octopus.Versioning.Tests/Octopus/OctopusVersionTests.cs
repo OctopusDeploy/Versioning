@@ -13,6 +13,16 @@ namespace Octopus.Versioning.Tests.Octopus
         static readonly Random Random = new Random();
         static readonly OctopusVersionParser OctopusVersionParser = new OctopusVersionParser();
 
+        [TestCase("20210201130629.0.0.0")]
+        [TestCase("1.20210201130629.0.0")]
+        [TestCase("1.0.20210201130629.0")]
+        [TestCase("1.0.0.20210201130629")]
+        [TestCase("1.0.6765-20210201130629+master-49389e57")]
+        public void TestLongVersions(string version)
+        {
+            Assert.IsTrue(OctopusVersionParser.TryParse(version, out _));
+        }
+        
         [Test]
         public void TryParseTest()
         {

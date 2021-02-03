@@ -22,10 +22,10 @@ namespace Octopus.Versioning.Maven
             OriginalString = originalVersion;
         }
 
-        public int Major { get; }
-        public int Minor { get; }
-        public int Patch { get; }
-        public int Revision { get; }
+        public long Major { get; }
+        public long Minor { get; }
+        public long Patch { get; }
+        public long Revision { get; }
 
         public bool IsPrerelease => ReleaseLabels.Any(label =>
         {
@@ -80,10 +80,10 @@ namespace Octopus.Versioning.Maven
         {
             unchecked
             {
-                var hashCode = Major;
-                hashCode = (hashCode * 397) ^ Minor;
-                hashCode = (hashCode * 397) ^ Patch;
-                hashCode = (hashCode * 397) ^ Revision;
+                var hashCode = (int)Major;
+                hashCode = (hashCode * 397) ^ (int)Minor;
+                hashCode = (hashCode * 397) ^ (int)Patch;
+                hashCode = (hashCode * 397) ^ (int)Revision;
                 hashCode = (hashCode * 397) ^ (ReleaseLabels != null ? ReleaseLabels.GetHashCode() : 0);
                 return (int)hashCode;
             }
