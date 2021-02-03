@@ -1014,11 +1014,11 @@ namespace Octopus.Versioning.Tests.Octopus
         }
 
         [Test]
-        [TestCase("2147483648.1.1")]
-        [TestCase("1.2147483648.1")]
-        [TestCase("1.1.2147483648")]
-        [TestCase("1.1.1.2147483648")]
-        [TestCase("1.1.9999999999")]
+        [TestCase("9223372036854775808.1.1")]
+        [TestCase("1.9223372036854775808.1")]
+        [TestCase("1.1.9223372036854775808")]
+        [TestCase("1.1.1.9223372036854775808")]
+        [TestCase("1.1.9223372036854775808")]
         public void LargeVersionNumbersWillFail(string version)
         {
             try
