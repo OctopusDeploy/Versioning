@@ -80,10 +80,10 @@ namespace Octopus.Versioning.Maven
         {
             unchecked
             {
-                var hashCode = (int)Major;
-                hashCode = (hashCode * 397) ^ (int)Minor;
-                hashCode = (hashCode * 397) ^ (int)Patch;
-                hashCode = (hashCode * 397) ^ (int)Revision;
+                var hashCode = Major;
+                hashCode = (hashCode * 397) ^ Minor;
+                hashCode = (hashCode * 397) ^ Patch;
+                hashCode = (hashCode * 397) ^ Revision;
                 hashCode = (hashCode * 397) ^ (ReleaseLabels != null ? ReleaseLabels.GetHashCode() : 0);
                 return (int)hashCode;
             }

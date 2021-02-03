@@ -105,10 +105,12 @@ namespace Octopus.Versioning.Semver
         public static SemanticVersion? TryParseStrict(string value)
         {
             var semVer = TryCreateVersion(value);
+            
+            // Convert.ToInt32() will not throw, because semver versions only parse ints
             return semVer != null
-                ? new SemanticVersion((int)semVer.Major,
-                    (int)semVer.Minor,
-                    (int)semVer.Patch,
+                ? new SemanticVersion(Convert.ToInt32(semVer.Major),
+                    Convert.ToInt32(semVer.Minor),
+                    Convert.ToInt32(semVer.Patch),
                     0,
                     semVer.ReleaseLabels,
                     semVer.Metadata)
