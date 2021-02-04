@@ -36,7 +36,6 @@ namespace Octopus.Versioning.Octopus
 
         public OctopusVersion Parse(string? version)
         {
-
             var result = VersionRegex.Match(version?.Trim() ?? string.Empty);
                             // Version numbers must be ints
             bool majorIsInt = result.Groups[Major].Success && int.TryParse(result.Groups[Major].Value, out _);
@@ -44,7 +43,9 @@ namespace Octopus.Versioning.Octopus
             bool patchIsInt = minorIsInt && result.Groups[Patch].Success && int.TryParse(result.Groups[Patch].Value, out _);
             bool revisionIsInt = patchIsInt && result.Groups[Revision].Success && int.TryParse(result.Groups[Revision].Value, out _);
 
-            // The first field that isn't an int marks the beginning of the prerelease
+            // The first field that isn't an int marks the beginning of the prerelease. This accounts
+            // for versions that place things like timestamps into a field like
+            // 1.0.6765-20210201130629+master-49389e57.
             var fieldPreRelease = "";
             if (!revisionIsInt) fieldPreRelease = result.Groups[Revision].Value;
             if (!patchIsInt) fieldPreRelease = result.Groups[Patch].Value + result.Groups[RevisionGroup].Value;

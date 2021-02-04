@@ -21,6 +21,15 @@ namespace Octopus.Versioning.Tests.Octopus
         }
 
         [Test]
+        [TestCase("1.0.6765-20210201130629+master-49389e57",
+            1,
+            0,
+            6765,
+            0,
+            "20210201130629",
+            "20210201130629",
+            "",
+            "master-49389e57")]       
         [TestCase("0.0.4",
             0,
             0,
