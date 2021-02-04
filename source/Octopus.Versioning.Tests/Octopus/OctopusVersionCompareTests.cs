@@ -69,6 +69,7 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.0.0.99999999999999999999999999999", "1.0.0.888888888888888888888888888", 1)]
         [TestCase("1.0.0-99999999999999999999999999999", "1.0.0-888888888888888888888888888", 1)]
         [TestCase("1.0.0_99999999999999999999999999999", "1.0.0_888888888888888888888888888", 1)]
+        [TestCase("1.0.0.1", "1.0.0-2", 1)]
         public void TestVersionComparisons(string version1, string version2, int result)
         {
             Assert.AreEqual(result, OctopusVersionParser.Parse(version1).CompareTo(OctopusVersionParser.Parse(version2)));
