@@ -16,7 +16,7 @@ namespace Octopus.Versioning.Tests.Octopus
         [Test]
         public void TryParseTest()
         {
-            Assert.IsFalse(OctopusVersionParser.TryParse("99999999999999999999999999999999999", out var version));
+            Assert.IsTrue(OctopusVersionParser.TryParse("99999999999999999999999999999999999", out var version));
             Assert.IsTrue(OctopusVersionParser.TryParse("1.1.1.1", out var version2));
         }
 
@@ -1004,22 +1004,16 @@ namespace Octopus.Versioning.Tests.Octopus
         }
 
         [Test]
-        [TestCase("2147483648.1.1")]
-        [TestCase("1.2147483648.1")]
-        [TestCase("1.1.2147483648")]
-        [TestCase("1.1.1.2147483648")]
-        [TestCase("1.1.9999999999")]
-        public void LargeVersionNumbersWillFail(string version)
+        [TestCase("2147483648.1.1", "2147483648.1.1")]
+        [TestCase("1.2147483648.1", "2147483648.1")]
+        [TestCase("1.1.2147483648", "2147483648")]
+        [TestCase("1.1.1.2147483648", "2147483648")]
+        [TestCase("1.1.9999999999", "9999999999")]
+        public void LargeVersionNumbersWillBeTreatedAsPrereleases(string version, string prerelease)
         {
-            try
-            {
-                OctopusVersionParser.Parse(version);
-                Assert.Fail("Should have thrown an exception");
-            }
-            catch (OverflowException)
-            {
-                Assert.Pass("Exception was expected");
-            }
+
+             var parsed = OctopusVersionParser.Parse(version);
+             Assert.AreEqual(prerelease, parsed.Release);
         }
 
         public static string RandomString(int length)
