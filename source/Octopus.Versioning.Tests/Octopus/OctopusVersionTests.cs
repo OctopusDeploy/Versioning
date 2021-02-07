@@ -363,6 +363,15 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "")]
+        [TestCase("1.1.01-9999999999999999999999999",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "")]
         public void TestSemverVersions(string version,
             int major,
             int minor,
