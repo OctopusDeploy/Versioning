@@ -48,6 +48,7 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.0.0+meta", "1.0.0+meta", 0)]
         [TestCase("1.0.0+meta1", "1.0.0+meta2", 0)]
         [TestCase("1.0.0+meta3", "1.0.0+meta2", 0)]
+        [TestCase("1.0.0.1", "1.0.0-2", 1)]
         public void TestVersionComparisons(string version1, string version2, int result)
         {
             Assert.AreEqual(result, OctopusVersionParser.Parse(version1).CompareTo(OctopusVersionParser.Parse(version2)));
