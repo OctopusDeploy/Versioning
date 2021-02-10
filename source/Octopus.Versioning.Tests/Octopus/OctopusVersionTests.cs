@@ -363,6 +363,15 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "")]
+        [TestCase("1.1.01-9999999999999999999999999",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "")]
         public void TestSemverVersions(string version,
             int major,
             int minor,
@@ -564,9 +573,9 @@ namespace Octopus.Versioning.Tests.Octopus
             0,
             0,
             "-alpha",
+            "0-alpha",
+            "0",
             "alpha",
-            "alpha",
-            "",
             "")]
         [TestCase("1_0_alpha",
             1,
@@ -577,9 +586,9 @@ namespace Octopus.Versioning.Tests.Octopus
             0,
             0,
             "",
+            "0_alpha",
+            "0",
             "alpha",
-            "alpha",
-            "",
             "")]
         [TestCase("1_0alpha",
             1,
@@ -590,8 +599,8 @@ namespace Octopus.Versioning.Tests.Octopus
             0,
             0,
             "",
-            "alpha",
-            "alpha",
+            "0alpha",
+            "0alpha",
             "",
             "")]
         [TestCase("1.0a1-SNAPSHOT",
@@ -610,15 +619,15 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1-2.3-SNAPSHOT",
             1,
             0,
-            2,
             0,
-            3,
+            0,
+            0,
             2,
             0,
             ".3-SNAPSHOT",
-            "SNAPSHOT",
-            "SNAPSHOT",
-            "",
+            "2.3-SNAPSHOT",
+            "2",
+            "3-SNAPSHOT",
             "")]
         [TestCase("1.0.2.3-rc1",
             1,
@@ -662,75 +671,6 @@ namespace Octopus.Versioning.Tests.Octopus
             Assert.AreEqual(mavenPrerelease, mavenParsed.Release);
             Assert.AreEqual(metadata, parsed.Metadata);
             Assert.AreEqual(metadata, mavenParsed.Metadata ?? string.Empty);
-
-            Assert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
-            Assert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
-        }
-
-        /// <summary>
-        /// This test identifies examples where valid semver is processed differently from the octopus version
-        /// </summary>
-        [Test]
-        [TestCase("1.0.0-0A.is.legal",
-            1,
-            0,
-            0,
-            0,
-            0,
-            "0A.is.legal",
-            "A.is.legal",
-            "A",
-            "is.legal",
-            "")]
-        [TestCase("1.2.3-0123",
-            1,
-            2,
-            3,
-            0,
-            0123,
-            "0123",
-            "",
-            "",
-            "",
-            "")]
-        [TestCase("1.2.3-0123.0123",
-            1,
-            2,
-            3,
-            0,
-            0123,
-            "0123.0123",
-            "0123",
-            "0123",
-            "",
-            "")]
-        public void TestIncompatibilitiesVersions(string version,
-            int major,
-            int minor,
-            int patch,
-            int semverRevision,
-            int revision,
-            string semverPrerelease,
-            string prerelease,
-            string prereleasePrefix,
-            string prereleaseCounter,
-            string metadata)
-        {
-            var parsed = OctopusVersionParser.Parse(version);
-            var semverParsed = SemVerFactory.Parse(version);
-
-            Assert.AreEqual(major, parsed.Major);
-            Assert.AreEqual(major, semverParsed.Major);
-            Assert.AreEqual(minor, parsed.Minor);
-            Assert.AreEqual(minor, semverParsed.Minor);
-            Assert.AreEqual(patch, parsed.Patch);
-            Assert.AreEqual(patch, semverParsed.Patch);
-            Assert.AreEqual(revision, parsed.Revision);
-            Assert.AreEqual(semverRevision, semverParsed.Revision);
-            Assert.AreEqual(prerelease, parsed.Release);
-            Assert.AreEqual(semverPrerelease, semverParsed.Release);
-            Assert.AreEqual(metadata, parsed.Metadata);
-            Assert.AreEqual(metadata, semverParsed.Metadata);
 
             Assert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
             Assert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
