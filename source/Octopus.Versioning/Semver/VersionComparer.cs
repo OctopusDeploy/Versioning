@@ -3,7 +3,7 @@
 
 using System;
 using System.Collections.Generic;
-using Octopus.CoreUtilities;
+using Octopus.Versioning.Plumbing;
 
 namespace Octopus.Versioning.Semver
 {

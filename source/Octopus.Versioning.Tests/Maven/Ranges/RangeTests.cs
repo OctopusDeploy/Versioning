@@ -717,5 +717,15 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
         {
             // Assert.IsTrue( new DefaultArtifactVersion( "1.0-alpha10" ).compareTo( new DefaultArtifactVersion( "1.0-alpha1" ) ) > 0 );
         }
+
+        [TestCase("[1.0,1.1]")]
+        [TestCase("[1.0,1.1],[2,3]")]
+        public void ToString(string input)
+        {
+            var result = MavenVersionRange.CreateFromVersionSpec(input)
+                .ToString();
+
+            Assert.AreEqual(input, result);
+        }
     }
 }
