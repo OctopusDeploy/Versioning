@@ -396,19 +396,7 @@ namespace Octopus.Versioning.Maven.Ranges
             if ( RecommendedVersion != null )
                 return RecommendedVersion.ToString();
 
-            var buf = new StringBuilder();
-            for ( var i = Restrictions.GetEnumerator(); i.MoveNext(); )
-            {
-                var r = i.Current;
-
-                buf.Append( r.ToString() );
-
-                buf.Append( ',' );
-            }
-
-            return buf
-                .ToString()
-                .Map(s => s.Length != 0 ? s.Substring(s.Length - 1) : s);
+            return string.Join(",", Restrictions);
         }
 
         public IVersion? MatchVersion( List<IVersion> versions )
