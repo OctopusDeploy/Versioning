@@ -5,7 +5,6 @@ using System;
 
 namespace Octopus.Versioning.Plumbing
 {
-
     /// <summary>
     /// Hash code creator, based on the original NuGet hash code combiner/ASP hash code combiner implementations
     /// </summary>
@@ -21,10 +20,7 @@ namespace Octopus.Versioning.Plumbing
             combinedHash = Seed;
         }
 
-        public int CombinedHash
-        {
-            get { return combinedHash.GetHashCode(); }
-        }
+        public int CombinedHash => combinedHash.GetHashCode();
 
         public HashCodeCombiner AddInt32(int i)
         {
@@ -47,9 +43,7 @@ namespace Octopus.Versioning.Plumbing
         public HashCodeCombiner AddObject(object o)
         {
             if (o != null)
-            {
                 AddInt32(o.GetHashCode());
-            }
             return this;
         }
 
@@ -61,9 +55,7 @@ namespace Octopus.Versioning.Plumbing
             var combiner = new HashCodeCombiner();
 
             foreach (var obj in objects)
-            {
                 combiner.AddObject(obj);
-            }
 
             return combiner.CombinedHash;
         }
