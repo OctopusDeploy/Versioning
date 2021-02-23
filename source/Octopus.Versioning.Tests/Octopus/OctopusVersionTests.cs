@@ -962,9 +962,25 @@ namespace Octopus.Versioning.Tests.Octopus
             }
         }
 
+        [Test]
+        [TestCase("1.2.3-hi/there")]
+        [TestCase("1.2.3-hi%there")]
+        public void IllegalCharsWillFail(string version)
+        {
+            try
+            {
+                OctopusVersionParser.Parse(version);
+                Assert.Fail("Should have thrown an exception");
+            }
+            catch (Exception)
+            {
+                Assert.Pass("Exception was expected");
+            }
+        }
+
         public static string RandomString(int length)
         {
-            const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|:\"<>?-=[]\\;',./`~";
+            const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$^&*()_+{}|:\"<>?-=[]\\;',.`~";
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[Random.Next(s.Length)])
                 .ToArray());

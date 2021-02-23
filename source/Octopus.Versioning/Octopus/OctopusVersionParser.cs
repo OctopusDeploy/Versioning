@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace Octopus.Versioning.Octopus
 {
     public class OctopusVersionParser
     {
+        /// <summary>
+        /// Versions can appear in URLs, and these characters are hard to work with in URLs, so we exclude them from any part of the version
+        /// </summary>
+        static readonly string[] IllegalChars = { "/", "%" };
+
         const string Prefix = "prefix";
         const string Major = "major";
         const string Minor = "minor";
@@ -35,6 +41,11 @@ namespace Octopus.Versioning.Octopus
         {
             try
             {
+                if (IllegalChars.Any(c => version?.Contains(c) ?? false))
+                {
+                    throw new ArgumentException("The version contained one of the following illegal characters: " + string.Join(", ", IllegalChars));
+                }
+
                 var result = VersionRegex.Match(version?.Trim() ?? string.Empty);
                 return new OctopusVersion(
                     result.Groups[Prefix].Success ? result.Groups[Prefix].Value : string.Empty,
