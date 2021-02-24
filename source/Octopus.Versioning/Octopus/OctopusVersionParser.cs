@@ -41,7 +41,7 @@ namespace Octopus.Versioning.Octopus
         {
             try
             {
-                if (version?.Trim() == string.Empty)
+                if ((version?.Trim() ?? string.Empty) == string.Empty)
                 {
                     throw new ArgumentException("The version can not be an empty string");
                 }
