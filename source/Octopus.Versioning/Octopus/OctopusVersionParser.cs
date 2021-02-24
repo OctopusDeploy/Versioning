@@ -41,12 +41,23 @@ namespace Octopus.Versioning.Octopus
         {
             try
             {
-                if (IllegalChars.Any(c => version?.Contains(c) ?? false))
+                if (version?.Trim() == string.Empty)
                 {
-                    throw new ArgumentException("The version contained one of the following illegal characters: " + string.Join(", ", IllegalChars));
+                    throw new ArgumentException("The version can not be an empty string");
                 }
 
-                var result = VersionRegex.Match(version?.Trim() ?? string.Empty);
+                if (version?.Contains(" ") ?? false)
+                {
+                    throw new ArgumentException("The version can not contain spaces");
+                }
+
+                if (IllegalChars.Any(c => version?.Contains(c) ?? false))
+                {
+                    throw new ArgumentException("The version contained one of the following characters: " + string.Join(", ", IllegalChars));
+                }
+
+                var result = VersionRegex.Match(version ?? string.Empty);
+
                 return new OctopusVersion(
                     result.Groups[Prefix].Success ? result.Groups[Prefix].Value : string.Empty,
                     result.Groups[Major].Success ? int.Parse(result.Groups[Major].Value) : 0,

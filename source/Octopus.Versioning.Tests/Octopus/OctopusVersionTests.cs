@@ -835,24 +835,6 @@ namespace Octopus.Versioning.Tests.Octopus
             "component_based",
             "",
             Description = "https://hub.docker.com/r/google/cloud-sdk/tags")]
-        [TestCase(" ",
-            0,
-            0,
-            0,
-            0,
-            "",
-            "",
-            "",
-            "")]
-        [TestCase("",
-            0,
-            0,
-            0,
-            0,
-            "",
-            "",
-            "",
-            "")]
         [TestCase(null,
             0,
             0,
@@ -965,6 +947,9 @@ namespace Octopus.Versioning.Tests.Octopus
         [Test]
         [TestCase("1.2.3-hi/there")]
         [TestCase("1.2.3-hi%there")]
+        [TestCase(" ")]
+        [TestCase("")]
+        [TestCase(null)]
         public void IllegalCharsWillFail(string version)
         {
             try
