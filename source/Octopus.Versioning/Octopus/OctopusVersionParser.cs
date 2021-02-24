@@ -9,7 +9,7 @@ namespace Octopus.Versioning.Octopus
         /// <summary>
         /// Versions can appear in URLs, and these characters are hard to work with in URLs, so we exclude them from any part of the version
         /// </summary>
-        static readonly string[] IllegalChars = { "/", "%" };
+        static readonly string[] IllegalChars = { "/", "%", "?", "#", "&" };
 
         const string Prefix = "prefix";
         const string Major = "major";

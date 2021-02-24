@@ -947,6 +947,9 @@ namespace Octopus.Versioning.Tests.Octopus
         [Test]
         [TestCase("1.2.3-hi/there")]
         [TestCase("1.2.3-hi%there")]
+        [TestCase("1.2.3-hi?there")]
+        [TestCase("1.2.3-hi#there")]
+        [TestCase("1.2.3-hi&there")]
         [TestCase(" ")]
         [TestCase("")]
         [TestCase(null)]
@@ -965,7 +968,7 @@ namespace Octopus.Versioning.Tests.Octopus
 
         public static string RandomString(int length)
         {
-            const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$^&*()_+{}|:\"<>?-=[]\\;',.`~";
+            const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@$^*()_+{}|:\"<>-=[]\\;',.`~";
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[Random.Next(s.Length)])
                 .ToArray());
