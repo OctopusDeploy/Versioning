@@ -108,9 +108,9 @@ namespace Octopus.Versioning.Tests.Octopus
         }
 
         [Test]
-        [TestCase("1.1.1-prerelease!@#$^&*()[]{};':\",.<>?", "1.1.1-prerelease][)(*&^$#@!{};':\",.<>?", 0, Description = "Non alphanumeric chars compare the same")]
+        [TestCase("1.1.1-prerelease!@$^*()[]{};':\",.<>", "1.1.1-prerelease][)(*^$@!{};':\",.<>", 0, Description = "Non alphanumeric chars compare the same")]
         [TestCase("1.1.1-大きい", "1.1.1_小さい", -1, Description = "UTF chars have meaning")]
-        [TestCase("1.1.1-!@#.10", "1.1.1.#@!.11", -1, Description = "prerelease tags are compared")]
+        [TestCase("1.1.1-!@.10", "1.1.1.@!.11", -1, Description = "prerelease tags are compared")]
         public void CompareVersionsWithEquivalentChars(string version1, string version2, int expected)
         {
             var result = OctopusVersionParser.Parse(version1).CompareTo(OctopusVersionParser.Parse(version2));
