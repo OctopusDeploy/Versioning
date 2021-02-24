@@ -835,15 +835,6 @@ namespace Octopus.Versioning.Tests.Octopus
             "component_based",
             "",
             Description = "https://hub.docker.com/r/google/cloud-sdk/tags")]
-        [TestCase(null,
-            0,
-            0,
-            0,
-            0,
-            "",
-            "",
-            "",
-            "")]
         [TestCase("latest",
             0,
             0,
