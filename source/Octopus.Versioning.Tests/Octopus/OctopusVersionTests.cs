@@ -835,33 +835,6 @@ namespace Octopus.Versioning.Tests.Octopus
             "component_based",
             "",
             Description = "https://hub.docker.com/r/google/cloud-sdk/tags")]
-        [TestCase(" ",
-            0,
-            0,
-            0,
-            0,
-            "",
-            "",
-            "",
-            "")]
-        [TestCase("",
-            0,
-            0,
-            0,
-            0,
-            "",
-            "",
-            "",
-            "")]
-        [TestCase(null,
-            0,
-            0,
-            0,
-            0,
-            "",
-            "",
-            "",
-            "")]
         [TestCase("latest",
             0,
             0,
@@ -880,6 +853,15 @@ namespace Octopus.Versioning.Tests.Octopus
             "stable",
             "",
             "")]
+        [TestCase("stable-\\hi_there.how-are+you+today",
+            0,
+            0,
+            0,
+            0,
+            "stable-\\hi_there.how-are",
+            "stable",
+            "\\hi_there.how-are",
+            "you+today")]
         public void TestInvalidSemverVersions(string version,
             int major,
             int minor,
@@ -962,9 +944,31 @@ namespace Octopus.Versioning.Tests.Octopus
             }
         }
 
+        [Test]
+        [TestCase("1.2.3-hi/there")]
+        [TestCase("1.2.3-hi%there")]
+        [TestCase("1.2.3-hi?there")]
+        [TestCase("1.2.3-hi#there")]
+        [TestCase("1.2.3-hi&there")]
+        [TestCase(" ")]
+        [TestCase("")]
+        [TestCase(null)]
+        public void IllegalCharsWillFail(string version)
+        {
+            try
+            {
+                OctopusVersionParser.Parse(version);
+                Assert.Fail("Should have thrown an exception");
+            }
+            catch (Exception)
+            {
+                Assert.Pass("Exception was expected");
+            }
+        }
+
         public static string RandomString(int length)
         {
-            const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|:\"<>?-=[]\\;',./`~";
+            const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-.\\+";
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[Random.Next(s.Length)])
                 .ToArray());
