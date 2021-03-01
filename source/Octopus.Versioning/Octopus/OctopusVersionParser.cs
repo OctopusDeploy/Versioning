@@ -33,9 +33,9 @@ namespace Octopus.Versioning.Octopus
             // Get the revision version number, delimited by a period, comma, dash or underscore
             @$"(?:\.(?<{Revision}>\d+))?)?" +
             // Everything after the last digit and before the plus is the prerelease
-            @$"(?:[.\-_])?(?<{Prerelease}>(?<{PrereleasePrefix}>[^+.\-_\s]*?)([.\-_](?<{PrereleaseCounter}>[^+\s]*?)?)?)?" +
+            @$"(?:[.\-_\\])?(?<{Prerelease}>(?<{PrereleasePrefix}>[A-Za-z0-9]*?)([.\-_\\](?<{PrereleaseCounter}>[A-Za-z0-9.\-_\\]*?)?)?)?" +
             // The metadata is everything after the plus
-            $@"(?:\+(?<{Meta}>[^\s]*?))?$");
+            $@"(?:\+(?<{Meta}>[A-Za-z0-9_\-.\\+]*?))?$");
 
         public OctopusVersion Parse(string? version)
         {
@@ -49,11 +49,6 @@ namespace Octopus.Versioning.Octopus
                 if (version?.Contains(" ") ?? false)
                 {
                     throw new ArgumentException("The version can not contain spaces");
-                }
-
-                if (IllegalChars.Any(c => version?.Contains(c) ?? false))
-                {
-                    throw new ArgumentException("The version contained one of the following characters: " + string.Join(", ", IllegalChars));
                 }
 
                 var result = VersionRegex.Match(version ?? string.Empty);
