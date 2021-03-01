@@ -853,6 +853,15 @@ namespace Octopus.Versioning.Tests.Octopus
             "stable",
             "",
             "")]
+        [TestCase("stable-\\hi_there.how-are+you+today",
+            0,
+            0,
+            0,
+            0,
+            "stable-\\hi_there.how-are",
+            "stable",
+            "\\hi_there.how-are",
+            "you+today")]
         public void TestInvalidSemverVersions(string version,
             int major,
             int minor,
