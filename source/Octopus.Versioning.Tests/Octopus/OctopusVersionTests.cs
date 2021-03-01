@@ -960,7 +960,7 @@ namespace Octopus.Versioning.Tests.Octopus
                 OctopusVersionParser.Parse(version);
                 Assert.Fail("Should have thrown an exception");
             }
-            catch (Exception)
+            catch (ArgumentException)
             {
                 Assert.Pass("Exception was expected");
             }

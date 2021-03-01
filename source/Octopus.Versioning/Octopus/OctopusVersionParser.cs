@@ -53,6 +53,11 @@ namespace Octopus.Versioning.Octopus
 
                 var result = VersionRegex.Match(version ?? string.Empty);
 
+                if (!result.Success)
+                {
+                    throw new ArgumentException("The supplied version was not valid");
+                }
+
                 return new OctopusVersion(
                     result.Groups[Prefix].Success ? result.Groups[Prefix].Value : string.Empty,
                     result.Groups[Major].Success ? int.Parse(result.Groups[Major].Value) : 0,
