@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using System.Linq;
 
 namespace Octopus.Versioning.Octopus
 {
     public class OctopusVersionParser
     {
-        /// <summary>
-        /// Versions can appear in URLs, and these characters are hard to work with in URLs, so we exclude them from any part of the version
-        /// </summary>
-        static readonly string[] IllegalChars = { "/", "%", "?", "#", "&" };
-
         const string Prefix = "prefix";
         const string Major = "major";
         const string Minor = "minor";
@@ -20,6 +14,11 @@ namespace Octopus.Versioning.Octopus
         const string PrereleasePrefix = "prereleaseprefix";
         const string PrereleaseCounter = "prereleasecounter";
         const string Meta = "buildmetadata";
+
+        /// <summary>
+        /// Versions can appear in URLs, and these characters are hard to work with in URLs, so we exclude them from any part of the version
+        /// </summary>
+        static readonly string[] IllegalChars = { "/", "%", "?", "#", "&" };
 
         static readonly Regex VersionRegex = new Regex(@"^(?:" +
             // Versions can start with an optional V
@@ -42,21 +41,15 @@ namespace Octopus.Versioning.Octopus
             try
             {
                 if ((version?.Trim() ?? string.Empty) == string.Empty)
-                {
                     throw new ArgumentException("The version can not be an empty string");
-                }
 
                 if (version?.Contains(" ") ?? false)
-                {
                     throw new ArgumentException("The version can not contain spaces");
-                }
 
                 var result = VersionRegex.Match(version ?? string.Empty);
 
                 if (!result.Success)
-                {
                     throw new ArgumentException("The supplied version was not valid");
-                }
 
                 return new OctopusVersion(
                     result.Groups[Prefix].Success ? result.Groups[Prefix].Value : string.Empty,
