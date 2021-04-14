@@ -372,6 +372,33 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "",
             "")]
+        [TestCase(" 1.1.01-9999999999999999999999999",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "")]
+        [TestCase("1.1.01-9999999999999999999999999 ",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "")]
+        [TestCase(" 1.1.01-9999999999999999999999999 ",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "")]
         public void TestSemverVersions(string version,
             int major,
             int minor,
@@ -862,6 +889,15 @@ namespace Octopus.Versioning.Tests.Octopus
             "stable",
             "\\hi_there.how-are",
             "you+today")]
+        [TestCase(" stable-\\hi_there.how-are+you+today ",
+            0,
+            0,
+            0,
+            0,
+            "stable-\\hi_there.how-are",
+            "stable",
+            "\\hi_there.how-are",
+            "you+today")]
         public void TestInvalidSemverVersions(string version,
             int major,
             int minor,
@@ -946,23 +982,25 @@ namespace Octopus.Versioning.Tests.Octopus
 
         [Test]
         [TestCase("1.2.3-hi/there")]
+        [TestCase(" 1.2.3-hi/there ")]
         [TestCase("1.2.3-hi%there")]
+        [TestCase(" 1.2.3-hi%there ")]
         [TestCase("1.2.3-hi?there")]
+        [TestCase(" 1.2.3-hi?there ")]
         [TestCase("1.2.3-hi#there")]
+        [TestCase(" 1.2.3-hi#there ")]
         [TestCase("1.2.3-hi&there")]
         [TestCase(" ")]
         [TestCase("")]
         [TestCase(null)]
         public void IllegalCharsWillFail(string version)
         {
-            try
+            var octoSuccess = OctopusVersionParser.TryParse(version, out _);
+            var semanticVersion = SemVerFactory.TryCreateVersion(version);
+
+            if (octoSuccess != false || semanticVersion != null)
             {
-                OctopusVersionParser.Parse(version);
                 Assert.Fail("Should have thrown an exception");
-            }
-            catch (ArgumentException)
-            {
-                Assert.Pass("Exception was expected");
             }
         }
 

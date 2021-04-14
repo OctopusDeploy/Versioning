@@ -43,10 +43,7 @@ namespace Octopus.Versioning.Octopus
                 if ((version?.Trim() ?? string.Empty) == string.Empty)
                     throw new ArgumentException("The version can not be an empty string");
 
-                if (version?.Contains(" ") ?? false)
-                    throw new ArgumentException("The version can not contain spaces");
-
-                var result = VersionRegex.Match(version ?? string.Empty);
+                var result = VersionRegex.Match((version ?? string.Empty).Trim());
 
                 if (!result.Success)
                     throw new ArgumentException("The supplied version was not valid");
