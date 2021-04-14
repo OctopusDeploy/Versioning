@@ -990,6 +990,7 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.2.3-hi#there")]
         [TestCase(" 1.2.3-hi#there ")]
         [TestCase("1.2.3-hi&there")]
+        [TestCase("1.2.3-hi there")]
         [TestCase(" ")]
         [TestCase("")]
         [TestCase(null)]
@@ -998,7 +999,7 @@ namespace Octopus.Versioning.Tests.Octopus
             var octoSuccess = OctopusVersionParser.TryParse(version, out _);
             var semanticVersion = SemVerFactory.TryCreateVersion(version);
 
-            if (octoSuccess != false || semanticVersion != null)
+            if (octoSuccess || semanticVersion != null)
             {
                 Assert.Fail("Should have thrown an exception");
             }
