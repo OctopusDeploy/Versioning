@@ -15,11 +15,6 @@ namespace Octopus.Versioning.Octopus
         const string PrereleaseCounter = "prereleasecounter";
         const string Meta = "buildmetadata";
 
-        /// <summary>
-        /// Versions can appear in URLs, and these characters are hard to work with in URLs, so we exclude them from any part of the version
-        /// </summary>
-        static readonly string[] IllegalChars = { "/", "%", "?", "#", "&" };
-
         static readonly Regex VersionRegex = new Regex(@"^(?:" +
             // Versions can start with an optional V
             @$"(?<{Prefix}>v|V)?" +
