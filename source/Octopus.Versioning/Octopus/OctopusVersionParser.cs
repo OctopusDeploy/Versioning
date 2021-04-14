@@ -35,7 +35,7 @@ namespace Octopus.Versioning.Octopus
         {
             try
             {
-                if ((version?.Trim() ?? string.Empty) == string.Empty)
+                if (string.IsNullOrWhiteSpace(version))
                     throw new ArgumentException("The version can not be an empty string");
 
                 var result = VersionRegex.Match((version ?? string.Empty).Trim());
