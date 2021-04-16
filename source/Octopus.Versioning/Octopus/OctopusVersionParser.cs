@@ -15,17 +15,28 @@ namespace Octopus.Versioning.Octopus
         const string PrereleaseCounter = "prereleasecounter";
         const string Meta = "buildmetadata";
 
+        /// <summary>
+        /// Note that we don't expect to see versions with spaces around the major, minor, patch, and release.
+        /// All the clients that can create an octopus version (the web ui, cli, library, and REST API) strip
+        /// spaces. However, the SemVerFactory.Parse() and SemVerFactory.TryParse() methods did accept
+        /// versions with these spaces. This led to cases where old Octopus instances had release versions with
+        /// spaces in them. To retain compatibility with the existing parsing logic, we tolerate whitespace
+        /// around version integers.
+        ///
+        /// See https://github.com/OctopusDeploy/Versioning/pull/20 and https://github.com/OctopusDeploy/Issues/issues/6826
+        /// for more details.
+        /// </summary>
         static readonly Regex VersionRegex = new Regex(@"^(?:" +
             // Versions can start with an optional V
             @$"(?<{Prefix}>v|V)?" +
             // Get the major version number
-            @$"(?<{Major}>\d+)" +
+            @$"\s*(?<{Major}>\d+)\s*" +
             // Get the minor version number, delimited by a period, comma, dash or underscore
-            @$"(?:\.(?<{Minor}>\d+))?" +
+            @$"(?:\.\s*(?<{Minor}>\d+)\s*)?" +
             // Get the patch version number, delimited by a period, comma, dash or underscore
-            @$"(?:\.(?<{Patch}>\d+))?" +
+            @$"(?:\.\s*(?<{Patch}>\d+)\s*)?" +
             // Get the revision version number, delimited by a period, comma, dash or underscore
-            @$"(?:\.(?<{Revision}>\d+))?)?" +
+            @$"(?:\.\s*(?<{Revision}>\d+)\s*)?)?" +
             // Everything after the last digit and before the plus is the prerelease
             @$"(?:[.\-_\\])?(?<{Prerelease}>(?<{PrereleasePrefix}>[A-Za-z0-9]*?)([.\-_\\](?<{PrereleaseCounter}>[A-Za-z0-9.\-_\\]*?)?)?)?" +
             // The metadata is everything after the plus

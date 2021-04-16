@@ -372,7 +372,7 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "",
             "")]
-        [TestCase(" 1.1.01-9999999999999999999999999",
+        [TestCase("1.1.01-9999999999999999999999999+meta ",
             1,
             1,
             1,
@@ -380,7 +380,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "9999999999999999999999999",
             "",
-            "")]
+            "meta",
+            Description = "Test that trailing whitespace after metadata is treated the same way in SemVerFactory and OctopusVersionParser")]
         [TestCase("1.1.01-9999999999999999999999999 ",
             1,
             1,
@@ -389,7 +390,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "9999999999999999999999999",
             "",
-            "")]
+            "",
+            Description = "Test that trailing whitespace is treated the same way in SemVerFactory and OctopusVersionParser")]
         [TestCase(" 1.1.01-9999999999999999999999999 ",
             1,
             1,
@@ -398,7 +400,48 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "9999999999999999999999999",
             "",
-            "")]
+            "",
+            Description = "Test that leading whitespace is treated the same way in SemVerFactory and OctopusVersionParser")]
+        [TestCase(" 1 .1.01-9999999999999999999999999",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "",
+            Description = "Test that whitespace around the major integer is treated the same way in SemVerFactory and OctopusVersionParser")]
+        [TestCase("1. 1 .01-9999999999999999999999999",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "",
+            Description = "Test that whitespace around the minor integer is treated the same way in SemVerFactory and OctopusVersionParser")]
+        [TestCase("1.1. 01 -9999999999999999999999999",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "",
+            Description = "Test that whitespace around the patch integer is treated the same way in SemVerFactory and OctopusVersionParser")]
+        [TestCase("1.1.01. 1 -9999999999999999999999999",
+            1,
+            1,
+            1,
+            1,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "",
+            Description = "Test that whitespace around the release integer is treated the same way in SemVerFactory and OctopusVersionParser")]
         public void TestSemverVersions(string version,
             int major,
             int minor,
@@ -409,8 +452,8 @@ namespace Octopus.Versioning.Tests.Octopus
             string prereleaseCounter,
             string metadata)
         {
-            var parsed = OctopusVersionParser.Parse(version);
             var semverParsed = SemVerFactory.Parse(version);
+            var parsed = OctopusVersionParser.Parse(version);
 
             Assert.AreEqual(major, parsed.Major);
             Assert.AreEqual(major, semverParsed.Major);
@@ -991,6 +1034,8 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase(" 1.2.3-hi#there ")]
         [TestCase("1.2.3-hi&there")]
         [TestCase("1.2.3-hi there")]
+        [TestCase("1.2.3-hithere +meta", Description = "Ensure prerelease spaces are treated the same way in OctopusVersionParser and SemVerFactory")]
+        [TestCase("1.2.3-hithere+ meta", Description = "Ensure metadata spaces are treated the same way in OctopusVersionParser and SemVerFactory")]
         [TestCase(" ")]
         [TestCase("")]
         [TestCase(null)]
