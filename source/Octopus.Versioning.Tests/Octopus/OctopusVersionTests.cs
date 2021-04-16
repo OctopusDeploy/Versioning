@@ -1035,6 +1035,7 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.2.3-hi&there")]
         [TestCase("1.2.3-hi there")]
         [TestCase("1.2.3-hithere +meta", Description = "Ensure prerelease spaces are treated the same way in OctopusVersionParser and SemVerFactory")]
+        [TestCase("1.2.3- hithere+meta", Description = "Ensure prerelease spaces are treated the same way in OctopusVersionParser and SemVerFactory")]
         [TestCase("1.2.3-hithere+ meta", Description = "Ensure metadata spaces are treated the same way in OctopusVersionParser and SemVerFactory")]
         [TestCase(" ")]
         [TestCase("")]
