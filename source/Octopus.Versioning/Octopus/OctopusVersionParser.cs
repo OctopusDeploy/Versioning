@@ -26,9 +26,9 @@ namespace Octopus.Versioning.Octopus
         /// See https://github.com/OctopusDeploy/Versioning/pull/20 and https://github.com/OctopusDeploy/Issues/issues/6826
         /// for more details.
         /// </summary>
-        static readonly Regex VersionRegex = new Regex(@"^(?:" +
+        static readonly Regex VersionRegex = new Regex(@"^\s*(?:" +
             // Versions can start with an optional V
-            @$"(?<{Prefix}>v|V)?" +
+            @$"\s*(?<{Prefix}>v|V)?" +
             // Get the major version number
             @$"\s*(?<{Major}>\d+)\s*" +
             // Get the minor version number, delimited by a period, comma, dash or underscore
@@ -40,7 +40,7 @@ namespace Octopus.Versioning.Octopus
             // Everything after the last digit and before the plus is the prerelease
             @$"(?:[.\-_\\])?(?<{Prerelease}>(?<{PrereleasePrefix}>[A-Za-z0-9]*?)([.\-_\\](?<{PrereleaseCounter}>[A-Za-z0-9.\-_\\]*?)?)?)?" +
             // The metadata is everything after the plus
-            $@"(?:\+(?<{Meta}>[A-Za-z0-9_\-.\\+]*?))?$");
+            $@"(?:\+(?<{Meta}>[A-Za-z0-9_\-.\\+]*?))?\s*$");
 
         public OctopusVersion Parse(string? version)
         {
@@ -49,7 +49,13 @@ namespace Octopus.Versioning.Octopus
                 if (string.IsNullOrWhiteSpace(version))
                     throw new ArgumentException("The version can not be an empty string");
 
-                var result = VersionRegex.Match((version ?? string.Empty).Trim());
+                var sanitisedVersion = version ?? string.Empty;
+                // SemVerFactory treated the original string as if it had no spaces at all
+                var noSpaces = sanitisedVersion.Replace(" ", "");
+
+                // We parse on the original string. This *does not* tolerate spaces in prerelease fields or metadata
+                // just like SemVerFactory.
+                var result = VersionRegex.Match(sanitisedVersion);
 
                 if (!result.Success)
                     throw new ArgumentException("The supplied version was not valid");
@@ -64,7 +70,7 @@ namespace Octopus.Versioning.Octopus
                     result.Groups[PrereleasePrefix].Success ? result.Groups[PrereleasePrefix].Value : string.Empty,
                     result.Groups[PrereleaseCounter].Success ? result.Groups[PrereleaseCounter].Value : string.Empty,
                     result.Groups[Meta].Success ? result.Groups[Meta].Value : string.Empty,
-                    version ?? string.Empty);
+                    noSpaces);
             }
             catch (OverflowException ex)
             {

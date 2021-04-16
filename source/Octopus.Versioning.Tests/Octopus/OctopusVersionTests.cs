@@ -1051,6 +1051,28 @@ namespace Octopus.Versioning.Tests.Octopus
             }
         }
 
+        /// <summary>
+        /// This test ensures the OriginalString value is the same whether parsed by OctopusVersionParser or
+        /// SemVerFactory
+        /// </summary>
+        /// <param name="version">The version to parse</param>
+        [Test]
+        [TestCase("1.2.3-hithere")]
+        [TestCase(" 1.2.3-hithere")]
+        [TestCase("1.2.3-hithere ")]
+        [TestCase(" 1.2.3-hithere ")]
+        [TestCase("1 .2.3-hithere")]
+        [TestCase("1. 2 .3-hithere")]
+        [TestCase("1.2. 3 -hithere")]
+        [TestCase("1.2.3. 1 -hithere")]
+        public void TestOriginalStringIsTheSame(string version)
+        {
+            OctopusVersionParser.TryParse(version, out var octoVersion);
+            var semanticVersion = SemVerFactory.TryCreateVersion(version);
+
+            Assert.AreEqual(octoVersion.OriginalString, semanticVersion.OriginalString);
+        }
+
         public static string RandomString(int length)
         {
             const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-.\\+";
