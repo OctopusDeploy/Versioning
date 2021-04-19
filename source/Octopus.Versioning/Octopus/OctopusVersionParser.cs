@@ -16,37 +16,46 @@ namespace Octopus.Versioning.Octopus
         const string Meta = "buildmetadata";
 
         /// <summary>
-        /// Versions can appear in URLs, and these characters are hard to work with in URLs, so we exclude them from any part of the version
+        /// Note that we don't expect to see versions with spaces around the major, minor, patch, and release.
+        /// All the clients that can create an octopus version (the web ui, cli, library, and REST API) strip
+        /// spaces. However, the SemVerFactory.Parse() and SemVerFactory.TryParse() methods did accept
+        /// versions with these spaces. This led to cases where old Octopus instances had release versions with
+        /// spaces in them. To retain compatibility with the existing parsing logic, we tolerate whitespace
+        /// around version integers.
+        ///
+        /// See https://github.com/OctopusDeploy/Versioning/pull/20 and https://github.com/OctopusDeploy/Issues/issues/6826
+        /// for more details.
         /// </summary>
-        static readonly string[] IllegalChars = { "/", "%", "?", "#", "&" };
-
-        static readonly Regex VersionRegex = new Regex(@"^(?:" +
+        static readonly Regex VersionRegex = new Regex(@"^\s*(?:" +
             // Versions can start with an optional V
-            @$"(?<{Prefix}>v|V)?" +
+            @$"\s*(?<{Prefix}>v|V)?" +
             // Get the major version number
-            @$"(?<{Major}>\d+)" +
+            @$"\s*(?<{Major}>\d+)\s*" +
             // Get the minor version number, delimited by a period, comma, dash or underscore
-            @$"(?:\.(?<{Minor}>\d+))?" +
+            @$"(?:\.\s*(?<{Minor}>\d+)\s*)?" +
             // Get the patch version number, delimited by a period, comma, dash or underscore
-            @$"(?:\.(?<{Patch}>\d+))?" +
+            @$"(?:\.\s*(?<{Patch}>\d+)\s*)?" +
             // Get the revision version number, delimited by a period, comma, dash or underscore
-            @$"(?:\.(?<{Revision}>\d+))?)?" +
+            @$"(?:\.\s*(?<{Revision}>\d+)\s*)?)?" +
             // Everything after the last digit and before the plus is the prerelease
             @$"(?:[.\-_\\])?(?<{Prerelease}>(?<{PrereleasePrefix}>[A-Za-z0-9]*?)([.\-_\\](?<{PrereleaseCounter}>[A-Za-z0-9.\-_\\]*?)?)?)?" +
             // The metadata is everything after the plus
-            $@"(?:\+(?<{Meta}>[A-Za-z0-9_\-.\\+]*?))?$");
+            $@"(?:\+(?<{Meta}>[A-Za-z0-9_\-.\\+]*?))?\s*$");
 
         public OctopusVersion Parse(string? version)
         {
             try
             {
-                if ((version?.Trim() ?? string.Empty) == string.Empty)
+                if (string.IsNullOrWhiteSpace(version))
                     throw new ArgumentException("The version can not be an empty string");
 
-                if (version?.Contains(" ") ?? false)
-                    throw new ArgumentException("The version can not contain spaces");
+                var sanitisedVersion = version ?? string.Empty;
+                // SemVerFactory treated the original string as if it had no spaces at all
+                var noSpaces = sanitisedVersion.Replace(" ", "");
 
-                var result = VersionRegex.Match(version ?? string.Empty);
+                // We parse on the original string. This *does not* tolerate spaces in prerelease fields or metadata
+                // just like SemVerFactory.
+                var result = VersionRegex.Match(sanitisedVersion);
 
                 if (!result.Success)
                     throw new ArgumentException("The supplied version was not valid");
@@ -61,7 +70,7 @@ namespace Octopus.Versioning.Octopus
                     result.Groups[PrereleasePrefix].Success ? result.Groups[PrereleasePrefix].Value : string.Empty,
                     result.Groups[PrereleaseCounter].Success ? result.Groups[PrereleaseCounter].Value : string.Empty,
                     result.Groups[Meta].Success ? result.Groups[Meta].Value : string.Empty,
-                    version ?? string.Empty);
+                    noSpaces);
             }
             catch (OverflowException ex)
             {

@@ -372,6 +372,76 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "",
             "")]
+        [TestCase("1.1.01-9999999999999999999999999+meta ",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "meta",
+            Description = "Test that trailing whitespace after metadata is treated the same way in SemVerFactory and OctopusVersionParser")]
+        [TestCase("1.1.01-9999999999999999999999999 ",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "",
+            Description = "Test that trailing whitespace is treated the same way in SemVerFactory and OctopusVersionParser")]
+        [TestCase(" 1.1.01-9999999999999999999999999 ",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "",
+            Description = "Test that leading whitespace is treated the same way in SemVerFactory and OctopusVersionParser")]
+        [TestCase(" 1 .1.01-9999999999999999999999999",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "",
+            Description = "Test that whitespace around the major integer is treated the same way in SemVerFactory and OctopusVersionParser")]
+        [TestCase("1. 1 .01-9999999999999999999999999",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "",
+            Description = "Test that whitespace around the minor integer is treated the same way in SemVerFactory and OctopusVersionParser")]
+        [TestCase("1.1. 01 -9999999999999999999999999",
+            1,
+            1,
+            1,
+            0,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "",
+            Description = "Test that whitespace around the patch integer is treated the same way in SemVerFactory and OctopusVersionParser")]
+        [TestCase("1.1.01. 1 -9999999999999999999999999",
+            1,
+            1,
+            1,
+            1,
+            "9999999999999999999999999",
+            "9999999999999999999999999",
+            "",
+            "",
+            Description = "Test that whitespace around the release integer is treated the same way in SemVerFactory and OctopusVersionParser")]
         public void TestSemverVersions(string version,
             int major,
             int minor,
@@ -382,8 +452,8 @@ namespace Octopus.Versioning.Tests.Octopus
             string prereleaseCounter,
             string metadata)
         {
-            var parsed = OctopusVersionParser.Parse(version);
             var semverParsed = SemVerFactory.Parse(version);
+            var parsed = OctopusVersionParser.Parse(version);
 
             Assert.AreEqual(major, parsed.Major);
             Assert.AreEqual(major, semverParsed.Major);
@@ -862,6 +932,15 @@ namespace Octopus.Versioning.Tests.Octopus
             "stable",
             "\\hi_there.how-are",
             "you+today")]
+        [TestCase(" stable-\\hi_there.how-are+you+today ",
+            0,
+            0,
+            0,
+            0,
+            "stable-\\hi_there.how-are",
+            "stable",
+            "\\hi_there.how-are",
+            "you+today")]
         public void TestInvalidSemverVersions(string version,
             int major,
             int minor,
@@ -946,24 +1025,52 @@ namespace Octopus.Versioning.Tests.Octopus
 
         [Test]
         [TestCase("1.2.3-hi/there")]
+        [TestCase(" 1.2.3-hi/there ")]
         [TestCase("1.2.3-hi%there")]
+        [TestCase(" 1.2.3-hi%there ")]
         [TestCase("1.2.3-hi?there")]
+        [TestCase(" 1.2.3-hi?there ")]
         [TestCase("1.2.3-hi#there")]
+        [TestCase(" 1.2.3-hi#there ")]
         [TestCase("1.2.3-hi&there")]
+        [TestCase("1.2.3-hi there")]
+        [TestCase("1.2.3-hithere +meta", Description = "Ensure prerelease spaces are treated the same way in OctopusVersionParser and SemVerFactory")]
+        [TestCase("1.2.3- hithere+meta", Description = "Ensure prerelease spaces are treated the same way in OctopusVersionParser and SemVerFactory")]
+        [TestCase("1.2.3-hithere+ meta", Description = "Ensure metadata spaces are treated the same way in OctopusVersionParser and SemVerFactory")]
         [TestCase(" ")]
         [TestCase("")]
         [TestCase(null)]
         public void IllegalCharsWillFail(string version)
         {
-            try
+            var octoSuccess = OctopusVersionParser.TryParse(version, out _);
+            var semanticVersion = SemVerFactory.TryCreateVersion(version);
+
+            if (octoSuccess || semanticVersion != null)
             {
-                OctopusVersionParser.Parse(version);
                 Assert.Fail("Should have thrown an exception");
             }
-            catch (ArgumentException)
-            {
-                Assert.Pass("Exception was expected");
-            }
+        }
+
+        /// <summary>
+        /// This test ensures the OriginalString value is the same whether parsed by OctopusVersionParser or
+        /// SemVerFactory
+        /// </summary>
+        /// <param name="version">The version to parse</param>
+        [Test]
+        [TestCase("1.2.3-hithere")]
+        [TestCase(" 1.2.3-hithere")]
+        [TestCase("1.2.3-hithere ")]
+        [TestCase(" 1.2.3-hithere ")]
+        [TestCase("1 .2.3-hithere")]
+        [TestCase("1. 2 .3-hithere")]
+        [TestCase("1.2. 3 -hithere")]
+        [TestCase("1.2.3. 1 -hithere")]
+        public void TestOriginalStringIsTheSame(string version)
+        {
+            OctopusVersionParser.TryParse(version, out var octoVersion);
+            var semanticVersion = SemVerFactory.TryCreateVersion(version);
+
+            Assert.AreEqual(octoVersion.OriginalString, semanticVersion.OriginalString);
         }
 
         public static string RandomString(int length)
