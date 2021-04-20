@@ -1046,9 +1046,7 @@ namespace Octopus.Versioning.Tests.Octopus
             var semanticVersion = SemVerFactory.TryCreateVersion(version);
 
             if (octoSuccess || semanticVersion != null)
-            {
                 Assert.Fail("Should have thrown an exception");
-            }
         }
 
         /// <summary>
