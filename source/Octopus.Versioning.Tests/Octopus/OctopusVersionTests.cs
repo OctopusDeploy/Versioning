@@ -1024,6 +1024,11 @@ namespace Octopus.Versioning.Tests.Octopus
         }
 
         [Test]
+        [TestCase("1.2.3-hi'there")]
+        [TestCase("1.2.3-hi\"there")]
+        [TestCase("1.2.3-hi;there")]
+        [TestCase("1.2.3-hi\nthere")]
+        [TestCase("1.2.3-hi\tthere")]
         [TestCase("1.2.3-hi/there")]
         [TestCase(" 1.2.3-hi/there ")]
         [TestCase("1.2.3-hi%there")]
