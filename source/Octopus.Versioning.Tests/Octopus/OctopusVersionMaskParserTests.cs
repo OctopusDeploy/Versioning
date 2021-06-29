@@ -94,6 +94,7 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("v1.2.3_i", "whatever", "v1.2.3_i", Description = "The version does not use the dot notation with a dash before the prerelease, and so is not a mask.")]
         [TestCase("1.2.3-initial.8", "1.0.0.0", "1.2.3.0-initial.8", Description = "The version picks up the revision from the previous version.")]
         [TestCase("v1.2.3-initial.8", "v1.0.0.0", "v1.2.3.0-initial.8", Description = "The version picks up the revision from the previous version.")]
+        [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", "2021.4.0.0-121.50.210609", "2021.4.0.0-0.121.27.202110617.1183ec5i", Description = "When the previous version has a revision, the next version will also have a revision. See https://github.com/OctopusDeploy/Issues/issues/6926")]
         public void ShouldApplyMask(string mask, string latestVersion, string expected)
         {
             var result = OctopusVersionMaskParser.ApplyMask(mask, latestVersion != null ? new OctopusVersionParser().Parse(latestVersion) : null);
