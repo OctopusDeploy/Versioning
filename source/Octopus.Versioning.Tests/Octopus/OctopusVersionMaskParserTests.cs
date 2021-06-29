@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Octopus.Versioning.Octopus;
 
@@ -62,8 +63,8 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("c.c.c_c", "whatever", "c.c.c_c", Description = "Not a valid mask, so the version is passed through.")]
         [TestCase("c.c.c.i", "whatever", "0.0.0.1", Description = "Existing versions with only plain text are assumed to be 0.0.0.0.")]
         [TestCase("c.c.c.c", "whatever", "0.0.0.0", Description = "Existing versions with only plain text are assumed to be 0.0.0.0.")]
-        [TestCase("1.2.3-i", "whatever", "1.2.3-1", Description = "Increment the prerelease")]
-        [TestCase("1.2.3-c", "whatever", "1.2.3-0", Description = "Keep the prerelease")]
+        [TestCase("1.2.3-i", "whatever", "1.2.3-i", Description = "Not a valid mask (a mask is only valid when the prerelease end with '.i' or '.c'), so keep the original value")]
+        [TestCase("1.2.3-c", "whatever", "1.2.3-c", Description = "Not a valid mask (a mask is only valid when the prerelease end with '.i' or '.c'), so keep the original value")]
         [TestCase("1.2.3_i", "whatever", "1.2.3_i", Description = "Not a valid mask, so the version is passed through.")]
         [TestCase("1.2.3_c", "whatever", "1.2.3_c", Description = "Not a valid mask, so the version is passed through.")]
         [TestCase("1.2.3.i", "whatever", "1.2.3.1", Description = "Existing versions with only plain text are assumed to be 0.0.0.0.")]
@@ -81,8 +82,8 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("vc.c.c_c", "whatever", "vc.c.c_c", Description = "An example of a previous test, but with a 'v' prefix.")]
         [TestCase("Vc.c.c.i", "whatever", "V0.0.0.1", Description = "An example of a previous test, but with a 'v' prefix.")]
         [TestCase("vc.c.c.c", "whatever", "v0.0.0.0", Description = "An example of a previous test, but with a 'v' prefix.")]
-        [TestCase("V1.2.3-i", "whatever", "V1.2.3-1", Description = "An example of a previous test, but with a 'v' prefix.")]
-        [TestCase("v1.2.3-c", "whatever", "v1.2.3-0", Description = "An example of a previous test, but with a 'v' prefix.")]
+        [TestCase("V1.2.3-i", "whatever", "V1.2.3-i", Description = "An example of a previous test, but with a 'v' prefix.")]
+        [TestCase("v1.2.3-c", "whatever", "v1.2.3-c", Description = "An example of a previous test, but with a 'v' prefix.")]
         [TestCase("V1.2.3_i", "whatever", "V1.2.3_i", Description = "An example of a previous test, but with a 'v' prefix.")]
         [TestCase("v1.2.3_c", "whatever", "v1.2.3_c", Description = "An example of a previous test, but with a 'v' prefix.")]
         [TestCase("V1.2.3.i", "whatever", "V1.2.3.1", Description = "An example of a previous test, but with a 'v' prefix.")]
@@ -92,14 +93,57 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("v1.2.3_c", "whatever", "v1.2.3_c", Description = "The version does not use the dot notation with a dash before the prerelease, and so is not a mask.")]
         [TestCase("v1-2_3-i", "whatever", "v1-2_3-i", Description = "The prerelease counter version does not use a dot separator, and so is not a mask.")]
         [TestCase("v1.2.3_i", "whatever", "v1.2.3_i", Description = "The version does not use the dot notation with a dash before the prerelease, and so is not a mask.")]
-        [TestCase("1.2.3-initial.8", "1.0.0.0", "1.2.3.0-initial.8", Description = "The version picks up the revision from the previous version.")]
-        [TestCase("v1.2.3-initial.8", "v1.0.0.0", "v1.2.3.0-initial.8", Description = "The version picks up the revision from the previous version.")]
-        [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", "2021.4.0.0-121.50.210609", "2021.4.0.0-0.121.27.202110617.1183ec5i", Description = "When the previous version has a revision, the next version will also have a revision. See https://github.com/OctopusDeploy/Issues/issues/6926")]
+        [TestCase("1.2.3-initial.8", "1.0.0.0", "1.2.3-initial.8", Description = "This is not a mask, so keep the original string.")]
+        [TestCase("v1.2.3-initial.8", "v1.0.0.0", "v1.2.3-initial.8", Description = "This is not a mask, so keep the original string.")]
+        [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", "2021.4.0.0-121.50.210609", "2021.4.0-0.121.27.202110617.1183ec5i", Description = "A specific test case documented in https://github.com/OctopusDeploy/Issues/issues/6926")]
+        [TestCase("c.c.i", "1.2.3.4", "1.2.4.0", Description = "The resulting version gets the a release of 0 from the latest version.")]
+        [TestCase("1.2.3-hi.i", "1.1.1.1", "1.2.3.0-hi.1", Description = "The resulting version gets the a release of 0 from the latest version.")]
         public void ShouldApplyMask(string mask, string latestVersion, string expected)
         {
             var result = OctopusVersionMaskParser.ApplyMask(mask, latestVersion != null ? new OctopusVersionParser().Parse(latestVersion) : null);
             Assert.AreEqual(expected, result.OriginalString);
             Assert.AreEqual(expected, result.ToString());
+        }
+
+        [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", false)]
+        [TestCase("1.2.3.4-blah", false)]
+        [TestCase("1.2.3.4-blahi", false)]
+        [TestCase("1.2.3.4-blahc", false)]
+        [TestCase("1.2.3.4-iblah", false)]
+        [TestCase("1.2.3.4-cblah", false)]
+        [TestCase("1.2.3.4", false)]
+        [TestCase("1.2.3", false)]
+        [TestCase("1.2", false)]
+        [TestCase("1", false)]
+        [TestCase("1.2.3.4-i", false)]
+        [TestCase("i", true)]
+        [TestCase("c.i", true)]
+        [TestCase("c.c.i", true)]
+        [TestCase("c.c.c.i", true)]
+        [TestCase("1.2.3.4-1.i", true)]
+        [TestCase("1.2.3.4-1.c", true)]
+        [TestCase("1.2.3.4-1.blah.i", true)]
+        [TestCase("1.2.3.4-1.blah.c", true)]
+        [TestCase("1.2.3.4-1.blah-c", false)]
+        [TestCase("1.2.3.4-1.blah\\c", false)]
+        [TestCase("1.2.3.4-1.blah_c", false)]
+        [TestCase("1.2.3.4-1.blah.i.0", false)]
+        public void IsMask(string mask, bool isMask)
+        {
+            Assert.AreEqual(isMask, OctopusVersionMaskParser.Parse(mask).IsMask);
+        }
+
+        [TestCase("1.2.4", "1.2.3", null)]
+        [TestCase("1.2.3-hi.i", "1.2.3", "1.2.3")]
+        [TestCase("1.2.i", "1.2.3", "1.2.3")]
+        [TestCase("1.i.i", "1.2.3", "1.2.3")]
+        [TestCase("1.i.i", "2.0.0", null)]
+        public void GetLatestVersionMask(string version, string latestVersion, string expected)
+        {
+            var latestVersions = new List<IVersion>();
+            latestVersions.Add(new OctopusVersionParser().Parse(latestVersion));
+            var latestMaskedVersion = OctopusVersionMaskParser.Parse(version).GetLatestMaskedVersion(latestVersions);
+            Assert.AreEqual(expected, expected == null ? null : new OctopusVersionParser().Parse(expected).ToString());
         }
     }
 }
