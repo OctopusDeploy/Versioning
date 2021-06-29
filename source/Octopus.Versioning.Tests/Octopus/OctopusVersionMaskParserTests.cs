@@ -8,7 +8,6 @@ namespace Octopus.Versioning.Tests.Octopus
     public class OctopusVersionMaskParserTests
     {
         static readonly OctopusVersionMaskParser OctopusVersionMaskParser = new OctopusVersionMaskParser();
-        static readonly OctopusVersionParser OctopusVersionParser = new OctopusVersionParser();
 
         /// <summary>
         /// This test used to live in Octopus server. You can find it at commit 43e42a5769083dffa65e2c9ab4d513641c37248a
