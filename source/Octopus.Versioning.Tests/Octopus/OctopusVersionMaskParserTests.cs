@@ -121,9 +121,10 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.2.3.4-1.c", true)]
         [TestCase("1.2.3.4-1.blah.i", true)]
         [TestCase("1.2.3.4-1.blah.c", true)]
-        [TestCase("1.2.3.4-1.blah-c", true)]
-        [TestCase("1.2.3.4-1.blah\\c", true)]
-        [TestCase("1.2.3.4-1.blah_c", true)]
+        [TestCase("1.2.3.4-1.blah-c", false)]
+        [TestCase("1.2.3.4-1.blah\\c", false)]
+        [TestCase("1.2.3.4-1.blah_c", false)]
+        [TestCase("1.2.3.4-1.blah.i.0", false)]
         public void IsMask(string mask, bool isMask)
         {
             Assert.AreEqual(isMask, OctopusVersionMaskParser.Parse(mask).IsMask);

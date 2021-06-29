@@ -177,7 +177,7 @@ namespace Octopus.Versioning.Octopus
                     if (!IsPresent)
                         return false;
 
-                    return Regex.IsMatch(matchGroup.Value, @$"[.\-_\\]({OctopusVersionMaskParser.PatternIncrement}|{OctopusVersionMaskParser.PatternCurrent})$");
+                    return Regex.IsMatch(matchGroup.Value, @$"\.({OctopusVersionMaskParser.PatternIncrement}|{OctopusVersionMaskParser.PatternCurrent})$");
                 }
             }
 
