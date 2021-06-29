@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Octopus.Versioning.Octopus;
 
@@ -94,14 +95,16 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("v1.2.3_i", "whatever", "v1.2.3_i", Description = "The version does not use the dot notation with a dash before the prerelease, and so is not a mask.")]
         [TestCase("1.2.3-initial.8", "1.0.0.0", "1.2.3-initial.8", Description = "This is not a mask, so keep the original string.")]
         [TestCase("v1.2.3-initial.8", "v1.0.0.0", "v1.2.3-initial.8", Description = "This is not a mask, so keep the original string.")]
-        [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", "2021.4.0.0-121.50.210609", "2021.4.0-0.121.27.202110617.1183ec5i", Description = "When the previous version has a revision, the next version will also have a revision. See https://github.com/OctopusDeploy/Issues/issues/6926")]
+        [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", "2021.4.0.0-121.50.210609", "2021.4.0-0.121.27.202110617.1183ec5i", Description = "See https://github.com/OctopusDeploy/Issues/issues/6926")]
+        [TestCase("c.c.i", "1.2.3.4", "1.2.4.0", Description = "The resulting version gets the a release of 0 from the latest version.")]
+        [TestCase("1.2.3-hi.i", "1.1.1.1", "1.2.3.0-hi.1", Description = "The resulting version gets the a release of 0 from the latest version.")]
         public void ShouldApplyMask(string mask, string latestVersion, string expected)
         {
             var result = OctopusVersionMaskParser.ApplyMask(mask, latestVersion != null ? new OctopusVersionParser().Parse(latestVersion) : null);
             Assert.AreEqual(expected, result.OriginalString);
             Assert.AreEqual(expected, result.ToString());
         }
-        
+
         [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", false)]
         [TestCase("1.2.3.4-blah", false)]
         [TestCase("1.2.3.4-blahi", false)]
@@ -128,6 +131,19 @@ namespace Octopus.Versioning.Tests.Octopus
         public void IsMask(string mask, bool isMask)
         {
             Assert.AreEqual(isMask, OctopusVersionMaskParser.Parse(mask).IsMask);
+        }
+
+        [TestCase("1.2.4", "1.2.3", null)]
+        [TestCase("1.2.3-hi.i", "1.2.3", "1.2.3")]
+        [TestCase("1.2.i", "1.2.3", "1.2.3")]
+        [TestCase("1.i.i", "1.2.3", "1.2.3")]
+        [TestCase("1.i.i", "2.0.0", null)]
+        public void GetLatestVersionMask(string version, string latestVersion, string expected)
+        {
+            var latestVersions = new List<IVersion>();
+            latestVersions.Add(new OctopusVersionParser().Parse(latestVersion));
+            var latestMaskedVersion = OctopusVersionMaskParser.Parse(version).GetLatestMaskedVersion(latestVersions);
+            Assert.AreEqual(expected, expected == null ? null : new OctopusVersionParser().Parse(expected).ToString());
         }
     }
 }
