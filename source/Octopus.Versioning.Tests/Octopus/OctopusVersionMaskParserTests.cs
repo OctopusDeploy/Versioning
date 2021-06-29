@@ -101,5 +101,27 @@ namespace Octopus.Versioning.Tests.Octopus
             Assert.AreEqual(expected, result.OriginalString);
             Assert.AreEqual(expected, result.ToString());
         }
+        
+        [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", false)]
+        [TestCase("1.2.3.4-blah", false)]
+        [TestCase("1.2.3.4-blahi", false)]
+        [TestCase("1.2.3.4-blahc", false)]
+        [TestCase("1.2.3.4-iblah", false)]
+        [TestCase("1.2.3.4-cblah", false)]
+        [TestCase("1.2.3.4", false)]
+        [TestCase("1.2.3", false)]
+        [TestCase("1.2", false)]
+        [TestCase("1", false)]
+        [TestCase("1.2.3.4-i", false)]
+        [TestCase("i", true)]
+        [TestCase("c.i", true)]
+        [TestCase("c.c.i", true)]
+        [TestCase("c.c.c.i", true)]
+        [TestCase("1.2.3.4-1.i", true)]
+        [TestCase("1.2.3.4-1.c", true)]
+        public void IsMask(string mask, bool isMask)
+        {
+            Assert.AreEqual(isMask, OctopusVersionMaskParser.Parse(mask).IsMask);
+        }
     }
 }
