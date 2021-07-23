@@ -59,7 +59,7 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.2.3.i", "whatever", "1.2.3.1", Description = "Existing versions with only plain text are assumed to be 0.0.0.0.")]
         [TestCase("1.2.3.c", "whatever", "1.2.3.0", Description = "Existing versions with only plain text are assumed to be 0.0.0.0.")]
         [TestCase("1.2.3-initial.8", "1.0.0.0", "1.2.3.0-initial.8")]
-        [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", "2021.4.0.0-121.50.210609", "2021.4.0.0-0.121.27.202110617.1183ec5i", Description = "A specific test case documented in https://github.com/OctopusDeploy/Issues/issues/6926")]
+        [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", "2021.4.0.0-121.50.210609", "2021.4.0.0-0.121.27.202110617.1183ec5i", Description = "A specific test case documented in https://github.com/OctopusDeploy/Issues/issues/6926. Note the resulting version gains the revision of 0 because the previous version had a revision defined.")]
         [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", "2021.4.0-121.50.210609", "2021.4.0-0.121.27.202110617.1183ec5i", Description = "A specific test case documented in https://github.com/OctopusDeploy/Issues/issues/6926")]
         [TestCase("c.c.i", "1.2.3.4", "1.2.4.0", Description = "The resulting version gets the a release of 0 from the latest version.")]
         [TestCase("1.2.3-hi.i", "1.1.1.1", "1.2.3.0-hi.1", Description = "The resulting version gets the a release of 0 from the latest version.")]
@@ -82,6 +82,8 @@ namespace Octopus.Versioning.Tests.Octopus
             }
         }
 
+        [TestCase("1.2.3.4-i", false, Description = "This behaviour is a little confusing, as 1.2.3.4-i will function as a mask in every practical sense, but IsMask returns false. This behaviour is retained to ensure compatibility with the old masking implementation.")]
+        [TestCase("1.2.3.4-c", false, Description = "This behaviour is a little confusing, as 1.2.3.4-c will function as a mask in every practical sense, but IsMask returns false. This behaviour is retained to ensure compatibility with the old masking implementation.")]
         [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", false)]
         [TestCase("1.2.3.4-blah", false)]
         [TestCase("1.2.3.4-blahi", false)]
@@ -92,8 +94,6 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.2.3", false)]
         [TestCase("1.2", false)]
         [TestCase("1", false)]
-        [TestCase("1.2.3.4-i", false, Description = "This behaviour is a little confusing, as 1.2.3.4-i will work as a mask, but IsMask returns false. This behaviour is retained to ensure compatibility with the old masking implementation.")]
-        [TestCase("1.2.3.4-c", false, Description = "This behaviour is a little confusing, as 1.2.3.4-c will work as a mask, but IsMask returns false. This behaviour is retained to ensure compatibility with the old masking implementation.")]
         [TestCase("c.i", true)]
         [TestCase("c.c.i", true)]
         [TestCase("c.c.c.i", true)]
