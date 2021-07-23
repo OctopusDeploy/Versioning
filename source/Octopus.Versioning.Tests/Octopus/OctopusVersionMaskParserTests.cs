@@ -74,6 +74,7 @@ namespace Octopus.Versioning.Tests.Octopus
                 Assert.AreEqual(expected, resultOldImplementation.OriginalString);
             }
             
+            // each version and mask should support a leading V
             foreach (var prefix in new [] {"", "V", "v"})
             {
                 var resultNewImplementation = OctopusVersionMaskParser.ApplyMask(prefix + mask, latestVersion != null ? new OctopusVersionParser().Parse(latestVersion) : null);

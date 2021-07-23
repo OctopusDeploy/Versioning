@@ -179,7 +179,7 @@ namespace Octopus.Versioning.Octopus
                     if (!IsPresent)
                         return false;
 
-                    return matchGroup.Value.EndsWith("." + OctopusVersionMaskParser.PatternIncrement) || matchGroup.Value.EndsWith("." + OctopusVersionMaskParser.PatternCurrent);
+                    return Regex.IsMatch(matchGroup.Value, @$"\.(?:{OctopusVersionMaskParser.PatternIncrement}|{OctopusVersionMaskParser.PatternCurrent})$");
                 }
             }
 
