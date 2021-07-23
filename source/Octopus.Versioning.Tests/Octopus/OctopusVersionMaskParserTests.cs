@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Octopus.Versioning.Octopus;
+using Octopus.Versioning.Tests.PreviousImplementation;
 
 namespace Octopus.Versioning.Tests.Octopus
 {
@@ -117,7 +118,6 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.2", false)]
         [TestCase("1", false)]
         [TestCase("1.2.3.4-i", false)]
-        [TestCase("i", true)]
         [TestCase("c.i", true)]
         [TestCase("c.c.i", true)]
         [TestCase("c.c.c.i", true)]
@@ -131,7 +131,10 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.2.3.4-1.blah.i.0", false)]
         public void IsMask(string mask, bool isMask)
         {
+            // Test the new implementation
             Assert.AreEqual(isMask, OctopusVersionMaskParser.Parse(mask).IsMask);
+            // Test the old implementation
+            Assert.AreEqual(isMask, SemanticVersionMask.IsMask(mask));
         }
 
         [TestCase("1.2.4", "1.2.3", null)]
@@ -143,8 +146,12 @@ namespace Octopus.Versioning.Tests.Octopus
         {
             var latestVersions = new List<IVersion>();
             latestVersions.Add(new OctopusVersionParser().Parse(latestVersion));
-            var latestMaskedVersion = OctopusVersionMaskParser.Parse(version).GetLatestMaskedVersion(latestVersions);
             Assert.AreEqual(expected, expected == null ? null : new OctopusVersionParser().Parse(expected).ToString());
+            
+            var latestMaskedVersionNewImplementation = OctopusVersionMaskParser.Parse(version).GetLatestMaskedVersion(latestVersions);
+            var latestMaskedVersionOldImplementation = SemanticVersionMask.GetLatestMaskedVersion(version, latestVersions);
+            
+            Assert.AreEqual(latestMaskedVersionOldImplementation, latestMaskedVersionNewImplementation);
         }
     }
 }
