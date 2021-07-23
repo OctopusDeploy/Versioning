@@ -64,6 +64,8 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("c.c.i", "1.2.3.4", "1.2.4.0", Description = "The resulting version gets the a release of 0 from the latest version.")]
         [TestCase("1.2.3-hi.i", "1.1.1.1", "1.2.3.0-hi.1", Description = "The resulting version gets the a release of 0 from the latest version.")]
         [TestCase("1.2.3-i", "1.2.3-25", "1.2.3-26")]
+        [TestCase("1.2.3.4-i.1", "1.2.3.4-25.2", "1.2.3.4-26.1")]
+        [TestCase("1.2.3.4-c.1", "1.2.3.4-25.2", "1.2.3.4-25.1")]
         public void ShouldApplyMask(string mask, string latestVersion, string expected)
         {
             var latestVersionAsSemver = SemVerFactory.TryCreateVersion(latestVersion);
@@ -85,6 +87,8 @@ namespace Octopus.Versioning.Tests.Octopus
 
         [TestCase("1.2.3.4-i", false, Description = "This behaviour is a little confusing, as 1.2.3.4-i will function as a mask in every practical sense, but IsMask returns false. This behaviour is retained to ensure compatibility with the old masking implementation.")]
         [TestCase("1.2.3.4-c", false, Description = "This behaviour is a little confusing, as 1.2.3.4-c will function as a mask in every practical sense, but IsMask returns false. This behaviour is retained to ensure compatibility with the old masking implementation.")]
+        [TestCase("1.2.3.4-i.1", false, Description = "This behaviour is a little confusing, as 1.2.3.4-i.1 will function as a mask in every practical sense, but IsMask returns false. This behaviour is retained to ensure compatibility with the old masking implementation.")]
+        [TestCase("1.2.3.4-c.1", false, Description = "This behaviour is a little confusing, as 1.2.3.4-c.1 will function as a mask in every practical sense, but IsMask returns false. This behaviour is retained to ensure compatibility with the old masking implementation.")]
         [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", false)]
         [TestCase("1.2.3.4-blah", false)]
         [TestCase("1.2.3.4-blahi", false)]
