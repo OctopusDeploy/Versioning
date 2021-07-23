@@ -55,6 +55,9 @@ namespace Octopus.Versioning.Octopus
              * Watch out for this! A mask can return false for IsMask, but still succeed
              * parsing here and proceed to apply the masking logic. See OctopusVersionMaskParserTests.IsMask
              * for edge cases where masks fail IsMask but still work as masks.
+             *
+             * See SemanticVersionMask.ApplyMask in the test project for the original logic
+             * that has been replicated here for consistency.
              */
             if (!parsedMask.DidParse)
                 return new OctopusVersionParser().Parse(mask);
