@@ -59,26 +59,27 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.2.3.i", "whatever", "1.2.3.1", Description = "Existing versions with only plain text are assumed to be 0.0.0.0.")]
         [TestCase("1.2.3.c", "whatever", "1.2.3.0", Description = "Existing versions with only plain text are assumed to be 0.0.0.0.")]
         [TestCase("1.2.3-initial.8", "1.0.0.0", "1.2.3.0-initial.8")]
-        [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", "2021.4.0.0-121.50.210609", "2021.4.0-0.121.27.202110617.1183ec5i", Description = "A specific test case documented in https://github.com/OctopusDeploy/Issues/issues/6926")]
+        [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", "2021.4.0.0-121.50.210609", "2021.4.0.0-0.121.27.202110617.1183ec5i", Description = "A specific test case documented in https://github.com/OctopusDeploy/Issues/issues/6926")]
+        [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", "2021.4.0-121.50.210609", "2021.4.0-0.121.27.202110617.1183ec5i", Description = "A specific test case documented in https://github.com/OctopusDeploy/Issues/issues/6926")]
         [TestCase("c.c.i", "1.2.3.4", "1.2.4.0", Description = "The resulting version gets the a release of 0 from the latest version.")]
         [TestCase("1.2.3-hi.i", "1.1.1.1", "1.2.3.0-hi.1", Description = "The resulting version gets the a release of 0 from the latest version.")]
         [TestCase("1.2.3-i", "1.2.3-25", "1.2.3-26")]
         public void ShouldApplyMask(string mask, string latestVersion, string expected)
         {
+            var latestVersionAsSemver = SemVerFactory.TryCreateVersion(latestVersion);
+            if (latestVersionAsSemver != null)
+            {
+                var resultOldImplementation = SemanticVersionMask.ApplyMask(mask, latestVersionAsSemver);
+                Assert.AreEqual(expected, resultOldImplementation.ToString());
+                Assert.AreEqual(expected, resultOldImplementation.OriginalString);
+            }
+            
             foreach (var prefix in new [] {"", "V", "v"})
             {
                 var resultNewImplementation = OctopusVersionMaskParser.ApplyMask(prefix + mask, latestVersion != null ? new OctopusVersionParser().Parse(latestVersion) : null);
                 Assert.AreEqual(prefix + expected, resultNewImplementation.ToString());
                 Assert.AreEqual(prefix + expected, resultNewImplementation.OriginalString);
             }
-
-            var latestVersionAsSemver = SemVerFactory.TryCreateVersion(latestVersion);
-            if (latestVersionAsSemver == null)
-                return;
-            
-            var resultOldImplementation = SemanticVersionMask.ApplyMask(mask, latestVersionAsSemver);
-            Assert.AreEqual(expected, resultOldImplementation.ToString());
-            Assert.AreEqual(expected, resultOldImplementation.OriginalString);
         }
 
         [TestCase("2021.4.0-0.121.27.202110617.1183ec5i", false)]
