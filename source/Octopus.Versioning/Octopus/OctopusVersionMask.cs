@@ -37,6 +37,8 @@ namespace Octopus.Versioning.Octopus
         public MetadataComponent Metadata { get; }
         public TagComponent Release { get; }
 
+        public bool HasValues { get; }
+        
         public bool IsMask =>
             Major.IsSubstitute || Minor.IsSubstitute || Patch.IsSubstitute || Release.IsSubstitute || Revision.IsSubstitute || Metadata.IsSubstitute;
 
@@ -177,7 +179,7 @@ namespace Octopus.Versioning.Octopus
                     if (!IsPresent)
                         return false;
 
-                    return Regex.IsMatch(matchGroup.Value, @$"\.(?:{OctopusVersionMaskParser.PatternIncrement}|{OctopusVersionMaskParser.PatternCurrent})$");
+                    return matchGroup.Value.EndsWith("." + OctopusVersionMaskParser.PatternIncrement) || matchGroup.Value.EndsWith("." + OctopusVersionMaskParser.PatternCurrent);
                 }
             }
 

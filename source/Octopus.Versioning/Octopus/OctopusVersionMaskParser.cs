@@ -45,11 +45,25 @@ namespace Octopus.Versioning.Octopus
                 new OctopusVersionMask.TagComponent(result.Groups[Prerelease]),
                 new OctopusVersionMask.MetadataComponent(result.Groups[Meta]));
         }
+        
+        bool TryParse(string? version, out OctopusVersionMask? mask)
+        {
+            var result = VersionRegex.Match(version?.Trim() ?? string.Empty);
+
+            if (!result.Success)
+            {
+                mask = null;
+                return false;
+            }
+
+            mask = Parse(version);
+            return true;
+        }
 
         public IVersion ApplyMask(string? mask, IVersion? currentVersion)
         {
-            var parsedMask = Parse(mask);
-            if (!parsedMask.IsMask)
+            var success = TryParse(mask, out var parsedMask);
+            if (!success)
                 return new OctopusVersionParser().Parse(mask);
 
             return currentVersion == null
