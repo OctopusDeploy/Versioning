@@ -12,7 +12,9 @@ namespace Octopus.Versioning.Octopus
     /// </summary>
     public class OctopusVersionMask
     {
-        public OctopusVersionMask(string? prefix,
+        public OctopusVersionMask(
+            bool didParse,
+            string? prefix,
             Component major,
             Component minor,
             Component patch,
@@ -20,6 +22,7 @@ namespace Octopus.Versioning.Octopus
             TagComponent prerelease,
             MetadataComponent metadata)
         {
+            DidParse = didParse;
             Prefix = prefix ?? string.Empty;
             Major = major;
             Minor = minor;
@@ -37,8 +40,20 @@ namespace Octopus.Versioning.Octopus
         public MetadataComponent Metadata { get; }
         public TagComponent Release { get; }
 
+        /// <summary>
+        /// This is the property that *actually* determines if a string is a mask and will be used
+        /// for masking operations.
+        /// See OctopusVersionMaskParserTests.IsMask for cases where this differs from IsMask.
+        /// </summary>
+        public bool DidParse { get; }
+        
+        /// <summary>
+        /// This is the original logic that appears to determine if the supplied version was a mask.
+        /// It is not consistent though. See OctopusVersionMaskParserTests.IsMask for examples where
+        /// IsMask is false, but used as a mask anyway.
+        /// </summary>
         public bool IsMask =>
-            Major.IsSubstitute || Minor.IsSubstitute || Patch.IsSubstitute || Release.IsSubstitute || Revision.IsSubstitute || Metadata.IsSubstitute;
+            DidParse && (Major.IsSubstitute || Minor.IsSubstitute || Patch.IsSubstitute || Release.IsSubstitute || Revision.IsSubstitute || Metadata.IsSubstitute);
 
         public IVersion? GetLatestMaskedVersion(List<IVersion> versions)
         {
