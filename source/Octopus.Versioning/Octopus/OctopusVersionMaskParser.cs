@@ -46,30 +46,23 @@ namespace Octopus.Versioning.Octopus
                 new OctopusVersionMask.MetadataComponent(result.Groups[Meta]));
         }
         
-        bool TryParse(string? version, out OctopusVersionMask? mask)
+        OctopusVersionMask? TryParse(string? version)
         {
             var result = VersionRegex.Match(version?.Trim() ?? string.Empty);
 
-            if (!result.Success)
-            {
-                mask = null;
-                return false;
-            }
-
-            mask = Parse(version);
-            return true;
+            return !result.Success ? null : Parse(version);
         }
 
         public IVersion ApplyMask(string? mask, IVersion? currentVersion)
         {
-            var success = TryParse(mask, out var parsedMask);
+            var parsedMask = TryParse(mask);
             
             /*
              * Watch out for this! A mask can return false for IsMask, but still succeed
              * parsing here and proceed to apply the masking logic. See OctopusVersionMaskParserTests.IsMask
              * for edge cases where masks fail IsMask but still work as masks.
              */
-            if (!success)
+            if (parsedMask == null)
                 return new OctopusVersionParser().Parse(mask);
 
             return currentVersion == null
