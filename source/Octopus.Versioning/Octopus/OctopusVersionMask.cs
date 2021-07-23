@@ -37,8 +37,6 @@ namespace Octopus.Versioning.Octopus
         public MetadataComponent Metadata { get; }
         public TagComponent Release { get; }
 
-        public bool HasValues { get; }
-        
         public bool IsMask =>
             Major.IsSubstitute || Minor.IsSubstitute || Patch.IsSubstitute || Release.IsSubstitute || Revision.IsSubstitute || Metadata.IsSubstitute;
 
