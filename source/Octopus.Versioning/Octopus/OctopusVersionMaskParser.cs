@@ -63,6 +63,12 @@ namespace Octopus.Versioning.Octopus
         public IVersion ApplyMask(string? mask, IVersion? currentVersion)
         {
             var success = TryParse(mask, out var parsedMask);
+            
+            /*
+             * Watch out for this! A mask can return false for IsMask, but still succeed
+             * parsing here and proceed to apply the masking logic. See OctopusVersionMaskParserTests.IsMask
+             * for edge cases where masks fail IsMask but still work as masks.
+             */
             if (!success)
                 return new OctopusVersionParser().Parse(mask);
 
