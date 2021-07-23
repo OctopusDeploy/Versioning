@@ -121,8 +121,10 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.i.i", "2.0.0", null)]
         public void GetLatestVersionMask(string version, string latestVersion, string expected)
         {
-            var latestVersions = new List<IVersion>();
-            latestVersions.Add(new OctopusVersionParser().Parse(latestVersion));
+            var latestVersions = new List<IVersion>
+            {
+                new OctopusVersionParser().Parse(latestVersion)
+            };
             Assert.AreEqual(expected, expected == null ? null : new OctopusVersionParser().Parse(expected).ToString());
             
             var latestMaskedVersionNewImplementation = OctopusVersionMaskParser.Parse(version).GetLatestMaskedVersion(latestVersions);
