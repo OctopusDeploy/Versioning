@@ -71,6 +71,12 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.2.3.4-c.1", "1.2.3.4-25.2", "1.2.3.4-25.1")]
         [TestCase("1.2.3.4-1.blah.i.0", "1.2.3.4-whatever.3.1", "1.2.3.4-1.blah.2.0")]
         [TestCase("1.2.3-whatever", "1.2.2.2", "1.2.3.0-whatever", Description = "The existing implementation treats any version that can be parsed by the regex defining a mask as a mask. This means versions with no mask characters are still processed as a mask. One implication of this is if the latest version has a revision, the new version also has a revision, even if it wasn't specified.")]
+        [TestCase("1.2.3-i", "1. 2. 3-4", "1.2.3-5", Description = "The existing version parsing tolerated spaces inside versions")]
+        [TestCase("1.2.3-i ", "1.2.3-4", "1.2.3-i", Description = "Whitespace prevents a string from being a mask")]
+        [TestCase(" 1.2.3-i ", "1.2.3-4", "1.2.3-i", Description = "Whitespace prevents a string from being a mask")]
+        [TestCase("1. 2.3-i", "1.2.3-4", "1.2.3-i", Description = "Whitespace prevents a string from being a mask")]
+        [TestCase("1.2. 3-i", "1.2.3-4", "1.2.3-i", Description = "Whitespace prevents a string from being a mask")]
+        [TestCase("1.2.3 -i", "1.2.3-4", "1.2.3-i", Description = "Whitespace prevents a string from being a mask")]
         public void ShouldApplyMask(string mask, string latestVersion, string expected)
         {
             var latestVersionAsSemver = SemVerFactory.TryCreateVersion(latestVersion);
@@ -93,6 +99,19 @@ namespace Octopus.Versioning.Tests.Octopus
                 Assert.AreEqual(prefix + expected, resultNewImplementationWithPrefix.ToString());
                 Assert.AreEqual(prefix + expected, resultNewImplementationWithPrefix.OriginalString);
             }
+        }
+
+        /// <summary>
+        /// Assert that the new an old implementations fail with the same invalid input with whitespace around the prerelease field
+        /// </summary>
+        [TestCase("1.2.3- i")]
+        [TestCase("1.2.3- 1")]
+        public void ShouldFail(string mask)
+        {
+            var latestVersion = SemVerFactory.TryCreateVersion("1.2.3");
+
+            Assert.Catch(() => OctopusVersionMaskParser.ApplyMask(mask, latestVersion));
+            Assert.Catch(() => SemanticVersionMask.ApplyMask(mask, latestVersion));
         }
 
         [TestCase("1.2.3.4-i", false, Description = "This behaviour is a little confusing, as 1.2.3.4-i will function as a mask in every practical sense, but IsMask returns false. This behaviour is retained to ensure compatibility with the old masking implementation.")]
