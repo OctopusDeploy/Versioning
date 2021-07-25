@@ -177,7 +177,6 @@ namespace Octopus.Versioning.Tests.Octopus
             {
                 new OctopusVersionParser().Parse(latestVersion)
             };
-            Assert.AreEqual(expected, expected == null ? null : new OctopusVersionParser().Parse(expected).ToString());
 
             // new an old implementations should be the same
             var latestMaskedVersionNewImplementation = OctopusVersionMaskParser.Parse(version).GetLatestMaskedVersion(latestVersions);
