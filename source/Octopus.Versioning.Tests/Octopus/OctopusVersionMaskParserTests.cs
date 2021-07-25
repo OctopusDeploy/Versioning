@@ -153,6 +153,12 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase(" 1.2", false)]
         [TestCase("1.2 .3", false)]
         [TestCase("1.2.3 .4", false)]
+        [TestCase("1.2.3.4-cc", false)]
+        [TestCase("1.2.3.4-1.cc", false)]
+        [TestCase("1.2.3.4-cc.1", false)]
+        [TestCase("1.2.3.4-ii", false)]
+        [TestCase("1.2.3.4-1.ii", false)]
+        [TestCase("1.2.3.4-ii.1", false)]
         public void IsMask(string mask, bool isMask)
         {
             // Test the new implementation
