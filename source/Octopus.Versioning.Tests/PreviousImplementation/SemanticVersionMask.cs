@@ -10,7 +10,7 @@ namespace Octopus.Versioning.Tests.PreviousImplementation
     /// <summary>
     /// The copy of the previous implementation from commit
     /// 43e42a5769083dffa65e2c9ab4d513641c37248a. This is use to verify the logic is retained
-    /// between implmentation.
+    /// between implementation.
     /// </summary>
     public static class SemanticVersionMask
     {

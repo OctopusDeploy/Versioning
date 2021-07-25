@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
@@ -11,14 +12,15 @@ namespace Octopus.Versioning.Tests.Octopus
     public class OctopusVersionMaskParserTests
     {
         static readonly OctopusVersionMaskParser OctopusVersionMaskParser = new OctopusVersionMaskParser();
-        static readonly string[] VersionPrefixes = { "", "V", "v" };
-        
         /// <summary>
-        /// This test used to live in Octopus server. You can find it at commit 43e42a5769083dffa65e2c9ab4d513641c37248a
-        /// in the SemanticVersionMaskFixture.cs file.
-        ///
+        /// Each mask supports these prefixes with the new implementation
+        /// </summary>
+        static readonly string[] VersionPrefixes = { "", "V", "v" };
+
+        /// <summary>
         /// Tests here, with the exception of masks that start with a 'v' or 'V' and initial versions that are not valid semver,
-        /// should also pass in that old commit.
+        /// should also pass in the previous implementation that has been copied into the SemanticVersionMask class in this test
+        /// project.
         /// </summary>
         [Test]
         [TestCase("1.2.3-alpha.i", null, "1.2.3-alpha.0", Description = "An increment of the prerelease counter.")]
@@ -72,17 +74,22 @@ namespace Octopus.Versioning.Tests.Octopus
             var latestVersionAsSemver = SemVerFactory.TryCreateVersion(latestVersion);
             if (latestVersionAsSemver != null)
             {
-                var resultOldImplementation = SemanticVersionMask.ApplyMask(mask, latestVersionAsSemver);
-                Assert.AreEqual(expected, resultOldImplementation.ToString());
-                Assert.AreEqual(expected, resultOldImplementation.OriginalString);
+                // Ensure the old and new implementations work the same way with plain masks
+                var resultNewImplementationVersion =  OctopusVersionMaskParser.ApplyMask(mask, latestVersionAsSemver);
+                var resultOldImplementationVersion = SemanticVersionMask.ApplyMask(mask, latestVersionAsSemver);
+                Assert.AreEqual(resultOldImplementationVersion.OriginalString, resultNewImplementationVersion.OriginalString);
+
+                // We also expect the old implementation to have matching ToString and OriginalString results
+                Assert.AreEqual(expected, resultOldImplementationVersion.ToString());
+                Assert.AreEqual(expected, resultOldImplementationVersion.OriginalString);
             }
-            
+
             // each version and mask should support a leading V
             foreach (var prefix in VersionPrefixes)
             {
-                var resultNewImplementation = OctopusVersionMaskParser.ApplyMask(prefix + mask, latestVersion != null ? new OctopusVersionParser().Parse(latestVersion) : null);
-                Assert.AreEqual(prefix + expected, resultNewImplementation.ToString());
-                Assert.AreEqual(prefix + expected, resultNewImplementation.OriginalString);
+                var resultNewImplementationWithPrefix = OctopusVersionMaskParser.ApplyMask(prefix + mask, latestVersion != null ? new OctopusVersionParser().Parse(latestVersion) : null);
+                Assert.AreEqual(prefix + expected, resultNewImplementationWithPrefix.ToString());
+                Assert.AreEqual(prefix + expected, resultNewImplementationWithPrefix.OriginalString);
             }
         }
 
@@ -131,20 +138,22 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.i.i", "2.0.0", null)]
         public void GetLatestVersionMask(string version, string latestVersion, string expected)
         {
-            
             var latestVersions = new List<IVersion>
             {
                 new OctopusVersionParser().Parse(latestVersion)
             };
             Assert.AreEqual(expected, expected == null ? null : new OctopusVersionParser().Parse(expected).ToString());
-            
-            // each mask should support a leading V
+
+            // new an old implementations should be the same
+            var latestMaskedVersionNewImplementation = OctopusVersionMaskParser.Parse(version).GetLatestMaskedVersion(latestVersions);
+            var latestMaskedVersionOldImplementation = SemanticVersionMask.GetLatestMaskedVersion(version, latestVersions);
+            Assert.AreEqual(latestMaskedVersionOldImplementation, latestMaskedVersionNewImplementation);
+
+            // each mask should support a leading V with the new implementation
             foreach (var prefix in VersionPrefixes)
             {
-                var latestMaskedVersionNewImplementation = OctopusVersionMaskParser.Parse(prefix + version).GetLatestMaskedVersion(latestVersions);
-                var latestMaskedVersionOldImplementation = SemanticVersionMask.GetLatestMaskedVersion(version, latestVersions);
-
-                Assert.AreEqual(latestMaskedVersionOldImplementation, latestMaskedVersionNewImplementation);
+                var latestMaskedVersionNewImplementationPrefix = OctopusVersionMaskParser.Parse(prefix + version).GetLatestMaskedVersion(latestVersions);
+                Assert.AreEqual(expected, latestMaskedVersionNewImplementationPrefix?.ToString());
             }
         }
     }
