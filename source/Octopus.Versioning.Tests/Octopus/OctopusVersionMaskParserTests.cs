@@ -106,6 +106,8 @@ namespace Octopus.Versioning.Tests.Octopus
         /// </summary>
         [TestCase("1.2.3- i")]
         [TestCase("1.2.3- 1")]
+        [TestCase("1.2.3-1 .i")]
+        [TestCase("1.2.3-1 .c")]
         public void ShouldFail(string mask)
         {
             var latestVersion = SemVerFactory.TryCreateVersion("1.2.3");
