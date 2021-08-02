@@ -35,8 +35,9 @@ namespace Octopus.Versioning.Octopus
 
         public OctopusVersionMask Parse(string? version)
         {
-            var result = VersionRegex.Match(version?.Trim() ?? string.Empty);
+            var result = VersionRegex.Match(version ?? string.Empty);
             return new OctopusVersionMask(
+                result.Success,
                 result.Groups[Prefix].Success ? result.Groups[Prefix].Value : string.Empty,
                 new OctopusVersionMask.Component(result.Groups[Major]),
                 new OctopusVersionMask.Component(result.Groups[Minor]),
@@ -49,7 +50,16 @@ namespace Octopus.Versioning.Octopus
         public IVersion ApplyMask(string? mask, IVersion? currentVersion)
         {
             var parsedMask = Parse(mask);
-            if (!parsedMask.IsMask)
+
+            /*
+             * Watch out for this! A mask can return false for IsMask, but still succeed
+             * parsing here and proceed to apply the masking logic. See OctopusVersionMaskParserTests.IsMask
+             * for edge cases where masks fail IsMask but still work as masks.
+             *
+             * See SemanticVersionMask.ApplyMask in the test project for the original logic
+             * that has been replicated here for consistency.
+             */
+            if (!parsedMask.DidParse)
                 return new OctopusVersionParser().Parse(mask);
 
             return currentVersion == null
