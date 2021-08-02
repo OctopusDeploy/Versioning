@@ -102,7 +102,7 @@ namespace Octopus.Versioning.Tests.Octopus
         }
 
         /// <summary>
-        /// Assert that the new an old implementations fail with the same invalid input with whitespace around the prerelease field
+        /// Assert that the new and old implementations fail with the same invalid input with whitespace around the prerelease field
         /// </summary>
         [TestCase("1.2.3- i")]
         [TestCase("1.2.3- 1")]
