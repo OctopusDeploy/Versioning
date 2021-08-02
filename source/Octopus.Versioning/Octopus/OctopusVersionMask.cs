@@ -46,7 +46,7 @@ namespace Octopus.Versioning.Octopus
         /// See OctopusVersionMaskParserTests.IsMask for cases where this differs from IsMask.
         /// </summary>
         public bool DidParse { get; }
-        
+
         /// <summary>
         /// This is the original logic that appears to determine if the supplied version was a mask.
         /// It is not consistent though. See OctopusVersionMaskParserTests.IsMask for examples where

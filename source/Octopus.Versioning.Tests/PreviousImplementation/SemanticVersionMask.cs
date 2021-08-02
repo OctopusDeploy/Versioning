@@ -16,6 +16,7 @@ namespace Octopus.Versioning.Tests.PreviousImplementation
     {
         const string PatternIncrement = "i";
         const string PatternCurrent = "c";
+
         static readonly Regex FormatRegex = new Regex(
             @"
 ^
@@ -25,7 +26,8 @@ namespace Octopus.Versioning.Tests.PreviousImplementation
   (\.(?<Revision>(\d+|i|c))){0,1}    # .Revision: digits or 'i' or 'c' (optional)
   (\-(?<PreRelease>([A-z]|[0-9])+(\.(([A-z]|[0-9])+))*)){0,1} # -PreRelease version (optional)
   (\+(?<Metadata>([A-z]|[0-9])+(\.(([A-z]|[0-9])+))*)){0,1} # Metadata (optional)
-$", RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
+$",
+            RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
 
         public static bool IsMask(string versionString)
         {
@@ -35,13 +37,13 @@ $", RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
             var maskMatch = new MaskMatchedVersion(versionString);
 
             return maskMatch.IsValid && (
-                    maskMatch.Major.IsSubstitute ||
-                    maskMatch.Minor.IsSubstitute ||
-                    maskMatch.Build.IsSubstitute ||
-                    maskMatch.Revision.IsSubstitute ||
-                    maskMatch.Tag.IsSubstitute ||
-                    maskMatch.Metadata.IsSubstitute
-                );
+                maskMatch.Major.IsSubstitute ||
+                maskMatch.Minor.IsSubstitute ||
+                maskMatch.Build.IsSubstitute ||
+                maskMatch.Revision.IsSubstitute ||
+                maskMatch.Tag.IsSubstitute ||
+                maskMatch.Metadata.IsSubstitute
+            );
         }
 
         public static IVersion GetLatestMaskedVersion(string mask, List<IVersion> versions)
@@ -54,34 +56,35 @@ $", RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
             var maskRevision = maskMatch.Revision.IsPresent && !maskMatch.Revision.IsSubstitute ? int.Parse(maskMatch.Revision.Value) : 0;
 
             return versions.Where(v =>
-            {
-                if (maskMatch.Major.IsSubstitute)
+                {
+                    if (maskMatch.Major.IsSubstitute)
+                        return true;
+
+                    if (v.Major != maskMajor)
+                        return false;
+
+                    if (maskMatch.Minor.IsSubstitute)
+                        return true;
+
+                    if (v.Minor != maskMinor)
+                        return false;
+
+                    if (maskMatch.Build.IsSubstitute)
+                        return true;
+
+                    if (v.Patch != maskBuild)
+                        return false;
+
+                    if (maskMatch.Revision.IsSubstitute)
+                        return true;
+
+                    if (v.Revision != maskRevision)
+                        return false;
+
                     return true;
-
-                if (v.Major != maskMajor)
-                    return false;
-
-                if (maskMatch.Minor.IsSubstitute)
-                    return true;
-
-                if (v.Minor != maskMinor)
-                    return false;
-
-                if (maskMatch.Build.IsSubstitute)
-                    return true;
-
-                if (v.Patch != maskBuild)
-                    return false;
-
-                if (maskMatch.Revision.IsSubstitute)
-                    return true;
-
-                if (v.Revision != maskRevision)
-                    return false;
-
-                return true;
-            }).OrderByDescending(o => o).FirstOrDefault();
-
+                })
+                .OrderByDescending(o => o)
+                .FirstOrDefault();
         }
 
         public static IVersion ApplyMask(string mask, IVersion currentVersion)
@@ -134,13 +137,13 @@ $", RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
                 Metadata = new MetadataComponent(maskMatch.Groups["Metadata"]);
             }
 
-            public bool IsValid { get; private set; }
-            public Component Major { get; private set; }
-            public Component Minor { get; private set; }
-            public Component Build { get; private set; }
-            public Component Revision { get; private set; }
-            public TagComponent Tag { get; private set; }
-            public MetadataComponent Metadata { get; private set; }
+            public bool IsValid { get; }
+            public Component Major { get; }
+            public Component Minor { get; }
+            public Component Build { get; }
+            public Component Revision { get; }
+            public TagComponent Tag { get; }
+            public MetadataComponent Metadata { get; }
 
             public class Component
             {
@@ -168,28 +171,24 @@ $", RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
 
                 public virtual string EvaluateFromMask(string separator = "")
                 {
-                    return IsPresent ?
-                        string.Format("{0}{1}", separator, IsSubstitute ? "0" : Value) :
-                        string.Empty;
+                    return IsPresent ? string.Format("{0}{1}", separator, IsSubstitute ? "0" : Value) : string.Empty;
                 }
 
                 public virtual string EvaluateFromCurrent(Component current, Component prevMaskComponent)
                 {
                     if (IsPresent)
                     {
-                        if(prevMaskComponent.Value != PatternIncrement)
+                        if (prevMaskComponent.Value != PatternIncrement)
                             return $".{Substitute(current)}";
 
-                        if(IsSubstitute)
+                        if (IsSubstitute)
                             return ".0";
 
                         return $".{Substitute(current)}";
                     }
 
                     if (current.IsPresent && prevMaskComponent.IsPresent)
-                    {
                         return ".0";
-                    }
 
                     return string.Empty;
                 }
@@ -201,7 +200,7 @@ $", RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
                     if (Value == PatternIncrement)
                         return (currentValue + 1).ToString(CultureInfo.InvariantCulture);
                     if (Value == PatternCurrent)
-                        return (currentValue).ToString(CultureInfo.InvariantCulture);
+                        return currentValue.ToString(CultureInfo.InvariantCulture);
                     return Value;
                 }
             }
@@ -232,7 +231,6 @@ $", RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
                     var substitutedIdentifiers = new List<string>();
 
                     for (var i = 0; i < identifiers.Length; i++)
-                    {
                         switch (identifiers[i])
                         {
                             case PatternIncrement:
@@ -243,7 +241,6 @@ $", RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
                                 substitutedIdentifiers.Add(identifiers[i]);
                                 break;
                         }
-                    }
 
                     return separator + string.Join(".", substitutedIdentifiers);
                 }
@@ -264,10 +261,10 @@ $", RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
 
                     for (var i = 0; i < identifiers.Length; i++)
                     {
-                        if (i > 0 && identifiers[i-1] == PatternIncrement && IsSubstitute)
+                        if (i > 0 && identifiers[i - 1] == PatternIncrement && IsSubstitute)
                         {
-                                substitutedIdentifiers.Add("0");
-                                continue;
+                            substitutedIdentifiers.Add("0");
+                            continue;
                         }
 
                         var currentIdentifierValue = 0;
@@ -277,7 +274,7 @@ $", RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
                         switch (identifiers[i])
                         {
                             case PatternIncrement:
-                                substitutedIdentifiers.Add((currentIdentifierValue+1).ToString(CultureInfo.InvariantCulture));
+                                substitutedIdentifiers.Add((currentIdentifierValue + 1).ToString(CultureInfo.InvariantCulture));
                                 break;
                             case PatternCurrent:
                                 substitutedIdentifiers.Add(currentIdentifierValue.ToString(CultureInfo.InvariantCulture));

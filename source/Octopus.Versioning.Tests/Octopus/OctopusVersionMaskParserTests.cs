@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using NUnit.Framework;
 using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
@@ -12,6 +11,7 @@ namespace Octopus.Versioning.Tests.Octopus
     public class OctopusVersionMaskParserTests
     {
         static readonly OctopusVersionMaskParser OctopusVersionMaskParser = new OctopusVersionMaskParser();
+
         /// <summary>
         /// Each mask supports these prefixes with the new implementation
         /// </summary>
@@ -88,7 +88,7 @@ namespace Octopus.Versioning.Tests.Octopus
             if (latestVersionAsSemver != null)
             {
                 // Ensure the old and new implementations work the same way with plain masks
-                var resultNewImplementationVersion =  OctopusVersionMaskParser.ApplyMask(mask, latestVersionAsSemver);
+                var resultNewImplementationVersion = OctopusVersionMaskParser.ApplyMask(mask, latestVersionAsSemver);
                 var resultOldImplementationVersion = SemanticVersionMask.ApplyMask(mask, latestVersionAsSemver);
                 Assert.AreEqual(resultOldImplementationVersion.OriginalString, resultNewImplementationVersion.OriginalString);
 
@@ -190,9 +190,7 @@ namespace Octopus.Versioning.Tests.Octopus
             // Test the new implementation
             // each mask should support a leading V
             foreach (var prefix in VersionPrefixes)
-            {
                 Assert.AreEqual(isMask, OctopusVersionMaskParser.Parse(prefix + mask).IsMask);
-            }
 
             // Test the old implementation
             Assert.AreEqual(isMask, SemanticVersionMask.IsMask(mask));
