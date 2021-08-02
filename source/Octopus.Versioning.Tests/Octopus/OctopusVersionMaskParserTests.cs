@@ -77,6 +77,11 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1. 2.3-i", "1.2.3-4", "1.2.3-i", Description = "Whitespace prevents a string from being a mask")]
         [TestCase("1.2. 3-i", "1.2.3-4", "1.2.3-i", Description = "Whitespace prevents a string from being a mask")]
         [TestCase("1.2.3 -i", "1.2.3-4", "1.2.3-i", Description = "Whitespace prevents a string from being a mask")]
+        [TestCase("c.c.c-i", "1.2.3-4", "1.2.3-5")]
+        [TestCase("c.c.c-i", "1.2.3", "1.2.3-1")]
+        [TestCase("0.0.1-i", "0.0.1", "0.0.1-1")]
+        [TestCase("0.0.1-i", "0.0.1-blah", "0.0.1-1")]
+        [TestCase("0.0.2-i", "0.0.1", "0.0.2-1")]
         public void ShouldApplyMask(string mask, string latestVersion, string expected)
         {
             var latestVersionAsSemver = SemVerFactory.TryCreateVersion(latestVersion);
