@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.Versioning", "Octop
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.Versioning.Tests", "Octopus.Versioning.Tests\Octopus.Versioning.Tests.csproj", "{71AB3537-D1A8-41D5-B4EF-881E6C3B5BF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_build", "..\build\_build.csproj", "{745DC44B-1570-449F-B6BA-C361880AA495}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,7 @@ Global
 		{71AB3537-D1A8-41D5-B4EF-881E6C3B5BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71AB3537-D1A8-41D5-B4EF-881E6C3B5BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71AB3537-D1A8-41D5-B4EF-881E6C3B5BF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{745DC44B-1570-449F-B6BA-C361880AA495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{745DC44B-1570-449F-B6BA-C361880AA495}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 EndGlobal
