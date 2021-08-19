@@ -94,7 +94,6 @@ class Build : NukeBuild
                 .EnableNoBuild()
                 .DisableIncludeSymbols()
                 .SetVerbosity(DotNetVerbosity.Normal)
-                .SetProperty("NuspecFile", "../../build/Octopus.Versioning.nuspec")
                 .SetProperty("NuspecProperties", $"Version={OctoVersionInfo.FullSemVer}"));
             
         });
