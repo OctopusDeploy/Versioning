@@ -22,6 +22,6 @@
     <PackageReference Include="NUnit" Version="3.13.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
     <PackageReference Include="TeamCity.ServiceMessages" Version="3.0.13" />
-    <PackageReference Include="TeamCity.VSTest.TestAdapter" Version="1.0.21" />
+    <PackageReference Include="TeamCity.VSTest.TestAdapter" Version="1.0.27" />
   </ItemGroup>
 </Project>
