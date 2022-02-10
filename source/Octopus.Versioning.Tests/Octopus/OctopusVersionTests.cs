@@ -10,8 +10,8 @@ namespace Octopus.Versioning.Tests.Octopus
     [TestFixture]
     public class OctopusVersionTests
     {
-        static readonly Random Random = new Random();
-        static readonly OctopusVersionParser OctopusVersionParser = new OctopusVersionParser();
+        static readonly Random Random = new();
+        static readonly OctopusVersionParser OctopusVersionParser = new();
 
         [Test]
         public void TryParseTest()

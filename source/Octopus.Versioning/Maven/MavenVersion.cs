@@ -85,7 +85,7 @@ namespace Octopus.Versioning.Maven
                 hashCode = (hashCode * 397) ^ Patch;
                 hashCode = (hashCode * 397) ^ Revision;
                 hashCode = (hashCode * 397) ^ (ReleaseLabels != null ? ReleaseLabels.GetHashCode() : 0);
-                return (int)hashCode;
+                return hashCode;
             }
         }
     }

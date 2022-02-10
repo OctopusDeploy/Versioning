@@ -10,7 +10,7 @@ namespace Octopus.Versioning.Tests.Octopus
     [TestFixture]
     public class OctopusVersionMaskParserTests
     {
-        static readonly OctopusVersionMaskParser OctopusVersionMaskParser = new OctopusVersionMaskParser();
+        static readonly OctopusVersionMaskParser OctopusVersionMaskParser = new();
 
         /// <summary>
         /// Each mask supports these prefixes with the new implementation

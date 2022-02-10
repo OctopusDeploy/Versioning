@@ -176,10 +176,10 @@ namespace Octopus.Versioning.Semver
                 && legacyY != null)
                 result = legacyX.Version.CompareTo(legacyY.Version);
             else if (legacyX != null
-                && legacyX.Version.Revision > 0)
+                     && legacyX.Version.Revision > 0)
                 result = 1;
             else if (legacyY != null
-                && legacyY.Version.Revision > 0)
+                     && legacyY.Version.Revision > 0)
                 result = -1;
 
             return result;

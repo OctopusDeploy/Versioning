@@ -8,7 +8,7 @@ namespace Octopus.Versioning.Tests.Octopus
     [TestFixture]
     public class OctopusVersionCompareTests
     {
-        static readonly OctopusVersionParser OctopusVersionParser = new OctopusVersionParser();
+        static readonly OctopusVersionParser OctopusVersionParser = new();
 
         [Test]
         [TestCase("1.0.0", "2.0.0", -1)]

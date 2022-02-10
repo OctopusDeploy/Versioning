@@ -17,7 +17,7 @@ namespace Octopus.Versioning.Tests.PreviousImplementation
         const string PatternIncrement = "i";
         const string PatternCurrent = "c";
 
-        static readonly Regex FormatRegex = new Regex(
+        static readonly Regex FormatRegex = new(
             @"
 ^
   (?<Major>(\d+|i|c))               # Major: digits or 'i' or 'c' (required)

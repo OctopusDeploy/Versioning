@@ -81,7 +81,7 @@ namespace Octopus.Versioning.Maven.Ranges
             if (!(other is Restriction))
                 return false;
 
-            Restriction restriction = (Restriction)other;
+            var restriction = (Restriction)other;
             if (LowerBound != null)
             {
                 if (!LowerBound.Equals(restriction.LowerBound))
@@ -110,7 +110,7 @@ namespace Octopus.Versioning.Maven.Ranges
 
         public override string ToString()
         {
-            StringBuilder buf = new StringBuilder();
+            var buf = new StringBuilder();
 
             buf.Append(IsLowerBoundInclusive ? '[' : '(');
             if (LowerBound != null)

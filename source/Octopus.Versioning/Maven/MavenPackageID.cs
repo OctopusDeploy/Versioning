@@ -33,8 +33,7 @@ namespace Octopus.Versioning.Maven
         /// </summary>
         public const char DISPLAY_DELIMITER = ':';
 
-        public MavenPackageID([NotNull]
-            string? group,
+        public MavenPackageID([NotNull] string? group,
             [NotNull]
             string? artifact,
             [NotNull]
@@ -52,8 +51,7 @@ namespace Octopus.Versioning.Maven
             Version = version.Trim();
         }
 
-        public MavenPackageID([NotNull]
-            string? group,
+        public MavenPackageID([NotNull] string? group,
             [NotNull]
             string? artifact,
             [NotNull]
@@ -68,8 +66,7 @@ namespace Octopus.Versioning.Maven
             Packaging = packaging.Trim();
         }
 
-        public MavenPackageID([NotNull]
-            string? group,
+        public MavenPackageID([NotNull] string? group,
             [NotNull]
             string? artifact,
             [NotNull]
@@ -82,8 +79,7 @@ namespace Octopus.Versioning.Maven
             Classifier = string.IsNullOrWhiteSpace(classifier) ? null : classifier.Trim();
         }
 
-        public MavenPackageID([NotNull]
-            string? id,
+        public MavenPackageID([NotNull] string? id,
             IVersion version) : this(id)
         {
             if (string.IsNullOrWhiteSpace(id) || id.Split(':').Length != 2)
@@ -103,8 +99,7 @@ namespace Octopus.Versioning.Maven
         /// <param name="id">
         /// The package id is in the display format like "Group:Artifact".
         /// </param>
-        public MavenPackageID([NotNull]
-            string? id)
+        public MavenPackageID([NotNull] string? id)
         {
             if (string.IsNullOrWhiteSpace(id))
                 throw new ArgumentException("id can not be empty");
