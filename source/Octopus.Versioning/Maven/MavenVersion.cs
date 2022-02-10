@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Octopus.Versioning.Semver;
 
 namespace Octopus.Versioning.Maven
 {
@@ -78,15 +79,7 @@ namespace Octopus.Versioning.Maven
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                var hashCode = Major;
-                hashCode = (hashCode * 397) ^ Minor;
-                hashCode = (hashCode * 397) ^ Patch;
-                hashCode = (hashCode * 397) ^ Revision;
-                hashCode = (hashCode * 397) ^ (ReleaseLabels != null ? ReleaseLabels.GetHashCode() : 0);
-                return (int)hashCode;
-            }
+            return VersionComparer.Default.GetHashCode(this);
         }
     }
 }
