@@ -82,8 +82,9 @@ namespace Octopus.Versioning.Semver
             combiner.AddObject(version.Minor);
             combiner.AddObject(version.Patch);
 
-            if (version.Revision > 0)
-                combiner.AddObject(version.Revision);
+            var nuGetVersion = version as SemanticVersion;
+            if (nuGetVersion != null && nuGetVersion.Revision > 0)
+                combiner.AddObject(nuGetVersion.Revision);
 
             if (mode == VersionComparison.Default
                 || mode == VersionComparison.VersionRelease
