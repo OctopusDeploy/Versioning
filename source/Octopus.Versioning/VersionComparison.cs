@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Octopus.Versioning.Semver
+namespace Octopus.Versioning
 {
     /// <summary>
     /// Version comparison modes.
