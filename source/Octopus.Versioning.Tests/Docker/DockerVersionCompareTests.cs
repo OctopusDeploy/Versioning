@@ -32,17 +32,6 @@ namespace Octopus.Versioning.Tests.Docker
         }
 
         [Test]
-        [TestCase("1.2.3.4", "1.2.3.4", 0)]
-        public void TestVersionsMatchSem(string version1, string version2, int result)
-        {
-            var ver1 = VersionFactory.CreateSemanticVersion(version1);
-            var ver2 = VersionFactory.CreateSemanticVersion(version2);
-
-            var items = new List<IVersion> {ver1, ver2}.GroupBy(i => i).ToList();
-            Assert.AreEqual(1, items.Count);
-        }
-
-        [Test]
         [TestCase("latest", false)]
         [TestCase("1.0.0", false)]
         [TestCase("1.0.0-latest", true)]
