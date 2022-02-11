@@ -50,7 +50,17 @@ namespace Octopus.Versioning.Docker
 
         public override int GetHashCode()
         {
-            return VersionComparer.Default.GetHashCode(this);
+            if (OriginalString == Latest)
+            {
+                return Latest.GetHashCode();
+            }
+
+            var hashCode = Major;
+            hashCode = (hashCode * 397) ^ Minor;
+            hashCode = (hashCode * 397) ^ Patch;
+            hashCode = (hashCode * 397) ^ Revision;
+            hashCode = (hashCode * 397) ^ Release.GetHashCode();
+            return hashCode;
         }
     }
 }

@@ -21,9 +21,20 @@ namespace Octopus.Versioning.Tests.Docker
         }
 
         [Test]
-        public void TestMatchingVersionsAreGroupedCorrectly()
+        [TestCase("latest", false)]
+        [TestCase("1.0.0", false)]
+        [TestCase("1.0.0-latest", true)]
+        public void TestPrerelease(string version1, bool result)
         {
-            const string version = "1.2.3.4-PreRelease.987";
+            var ver1 = VersionFactory.CreateDockerTag(version1);
+            Assert.AreEqual(result, ver1.IsPrerelease);
+        }
+        [Test]
+        [TestCase("latest")]
+        [TestCase("1.2.3")]
+        [TestCase("1.2.3-SNAPSHOT-4")]
+        public void TestMatchingVersionsAreGroupedCorrectly(string version)
+        {
             var ver1 = VersionFactory.CreateDockerTag(version);
             var ver2 = VersionFactory.CreateDockerTag(version);
 
@@ -32,13 +43,15 @@ namespace Octopus.Versioning.Tests.Docker
         }
 
         [Test]
-        [TestCase("latest", false)]
-        [TestCase("1.0.0", false)]
-        [TestCase("1.0.0-latest", true)]
-        public void TestPrerelease(string version1, bool result)
+        [TestCase("latest", "1.0.0")]
+        [TestCase("1.2.3", "4.5.6")]
+        [TestCase("1.2.3-pre-4", "1.2.3-pre-5")]
+        public void TestMismatchingVersionsHashCodesAreDifferent(string v1, string v2)
         {
-            var ver1 = VersionFactory.CreateDockerTag(version1);
-            Assert.AreEqual(result, ver1.IsPrerelease);
+            var ver1 = VersionFactory.CreateDockerTag(v1);
+            var ver2 = VersionFactory.CreateDockerTag(v2);
+
+            Assert.AreNotEqual(ver1.GetHashCode(), ver2.GetHashCode());
         }
     }
 }

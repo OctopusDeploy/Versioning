@@ -4,9 +4,8 @@
 using System;
 using System.Collections.Generic;
 using Octopus.Versioning.Plumbing;
-using Octopus.Versioning.Semver;
 
-namespace Octopus.Versioning
+namespace Octopus.Versioning.Semver
 {
     /// <summary>
     /// An IVersionComparer for NuGetVersion and NuGetVersion types.
