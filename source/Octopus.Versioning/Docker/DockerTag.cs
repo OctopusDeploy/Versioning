@@ -1,5 +1,6 @@
 using System;
 using Octopus.Versioning.Octopus;
+using Octopus.Versioning.Semver;
 
 namespace Octopus.Versioning.Docker
 {
@@ -46,5 +47,20 @@ namespace Octopus.Versioning.Docker
         public override VersionFormat Format => VersionFormat.Docker;
 
         public override bool IsPrerelease => !string.IsNullOrEmpty(Release) && OriginalString != Latest;
+
+        public override int GetHashCode()
+        {
+            if (OriginalString == Latest)
+            {
+                return Latest.GetHashCode();
+            }
+
+            var hashCode = Major;
+            hashCode = (hashCode * 397) ^ Minor;
+            hashCode = (hashCode * 397) ^ Patch;
+            hashCode = (hashCode * 397) ^ Revision;
+            hashCode = (hashCode * 397) ^ Release.GetHashCode();
+            return hashCode;
+        }
     }
 }
