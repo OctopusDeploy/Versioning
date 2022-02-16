@@ -19,7 +19,22 @@ class Build : NukeBuild
 
     [Solution] readonly Solution Solution;
 
-    [OctoVersion] readonly OctoVersionInfo OctoVersionInfo;
+    [Parameter] readonly bool? OctoVersionAutoDetectBranch = NukeBuild.IsLocalBuild;
+    [Parameter] readonly string OctoVersionBranch;
+    [Parameter] readonly int? OctoVersionFullSemVer;
+    [Parameter] readonly int? OctoVersionMajor;
+    [Parameter] readonly int? OctoVersionMinor;
+    [Parameter] readonly int? OctoVersionPatch;
+
+    [Required]
+    [OctoVersion(
+        AutoDetectBranchParameter = nameof(OctoVersionAutoDetectBranch),
+        BranchParameter = nameof(OctoVersionBranch),
+        FullSemVerParameter = nameof(OctoVersionFullSemVer),
+        MajorParameter = nameof(OctoVersionMajor),
+        MinorParameter = nameof(OctoVersionMinor),
+        PatchParameter = nameof(OctoVersionPatch))]
+    readonly OctoVersionInfo OctoVersionInfo;
 
     static AbsolutePath SourceDirectory => RootDirectory / "source";
     static AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
@@ -33,12 +48,6 @@ class Build : NukeBuild
             SourceDirectory.GlobDirectories("**/bin", "**/obj", "**/TestResults").ForEach(DeleteDirectory);
             EnsureCleanDirectory(ArtifactsDirectory);
             EnsureCleanDirectory(PublishDirectory);
-        });
-
-    Target CalculateVersion => _ => _
-        .Executes(() =>
-        {
-            // all the magic happens inside `[OctoVersion]` above.
         });
 
     Target Restore => _ => _
@@ -95,7 +104,6 @@ class Build : NukeBuild
                 .DisableIncludeSymbols()
                 .SetVerbosity(DotNetVerbosity.Normal)
                 .SetProperty("NuspecProperties", $"Version={OctoVersionInfo.FullSemVer}"));
-            
         });
 
     Target CopyToLocalPackages => _ => _
@@ -111,19 +119,8 @@ class Build : NukeBuild
                 });
         });
 
-    Target OutputPackagesToPush => _ => _
-        .DependsOn(Pack)
-        .Executes(() =>
-        {
-            var artifactPaths = ArtifactsDirectory.GlobFiles("*.nupkg")
-                .NotEmpty()
-                .Select(p => p.ToString());
-
-            System.Console.WriteLine($"::set-output name=packages_to_push::{string.Join(',', artifactPaths)}");
-        });
-
     Target Default => _ => _
-        .DependsOn(OutputPackagesToPush);
+        .DependsOn(Pack);
 
     /// Support plugins are available for:
     /// - JetBrains ReSharper        https://nuke.build/resharper
