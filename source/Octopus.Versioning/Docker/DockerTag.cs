@@ -69,7 +69,6 @@ namespace Octopus.Versioning.Docker
 
         public override int GetHashCode()
         {
-
             return IsLatest ? Latest.GetHashCode() : base.GetHashCode();
         }
     }
