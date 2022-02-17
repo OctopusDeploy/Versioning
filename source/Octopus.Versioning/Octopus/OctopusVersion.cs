@@ -89,6 +89,16 @@ namespace Octopus.Versioning.Octopus
             return false;
         }
 
+        public override int GetHashCode()
+        {
+            var hashCode = Major;
+            hashCode = (hashCode * 397) ^ Minor;
+            hashCode = (hashCode * 397) ^ Patch;
+            hashCode = (hashCode * 397) ^ Revision;
+            hashCode = (hashCode * 397) ^ Release.GetHashCode();
+            return hashCode;
+        }
+
         /// <summary>
         /// Compares sets of release labels.
         /// </summary>

@@ -7,6 +7,7 @@ namespace Octopus.Versioning.Docker
     public class DockerTag : OctopusVersion
     {
         const string Latest = "latest";
+        bool IsLatest => string.Compare(OriginalString, Latest, StringComparison.Ordinal) == 0;
 
         public DockerTag(OctopusVersion version)
             : base(version.Prefix,
@@ -48,19 +49,27 @@ namespace Octopus.Versioning.Docker
 
         public override bool IsPrerelease => !string.IsNullOrEmpty(Release) && OriginalString != Latest;
 
-        public override int GetHashCode()
+        public override int CompareTo(object obj)
         {
-            if (OriginalString == Latest)
+            if (obj is DockerTag objDockerTag)
             {
-                return Latest.GetHashCode();
+                return IsLatest && objDockerTag.IsLatest ? 0 : base.CompareTo(obj);
             }
 
-            var hashCode = Major;
-            hashCode = (hashCode * 397) ^ Minor;
-            hashCode = (hashCode * 397) ^ Patch;
-            hashCode = (hashCode * 397) ^ Revision;
-            hashCode = (hashCode * 397) ^ Release.GetHashCode();
-            return hashCode;
+            return -1;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is DockerTag objDockerTag)
+                return CompareTo(objDockerTag) == 0;
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return IsLatest ? Latest.GetHashCode() : base.GetHashCode();
         }
     }
 }
