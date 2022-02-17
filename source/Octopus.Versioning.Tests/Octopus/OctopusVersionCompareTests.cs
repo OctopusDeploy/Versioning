@@ -129,8 +129,8 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.2.3-pre-4")]
         public void MatchingVersionsShouldBeGroupedCorrectly(string version)
         {
-            var ver1 = VersionFactory.CreateDockerTag(version);
-            var ver2 = VersionFactory.CreateDockerTag(version);
+            var ver1 = VersionFactory.CreateOctopusVersion(version);
+            var ver2 = VersionFactory.CreateOctopusVersion(version);
 
             var items = new List<IVersion> {ver1, ver2}.GroupBy(i => i).ToList();
             Assert.AreEqual(1, items.Count);
@@ -142,8 +142,8 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.2.3-pre-4")]
         public void MatchingVersionsShouldHaveSameHashCodes(string version)
         {
-            var ver1 = VersionFactory.CreateDockerTag(version);
-            var ver2 = VersionFactory.CreateDockerTag(version);
+            var ver1 = VersionFactory.CreateOctopusVersion(version);
+            var ver2 = VersionFactory.CreateOctopusVersion(version);
 
             Assert.AreEqual(ver1.GetHashCode(), ver2.GetHashCode());
         }
@@ -154,8 +154,8 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.2.3-pre-4", "1.2.3-pre-5")]
         public void MismatchingVersionsShouldHaveDifferentHashCodes(string v1, string v2)
         {
-            var ver1 = VersionFactory.CreateDockerTag(v1);
-            var ver2 = VersionFactory.CreateDockerTag(v2);
+            var ver1 = VersionFactory.CreateOctopusVersion(v1);
+            var ver2 = VersionFactory.CreateOctopusVersion(v2);
 
             Assert.AreNotEqual(ver1.GetHashCode(), ver2.GetHashCode());
         }
