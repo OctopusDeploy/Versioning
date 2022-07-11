@@ -32,12 +32,12 @@ jobs:
       - name: Nuke Build 🏗
         id: build
         shell: bash
-        # Pass branch and patch number to Nuke OctoVersion 
+        # Pass branch and patch number to Nuke OctoVersion
         # (for pull_request events we override the /refs/pull/xx/merge branch to the PR's head branch)
-        run: |
-          ./build.sh \
-            --OctoVersionBranch ${{ github.head_ref || github.ref }} \
-            --OctoVersionPatch ${{ github.run_number }}
+        env:
+          OCTOVERSION_CurrentBranch: ${{ github.head_ref || github.ref }}
+          OCTOVERSION_Patch: ${{ github.run_number }}
+        run: ./build.sh
         
       - name: Tag release (when not pre-release) 🏷️
         id: github-tag
