@@ -21,18 +21,15 @@ class Build : NukeBuild
 
     [Parameter] readonly bool? OctoVersionAutoDetectBranch = NukeBuild.IsLocalBuild;
     [Parameter] readonly string OctoVersionBranch;
-    [Parameter] readonly string? OctoVersionFullSemVer;
-    [Parameter] readonly int? OctoVersionMajor;
-    [Parameter] readonly int? OctoVersionMinor;
+    // [Parameter] readonly string? OctoVersionFullSemVer;
+    // [Parameter] readonly int? OctoVersionMajor;
+    // [Parameter] readonly int? OctoVersionMinor;
     [Parameter] readonly int? OctoVersionPatch;
 
     [Required]
     [OctoVersion(
         AutoDetectBranchParameter = nameof(OctoVersionAutoDetectBranch),
         BranchParameter = nameof(OctoVersionBranch),
-        FullSemVerParameter = nameof(OctoVersionFullSemVer),
-        MajorParameter = nameof(OctoVersionMajor),
-        MinorParameter = nameof(OctoVersionMinor),
         PatchParameter = nameof(OctoVersionPatch),
         Framework = "net6.0")]
     readonly OctoVersionInfo OctoVersionInfo;
