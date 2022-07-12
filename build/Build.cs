@@ -33,7 +33,9 @@ class Build : NukeBuild
         FullSemVerParameter = nameof(OctoVersionFullSemVer),
         MajorParameter = nameof(OctoVersionMajor),
         MinorParameter = nameof(OctoVersionMinor),
-        PatchParameter = nameof(OctoVersionPatch))]
+        PatchParameter = nameof(OctoVersionPatch),
+        Framework = "net6.0")]
+
     readonly OctoVersionInfo OctoVersionInfo;
 
     static AbsolutePath SourceDirectory => RootDirectory / "source";
