@@ -10,7 +10,6 @@ using Nuke.Common.Utilities.Collections;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using Nuke.Common.Tools.OctoVersion;
-using Serilog;
 
 [UnsetVisualStudioEnvironmentVariables]
 class Build : NukeBuild
@@ -21,9 +20,9 @@ class Build : NukeBuild
 
     [Parameter] readonly bool? OctoVersionAutoDetectBranch = NukeBuild.IsLocalBuild;
     [Parameter] readonly string OctoVersionBranch;
-    // [Parameter] readonly string? OctoVersionFullSemVer;
-    // [Parameter] readonly int? OctoVersionMajor;
-    // [Parameter] readonly int? OctoVersionMinor;
+    [Parameter] readonly string? OctoVersionFullSemVer;
+    [Parameter] readonly int? OctoVersionMajor;
+    [Parameter] readonly int? OctoVersionMinor;
     [Parameter] readonly int? OctoVersionPatch;
 
     [Required]
@@ -64,7 +63,7 @@ class Build : NukeBuild
         .DependsOn(Restore)
         .Executes(() =>
         {
-            Log.Information("Building Octopus Versioning v{0}", OctoVersionInfo.FullSemVer);
+            Logger.Info("Building Octopus Versioning v{0}", OctoVersionInfo.FullSemVer);
 
             DotNetBuild(_ => _
                 .SetProjectFile(Solution)
@@ -90,7 +89,7 @@ class Build : NukeBuild
         .Produces(ArtifactsDirectory / "*.nupkg")
         .Executes(() =>
         {
-            Log.Information("Packing Octopus Versioning v{0}", OctoVersionInfo.FullSemVer);
+            Logger.Info("Packing Octopus Versioning v{0}", OctoVersionInfo.FullSemVer);
             
             // This is done to pass the data to github actions
             Console.Out.WriteLine($"::set-output name=semver::{OctoVersionInfo.FullSemVer}");
