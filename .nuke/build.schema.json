@@ -21,6 +21,7 @@
             "AppVeyor",
             "AzurePipelines",
             "Bamboo",
+            "Bitbucket",
             "Bitrise",
             "GitHubActions",
             "GitLab",
@@ -45,7 +46,7 @@
           "type": "string"
         },
         "OctoVersionFullSemVer": {
-          "type": "integer"
+          "type": "string"
         },
         "OctoVersionMajor": {
           "type": "integer"
