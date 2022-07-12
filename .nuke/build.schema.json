@@ -45,15 +45,6 @@
         "OctoVersionBranch": {
           "type": "string"
         },
-        "OctoVersionFullSemVer": {
-          "type": "string"
-        },
-        "OctoVersionMajor": {
-          "type": "integer"
-        },
-        "OctoVersionMinor": {
-          "type": "integer"
-        },
         "OctoVersionPatch": {
           "type": "integer"
         },
