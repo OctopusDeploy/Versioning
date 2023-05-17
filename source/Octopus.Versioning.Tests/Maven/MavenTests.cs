@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using Octopus.Versioning.Maven;
 
@@ -34,6 +34,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual(0, version.Patch);
             Assert.AreEqual("", version.Release);
             Assert.AreEqual(0, version.Revision);
+            Assert.AreEqual("1.0.0", version.Core);
         }
 
         [Test]
@@ -47,6 +48,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual(4, version.Patch);
             Assert.AreEqual("beta-5", version.Release);
             Assert.AreEqual(0, version.Revision);
+            Assert.AreEqual("2.3.4", version.Core);
         }
 
         [Test]
@@ -60,6 +62,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual(4, version.Patch);
             Assert.AreEqual("beta_5", version.Release);
             Assert.AreEqual(0, version.Revision);
+            Assert.AreEqual("2.3.4", version.Core);
         }
 
         [Test]
@@ -73,6 +76,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual(3, version.Patch);
             Assert.AreEqual("SNAPSHOT", version.Release);
             Assert.AreEqual(0, version.Revision);
+            Assert.AreEqual("1.2.3", version.Core);
         }
 
         [Test]
@@ -86,6 +90,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual(17, version.Patch);
             Assert.AreEqual("SNAPSHOT", version.Release);
             Assert.AreEqual(0, version.Revision);
+            Assert.AreEqual("2.0.17", version.Core);
         }
 
         [Test]
@@ -99,6 +104,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual(3, version.Patch);
             Assert.AreEqual("", version.Release);
             Assert.AreEqual(4, version.Revision);
+            Assert.AreEqual("1.2.3.4", version.Core);
         }
 
         [Test]
@@ -112,6 +118,7 @@ namespace Octopus.Versioning.Tests.Versions
             Assert.AreEqual(3, version.Patch);
             Assert.AreEqual("-SNAPSHOT", version.Release);
             Assert.AreEqual(4, version.Revision);
+            Assert.AreEqual("1.2.3.4", version.Core);
         }
 
         [Test]

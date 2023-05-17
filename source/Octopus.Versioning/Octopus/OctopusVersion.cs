@@ -43,6 +43,7 @@ namespace Octopus.Versioning.Octopus
         public virtual bool HasMetadata => !string.IsNullOrWhiteSpace(Metadata);
         public virtual string OriginalString { get; }
         public virtual VersionFormat Format => VersionFormat.Octopus;
+        public string Core => Revision > 0 ? $"{Major}.{Minor}.{Patch}.{Revision}" : $"{Major}.{Minor}.{Patch}";
 
         public virtual int CompareTo(object obj)
         {

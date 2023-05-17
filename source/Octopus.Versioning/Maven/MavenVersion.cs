@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -59,6 +59,7 @@ namespace Octopus.Versioning.Maven
         public string OriginalString { get; }
 
         public VersionFormat Format => VersionFormat.Maven;
+        public string Core => Revision > 0 ? $"{Major}.{Minor}.{Patch}.{Revision}" : $"{Major}.{Minor}.{Patch}";
 
         public int CompareTo(object obj)
         {

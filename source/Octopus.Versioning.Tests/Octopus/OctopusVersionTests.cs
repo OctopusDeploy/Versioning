@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using NUnit.Framework;
 using Octopus.Versioning.Maven;
@@ -29,7 +29,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "0.0.4")]
         [TestCase("0.0.4.1",
             0,
             0,
@@ -38,7 +39,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "0.0.4.1")]
         [TestCase("1.2.3",
             1,
             2,
@@ -47,7 +49,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "1.2.3")]
         [TestCase("1.2.3.4",
             1,
             2,
@@ -56,7 +59,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "1.2.3.4")]
         [TestCase("10.20.30",
             10,
             20,
@@ -65,7 +69,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "10.20.30")]
         [TestCase("1.1.2-prerelease+meta",
             1,
             1,
@@ -74,7 +79,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "prerelease",
             "prerelease",
             "",
-            "meta")]
+            "meta",
+            "1.1.2")]
         [TestCase("1.1.2+meta",
             1,
             1,
@@ -83,7 +89,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "meta")]
+            "meta",
+            "1.1.2")]
         [TestCase("1.1.2+meta-valid",
             1,
             1,
@@ -92,7 +99,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "meta-valid")]
+            "meta-valid",
+            "1.1.2")]
         [TestCase("1.0.0-alpha",
             1,
             0,
@@ -101,7 +109,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "alpha",
             "alpha",
             "",
-            "")]
+            "",
+            "1.0.0")]
         [TestCase("1.0.0-alpha.beta",
             1,
             0,
@@ -110,7 +119,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "alpha.beta",
             "alpha",
             "beta",
-            "")]
+            "",
+            "1.0.0")]
         [TestCase("1.0.0-alpha.beta1",
             1,
             0,
@@ -119,7 +129,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "alpha.beta1",
             "alpha",
             "beta1",
-            "")]
+            "",
+            "1.0.0")]
         [TestCase("1.0.0-alpha.1",
             1,
             0,
@@ -128,7 +139,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "alpha.1",
             "alpha",
             "1",
-            "")]
+            "",
+            "1.0.0")]
         [TestCase("1.0.0-alpha0.valid",
             1,
             0,
@@ -137,7 +149,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "alpha0.valid",
             "alpha0",
             "valid",
-            "")]
+            "",
+            "1.0.0")]
         [TestCase("1.0.0-alpha.0valid",
             1,
             0,
@@ -146,7 +159,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "alpha.0valid",
             "alpha",
             "0valid",
-            "")]
+            "",
+            "1.0.0")]
         [TestCase("1.0.0-alpha-a.b-c-somethinglong+build.1-aef.1-its-okay",
             1,
             0,
@@ -155,7 +169,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "alpha-a.b-c-somethinglong",
             "alpha",
             "a.b-c-somethinglong",
-            "build.1-aef.1-its-okay")]
+            "build.1-aef.1-its-okay",
+            "1.0.0")]
         [TestCase("1.0.0-rc.1+build.1",
             1,
             0,
@@ -164,7 +179,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "rc.1",
             "rc",
             "1",
-            "build.1")]
+            "build.1",
+            "1.0.0")]
         [TestCase("2.0.0-rc.1+build.123",
             2,
             0,
@@ -173,7 +189,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "rc.1",
             "rc",
             "1",
-            "build.123")]
+            "build.123",
+            "2.0.0")]
         [TestCase("1.2.3-beta",
             1,
             2,
@@ -182,7 +199,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "beta",
             "beta",
             "",
-            "")]
+            "",
+            "1.2.3")]
         [TestCase("10.2.3-DEV-SNAPSHOT",
             10,
             2,
@@ -191,7 +209,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "DEV-SNAPSHOT",
             "DEV",
             "SNAPSHOT",
-            "")]
+            "",
+            "10.2.3")]
         [TestCase("1.2.3-SNAPSHOT-123",
             1,
             2,
@@ -200,7 +219,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "SNAPSHOT-123",
             "SNAPSHOT",
             "123",
-            "")]
+            "",
+            "1.2.3")]
         [TestCase("1.0.0",
             1,
             0,
@@ -209,7 +229,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "1.0.0")]
         [TestCase("2.0.0",
             2,
             0,
@@ -218,7 +239,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "2.0.0")]
         [TestCase("1.1.7",
             1,
             1,
@@ -227,7 +249,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "1.1.7")]
         [TestCase("2.0.0+build.1848",
             2,
             0,
@@ -236,7 +259,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "build.1848")]
+            "build.1848",
+            "2.0.0")]
         [TestCase("2.0.1-alpha.1227",
             2,
             0,
@@ -245,7 +269,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "alpha.1227",
             "alpha",
             "1227",
-            "")]
+            "",
+            "2.0.1")]
         [TestCase("1.0.0-alpha+beta",
             1,
             0,
@@ -254,7 +279,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "alpha",
             "alpha",
             "",
-            "beta")]
+            "beta",
+            "1.0.0")]
         [TestCase("1.2.3----RC-SNAPSHOT.12.9.1--.12+788",
             1,
             2,
@@ -263,7 +289,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "---RC-SNAPSHOT.12.9.1--.12",
             "",
             "--RC-SNAPSHOT.12.9.1--.12",
-            "788")]
+            "788",
+            "1.2.3")]
         [TestCase("1.2.3----R-S.12.9.1--.12+meta",
             1,
             2,
@@ -272,7 +299,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "---R-S.12.9.1--.12",
             "",
             "--R-S.12.9.1--.12",
-            "meta")]
+            "meta",
+            "1.2.3")]
         [TestCase("1.2.3----RC-SNAPSHOT.12.9.1--.12",
             1,
             2,
@@ -281,7 +309,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "---RC-SNAPSHOT.12.9.1--.12",
             "",
             "--RC-SNAPSHOT.12.9.1--.12",
-            "")]
+            "",
+            "1.2.3")]
         [TestCase("1.0.0+0.build.1-rc.10000aaa-kk-0.1",
             1,
             0,
@@ -290,7 +319,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "0.build.1-rc.10000aaa-kk-0.1")]
+            "0.build.1-rc.10000aaa-kk-0.1",
+            "1.0.0")]
         [TestCase("99999999.99999999.99999999",
             99999999,
             99999999,
@@ -299,7 +329,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "99999999.99999999.99999999")]
         [TestCase("0.0.0-foo",
             0,
             0,
@@ -308,7 +339,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "foo",
             "foo",
             "",
-            "")]
+            "",
+            "0.0.0")]
         [TestCase("0.0.0",
             0,
             0,
@@ -317,7 +349,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "0.0.0")]
         [TestCase("1.2",
             1,
             2,
@@ -326,7 +359,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "1.2.0")]
         [TestCase("1",
             1,
             0,
@@ -335,7 +369,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "1.0.0")]
         [TestCase("01.1.1",
             1,
             1,
@@ -344,7 +379,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "1.1.1")]
         [TestCase("1.01.1",
             1,
             1,
@@ -353,7 +389,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "1.1.1")]
         [TestCase("1.1.01",
             1,
             1,
@@ -362,7 +399,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "",
             "",
             "",
-            "")]
+            "",
+            "1.1.1")]
         [TestCase("1.1.01-9999999999999999999999999",
             1,
             1,
@@ -371,7 +409,8 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "9999999999999999999999999",
             "",
-            "")]
+            "",
+                "1.1.1")]
         [TestCase("1.1.01-9999999999999999999999999+meta ",
             1,
             1,
@@ -381,6 +420,7 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "",
             "meta",
+            "1.1.1",
             Description = "Test that trailing whitespace after metadata is treated the same way in SemVerFactory and OctopusVersionParser")]
         [TestCase("1.1.01-9999999999999999999999999 ",
             1,
@@ -391,6 +431,7 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "",
             "",
+            "1.1.1",
             Description = "Test that trailing whitespace is treated the same way in SemVerFactory and OctopusVersionParser")]
         [TestCase(" 1.1.01-9999999999999999999999999 ",
             1,
@@ -401,6 +442,7 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "",
             "",
+            "1.1.1",
             Description = "Test that leading whitespace is treated the same way in SemVerFactory and OctopusVersionParser")]
         [TestCase(" 1 .1.01-9999999999999999999999999",
             1,
@@ -411,6 +453,7 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "",
             "",
+            "1.1.1",
             Description = "Test that whitespace around the major integer is treated the same way in SemVerFactory and OctopusVersionParser")]
         [TestCase("1. 1 .01-9999999999999999999999999",
             1,
@@ -421,6 +464,7 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "",
             "",
+            "1.1.1",
             Description = "Test that whitespace around the minor integer is treated the same way in SemVerFactory and OctopusVersionParser")]
         [TestCase("1.1. 01 -9999999999999999999999999",
             1,
@@ -431,6 +475,7 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "",
             "",
+            "1.1.1",
             Description = "Test that whitespace around the patch integer is treated the same way in SemVerFactory and OctopusVersionParser")]
         [TestCase("1.1.01. 1 -9999999999999999999999999",
             1,
@@ -441,6 +486,7 @@ namespace Octopus.Versioning.Tests.Octopus
             "9999999999999999999999999",
             "",
             "",
+            "1.1.1.1",
             Description = "Test that whitespace around the release integer is treated the same way in SemVerFactory and OctopusVersionParser")]
         public void TestSemverVersions(string version,
             int major,
@@ -450,7 +496,8 @@ namespace Octopus.Versioning.Tests.Octopus
             string prerelease,
             string prereleasePrefix,
             string prereleaseCounter,
-            string metadata)
+            string metadata,
+            string core)
         {
             var semverParsed = SemVerFactory.Parse(version);
             var parsed = OctopusVersionParser.Parse(version);
@@ -470,6 +517,7 @@ namespace Octopus.Versioning.Tests.Octopus
 
             Assert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
             Assert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
+            Assert.AreEqual(core, parsed.Core);
         }
 
         [Test]

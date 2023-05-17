@@ -127,6 +127,7 @@ namespace Octopus.Versioning.Semver
 
         public virtual string? OriginalString => null;
         public VersionFormat Format => VersionFormat.Semver;
+        public string Core => $"{Major}.{Minor}.{Patch}";
 
         /// <summary>
         /// Build metadata attached to the version.
