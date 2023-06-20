@@ -8,12 +8,15 @@ on:
       - '**'
     tags-ignore:
       - '**'
+
   pull_request:
     types: [opened, synchronize, reopened]
+
   schedule:
     # Daily 5am australian/brisbane time
-    - cron: '19 0 * * *'
-    # Allows you to run this workflow manually from the Actions tab
+    - cron: '0 19 * * *'
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
@@ -28,6 +31,11 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
+
+      # Adjustment is done prior to Nuke build as OCTOVERSION information is included in the result package.
+      - name: Append OCTOVERSION_CurrentBranch with -nightly (for scheduled)
+        if: github.event_name == 'schedule'
+        run: echo "OCTOVERSION_CurrentBranch=${{ env.OCTOVERSION_CurrentBranch }}-nightly" >> $env:GITHUB_ENV
 
       - name: Nuke Build 🏗
         id: build
