@@ -5,7 +5,8 @@ on:
   # Triggers the workflow on pull request events and merges/pushes to main
   push:
     branches:
-      - '**'
+      - main
+      - release/*
     tags-ignore:
       - '**'
 
