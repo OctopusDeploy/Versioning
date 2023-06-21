@@ -5,16 +5,27 @@ on:
   # Triggers the workflow on pull request events and merges/pushes to main
   push:
     branches:
-      - '**'
+      - main
+      - release/*
     tags-ignore:
       - '**'
+
   pull_request:
     types: [opened, synchronize, reopened]
+
   schedule:
     # Daily 5am australian/brisbane time
-    - cron: '19 0 * * *'
-    # Allows you to run this workflow manually from the Actions tab
+    - cron: '0 19 * * *'
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+# Pass branch and patch number to Nuke OctoVersion
+# (for pull_request events we override the /refs/pull/xx/merge branch to the PR's head branch)
+env:
+  OCTOVERSION_CurrentBranch: ${{ github.head_ref || github.ref }}
+  OCTOVERSION_Patch: ${{ github.run_number }}
+  AssentNonInteractive: true
 
 jobs:
   build:
@@ -29,19 +40,19 @@ jobs:
         with:
           dotnet-version: 6.0.x
 
+      # Adjustment is done prior to Nuke build as OCTOVERSION information is included in the result package.
+      - name: Append OCTOVERSION_CurrentBranch with -nightly (for scheduled)
+        if: github.event_name == 'schedule'
+        run: echo "OCTOVERSION_CurrentBranch=${{ env.OCTOVERSION_CurrentBranch }}-nightly" >> $env:GITHUB_ENV
+
       - name: Nuke Build 🏗
         id: build
         shell: bash
-        # Pass branch and patch number to Nuke OctoVersion
-        # (for pull_request events we override the /refs/pull/xx/merge branch to the PR's head branch)
-        env:
-          OCTOVERSION_CurrentBranch: ${{ github.head_ref || github.ref }}
-          OCTOVERSION_Patch: ${{ github.run_number }}
         run: ./build.sh
         
       - name: Tag release (when not pre-release) 🏷️
         id: github-tag
-        if: ${{ !contains( steps.build.outputs.octoversion_fullsemver, '-' ) }}
+        if: ${{ github.event_name != 'schedule' && !contains( steps.build.outputs.octoversion_fullsemver, '-' ) }}
         uses: actions/github-script@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
