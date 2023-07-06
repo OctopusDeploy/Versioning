@@ -15,12 +15,17 @@ using Nuke.Common.Tools.OctoVersion;
 [UnsetVisualStudioEnvironmentVariables]
 class Build : NukeBuild
 {
+    const string CiBranchNameEnvVariable = "OCTOVERSION_CurrentBranch";
+
     readonly Configuration Configuration = Configuration.Release;
 
     [Solution] readonly Solution Solution;
 
     [Parameter] readonly bool? OctoVersionAutoDetectBranch = NukeBuild.IsLocalBuild;
-    [Parameter] readonly string OctoVersionBranch;
+
+    [Parameter("Branch name for OctoVersion to use to calculate the version number. Can be set via the environment variable " + CiBranchNameEnvVariable + ".", Name = CiBranchNameEnvVariable)]
+    readonly string OctoVersionBranch;
+
     [Parameter] readonly int? OctoVersionFullSemVer;
     [Parameter] readonly int? OctoVersionMajor;
     [Parameter] readonly int? OctoVersionMinor;
@@ -92,7 +97,7 @@ class Build : NukeBuild
         .Executes(() =>
         {
             Logger.Info("Packing Octopus Versioning v{0}", OctoVersionInfo.FullSemVer);
-            
+
             // This is done to pass the data to github actions
             Console.Out.WriteLine($"::set-output name=semver::{OctoVersionInfo.FullSemVer}");
             Console.Out.WriteLine($"::set-output name=prerelease_tag::{OctoVersionInfo.PreReleaseTagWithDash}");
