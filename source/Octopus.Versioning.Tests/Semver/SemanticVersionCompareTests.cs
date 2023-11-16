@@ -26,5 +26,22 @@ namespace Octopus.Versioning.Tests.Semver
 
             Assert.AreNotEqual(ver1.GetHashCode(), ver2.GetHashCode());
         }
+
+        [Test]
+        public void TestVersionWithPrefixedVIsSameAsWithout()
+        {
+            var ver1 = VersionFactory.CreateSemanticVersion("v1.2.3");
+            var ver2 = VersionFactory.CreateSemanticVersion("1.2.3");
+
+            Assert.AreEqual(ver1.GetHashCode(), ver2.GetHashCode());
+        }
+
+        [Test]
+        public void VIsInOriginalVersionWhenSemVerHasPrefixV()
+        {
+            var ver1 = VersionFactory.CreateSemanticVersion("v1.2.3");
+
+            Assert.AreEqual(ver1.OriginalString, "v1.2.3");
+        }
     }
 }
