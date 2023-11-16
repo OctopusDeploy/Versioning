@@ -46,14 +46,19 @@ namespace Octopus.Versioning.Semver
         /// </summary>
         public static SemanticVersion? TryCreateVersion(string value, bool preserveMissingComponents = false)
         {
-            SemanticVersion? version = null;
+            // trim the value before passing it in since we're not strict here
+            value = value?.Trim();
+            var originalVersion = value;
 
-            if (value != null)
+            // also trim the leading v if it exists
+            if (value?.FirstOrDefault() == 'v')
             {
-                Version? systemVersion = null;
+                value = value.Substring(1);
+            }
 
-                // trim the value before passing it in since we not strict here
-                var sections = utils.ParseSections(value.Trim());
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                var sections = utils.ParseSections(value);
 
                 // null indicates the string did not meet the rules
                 if (sections != null
@@ -65,7 +70,7 @@ namespace Octopus.Versioning.Semver
                         // System.Version requires at least a 2 part version to parse.
                         versionPart += ".0";
 
-                    if (Version.TryParse(versionPart, out systemVersion))
+                    if (Version.TryParse(versionPart, out var systemVersion))
                     {
                         // labels
                         if (sections.Item2 != null
@@ -81,17 +86,13 @@ namespace Octopus.Versioning.Semver
                             ? systemVersion
                             : utils.NormalizeVersionValue(systemVersion);
 
-                        var originalVersion = value;
-
                         if (originalVersion.IndexOf(' ') > -1)
                             originalVersion = value.Replace(" ", "");
 
-                        version = new SemanticVersion(ver,
+                        return new SemanticVersion(ver,
                             sections.Item2,
                             sections.Item3 ?? string.Empty,
                             originalVersion);
-
-                        return version;
                     }
                 }
             }
