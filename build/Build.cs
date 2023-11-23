@@ -24,7 +24,7 @@ class Build : NukeBuild
     [Parameter("Branch name for OctoVersion to use to calculate the version number. Can be set via the environment variable " + CiBranchNameEnvVariable + ".", Name = CiBranchNameEnvVariable)]
     readonly string OctoVersionBranch = null!; // assigned by Nuke via reflection
 
-    [Parameter] readonly int? OctoVersionFullSemVer;
+    [Parameter] readonly string? OctoVersionFullSemVer;
     [Parameter] readonly int? OctoVersionMajor;
     [Parameter] readonly int? OctoVersionMinor;
     [Parameter] readonly int? OctoVersionPatch;
