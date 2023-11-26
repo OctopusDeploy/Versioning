@@ -21,8 +21,10 @@ class Build : NukeBuild
 
     [Parameter] readonly bool? OctoVersionAutoDetectBranch = NukeBuild.IsLocalBuild;
 
+#pragma warning disable CS0414 // Field assigned but never used
     [Parameter("Branch name for OctoVersion to use to calculate the version number. Can be set via the environment variable " + CiBranchNameEnvVariable + ".", Name = CiBranchNameEnvVariable)]
     readonly string OctoVersionBranch = null!; // assigned by Nuke via reflection
+#pragma warning restore CS0414
 
     [Parameter] readonly string? OctoVersionFullSemVer;
     [Parameter] readonly int? OctoVersionMajor;
