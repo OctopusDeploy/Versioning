@@ -1,7 +1,5 @@
 using System;
-using System.Linq;
 using Nuke.Common;
-using Nuke.Common.CI;
 using Nuke.Common.Execution;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
@@ -10,8 +8,8 @@ using Nuke.Common.Utilities.Collections;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using Nuke.Common.Tools.OctoVersion;
+using Serilog;
 
-[CheckBuildProjectConfigurations]
 [UnsetVisualStudioEnvironmentVariables]
 class Build : NukeBuild
 {
@@ -19,29 +17,30 @@ class Build : NukeBuild
 
     readonly Configuration Configuration = Configuration.Release;
 
-    [Solution] readonly Solution Solution;
+    [Solution] readonly Solution Solution = null!; // assigned by Nuke via reflection
 
     [Parameter] readonly bool? OctoVersionAutoDetectBranch = NukeBuild.IsLocalBuild;
 
+#pragma warning disable CS0414 // Field assigned but never used
     [Parameter("Branch name for OctoVersion to use to calculate the version number. Can be set via the environment variable " + CiBranchNameEnvVariable + ".", Name = CiBranchNameEnvVariable)]
-    readonly string OctoVersionBranch;
+    readonly string OctoVersionBranch = null!; // assigned by Nuke via reflection
+#pragma warning restore CS0414
 
-    [Parameter] readonly int? OctoVersionFullSemVer;
+    [Parameter] readonly string? OctoVersionFullSemVer;
     [Parameter] readonly int? OctoVersionMajor;
     [Parameter] readonly int? OctoVersionMinor;
     [Parameter] readonly int? OctoVersionPatch;
 
     [Required]
     [OctoVersion(
-        AutoDetectBranchParameter = nameof(OctoVersionAutoDetectBranch),
-        BranchParameter = nameof(OctoVersionBranch),
-        FullSemVerParameter = nameof(OctoVersionFullSemVer),
-        MajorParameter = nameof(OctoVersionMajor),
-        MinorParameter = nameof(OctoVersionMinor),
-        PatchParameter = nameof(OctoVersionPatch),
-        Framework = "net6.0")]
-
-    readonly OctoVersionInfo OctoVersionInfo;
+        AutoDetectBranchMember = nameof(OctoVersionAutoDetectBranch),
+        BranchMember = nameof(OctoVersionBranch),
+        FullSemVerMember = nameof(OctoVersionFullSemVer),
+        MajorMember = nameof(OctoVersionMajor),
+        MinorMember = nameof(OctoVersionMinor),
+        PatchMember = nameof(OctoVersionPatch),
+        Framework = "net8.0")]
+    readonly OctoVersionInfo OctoVersionInfo = null!; // assigned by Nuke via reflection
 
     static AbsolutePath SourceDirectory => RootDirectory / "source";
     static AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
@@ -52,9 +51,9 @@ class Build : NukeBuild
         .Before(Restore)
         .Executes(() =>
         {
-            SourceDirectory.GlobDirectories("**/bin", "**/obj", "**/TestResults").ForEach(DeleteDirectory);
-            EnsureCleanDirectory(ArtifactsDirectory);
-            EnsureCleanDirectory(PublishDirectory);
+            SourceDirectory.GlobDirectories("**/bin", "**/obj", "**/TestResults").ForEach(x => x.DeleteDirectory());
+            ArtifactsDirectory.CreateOrCleanDirectory();
+            PublishDirectory.CreateOrCleanDirectory();
         });
 
     Target Restore => _ => _
@@ -70,7 +69,7 @@ class Build : NukeBuild
         .DependsOn(Restore)
         .Executes(() =>
         {
-            Logger.Info("Building Octopus Versioning v{0}", OctoVersionInfo.FullSemVer);
+            Log.Information("Building Octopus Versioning v{0}", OctoVersionInfo.FullSemVer);
 
             DotNetBuild(_ => _
                 .SetProjectFile(Solution)
@@ -96,7 +95,7 @@ class Build : NukeBuild
         .Produces(ArtifactsDirectory / "*.nupkg")
         .Executes(() =>
         {
-            Logger.Info("Packing Octopus Versioning v{0}", OctoVersionInfo.FullSemVer);
+            Log.Information("Packing Octopus Versioning v{0}", OctoVersionInfo.FullSemVer);
 
             // This is done to pass the data to github actions
             Console.Out.WriteLine($"::set-output name=semver::{OctoVersionInfo.FullSemVer}");
@@ -118,7 +117,7 @@ class Build : NukeBuild
         .TriggeredBy(Pack)
         .Executes(() =>
         {
-            EnsureExistingDirectory(LocalPackagesDir);
+            LocalPackagesDir.CreateDirectory();
             ArtifactsDirectory.GlobFiles("*.nupkg")
                 .ForEach(package =>
                 {
