@@ -4,6 +4,7 @@ using Octopus.Versioning.Docker;
 using Octopus.Versioning.Maven;
 using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
+using Octopus.Versioning.Unsortable;
 
 namespace Octopus.Versioning
 {
@@ -19,6 +20,8 @@ namespace Octopus.Versioning
                     return CreateDockerTag(input);
                 case VersionFormat.Octopus:
                     return CreateOctopusVersion(input);
+                case VersionFormat.Unsortable:
+                    return CreateUnsortableVersion(input);
                 default:
                     return CreateSemanticVersion(input);
             }
@@ -34,6 +37,8 @@ namespace Octopus.Versioning
                     return TryCreateDockerTag(input);
                 case VersionFormat.Octopus:
                     return TryCreateOctopusVersion(input);
+                case VersionFormat.Unsortable:
+                    return TryCreateUnsortableVersion(input);
                 default:
                     return TryCreateSemanticVersion(input);
             }
@@ -147,6 +152,23 @@ namespace Octopus.Versioning
             catch
             {
                 // Version fields that are larger than ints are not supported and will result in an exception.
+                return null;
+            }
+        }
+        
+        public static IVersion CreateUnsortableVersion(string input)
+        {
+            return new UnsortableVersionParser().Parse(input);
+        }
+
+        public static IVersion? TryCreateUnsortableVersion(string input)
+        {
+            try
+            {
+                return CreateUnsortableVersion(input);
+            }
+            catch
+            {
                 return null;
             }
         }
