@@ -31,11 +31,11 @@ namespace Octopus.Versioning.Octopus
             @$"\s*(?<{Prefix}>v|V)?" +
             // Get the major version number
             @$"\s*(?<{Major}>\d+\b)\s*" +
-            // Get the minor version number, delimited by a period, comma, dash or underscore
+            // Get the minor version number, delimited by a period
             @$"(?:\.\s*(?<{Minor}>\d+\b)\s*)?" +
-            // Get the patch version number, delimited by a period, comma, dash or underscore
+            // Get the patch version number, delimited by a period
             @$"(?:\.\s*(?<{Patch}>\d+\b)\s*)?" +
-            // Get the revision version number, delimited by a period, comma, dash or underscore
+            // Get the revision version number, delimited by a period
             @$"(?:\.\s*(?<{Revision}>\d+\b)\s*)?)?" +
             // Everything after the last digit and before the plus is the prerelease
             @$"(?:[.\-_\\])?(?<{Prerelease}>(?<{PrereleasePrefix}>[A-Za-z0-9]*?)([.\-_\\](?<{PrereleaseCounter}>[A-Za-z0-9.\-_\\]*?)?)?)?" +
