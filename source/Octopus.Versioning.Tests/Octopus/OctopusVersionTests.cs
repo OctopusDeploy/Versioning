@@ -683,32 +683,6 @@ namespace Octopus.Versioning.Tests.Octopus
             "0",
             "alpha",
             "")]
-        [TestCase("1_0_alpha",
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            "",
-            "0_alpha",
-            "0",
-            "alpha",
-            "")]
-        [TestCase("1_0alpha",
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            "",
-            "0alpha",
-            "0alpha",
-            "",
-            "")]
         [TestCase("1.0a1-SNAPSHOT",
             1,
             0,
@@ -718,8 +692,8 @@ namespace Octopus.Versioning.Tests.Octopus
             0,
             0,
             "",
-            "a1-SNAPSHOT",
-            "a1",
+            "0a1-SNAPSHOT",
+            "0a1",
             "SNAPSHOT",
             "")]
         [TestCase("1-2.3-SNAPSHOT",
@@ -1076,6 +1050,47 @@ namespace Octopus.Versioning.Tests.Octopus
             Assert.AreEqual(octoVersion.OriginalString, semanticVersion.OriginalString);
         }
 
+        [Test]
+        [TestCase("123",
+            123,
+            0,
+            0,
+            0,
+            "")]
+        [TestCase("123ABC",
+            0,
+            0,
+            0,
+            0,
+            "123ABC")]
+        [TestCase("123ABC-CBC",
+            0,
+            0,
+            0,
+            0,
+            "123ABC-CBC")]
+        [TestCase("123.123.123.123",
+            123,
+            123,
+            123,
+            123,
+            "")]
+        [TestCase("123.123ABC.123",
+            123,
+            0,
+            0,
+            0,
+            "123ABC.123")]
+        public void TestVersionNumbersAreDelimited(string inputVersion, int major, int minor, int patch, int revision, string release)
+        {
+            var parsedVersion = OctopusVersionParser.Parse(inputVersion);
+            Assert.AreEqual(major, parsedVersion.Major);
+            Assert.AreEqual(minor, parsedVersion.Minor);
+            Assert.AreEqual(patch, parsedVersion.Patch);
+            Assert.AreEqual(revision, parsedVersion.Revision);
+            Assert.AreEqual(release, parsedVersion.Release);
+        }
+
         public static string RandomString(int length)
         {
             const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-.\\+";
@@ -1083,5 +1098,6 @@ namespace Octopus.Versioning.Tests.Octopus
                 .Select(s => s[Random.Next(s.Length)])
                 .ToArray());
         }
+        
     }
 }
