@@ -1081,7 +1081,25 @@ namespace Octopus.Versioning.Tests.Octopus
             0,
             0,
             "123ABC.123")]
-        public void TestVersionNumbersAreDelimited(string inputVersion, int major, int minor, int patch, int revision, string release)
+        [TestCase("1.0_prerelease",
+            1,
+            0,
+            0,
+            0,
+            "prerelease")]
+        [TestCase("V1.0",
+            1,
+            0,
+            0,
+            0,
+            "")]
+        [TestCase("v1.0",
+            1,
+            0,
+            0,
+            0,
+            "")]
+        public void TestVersionNumberVariations(string inputVersion, int major, int minor, int patch, int revision, string release)
         {
             var parsedVersion = OctopusVersionParser.Parse(inputVersion);
             Assert.AreEqual(major, parsedVersion.Major);

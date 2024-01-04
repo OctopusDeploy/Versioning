@@ -30,13 +30,13 @@ namespace Octopus.Versioning.Octopus
             // Versions can start with an optional V
             @$"\s*(?<{Prefix}>v|V)?" +
             // Get the major version number
-            @$"\s*(?<{Major}>\d+\b)\s*" +
+            @$"\s*(?<{Major}>\d+(?=\b|_))\s*" +
             // Get the minor version number, delimited by a period
-            @$"(?:\.\s*(?<{Minor}>\d+\b)\s*)?" +
+            @$"(?:\.\s*(?<{Minor}>\d+(?=\b|_))\s*)?" +
             // Get the patch version number, delimited by a period
-            @$"(?:\.\s*(?<{Patch}>\d+\b)\s*)?" +
+            @$"(?:\.\s*(?<{Patch}>\d+(?=\b|_))\s*)?" +
             // Get the revision version number, delimited by a period
-            @$"(?:\.\s*(?<{Revision}>\d+\b)\s*)?)?" +
+            @$"(?:\.\s*(?<{Revision}>\d+(?=\b|_))\s*)?)?" +
             // Everything after the last digit and before the plus is the prerelease
             @$"(?:[.\-_\\])?(?<{Prerelease}>(?<{PrereleasePrefix}>[A-Za-z0-9]*?)([.\-_\\](?<{PrereleaseCounter}>[A-Za-z0-9.\-_\\]*?)?)?)?" +
             // The metadata is everything after the plus
