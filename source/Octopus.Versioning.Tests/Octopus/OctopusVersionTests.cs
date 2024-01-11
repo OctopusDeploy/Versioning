@@ -8,7 +8,7 @@ using Octopus.Versioning.Semver;
 namespace Octopus.Versioning.Tests.Octopus
 {
     [TestFixture]
-    public class OctopusSortableVersionTests
+    public class OctopusVersionTests
     {
         static readonly Random Random = new Random();
         static readonly OctopusVersionParser OctopusVersionParser = new OctopusVersionParser();

@@ -5,9 +5,9 @@ using System.Text.RegularExpressions;
 
 namespace Octopus.Versioning.Maven
 {
-    public class MavenSortableVersion : ISortableVersion
+    public class MavenVersion : ISortableVersion
     {
-        public MavenSortableVersion(int major,
+        public MavenVersion(int major,
             int minor,
             int patch,
             int revision,
@@ -63,7 +63,7 @@ namespace Octopus.Versioning.Maven
         public int CompareTo(object obj)
         {
             return new ComparableVersion(OriginalString)
-                .CompareTo(new ComparableVersion((obj as MavenSortableVersion)?.OriginalString ?? ""));
+                .CompareTo(new ComparableVersion((obj as MavenVersion)?.OriginalString ?? ""));
         }
 
         public override string ToString()

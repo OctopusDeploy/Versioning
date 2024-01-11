@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace Octopus.Versioning.Octopus
 {
-    public class OctopusSortableVersion : ISortableVersion
+    public class OctopusVersion : ISortableVersion
     {
-        public OctopusSortableVersion(string? prefix,
+        public OctopusVersion(string? prefix,
             int major,
             int minor,
             int patch,

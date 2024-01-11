@@ -107,7 +107,7 @@ namespace Octopus.Versioning
                     s = string.Format(CultureInfo.InvariantCulture, "{0}", sortableVersion.Patch);
                     break;
                 case 'r':
-                    var nuGetVersion = sortableVersion as SemanticSortableVersion;
+                    var nuGetVersion = sortableVersion as SemanticVersion;
                     s = string.Format(CultureInfo.InvariantCulture, "{0}", nuGetVersion != null && nuGetVersion.IsLegacyVersion ? nuGetVersion.Version.Revision : 0);
                     break;
             }
@@ -117,7 +117,7 @@ namespace Octopus.Versioning
 
         static string FormatVersion(ISortableVersion sortableVersion)
         {
-            var nuGetVersion = sortableVersion as SemanticSortableVersion;
+            var nuGetVersion = sortableVersion as SemanticVersion;
             var legacy = nuGetVersion != null && nuGetVersion.IsLegacyVersion;
 
             return string.Format(CultureInfo.InvariantCulture,

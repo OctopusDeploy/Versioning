@@ -82,7 +82,7 @@ namespace Octopus.Versioning.Semver
             combiner.AddObject(version.Minor);
             combiner.AddObject(version.Patch);
 
-            var nuGetVersion = version as SemanticSortableVersion;
+            var nuGetVersion = version as SemanticVersion;
             if (nuGetVersion != null && nuGetVersion.Revision > 0)
                 combiner.AddObject(nuGetVersion.Revision);
 
@@ -126,8 +126,8 @@ namespace Octopus.Versioning.Semver
             if (result != 0)
                 return result;
 
-            var legacyX = x as SemanticSortableVersion;
-            var legacyY = y as SemanticSortableVersion;
+            var legacyX = x as SemanticVersion;
+            var legacyY = y as SemanticVersion;
 
             result = CompareLegacyVersion(legacyX, legacyY);
             if (result != 0)
@@ -167,7 +167,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Compares the 4th digit of the version number.
         /// </summary>
-        static int CompareLegacyVersion(SemanticSortableVersion? legacyX, SemanticSortableVersion? legacyY)
+        static int CompareLegacyVersion(SemanticVersion? legacyX, SemanticVersion? legacyY)
         {
             var result = 0;
 

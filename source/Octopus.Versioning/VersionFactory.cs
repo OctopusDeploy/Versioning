@@ -56,22 +56,22 @@ namespace Octopus.Versioning
 
         public static ISortableVersion CreateSemanticVersion(int major, int minor, int patch, string releaseLabel)
         {
-            return new SemanticSortableVersion(major, minor, patch, releaseLabel);
+            return new SemanticVersion(major, minor, patch, releaseLabel);
         }
 
         public static ISortableVersion CreateSemanticVersion(int major, int minor, int patch)
         {
-            return new SemanticSortableVersion(major, minor, patch);
+            return new SemanticVersion(major, minor, patch);
         }
 
         public static ISortableVersion CreateSemanticVersion(int major, int minor, int patch, int revision)
         {
-            return new SemanticSortableVersion(major, minor, patch, revision);
+            return new SemanticVersion(major, minor, patch, revision);
         }
 
         public static ISortableVersion CreateSemanticVersion(Version version, string? releaseLabel = null, string? metadata = null)
         {
-            return new SemanticSortableVersion(version, releaseLabel, metadata);
+            return new SemanticVersion(version, releaseLabel, metadata);
         }
 
         public static ISortableVersion CreateSemanticVersion(int major,
@@ -82,7 +82,7 @@ namespace Octopus.Versioning
             string metadata,
             string originalVersion)
         {
-            return new SemanticSortableVersion(major,
+            return new SemanticVersion(major,
                 minor,
                 patch,
                 revision,
@@ -113,7 +113,7 @@ namespace Octopus.Versioning
             string metadata,
             string originalVersion)
         {
-            return new SemanticSortableVersion(
+            return new SemanticVersion(
                 version,
                 releaseLabels,
                 metadata,

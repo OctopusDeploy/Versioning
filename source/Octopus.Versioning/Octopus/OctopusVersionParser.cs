@@ -42,7 +42,7 @@ namespace Octopus.Versioning.Octopus
             // The metadata is everything after the plus
             $@"(?:\+(?<{Meta}>[A-Za-z0-9_\-.\\+]*?))?\s*$");
 
-        public OctopusSortableVersion Parse(string? version)
+        public OctopusVersion Parse(string? version)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace Octopus.Versioning.Octopus
                 if (!result.Success)
                     throw new ArgumentException("The supplied version was not valid");
 
-                return new OctopusSortableVersion(
+                return new OctopusVersion(
                     result.Groups[Prefix].Success ? result.Groups[Prefix].Value : string.Empty,
                     result.Groups[Major].Success ? int.Parse(result.Groups[Major].Value) : 0,
                     result.Groups[Minor].Success ? int.Parse(result.Groups[Minor].Value) : 0,
@@ -78,16 +78,16 @@ namespace Octopus.Versioning.Octopus
             }
         }
 
-        public bool TryParse(string version, out OctopusSortableVersion parsedSortableVersion)
+        public bool TryParse(string version, out OctopusVersion parsedVersion)
         {
             try
             {
-                parsedSortableVersion = Parse(version);
+                parsedVersion = Parse(version);
                 return true;
             }
             catch
             {
-                parsedSortableVersion = new OctopusSortableVersion(
+                parsedVersion = new OctopusVersion(
                     string.Empty,
                     0,
                     0,

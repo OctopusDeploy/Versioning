@@ -4,22 +4,22 @@ using Octopus.Versioning.Semver;
 
 namespace Octopus.Versioning.Docker
 {
-    public class DockerTag : OctopusSortableVersion
+    public class DockerTag : OctopusVersion
     {
         const string Latest = "latest";
         bool IsLatest => string.Compare(OriginalString, Latest, StringComparison.Ordinal) == 0;
 
-        public DockerTag(OctopusSortableVersion sortableVersion)
-            : base(sortableVersion.Prefix,
-                sortableVersion.Major,
-                sortableVersion.Minor,
-                sortableVersion.Patch,
-                sortableVersion.Revision,
-                sortableVersion.Release,
-                sortableVersion.ReleasePrefix,
-                sortableVersion.ReleaseCounter,
-                sortableVersion.Metadata,
-                sortableVersion.OriginalString)
+        public DockerTag(OctopusVersion version)
+            : base(version.Prefix,
+                version.Major,
+                version.Minor,
+                version.Patch,
+                version.Revision,
+                version.Release,
+                version.ReleasePrefix,
+                version.ReleaseCounter,
+                version.Metadata,
+                version.OriginalString)
         {
         }
 
