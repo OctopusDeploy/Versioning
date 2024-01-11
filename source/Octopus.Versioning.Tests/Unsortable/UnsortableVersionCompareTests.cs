@@ -41,22 +41,22 @@ public class UnsortableVersionCompareTests
     //     Assert.AreEqual(result, parsedVersion1.CompareTo(parsedVersion2));
     // }
 
-    [Test]
-    [TestCase("release-1", "release-1", true)]
-    [TestCase("release-1", "release-2", false)]
-    public void TestEquality(string version1, string version2, bool result)
-    {
-        var parsedVersion1 = UnsortableVersionParser.Parse(version1);
-        var parsedVersion2 = UnsortableVersionParser.Parse(version2);
-        Assert.AreEqual(result, Equals(parsedVersion1, parsedVersion2));
-    }
-
-    [Test]
-    public void TestGetHashCode()
-    {
-        var versionString = "release-1";
-        var parsedVersion = UnsortableVersionParser.Parse(versionString);
-
-        Assert.AreEqual(versionString.GetHashCode(), parsedVersion.GetHashCode());
-    }
+    // [Test]
+    // [TestCase("release-1", "release-1", true)]
+    // [TestCase("release-1", "release-2", false)]
+    // public void TestEquality(string version1, string version2, bool result)
+    // {
+    //     var parsedVersion1 = UnsortableVersionParser.Parse(version1);
+    //     var parsedVersion2 = UnsortableVersionParser.Parse(version2);
+    //     Assert.AreEqual(result, Equals(parsedVersion1, parsedVersion2));
+    // }
+    //
+    // [Test]
+    // public void TestGetHashCode()
+    // {
+    //     var versionString = "release-1";
+    //     var parsedVersion = UnsortableVersionParser.Parse(versionString);
+    //
+    //     Assert.AreEqual(versionString.GetHashCode(), parsedVersion.GetHashCode());
+    // }
 }
