@@ -21,7 +21,7 @@ namespace Octopus.Versioning
             if (argType == typeof(IFormattable))
                 formatted = ((IFormattable)arg).ToString(format, formatProvider);
             else if (!string.IsNullOrEmpty(format))
-                if (arg is IVersion version)
+                if (arg is ISortableVersion version)
                 {
                     // single char identifiers
                     if (format.Length == 1)
@@ -52,62 +52,62 @@ namespace Octopus.Versioning
         public object? GetFormat(Type formatType)
         {
             if (formatType == typeof(ICustomFormatter) ||
-                typeof(IVersion).IsAssignableFrom(formatType))
+                typeof(ISortableVersion).IsAssignableFrom(formatType))
                 return this;
 
             return null;
         }
 
-        static string GetNormalizedString(IVersion version)
+        static string GetNormalizedString(ISortableVersion sortableVersion)
         {
             var sb = new StringBuilder();
 
-            sb.Append(Format('V', version));
+            sb.Append(Format('V', sortableVersion));
 
-            if (version.IsPrerelease)
+            if (sortableVersion.IsPrerelease)
             {
                 sb.Append('-');
-                sb.Append(version.Release);
+                sb.Append(sortableVersion.Release);
             }
 
-            if (version.HasMetadata)
+            if (sortableVersion.HasMetadata)
             {
                 sb.Append('+');
-                sb.Append(version.Metadata);
+                sb.Append(sortableVersion.Metadata);
             }
 
             return sb.ToString();
         }
 
-        static string? Format(char c, IVersion version)
+        static string? Format(char c, ISortableVersion sortableVersion)
         {
             string? s = null;
 
             switch (c)
             {
                 case 'N':
-                    s = GetNormalizedString(version);
+                    s = GetNormalizedString(sortableVersion);
                     break;
                 case 'R':
-                    s = version.Release;
+                    s = sortableVersion.Release;
                     break;
                 case 'M':
-                    s = version.Metadata;
+                    s = sortableVersion.Metadata;
                     break;
                 case 'V':
-                    s = FormatVersion(version);
+                    s = FormatVersion(sortableVersion);
                     break;
                 case 'x':
-                    s = string.Format(CultureInfo.InvariantCulture, "{0}", version.Major);
+                    s = string.Format(CultureInfo.InvariantCulture, "{0}", sortableVersion.Major);
                     break;
                 case 'y':
-                    s = string.Format(CultureInfo.InvariantCulture, "{0}", version.Minor);
+                    s = string.Format(CultureInfo.InvariantCulture, "{0}", sortableVersion.Minor);
                     break;
                 case 'z':
-                    s = string.Format(CultureInfo.InvariantCulture, "{0}", version.Patch);
+                    s = string.Format(CultureInfo.InvariantCulture, "{0}", sortableVersion.Patch);
                     break;
                 case 'r':
-                    var nuGetVersion = version as SemanticVersion;
+                    var nuGetVersion = sortableVersion as SemanticSortableVersion;
                     s = string.Format(CultureInfo.InvariantCulture, "{0}", nuGetVersion != null && nuGetVersion.IsLegacyVersion ? nuGetVersion.Version.Revision : 0);
                     break;
             }
@@ -115,16 +115,16 @@ namespace Octopus.Versioning
             return s;
         }
 
-        static string FormatVersion(IVersion version)
+        static string FormatVersion(ISortableVersion sortableVersion)
         {
-            var nuGetVersion = version as SemanticVersion;
+            var nuGetVersion = sortableVersion as SemanticSortableVersion;
             var legacy = nuGetVersion != null && nuGetVersion.IsLegacyVersion;
 
             return string.Format(CultureInfo.InvariantCulture,
                 "{0}.{1}.{2}{3}",
-                version.Major,
-                version.Minor,
-                version.Patch,
+                sortableVersion.Major,
+                sortableVersion.Minor,
+                sortableVersion.Patch,
                 legacy ? string.Format(CultureInfo.InvariantCulture, ".{0}", nuGetVersion?.Version.Revision) : null);
         }
     }

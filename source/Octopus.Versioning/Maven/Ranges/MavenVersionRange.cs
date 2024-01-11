@@ -9,14 +9,14 @@ namespace Octopus.Versioning.Maven.Ranges
     public class MavenVersionRange
     {
         MavenVersionRange(
-            IVersion? recommendedVersion,
+            ISortableVersion? recommendedVersion,
             List<Restriction> restrictions )
         {
             RecommendedVersion = recommendedVersion;
             Restrictions = restrictions;
         }
 
-        public IVersion? RecommendedVersion { get; }
+        public ISortableVersion? RecommendedVersion { get; }
 
         public List<Restriction> Restrictions { get; }
 
@@ -56,9 +56,9 @@ namespace Octopus.Versioning.Maven.Ranges
 
             var restrictions = new List<Restriction>();
             var process = spec;
-            IVersion? version = null;
-            IVersion? upperBound = null;
-            IVersion? lowerBound = null;
+            ISortableVersion? version = null;
+            ISortableVersion? upperBound = null;
+            ISortableVersion? lowerBound = null;
 
             while ( process.StartsWith( "[" ) || process.StartsWith( "(" ) )
             {
@@ -117,9 +117,9 @@ namespace Octopus.Versioning.Maven.Ranges
                 if ( !lowerBoundInclusive || !upperBoundInclusive )
                     throw new InvalidVersionSpecificationException( "Single version must be surrounded by []: " + spec );
 
-                IVersion version = new MavenVersionParser().Parse( process );
+                ISortableVersion sortableVersion = new MavenVersionParser().Parse( process );
 
-                restriction = new Restriction( version, lowerBoundInclusive, version, upperBoundInclusive );
+                restriction = new Restriction( sortableVersion, lowerBoundInclusive, sortableVersion, upperBoundInclusive );
             }
             else
             {
@@ -128,10 +128,10 @@ namespace Octopus.Versioning.Maven.Ranges
                 if ( lowerBound.Equals( upperBound ) )
                     throw new InvalidVersionSpecificationException( "Range cannot have identical boundaries: " + spec );
 
-                IVersion? lowerVersion = null;
+                ISortableVersion? lowerVersion = null;
                 if ( lowerBound.Length > 0 )
                     lowerVersion = new MavenVersionParser().Parse( lowerBound );
-                IVersion? upperVersion = null;
+                ISortableVersion? upperVersion = null;
                 if ( upperBound.Length > 0 )
                     upperVersion = new MavenVersionParser().Parse( upperBound );
 
@@ -189,7 +189,7 @@ namespace Octopus.Versioning.Maven.Ranges
             else
                 restrictions = Intersection( r1, r2 );
 
-            IVersion? version = null;
+            ISortableVersion? version = null;
             if ( restrictions.Count > 0 )
             {
                 foreach (var r in restrictions)
@@ -248,8 +248,8 @@ namespace Octopus.Versioning.Maven.Ranges
                     if ( res1.UpperBound == null || res2.LowerBound == null
                         || res1.UpperBound.CompareTo( res2.LowerBound ) >= 0 )
                     {
-                        IVersion? lower;
-                        IVersion? upper;
+                        ISortableVersion? lower;
+                        ISortableVersion? upper;
                         bool lowerInclusive;
                         bool upperInclusive;
 
@@ -359,9 +359,9 @@ namespace Octopus.Versioning.Maven.Ranges
             return restrictions;
         }
 
-        public IVersion? GetSelectedVersion(  )
+        public ISortableVersion? GetSelectedVersion(  )
         {
-            IVersion? version = null;
+            ISortableVersion? version = null;
             if ( RecommendedVersion != null )
             {
                 version = RecommendedVersion;
@@ -397,11 +397,11 @@ namespace Octopus.Versioning.Maven.Ranges
             return string.Join(",", Restrictions);
         }
 
-        public IVersion? MatchVersion( List<IVersion> versions )
+        public ISortableVersion? MatchVersion( List<ISortableVersion> versions )
         {
             // TODO could be more efficient by sorting the list and then moving along the restrictions in order?
 
-            IVersion? matched = null;
+            ISortableVersion? matched = null;
             foreach (var version in versions)
                 if ( ContainsVersion( version ) )
                     // valid - check if it is greater than the currently matched version
@@ -410,10 +410,10 @@ namespace Octopus.Versioning.Maven.Ranges
             return matched;
         }
 
-        public bool ContainsVersion( IVersion version )
+        public bool ContainsVersion( ISortableVersion sortableVersion )
         {
             foreach (var restriction in Restrictions)
-                if ( restriction.ContainsVersion( version ) )
+                if ( restriction.ContainsVersion( sortableVersion ) )
                     return true;
             return false;
         }

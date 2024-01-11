@@ -14,7 +14,7 @@ namespace Octopus.Versioning.Tests.Semver
             var ver1 = VersionFactory.CreateSemanticVersion(version);
             var ver2 = VersionFactory.CreateSemanticVersion(version);
 
-            var items = new List<IVersion> {ver1, ver2}.GroupBy(i => i).ToList();
+            var items = new List<ISortableVersion> {ver1, ver2}.GroupBy(i => i).ToList();
             Assert.AreEqual(1, items.Count);
         }
 

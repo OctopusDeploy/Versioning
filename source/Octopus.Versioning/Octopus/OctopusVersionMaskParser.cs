@@ -47,7 +47,7 @@ namespace Octopus.Versioning.Octopus
                 new OctopusVersionMask.MetadataComponent(result.Groups[Meta]));
         }
 
-        public IVersion ApplyMask(string? mask, IVersion? currentVersion)
+        public ISortableVersion ApplyMask(string? mask, ISortableVersion? currentVersion)
         {
             var parsedMask = Parse(mask);
 

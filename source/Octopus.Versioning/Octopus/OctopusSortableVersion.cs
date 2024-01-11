@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace Octopus.Versioning.Octopus
 {
-    public class OctopusVersion : IVersion
+    public class OctopusSortableVersion : ISortableVersion
     {
-        public OctopusVersion(string? prefix,
+        public OctopusSortableVersion(string? prefix,
             int major,
             int minor,
             int patch,
@@ -46,7 +46,7 @@ namespace Octopus.Versioning.Octopus
 
         public virtual int CompareTo(object obj)
         {
-            if (obj is IVersion objVersion)
+            if (obj is ISortableVersion objVersion)
             {
                 if (Major.CompareTo(objVersion.Major) != 0) return Major.CompareTo(objVersion.Major);
                 if (Minor.CompareTo(objVersion.Minor) != 0) return Minor.CompareTo(objVersion.Minor);
@@ -83,7 +83,7 @@ namespace Octopus.Versioning.Octopus
 
         public override bool Equals(object obj)
         {
-            if (obj is IVersion objVersion)
+            if (obj is ISortableVersion objVersion)
                 return CompareTo(objVersion) == 0;
 
             return false;

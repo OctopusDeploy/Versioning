@@ -84,15 +84,15 @@ namespace Octopus.Versioning.Maven
 
         public MavenPackageID([NotNull]
             string? id,
-            IVersion version) : this(id)
+            ISortableVersion sortableVersion) : this(id)
         {
             if (string.IsNullOrWhiteSpace(id) || id.Split(':').Length != 2)
                 throw new ArgumentException("Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
 
-            if (version == null)
+            if (sortableVersion == null)
                 throw new ArgumentException("version can not be null");
 
-            Version = version.ToString();
+            Version = sortableVersion.ToString();
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace Octopus.Versioning.Maven
         public string? Classifier { get; }
         public string DisplayName => ToString(DISPLAY_DELIMITER);
 
-        public IVersion? SemanticVersion => Version == null ? null : new MavenVersionParser().Parse(Version);
+        public ISortableVersion? SemanticVersion => Version == null ? null : new MavenVersionParser().Parse(Version);
 
         /// <summary>
         /// The path to the metadata file for the artifact
@@ -248,7 +248,7 @@ namespace Octopus.Versioning.Maven
         /// <param name="version">The optional version</param>
         /// <returns>A MavenPackageID created to match the package id an optional packaging defined in the UI</returns>
         /// <exception cref="ArgumentException">thrown if the input is not in the correct format</exception>
-        public static MavenPackageID CreatePackageIdFromOctopusInput(string input, IVersion? version = null)
+        public static MavenPackageID CreatePackageIdFromOctopusInput(string input, ISortableVersion? version = null)
         {
             var splitVersion = input.Split(':').ToList();
             if (!(splitVersion.Count >= 2 && splitVersion.Count <= 4))

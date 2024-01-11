@@ -45,7 +45,7 @@ namespace Octopus.Versioning.Tests.Docker
             var ver1 = VersionFactory.CreateDockerTag(version);
             var ver2 = VersionFactory.CreateDockerTag(version);
 
-            var items = new List<IVersion> {ver1, ver2}.GroupBy(i => i).ToList();
+            var items = new List<ISortableVersion> {ver1, ver2}.GroupBy(i => i).ToList();
             Assert.AreEqual(1, items.Count);
         }
 

@@ -12,7 +12,7 @@ namespace Octopus.Versioning.Unsortable
             $@"(?:\+(?<{Meta}>[A-Za-z0-9_\-.\\+]*?))?\s*$"
         );
 
-        public UnsortableVersion Parse(string? version)
+        public UnsortableSortableVersion Parse(string? version)
         {
             if (string.IsNullOrWhiteSpace(version))
                 throw new ArgumentException("The version can not be an empty string");
@@ -28,23 +28,23 @@ namespace Octopus.Versioning.Unsortable
             if (!result.Success)
                 throw new ArgumentException("The supplied version was not valid");
 
-            return new UnsortableVersion(
+            return new UnsortableSortableVersion(
                 result.Groups[Release].Success ? result.Groups[Release].Value : string.Empty,
                 result.Groups[Meta].Success ? result.Groups[Meta].Value : string.Empty,
                 noSpaces
             );
         }
 
-        public bool TryParse(string version, out UnsortableVersion parsedVersion)
+        public bool TryParse(string version, out UnsortableSortableVersion parsedSortableVersion)
         {
             try
             {
-                parsedVersion = Parse(version);
+                parsedSortableVersion = Parse(version);
                 return true;
             }
             catch
             {
-                parsedVersion = new UnsortableVersion(
+                parsedSortableVersion = new UnsortableSortableVersion(
                     string.Empty,
                     string.Empty,
                     null

@@ -27,7 +27,7 @@ namespace Octopus.Versioning.Maven
 
         public string? Qualifier { get; private set; }
 
-        public MavenVersion Parse(string version)
+        public MavenSortableVersion Parse(string version)
         {
             var matcherDigits = DIGITS.Match(version);
             if (matcherDigits.Success)
@@ -40,7 +40,7 @@ namespace Octopus.Versioning.Maven
                 Qualifier = version;
             }
 
-            return new MavenVersion(
+            return new MavenSortableVersion(
                 Major,
                 Minor,
                 Patch,

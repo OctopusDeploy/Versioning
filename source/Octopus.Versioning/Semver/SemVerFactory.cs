@@ -11,7 +11,7 @@ namespace Octopus.Versioning.Semver
     {
         static readonly ISemanticVersionUtils utils = new SemanticVersionUtils();
 
-        public static SemanticVersion CreateVersion(string input, bool preserveMissingComponents = false)
+        public static SemanticSortableVersion CreateVersion(string input, bool preserveMissingComponents = false)
         {
             var ver = TryCreateVersion(input, preserveMissingComponents);
             if (ver == null)
@@ -20,7 +20,7 @@ namespace Octopus.Versioning.Semver
             return ver;
         }
 
-        public static IVersion? CreateVersionOrNone(string input, bool preserveMissingComponents = false)
+        public static ISortableVersion? CreateVersionOrNone(string input, bool preserveMissingComponents = false)
         {
             return TryCreateVersion(input, preserveMissingComponents);
         }
@@ -28,7 +28,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Creates a NuGetVersion from a string representing the semantic version.
         /// </summary>
-        public static SemanticVersion Parse(string value, bool preserveMissingComponents = false)
+        public static SemanticSortableVersion Parse(string value, bool preserveMissingComponents = false)
         {
             if (string.IsNullOrEmpty(value))
                 throw new ArgumentException("Value cannot be null or an empty string", nameof(value));
@@ -44,7 +44,7 @@ namespace Octopus.Versioning.Semver
         /// Parses a version string using loose semantic versioning rules that allows 2-4 version components followed
         /// by an optional special version.
         /// </summary>
-        public static SemanticVersion? TryCreateVersion(string value, bool preserveMissingComponents = false)
+        public static SemanticSortableVersion? TryCreateVersion(string value, bool preserveMissingComponents = false)
         {
             // trim the value before passing it in since we're not strict here
             value = value?.Trim();
@@ -89,7 +89,7 @@ namespace Octopus.Versioning.Semver
                         if (originalVersion.IndexOf(' ') > -1)
                             originalVersion = value.Replace(" ", "");
 
-                        return new SemanticVersion(ver,
+                        return new SemanticSortableVersion(ver,
                             sections.Item2,
                             sections.Item3 ?? string.Empty,
                             originalVersion);
@@ -103,11 +103,11 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Parses a version string using strict SemVer rules.
         /// </summary>
-        public static SemanticVersion? TryParseStrict(string value)
+        public static SemanticSortableVersion? TryParseStrict(string value)
         {
             var semVer = TryCreateVersion(value);
             return semVer != null
-                ? new SemanticVersion(semVer.Major,
+                ? new SemanticSortableVersion(semVer.Major,
                     semVer.Minor,
                     semVer.Patch,
                     0,

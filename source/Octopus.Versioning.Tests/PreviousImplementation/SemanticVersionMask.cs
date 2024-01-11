@@ -46,7 +46,7 @@ $",
             );
         }
 
-        public static IVersion GetLatestMaskedVersion(string mask, List<IVersion> versions)
+        public static ISortableVersion GetLatestMaskedVersion(string mask, List<ISortableVersion> versions)
         {
             var maskMatch = new MaskMatchedVersion(mask);
 
@@ -87,18 +87,18 @@ $",
                 .FirstOrDefault();
         }
 
-        public static IVersion ApplyMask(string mask, IVersion currentVersion)
+        public static ISortableVersion ApplyMask(string mask, ISortableVersion currentSortableVersion)
         {
             var match = FormatRegex.Match(mask);
             if (!match.Success)
                 return VersionFactory.CreateSemanticVersion(mask);
 
-            return currentVersion == null
+            return currentSortableVersion == null
                 ? GenerateVersionFromMask(new MaskMatchedVersion(mask))
-                : GenerateVersionFromCurrent(new MaskMatchedVersion(mask), new MaskMatchedVersion(currentVersion.ToString()));
+                : GenerateVersionFromCurrent(new MaskMatchedVersion(mask), new MaskMatchedVersion(currentSortableVersion.ToString()));
         }
 
-        static IVersion GenerateVersionFromMask(MaskMatchedVersion mask)
+        static ISortableVersion GenerateVersionFromMask(MaskMatchedVersion mask)
         {
             var result = new StringBuilder();
             result.Append(mask.Major.EvaluateFromMask());
@@ -110,7 +110,7 @@ $",
             return VersionFactory.CreateSemanticVersion(result.ToString());
         }
 
-        static IVersion GenerateVersionFromCurrent(MaskMatchedVersion mask, MaskMatchedVersion current)
+        static ISortableVersion GenerateVersionFromCurrent(MaskMatchedVersion mask, MaskMatchedVersion current)
         {
             var result = new StringBuilder();
             result.Append(mask.Major.Substitute(current.Major));

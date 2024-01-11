@@ -71,11 +71,11 @@ public class UnsortableVersionParserTests
         Assert.Catch<ArgumentException>(() => new UnsortableVersionParser().Parse(input));
     }
 
-    void AssertVersionNumbersAreZero(UnsortableVersion version)
+    void AssertVersionNumbersAreZero(UnsortableSortableVersion sortableVersion)
     {
-        Assert.AreEqual(0, version.Major);
-        Assert.AreEqual(0, version.Minor);
-        Assert.AreEqual(0, version.Patch);
-        Assert.AreEqual(0, version.Revision);
+        Assert.AreEqual(0, sortableVersion.Major);
+        Assert.AreEqual(0, sortableVersion.Minor);
+        Assert.AreEqual(0, sortableVersion.Patch);
+        Assert.AreEqual(0, sortableVersion.Revision);
     }
 }

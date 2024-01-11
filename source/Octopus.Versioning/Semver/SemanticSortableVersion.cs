@@ -12,7 +12,7 @@ namespace Octopus.Versioning.Semver
     /// not strictly enforcing it to
     /// allow older 4-digit versioning schemes to continue working.
     /// </summary>
-    public class SemanticVersion : StrictSemanticVersion
+    public class SemanticSortableVersion : StrictSemanticSortableVersion
     {
         static readonly SemVerFactory SemVerFactory = new SemVerFactory();
         static readonly ISemanticVersionUtils utils = new SemanticVersionUtils();
@@ -22,7 +22,7 @@ namespace Octopus.Versioning.Semver
         /// Creates a NuGetVersion using NuGetVersion.Parse(string)
         /// </summary>
         /// <param name="version">Version string</param>
-        public SemanticVersion(string version)
+        public SemanticSortableVersion(string version)
             : this(SemVerFactory.CreateVersion(version))
         {
         }
@@ -30,8 +30,8 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Creates a NuGetVersion from an existing NuGetVersion
         /// </summary>
-        public SemanticVersion(SemanticVersion version)
-            : this(version.Version, version.ReleaseLabels, version.Metadata, version.ToString())
+        public SemanticSortableVersion(SemanticSortableVersion sortableVersion)
+            : this(sortableVersion.Version, sortableVersion.ReleaseLabels, sortableVersion.Metadata, sortableVersion.ToString())
         {
         }
 
@@ -41,7 +41,7 @@ namespace Octopus.Versioning.Semver
         /// <param name="version">Version numbers</param>
         /// <param name="releaseLabel">Prerelease label</param>
         /// <param name="metadata">Build metadata</param>
-        public SemanticVersion(Version version, string? releaseLabel = null, string? metadata = null)
+        public SemanticSortableVersion(Version version, string? releaseLabel = null, string? metadata = null)
             : this(version,
                 utils.ParseReleaseLabels(releaseLabel),
                 metadata,
@@ -55,7 +55,7 @@ namespace Octopus.Versioning.Semver
         /// <param name="major">X.y.z</param>
         /// <param name="minor">x.Y.z</param>
         /// <param name="patch">x.y.Z</param>
-        public SemanticVersion(int major, int minor, int patch)
+        public SemanticSortableVersion(int major, int minor, int patch)
             : this(major,
                 minor,
                 patch,
@@ -71,7 +71,7 @@ namespace Octopus.Versioning.Semver
         /// <param name="minor">x.Y.z</param>
         /// <param name="patch">x.y.Z</param>
         /// <param name="releaseLabel">Prerelease label</param>
-        public SemanticVersion(int major, int minor, int patch, string? releaseLabel)
+        public SemanticSortableVersion(int major, int minor, int patch, string? releaseLabel)
             : this(major,
                 minor,
                 patch,
@@ -88,7 +88,7 @@ namespace Octopus.Versioning.Semver
         /// <param name="patch">x.y.Z</param>
         /// <param name="releaseLabel">Prerelease label</param>
         /// <param name="metadata">Build metadata</param>
-        public SemanticVersion(int major,
+        public SemanticSortableVersion(int major,
             int minor,
             int patch,
             string? releaseLabel,
@@ -109,7 +109,7 @@ namespace Octopus.Versioning.Semver
         /// <param name="patch">x.y.Z</param>
         /// <param name="releaseLabels">Prerelease labels</param>
         /// <param name="metadata">Build metadata</param>
-        public SemanticVersion(int major,
+        public SemanticSortableVersion(int major,
             int minor,
             int patch,
             IEnumerable<string>? releaseLabels,
@@ -125,7 +125,7 @@ namespace Octopus.Versioning.Semver
         /// <param name="minor">w.X.y.z</param>
         /// <param name="patch">w.x.Y.z</param>
         /// <param name="revision">w.x.y.Z</param>
-        public SemanticVersion(int major, int minor, int patch, int revision)
+        public SemanticSortableVersion(int major, int minor, int patch, int revision)
             : this(major,
                 minor,
                 patch,
@@ -144,7 +144,7 @@ namespace Octopus.Versioning.Semver
         /// <param name="revision">w.x.y.Z</param>
         /// <param name="releaseLabel">Prerelease label</param>
         /// <param name="metadata">Build metadata</param>
-        public SemanticVersion(int major,
+        public SemanticSortableVersion(int major,
             int minor,
             int patch,
             int revision,
@@ -168,7 +168,7 @@ namespace Octopus.Versioning.Semver
         /// <param name="revision">w.x.y.Z</param>
         /// <param name="releaseLabels">Prerelease labels</param>
         /// <param name="metadata">Build metadata</param>
-        public SemanticVersion(int major,
+        public SemanticSortableVersion(int major,
             int minor,
             int patch,
             int revision,
@@ -187,7 +187,7 @@ namespace Octopus.Versioning.Semver
         /// <param name="metadata">Build metadata</param>
         /// <param name="originalVersion">Non-normalized original version string</param>
         /// <param name="preserveMissingComponents">Indicates whether to normalize to semantic version</param>
-        public SemanticVersion(Version version,
+        public SemanticSortableVersion(Version version,
             IEnumerable<string>? releaseLabels,
             string? metadata,
             string? originalVersion,
@@ -220,7 +220,7 @@ namespace Octopus.Versioning.Semver
         /// </summary>
         /// <param name="versionString">String represnetation of the version</param>
         /// <returns>The SemanticVersion parsed from the supplied string</returns>
-        public static explicit operator SemanticVersion(string versionString)
+        public static explicit operator SemanticSortableVersion(string versionString)
         {
             return SemVerFactory.CreateVersion(versionString);
         }

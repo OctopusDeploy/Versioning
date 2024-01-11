@@ -54,7 +54,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Determines if both versions are equal.
         /// </summary>
-        public bool Equals(IVersion? x, IVersion? y)
+        public bool Equals(ISortableVersion? x, ISortableVersion? y)
         {
             return Compare(x, y) == 0;
         }
@@ -62,7 +62,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Compares the given versions using the VersionComparison mode.
         /// </summary>
-        public static int Compare(IVersion? version1, IVersion? version2, VersionComparison versionComparison)
+        public static int Compare(ISortableVersion? version1, ISortableVersion? version2, VersionComparison versionComparison)
         {
             IVersionComparer comparer = new VersionComparer(versionComparison);
             return comparer.Compare(version1, version2);
@@ -71,7 +71,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Gives a hash code based on the normalized version string.
         /// </summary>
-        public int GetHashCode(IVersion? version)
+        public int GetHashCode(ISortableVersion? version)
         {
             if (ReferenceEquals(version, null))
                 return 0;
@@ -82,7 +82,7 @@ namespace Octopus.Versioning.Semver
             combiner.AddObject(version.Minor);
             combiner.AddObject(version.Patch);
 
-            var nuGetVersion = version as SemanticVersion;
+            var nuGetVersion = version as SemanticSortableVersion;
             if (nuGetVersion != null && nuGetVersion.Revision > 0)
                 combiner.AddObject(nuGetVersion.Revision);
 
@@ -102,7 +102,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Compare versions.
         /// </summary>
-        public int Compare(IVersion? x, IVersion? y)
+        public int Compare(ISortableVersion? x, ISortableVersion? y)
         {
             if (ReferenceEquals(x, y))
                 return 0;
@@ -126,8 +126,8 @@ namespace Octopus.Versioning.Semver
             if (result != 0)
                 return result;
 
-            var legacyX = x as SemanticVersion;
-            var legacyY = y as SemanticVersion;
+            var legacyX = x as SemanticSortableVersion;
+            var legacyY = y as SemanticSortableVersion;
 
             result = CompareLegacyVersion(legacyX, legacyY);
             if (result != 0)
@@ -167,7 +167,7 @@ namespace Octopus.Versioning.Semver
         /// <summary>
         /// Compares the 4th digit of the version number.
         /// </summary>
-        static int CompareLegacyVersion(SemanticVersion? legacyX, SemanticVersion? legacyY)
+        static int CompareLegacyVersion(SemanticSortableVersion? legacyX, SemanticSortableVersion? legacyY)
         {
             var result = 0;
 

@@ -691,25 +691,25 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
         [Test]
         public void testContains()
         {
-            IVersion actualVersion = new MavenVersionParser().Parse("2.0.5");
-            Assert.IsTrue(enforceVersion("2.0.5", actualVersion));
-            Assert.IsTrue(enforceVersion("2.0.4", actualVersion));
-            Assert.IsTrue(enforceVersion("[2.0.5]", actualVersion));
-            Assert.IsFalse(enforceVersion("[2.0.6,)", actualVersion));
-            Assert.IsFalse(enforceVersion("[2.0.6]", actualVersion));
-            Assert.IsTrue(enforceVersion("[2.0,2.1]", actualVersion));
-            Assert.IsFalse(enforceVersion("[2.0,2.0.3]", actualVersion));
-            Assert.IsTrue(enforceVersion("[2.0,2.0.5]", actualVersion));
-            Assert.IsFalse(enforceVersion("[2.0,2.0.5)", actualVersion));
+            ISortableVersion actualSortableVersion = new MavenVersionParser().Parse("2.0.5");
+            Assert.IsTrue(enforceVersion("2.0.5", actualSortableVersion));
+            Assert.IsTrue(enforceVersion("2.0.4", actualSortableVersion));
+            Assert.IsTrue(enforceVersion("[2.0.5]", actualSortableVersion));
+            Assert.IsFalse(enforceVersion("[2.0.6,)", actualSortableVersion));
+            Assert.IsFalse(enforceVersion("[2.0.6]", actualSortableVersion));
+            Assert.IsTrue(enforceVersion("[2.0,2.1]", actualSortableVersion));
+            Assert.IsFalse(enforceVersion("[2.0,2.0.3]", actualSortableVersion));
+            Assert.IsTrue(enforceVersion("[2.0,2.0.5]", actualSortableVersion));
+            Assert.IsFalse(enforceVersion("[2.0,2.0.5)", actualSortableVersion));
         }
 
-        public bool enforceVersion(string requiredMavenVersionRange, IVersion actualVersion)
+        public bool enforceVersion(string requiredMavenVersionRange, ISortableVersion actualSortableVersion)
         {
             MavenVersionRange vr = null;
 
             vr = MavenVersionRange.CreateFromVersionSpec(requiredMavenVersionRange);
 
-            return vr.ContainsVersion(actualVersion);
+            return vr.ContainsVersion(actualSortableVersion);
         }
 
         [Test]

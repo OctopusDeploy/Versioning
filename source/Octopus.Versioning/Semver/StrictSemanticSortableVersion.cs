@@ -10,7 +10,7 @@ namespace Octopus.Versioning.Semver
     /// <summary>
     /// A strict SemVer implementation
     /// </summary>
-    public partial class StrictSemanticVersion : IVersion
+    public partial class StrictSemanticSortableVersion : ISortableVersion
     {
         static readonly ISemanticVersionUtils utils = new SemanticVersionUtils();
         readonly IEnumerable<string>? releaseLabels;
@@ -22,7 +22,7 @@ namespace Octopus.Versioning.Semver
         /// <param name="major">X.y.z</param>
         /// <param name="minor">x.Y.z</param>
         /// <param name="patch">x.y.Z</param>
-        public StrictSemanticVersion(int major, int minor, int patch)
+        public StrictSemanticSortableVersion(int major, int minor, int patch)
             : this(major,
                 minor,
                 patch,
@@ -39,7 +39,7 @@ namespace Octopus.Versioning.Semver
         /// <param name="patch">x.y.Z</param>
         /// <param name="releaseLabels">Release labels that have been split by the dot separator</param>
         /// <param name="metadata">Build metadata</param>
-        StrictSemanticVersion(int major,
+        StrictSemanticSortableVersion(int major,
             int minor,
             int patch,
             IEnumerable<string> releaseLabels,
@@ -48,7 +48,7 @@ namespace Octopus.Versioning.Semver
         {
         }
 
-        public StrictSemanticVersion(Version version, IEnumerable<string>? releaseLabels, string? metadata, bool preserveMissingComponents = false)
+        public StrictSemanticSortableVersion(Version version, IEnumerable<string>? releaseLabels, string? metadata, bool preserveMissingComponents = false)
         {
             if (version == null)
                 throw new ArgumentException("version can not be null");

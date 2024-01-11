@@ -132,7 +132,7 @@ namespace Octopus.Versioning.Tests.Octopus
             var ver1 = VersionFactory.CreateOctopusVersion(version);
             var ver2 = VersionFactory.CreateOctopusVersion(version);
 
-            var items = new List<IVersion> {ver1, ver2}.GroupBy(i => i).ToList();
+            var items = new List<ISortableVersion> {ver1, ver2}.GroupBy(i => i).ToList();
             Assert.AreEqual(1, items.Count);
         }
 

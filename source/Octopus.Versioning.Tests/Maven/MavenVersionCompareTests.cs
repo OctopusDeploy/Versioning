@@ -15,7 +15,7 @@ namespace Octopus.Versioning.Tests.Maven
             var ver1 = VersionFactory.CreateMavenVersion(version);
             var ver2 = VersionFactory.CreateMavenVersion(version);
 
-            var items = new List<IVersion> {ver1, ver2}.GroupBy(i => i).ToList();
+            var items = new List<ISortableVersion> {ver1, ver2}.GroupBy(i => i).ToList();
             Assert.AreEqual(1, items.Count);
         }
 

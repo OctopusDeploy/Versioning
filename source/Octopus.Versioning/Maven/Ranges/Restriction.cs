@@ -11,9 +11,9 @@ namespace Octopus.Versioning.Maven.Ranges
         public static readonly Restriction EVERYTHING = new Restriction(null, false, null, false);
 
         public Restriction(
-            IVersion? lowerBound,
+            ISortableVersion? lowerBound,
             bool lowerBoundInclusive,
-            IVersion? upperBound,
+            ISortableVersion? upperBound,
             bool upperBoundInclusive)
         {
             LowerBound = lowerBound;
@@ -22,16 +22,16 @@ namespace Octopus.Versioning.Maven.Ranges
             IsUpperBoundInclusive = upperBoundInclusive;
         }
 
-        public IVersion? LowerBound { get; }
+        public ISortableVersion? LowerBound { get; }
         public bool IsLowerBoundInclusive { get; }
-        public IVersion? UpperBound { get; }
+        public ISortableVersion? UpperBound { get; }
         public bool IsUpperBoundInclusive { get; }
 
-        public bool ContainsVersion(IVersion version)
+        public bool ContainsVersion(ISortableVersion sortableVersion)
         {
             if (LowerBound != null)
             {
-                var comparison = LowerBound.CompareTo(version);
+                var comparison = LowerBound.CompareTo(sortableVersion);
 
                 if (comparison == 0 && !IsLowerBoundInclusive)
                     return false;
@@ -41,7 +41,7 @@ namespace Octopus.Versioning.Maven.Ranges
 
             if (UpperBound != null)
             {
-                var comparison = UpperBound.CompareTo(version);
+                var comparison = UpperBound.CompareTo(sortableVersion);
 
                 if (comparison == 0 && !IsUpperBoundInclusive)
                     return false;

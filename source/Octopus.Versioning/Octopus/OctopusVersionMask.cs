@@ -55,7 +55,7 @@ namespace Octopus.Versioning.Octopus
         public bool IsMask =>
             DidParse && (Major.IsSubstitute || Minor.IsSubstitute || Patch.IsSubstitute || Release.IsSubstitute || Revision.IsSubstitute || Metadata.IsSubstitute);
 
-        public IVersion? GetLatestMaskedVersion(List<IVersion> versions)
+        public ISortableVersion? GetLatestMaskedVersion(List<ISortableVersion> versions)
         {
             var maskMajor = Major.IsPresent && !Major.IsSubstitute ? int.Parse(Major.Value) : 0;
             var maskMinor = Minor.IsPresent && !Minor.IsSubstitute ? int.Parse(Minor.Value) : 0;
@@ -96,7 +96,7 @@ namespace Octopus.Versioning.Octopus
                 .FirstOrDefault();
         }
 
-        public IVersion GenerateVersionFromMask()
+        public ISortableVersion GenerateVersionFromMask()
         {
             var result = new StringBuilder();
             result.Append(Prefix);
@@ -109,7 +109,7 @@ namespace Octopus.Versioning.Octopus
             return VersionFactory.CreateOctopusVersion(result.ToString());
         }
 
-        public IVersion GenerateVersionFromCurrent(OctopusVersionMask current)
+        public ISortableVersion GenerateVersionFromCurrent(OctopusVersionMask current)
         {
             var result = new StringBuilder();
             result.Append(Prefix);
