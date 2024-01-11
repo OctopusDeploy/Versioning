@@ -10,7 +10,7 @@ namespace Octopus.Versioning
 {
     public static class VersionFactory
     {
-        public static IVersion CreateVersion(string input, VersionFormat format)
+        public static ISortableVersion CreateVersion(string input, VersionFormat format)
         {
             switch (format)
             {
@@ -20,14 +20,12 @@ namespace Octopus.Versioning
                     return CreateDockerTag(input);
                 case VersionFormat.Octopus:
                     return CreateOctopusVersion(input);
-                case VersionFormat.Unsortable:
-                    return CreateUnsortableVersion(input);
                 default:
                     return CreateSemanticVersion(input);
             }
         }
 
-        public static IVersion? TryCreateVersion(string input, VersionFormat format)
+        public static ISortableVersion? TryCreateVersion(string input, VersionFormat format)
         {
             switch (format)
             {
@@ -37,8 +35,6 @@ namespace Octopus.Versioning
                     return TryCreateDockerTag(input);
                 case VersionFormat.Octopus:
                     return TryCreateOctopusVersion(input);
-                case VersionFormat.Unsortable:
-                    return TryCreateUnsortableVersion(input);
                 default:
                     return TryCreateSemanticVersion(input);
             }
