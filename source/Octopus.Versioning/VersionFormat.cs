@@ -8,6 +8,6 @@ namespace Octopus.Versioning
         Maven,
         Docker,
         Octopus,
-        Unsortable
+        Lexicographic
     }
 }

@@ -1,11 +1,11 @@
 using System;
 using NUnit.Framework;
-using Octopus.Versioning.Unsortable;
+using Octopus.Versioning.Lexicographic;
 
-namespace Octopus.Versioning.Tests.Unsortable;
+namespace Octopus.Versioning.Tests.LexicographicSortedVersion;
 
 [TestFixture]
-public class UnsortableVersionParserTests
+public class LexicographicSortedVersionParserTests
 {
     [Test]
     // Release
@@ -38,7 +38,7 @@ public class UnsortableVersionParserTests
     [TestCase("foobar!", "", "")]
     public void ShouldParseSuccessfully(string input, string expectedRelease, string expectedMetadata)
     {
-        _ = new UnsortableVersionParser().TryParse(input, out var parsedVersion);
+        _ = new LexicographicSortedVersionParser().TryParse(input, out var parsedVersion);
         AssertVersionNumbersAreZero(parsedVersion);
         Assert.AreEqual(expectedRelease, parsedVersion.Release);
         Assert.AreEqual(expectedMetadata, parsedVersion.Metadata);
@@ -48,30 +48,30 @@ public class UnsortableVersionParserTests
     public void ShouldThrowExceptionOnEmptyInput()
     {
         var input = "";
-        Assert.Catch<ArgumentException>(() => new UnsortableVersionParser().Parse(input));
+        Assert.Catch<ArgumentException>(() => new LexicographicSortedVersionParser().Parse(input));
     }
     
     [Test]
     public void ShouldThrowExceptionOnWhiteSpaceInput()
     {
         var input = " ";
-        Assert.Catch<ArgumentException>(() => new UnsortableVersionParser().Parse(input));
+        Assert.Catch<ArgumentException>(() => new LexicographicSortedVersionParser().Parse(input));
     }
     
     [Test]
     public void ShouldThrowExceptionOnNullInput()
     {
-        Assert.Catch<ArgumentException>(() => new UnsortableVersionParser().Parse(null));
+        Assert.Catch<ArgumentException>(() => new LexicographicSortedVersionParser().Parse(null));
     }
     
     [Test]
     public void ShouldThrowExceptionOnFailureToParse()
     {
         var input = "bad versions string";
-        Assert.Catch<ArgumentException>(() => new UnsortableVersionParser().Parse(input));
+        Assert.Catch<ArgumentException>(() => new LexicographicSortedVersionParser().Parse(input));
     }
 
-    void AssertVersionNumbersAreZero(UnsortableVersion version)
+    void AssertVersionNumbersAreZero(Lexicographic.LexicographicSortedVersion version)
     {
         Assert.AreEqual(0, version.Major);
         Assert.AreEqual(0, version.Minor);

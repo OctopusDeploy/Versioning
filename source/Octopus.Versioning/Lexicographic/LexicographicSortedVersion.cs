@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Octopus.Versioning.Unsortable
+namespace Octopus.Versioning.Lexicographic
 {
-    public class UnsortableVersion: IVersion
+    public class LexicographicSortedVersion: IVersion
     {
-        public UnsortableVersion(string release, string? metadata, string? originalString)
+        public LexicographicSortedVersion(string release, string? metadata, string? originalString)
         {
             Metadata = metadata;
             Release = release;
@@ -24,7 +24,7 @@ namespace Octopus.Versioning.Unsortable
         public string Release { get; }
         public string OriginalString { get; }
 
-        public VersionFormat Format => VersionFormat.Unsortable;
+        public VersionFormat Format => VersionFormat.Lexicographic;
         
         public int CompareTo(object obj)
         {

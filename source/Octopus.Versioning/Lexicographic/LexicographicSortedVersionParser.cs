@@ -1,9 +1,9 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace Octopus.Versioning.Unsortable
+namespace Octopus.Versioning.Lexicographic
 {
-    public class UnsortableVersionParser
+    public class LexicographicSortedVersionParser
     {
         const string Release = "release";
         const string Meta = "buildmetadata";
@@ -12,7 +12,7 @@ namespace Octopus.Versioning.Unsortable
             $@"(?:\+(?<{Meta}>[A-Za-z0-9_\-.\\+]*?))?\s*$"
         );
 
-        public UnsortableVersion Parse(string? version)
+        public LexicographicSortedVersion Parse(string? version)
         {
             if (string.IsNullOrWhiteSpace(version))
                 throw new ArgumentException("The version can not be an empty string");
@@ -28,14 +28,14 @@ namespace Octopus.Versioning.Unsortable
             if (!result.Success)
                 throw new ArgumentException("The supplied version was not valid");
 
-            return new UnsortableVersion(
+            return new LexicographicSortedVersion(
                 result.Groups[Release].Success ? result.Groups[Release].Value : string.Empty,
                 result.Groups[Meta].Success ? result.Groups[Meta].Value : string.Empty,
                 noSpaces
             );
         }
 
-        public bool TryParse(string version, out UnsortableVersion parsedVersion)
+        public bool TryParse(string version, out LexicographicSortedVersion parsedVersion)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Octopus.Versioning.Unsortable
             }
             catch
             {
-                parsedVersion = new UnsortableVersion(
+                parsedVersion = new LexicographicSortedVersion(
                     string.Empty,
                     string.Empty,
                     null

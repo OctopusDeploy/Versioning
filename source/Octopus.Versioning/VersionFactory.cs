@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Octopus.Versioning.Docker;
+using Octopus.Versioning.Lexicographic;
 using Octopus.Versioning.Maven;
 using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
-using Octopus.Versioning.Unsortable;
 
 namespace Octopus.Versioning
 {
@@ -20,8 +20,8 @@ namespace Octopus.Versioning
                     return CreateDockerTag(input);
                 case VersionFormat.Octopus:
                     return CreateOctopusVersion(input);
-                case VersionFormat.Unsortable:
-                    return CreateUnsortableVersion(input);
+                case VersionFormat.Lexicographic:
+                    return CreateLexicographicSortedVersion(input);
                 default:
                     return CreateSemanticVersion(input);
             }
@@ -37,8 +37,8 @@ namespace Octopus.Versioning
                     return TryCreateDockerTag(input);
                 case VersionFormat.Octopus:
                     return TryCreateOctopusVersion(input);
-                case VersionFormat.Unsortable:
-                    return TryCreateUnsortableVersion(input);
+                case VersionFormat.Lexicographic:
+                    return TryCreateLexicographicSortedVersion(input);
                 default:
                     return TryCreateSemanticVersion(input);
             }
@@ -156,16 +156,16 @@ namespace Octopus.Versioning
             }
         }
         
-        public static IVersion CreateUnsortableVersion(string input)
+        public static IVersion CreateLexicographicSortedVersion(string input)
         {
-            return new UnsortableVersionParser().Parse(input);
+            return new LexicographicSortedVersionParser().Parse(input);
         }
 
-        public static IVersion? TryCreateUnsortableVersion(string input)
+        public static IVersion? TryCreateLexicographicSortedVersion(string input)
         {
             try
             {
-                return CreateUnsortableVersion(input);
+                return CreateLexicographicSortedVersion(input);
             }
             catch
             {

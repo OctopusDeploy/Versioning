@@ -1,11 +1,12 @@
+using System;
 using NUnit.Framework;
-using Octopus.Versioning.Unsortable;
+using Octopus.Versioning.Lexicographic;
 
-namespace Octopus.Versioning.Tests.Unsortable;
+namespace Octopus.Versioning.Tests.LexicographicSortedVersion;
 
-public class UnsortableVersionCompareTests
+public class LexicographicSortedVersionCompareTests
 {
-    static readonly UnsortableVersionParser UnsortableVersionParser = new();
+    static readonly LexicographicSortedVersionParser LexicographicSortedVersionParser = new();
 
     [Test]
     [TestCase("release", "release", 0)]
@@ -36,8 +37,8 @@ public class UnsortableVersionCompareTests
     [TestCase("release-1+123", "release-2+321", -1)]
     public void TestComparisons(string version1, string version2, int result)
     {
-        var parsedVersion1 = UnsortableVersionParser.Parse(version1);
-        var parsedVersion2 = UnsortableVersionParser.Parse(version2);
+        var parsedVersion1 = LexicographicSortedVersionParser.Parse(version1);
+        var parsedVersion2 = LexicographicSortedVersionParser.Parse(version2);
         Assert.AreEqual(result, parsedVersion1.CompareTo(parsedVersion2));
     }
 
@@ -46,8 +47,8 @@ public class UnsortableVersionCompareTests
     [TestCase("release-1", "release-2", false)]
     public void TestEquality(string version1, string version2, bool result)
     {
-        var parsedVersion1 = UnsortableVersionParser.Parse(version1);
-        var parsedVersion2 = UnsortableVersionParser.Parse(version2);
+        var parsedVersion1 = LexicographicSortedVersionParser.Parse(version1);
+        var parsedVersion2 = LexicographicSortedVersionParser.Parse(version2);
         Assert.AreEqual(result, Equals(parsedVersion1, parsedVersion2));
     }
 
@@ -55,7 +56,7 @@ public class UnsortableVersionCompareTests
     public void TestGetHashCode()
     {
         var versionString = "release-1";
-        var parsedVersion = UnsortableVersionParser.Parse(versionString);
+        var parsedVersion = LexicographicSortedVersionParser.Parse(versionString);
 
         Assert.AreEqual(versionString.GetHashCode(), parsedVersion.GetHashCode());
     }
