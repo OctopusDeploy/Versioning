@@ -7,6 +7,7 @@ namespace Octopus.Versioning
         Semver,
         Maven,
         Docker,
-        Octopus
+        Octopus,
+        Lexicographic
     }
 }

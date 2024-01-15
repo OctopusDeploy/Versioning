@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Octopus.Versioning.Docker;
+using Octopus.Versioning.Lexicographic;
 using Octopus.Versioning.Maven;
 using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
@@ -19,6 +20,8 @@ namespace Octopus.Versioning
                     return CreateDockerTag(input);
                 case VersionFormat.Octopus:
                     return CreateOctopusVersion(input);
+                case VersionFormat.Lexicographic:
+                    return CreateLexicographicSortedVersion(input);
                 default:
                     return CreateSemanticVersion(input);
             }
@@ -34,6 +37,8 @@ namespace Octopus.Versioning
                     return TryCreateDockerTag(input);
                 case VersionFormat.Octopus:
                     return TryCreateOctopusVersion(input);
+                case VersionFormat.Lexicographic:
+                    return TryCreateLexicographicSortedVersion(input);
                 default:
                     return TryCreateSemanticVersion(input);
             }
@@ -147,6 +152,23 @@ namespace Octopus.Versioning
             catch
             {
                 // Version fields that are larger than ints are not supported and will result in an exception.
+                return null;
+            }
+        }
+        
+        public static IVersion CreateLexicographicSortedVersion(string input)
+        {
+            return new LexicographicSortedVersionParser().Parse(input);
+        }
+
+        public static IVersion? TryCreateLexicographicSortedVersion(string input)
+        {
+            try
+            {
+                return CreateLexicographicSortedVersion(input);
+            }
+            catch
+            {
                 return null;
             }
         }
