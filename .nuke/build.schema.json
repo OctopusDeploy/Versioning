@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Build Schema",
   "$ref": "#/definitions/build",
+  "title": "Build Schema",
   "definitions": {
     "build": {
       "type": "object",
@@ -21,6 +21,7 @@
             "AppVeyor",
             "AzurePipelines",
             "Bamboo",
+            "Bitbucket",
             "Bitrise",
             "GitHubActions",
             "GitLab",
@@ -38,14 +39,15 @@
           "type": "boolean",
           "description": "Disables displaying the NUKE logo"
         },
+        "OCTOVERSION_CurrentBranch": {
+          "type": "string",
+          "description": "Branch name for OctoVersion to use to calculate the version number. Can be set via the environment variable OCTOVERSION_CurrentBranch"
+        },
         "OctoVersionAutoDetectBranch": {
           "type": "boolean"
         },
-        "OctoVersionBranch": {
-          "type": "string"
-        },
         "OctoVersionFullSemVer": {
-          "type": "integer"
+          "type": "string"
         },
         "OctoVersionMajor": {
           "type": "integer"
