@@ -85,6 +85,23 @@ namespace Octopus.Versioning.Tests.Versions
         }
 
         [Test]
+        public void TestSingleDigit()
+        {
+            Assert.AreEqual(
+                VersionFactory.CreateSemanticVersion("0001"),
+                VersionFactory.CreateSemanticVersion("1.0.0.0"));
+            Assert.AreEqual(
+                VersionFactory.CreateSemanticVersion("0001"),
+                VersionFactory.CreateSemanticVersion("1.0"));
+            Assert.AreEqual(
+                VersionFactory.CreateSemanticVersion("0001"),
+                VersionFactory.CreateSemanticVersion("1"));
+            Assert.AreEqual(
+                VersionFactory.CreateSemanticVersion("1"),
+                VersionFactory.CreateSemanticVersion("1.0.0.0"));
+        }
+
+        [Test]
         public void TestInvalidVersion()
         {
             Assert.Null(VersionFactory.TryCreateVersion("1.0.*", VersionFormat.Semver));
