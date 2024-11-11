@@ -1083,5 +1083,19 @@ namespace Octopus.Versioning.Tests.Octopus
                 .Select(s => s[Random.Next(s.Length)])
                 .ToArray());
         }
+        
+        [Test]
+        [TestCase("1_2_3", "1_2_4")]
+        [TestCase("01_2_3", "1_2_4")]
+        [TestCase("1_02_3", "1_2_4")]
+        [TestCase("1_02_03", "1_2_4")]
+        [TestCase("1_2_03", "1_2_4")]
+        public void TestUnderscores(string version, string version2)
+        {
+            OctopusVersionParser.TryParse(version, out var octoVersion);
+            OctopusVersionParser.TryParse(version2, out var octoVersion2);
+
+            Assert.Greater(octoVersion2, octoVersion);
+        }
     }
 }
