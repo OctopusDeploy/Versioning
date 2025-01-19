@@ -88,7 +88,7 @@ class Build : NukeBuild
                 .SetNoBuild(true)
                 .EnableNoRestore()
                 .SetLoggers("trx")
-                .SetVerbosity(DotNetVerbosity.Normal)
+                .SetVerbosity(DotNetVerbosity.normal)
                 .SetFilter(@"FullyQualifiedName\!~Integration.Tests"));
         });
 
@@ -110,7 +110,7 @@ class Build : NukeBuild
                 .SetOutputDirectory(ArtifactsDirectory)
                 .EnableNoBuild()
                 .DisableIncludeSymbols()
-                .SetVerbosity(DotNetVerbosity.Normal)
+                .SetVerbosity(DotNetVerbosity.normal)
                 .SetProperty("NuspecProperties", $"Version={OctoVersionInfo.FullSemVer}"));
         });
 
@@ -120,11 +120,10 @@ class Build : NukeBuild
         .Executes(() =>
         {
             LocalPackagesDir.CreateDirectory();
-            ArtifactsDirectory.GlobFiles("*.nupkg")
-                .ForEach(package =>
-                {
-                    CopyFileToDirectory(package, LocalPackagesDir);
-                });
+            foreach (var package in ArtifactsDirectory.GlobFiles("*.nupkg"))
+            {
+                package.CopyToDirectory(LocalPackagesDir);
+            }
         });
 
     Target Default => _ => _

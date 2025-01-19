@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Octopus.Versioning.Tests.Semver
 {
@@ -15,7 +16,7 @@ namespace Octopus.Versioning.Tests.Semver
             var ver2 = VersionFactory.CreateSemanticVersion(version);
 
             var items = new List<IVersion> {ver1, ver2}.GroupBy(i => i).ToList();
-            Assert.AreEqual(1, items.Count);
+            ClassicAssert.AreEqual(1, items.Count);
         }
 
         [Test]
@@ -24,7 +25,7 @@ namespace Octopus.Versioning.Tests.Semver
             var ver1 = VersionFactory.CreateSemanticVersion("1.2.3-PreRelease.987");
             var ver2 = VersionFactory.CreateSemanticVersion("1.2.3-PreRelease.456");
 
-            Assert.AreNotEqual(ver1.GetHashCode(), ver2.GetHashCode());
+            ClassicAssert.AreNotEqual(ver1.GetHashCode(), ver2.GetHashCode());
         }
 
         [Test]
@@ -33,7 +34,7 @@ namespace Octopus.Versioning.Tests.Semver
             var ver1 = VersionFactory.CreateSemanticVersion("v1.2.3");
             var ver2 = VersionFactory.CreateSemanticVersion("1.2.3");
 
-            Assert.AreEqual(ver1.GetHashCode(), ver2.GetHashCode());
+            ClassicAssert.AreEqual(ver1.GetHashCode(), ver2.GetHashCode());
         }
 
         [Test]
@@ -41,7 +42,7 @@ namespace Octopus.Versioning.Tests.Semver
         {
             var ver1 = VersionFactory.CreateSemanticVersion("v1.2.3");
 
-            Assert.AreEqual(ver1.OriginalString, "v1.2.3");
+            ClassicAssert.AreEqual(ver1.OriginalString, "v1.2.3");
         }
     }
 }

@@ -93,7 +93,7 @@ namespace Octopus.Versioning.Semver
                     combiner.AddObject(version.Release.ToUpperInvariant());
 
             if (mode == VersionComparison.Default || mode == VersionComparison.VersionReleaseMetadata)
-                if (version.HasMetadata)
+                if (version is { HasMetadata: true, Metadata: { } })
                     combiner.AddObject(version.Metadata);
 
             return combiner.CombinedHash;
@@ -176,10 +176,10 @@ namespace Octopus.Versioning.Semver
                 && legacyY != null)
                 result = legacyX.Version.CompareTo(legacyY.Version);
             else if (legacyX != null
-                && legacyX.Version.Revision > 0)
+                     && legacyX.Version.Revision > 0)
                 result = 1;
             else if (legacyY != null
-                && legacyY.Version.Revision > 0)
+                     && legacyY.Version.Revision > 0)
                 result = -1;
 
             return result;
@@ -192,8 +192,8 @@ namespace Octopus.Versioning.Semver
         {
             var result = 0;
 
-            var a = version1.GetEnumerator();
-            var b = version2.GetEnumerator();
+            using var a = version1.GetEnumerator();
+            using var b = version2.GetEnumerator();
 
             var aExists = a.MoveNext();
             var bExists = b.MoveNext();
@@ -207,7 +207,7 @@ namespace Octopus.Versioning.Semver
                     return 1;
 
                 // compare the labels
-                result = CompareRelease(a.Current, b.Current);
+                result = CompareRelease(a.Current!, b.Current!);
 
                 if (result != 0)
                     return result;
@@ -225,34 +225,23 @@ namespace Octopus.Versioning.Semver
         /// </summary>
         static int CompareRelease(string version1, string version2)
         {
-            var version1Num = 0;
-            var version2Num = 0;
-            var result = 0;
-
             // check if the identifiers are numeric
-            var v1IsNumeric = int.TryParse(version1, out version1Num);
-            var v2IsNumeric = int.TryParse(version2, out version2Num);
+            var v1IsNumeric = int.TryParse(version1, out var version1Num);
+            var v2IsNumeric = int.TryParse(version2, out var version2Num);
 
             // if both are numeric compare them as numbers
             if (v1IsNumeric && v2IsNumeric)
             {
-                result = version1Num.CompareTo(version2Num);
+                return version1Num.CompareTo(version2Num);
             }
-            else if (v1IsNumeric || v2IsNumeric)
+            if (v1IsNumeric || v2IsNumeric)
             {
                 // numeric labels come before alpha labels
-                if (v1IsNumeric)
-                    result = -1;
-                else
-                    result = 1;
+                return v1IsNumeric ? -1 : 1;
             }
-            else
-            {
-                // Ignoring 2.0.0 case sensitive compare. Everything will be compared case insensitively as 2.0.1 specifies.
-                result = StringComparer.OrdinalIgnoreCase.Compare(version1, version2);
-            }
-
-            return result;
+            
+            // Fallback: Ignoring 2.0.0 case sensitive compare. Everything will be compared case insensitively as 2.0.1 specifies.
+            return StringComparer.OrdinalIgnoreCase.Compare(version1, version2);
         }
     }
 }

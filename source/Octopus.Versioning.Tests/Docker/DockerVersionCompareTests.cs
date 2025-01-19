@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Octopus.Versioning.Tests.Docker
 {
@@ -23,7 +24,7 @@ namespace Octopus.Versioning.Tests.Docker
             var ver1 = VersionFactory.CreateDockerTag(version1);
             var ver2 = VersionFactory.CreateDockerTag(version2);
 
-            Assert.AreEqual(result, ver1.CompareTo(ver2));
+            ClassicAssert.AreEqual(result, ver1.CompareTo(ver2));
         }
 
         [Test]
@@ -33,7 +34,7 @@ namespace Octopus.Versioning.Tests.Docker
         public void PrereleaseVersionsShouldBeLabelledCorrectly(string version1, bool result)
         {
             var ver1 = VersionFactory.CreateDockerTag(version1);
-            Assert.AreEqual(result, ver1.IsPrerelease);
+            ClassicAssert.AreEqual(result, ver1.IsPrerelease);
         }
 
         [Test]
@@ -46,7 +47,7 @@ namespace Octopus.Versioning.Tests.Docker
             var ver2 = VersionFactory.CreateDockerTag(version);
 
             var items = new List<IVersion> {ver1, ver2}.GroupBy(i => i).ToList();
-            Assert.AreEqual(1, items.Count);
+            ClassicAssert.AreEqual(1, items.Count);
         }
 
         [Test]
@@ -58,7 +59,7 @@ namespace Octopus.Versioning.Tests.Docker
             var ver1 = VersionFactory.CreateDockerTag(version);
             var ver2 = VersionFactory.CreateDockerTag(version);
 
-            Assert.AreEqual(ver1.GetHashCode(), ver2.GetHashCode());
+            ClassicAssert.AreEqual(ver1.GetHashCode(), ver2.GetHashCode());
         }
 
         [Test]
@@ -70,7 +71,7 @@ namespace Octopus.Versioning.Tests.Docker
             var ver1 = VersionFactory.CreateDockerTag(v1);
             var ver2 = VersionFactory.CreateDockerTag(v2);
 
-            Assert.AreNotEqual(ver1.GetHashCode(), ver2.GetHashCode());
+            ClassicAssert.AreNotEqual(ver1.GetHashCode(), ver2.GetHashCode());
         }
 
         [Test]
@@ -85,7 +86,7 @@ namespace Octopus.Versioning.Tests.Docker
             var ver1 = VersionFactory.CreateDockerTag(v1);
             var ver2 = VersionFactory.CreateDockerTag(v2);
 
-            Assert.AreEqual(expected, ver1.Equals(ver2));
+            ClassicAssert.AreEqual(expected, ver1.Equals(ver2));
         }
     }
 }
