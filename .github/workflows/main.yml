@@ -86,7 +86,7 @@ jobs:
         if: (! contains(github.ref, '/merge')) && (! contains(github.ref, '/dependabot/')) && (! contains(github.ref, 'prettybot/'))
         with:
           packages: |
-            ./artifacts/Octopus.Versioning.${{ steps.build.outputs.octoversion_fullsemver }}.nupkg
+            Octopus.Versioning.${{ steps.build.outputs.octoversion_fullsemver }}
           version: ${{ steps.build.outputs.octoversion_fullsemver }}
 
       - name: Push Packages to Octopus Deploy 🐙
