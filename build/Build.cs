@@ -87,6 +87,8 @@ class Build : NukeBuild
                 .SetConfiguration(Configuration)
                 .SetNoBuild(true)
                 .EnableNoRestore()
+                .SetLoggers("trx")
+                .SetVerbosity(DotNetVerbosity.Normal)
                 .SetFilter(@"FullyQualifiedName\!~Integration.Tests"));
         });
 
