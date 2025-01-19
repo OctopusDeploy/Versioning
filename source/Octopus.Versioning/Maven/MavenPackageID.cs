@@ -25,6 +25,8 @@ namespace Octopus.Versioning.Maven
     /// </summary>
     public class MavenPackageID
     {
+        // ReSharper disable once InconsistentNaming; DISPLAY_DELIMITER is part of the public API, we can't rename it without a breaking change
+
         /// <summary>
         /// When we display the package ID to the user, this is the delimiter we use.
         /// The colon is the standard delimiter format for Maven packages, but it
@@ -33,7 +35,8 @@ namespace Octopus.Versioning.Maven
         /// </summary>
         public const char DISPLAY_DELIMITER = ':';
 
-        public MavenPackageID([NotNull]
+        public MavenPackageID(
+            [NotNull]
             string? group,
             [NotNull]
             string? artifact,
@@ -47,13 +50,12 @@ namespace Octopus.Versioning.Maven
             if (string.IsNullOrWhiteSpace(version))
                 throw new ArgumentException("Version can not be empty");
 
-            Group = group.Trim();
-            Artifact = artifact.Trim();
-            Version = version.Trim();
+            Group = group!.Trim();
+            Artifact = artifact!.Trim();
+            Version = version!.Trim();
         }
 
-        public MavenPackageID([NotNull]
-            string? group,
+        public MavenPackageID([NotNull] string? group,
             [NotNull]
             string? artifact,
             [NotNull]
@@ -65,10 +67,11 @@ namespace Octopus.Versioning.Maven
             if (string.IsNullOrWhiteSpace(packaging))
                 throw new ArgumentException("Packaging can not be empty");
 
-            Packaging = packaging.Trim();
+            Packaging = packaging!.Trim();
         }
 
-        public MavenPackageID([NotNull]
+        public MavenPackageID(
+            [NotNull]
             string? group,
             [NotNull]
             string? artifact,
@@ -79,14 +82,12 @@ namespace Octopus.Versioning.Maven
             string? classifier) :
             this(group, artifact, version, packaging)
         {
-            Classifier = string.IsNullOrWhiteSpace(classifier) ? null : classifier.Trim();
+            Classifier = string.IsNullOrWhiteSpace(classifier) ? null : classifier!.Trim();
         }
 
-        public MavenPackageID([NotNull]
-            string? id,
-            IVersion version) : this(id)
+        public MavenPackageID([NotNull] string? id, IVersion version) : this(id)
         {
-            if (string.IsNullOrWhiteSpace(id) || id.Split(':').Length != 2)
+            if (string.IsNullOrWhiteSpace(id) || id!.Split(':').Length != 2)
                 throw new ArgumentException("Package ID must be in the format Group:Artifact e.g. com.google.guava:guava or junit:junit.");
 
             if (version == null)
@@ -103,13 +104,12 @@ namespace Octopus.Versioning.Maven
         /// <param name="id">
         /// The package id is in the display format like "Group:Artifact".
         /// </param>
-        public MavenPackageID([NotNull]
-            string? id)
+        public MavenPackageID([NotNull] string? id)
         {
             if (string.IsNullOrWhiteSpace(id))
                 throw new ArgumentException("id can not be empty");
 
-            var mavenDisplaySplit = id.Split(DISPLAY_DELIMITER);
+            var mavenDisplaySplit = id!.Split(DISPLAY_DELIMITER);
 
             /*
              * When downloading for the first time, we will use the G:A:V format
@@ -147,7 +147,7 @@ namespace Octopus.Versioning.Maven
         }
 
         public string Group { get; }
-        public string[]? Groups => Group?.Split('.');
+        public string[]? Groups => Group.Split('.');
         public string Artifact { get; }
         public string? Version { get; }
         public string? Packaging { get; }

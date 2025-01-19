@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Octopus.Versioning.Lexicographic;
 
 namespace Octopus.Versioning.Tests.LexicographicSortedVersion;
@@ -40,8 +41,8 @@ public class LexicographicSortedVersionParserTests
     {
         _ = new LexicographicSortedVersionParser().TryParse(input, out var parsedVersion);
         AssertVersionNumbersAreZero(parsedVersion);
-        Assert.AreEqual(expectedRelease, parsedVersion.Release);
-        Assert.AreEqual(expectedMetadata, parsedVersion.Metadata);
+        ClassicAssert.AreEqual(expectedRelease, parsedVersion.Release);
+        ClassicAssert.AreEqual(expectedMetadata, parsedVersion.Metadata);
     }
 
     [Test]
@@ -73,9 +74,9 @@ public class LexicographicSortedVersionParserTests
 
     void AssertVersionNumbersAreZero(Lexicographic.LexicographicSortedVersion version)
     {
-        Assert.AreEqual(0, version.Major);
-        Assert.AreEqual(0, version.Minor);
-        Assert.AreEqual(0, version.Patch);
-        Assert.AreEqual(0, version.Revision);
+        ClassicAssert.AreEqual(0, version.Major);
+        ClassicAssert.AreEqual(0, version.Minor);
+        ClassicAssert.AreEqual(0, version.Patch);
+        ClassicAssert.AreEqual(0, version.Revision);
     }
 }

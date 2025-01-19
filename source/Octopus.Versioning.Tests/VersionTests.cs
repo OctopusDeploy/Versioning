@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Octopus.Versioning.Tests.Versions
 {
@@ -11,48 +12,48 @@ namespace Octopus.Versioning.Tests.Versions
         {
             var versionOne = VersionFactory.CreateMavenVersion("1.0.0");
 
-            Assert.Less(VersionFactory.CreateMavenVersion("0.0.1"), versionOne);
-            Assert.Less(VersionFactory.CreateMavenVersion("1.0.0-SNAPSHOT"), versionOne);
-            Assert.Less(VersionFactory.CreateMavenVersion("1.0.0-beta-2"), versionOne);
-            Assert.Greater(VersionFactory.CreateMavenVersion("1.0.1"), versionOne);
-            Assert.Greater(VersionFactory.CreateMavenVersion("1.0.0.1"), versionOne);
-            Assert.Greater(VersionFactory.CreateMavenVersion("1.0.0.1-blah"), versionOne);
-            Assert.AreEqual(VersionFactory.CreateMavenVersion("1.0.0"), versionOne);
+            ClassicAssert.Less(VersionFactory.CreateMavenVersion("0.0.1"), versionOne);
+            ClassicAssert.Less(VersionFactory.CreateMavenVersion("1.0.0-SNAPSHOT"), versionOne);
+            ClassicAssert.Less(VersionFactory.CreateMavenVersion("1.0.0-beta-2"), versionOne);
+            ClassicAssert.Greater(VersionFactory.CreateMavenVersion("1.0.1"), versionOne);
+            ClassicAssert.Greater(VersionFactory.CreateMavenVersion("1.0.0.1"), versionOne);
+            ClassicAssert.Greater(VersionFactory.CreateMavenVersion("1.0.0.1-blah"), versionOne);
+            ClassicAssert.AreEqual(VersionFactory.CreateMavenVersion("1.0.0"), versionOne);
         }
 
         [Test]
         public void TestBunchMoreComparisons()
         {
-            Assert.Less(VersionFactory.CreateMavenVersion("1.0-beta1-SNAPSHOT"),
+            ClassicAssert.Less(VersionFactory.CreateMavenVersion("1.0-beta1-SNAPSHOT"),
                 VersionFactory.CreateMavenVersion("1.0-beta1"));
-            Assert.Less(VersionFactory.CreateMavenVersion("1.0-beta1"),
+            ClassicAssert.Less(VersionFactory.CreateMavenVersion("1.0-beta1"),
                 VersionFactory.CreateMavenVersion("1.0-beta2-SNAPSHOT"));
-            Assert.Less(VersionFactory.CreateMavenVersion("1.0-beta2-SNAPSHOT"),
+            ClassicAssert.Less(VersionFactory.CreateMavenVersion("1.0-beta2-SNAPSHOT"),
                 VersionFactory.CreateMavenVersion("1.0-rc1-SNAPSHOT"));
-            Assert.Less(VersionFactory.CreateMavenVersion("1.0-rc1-SNAPSHOT"),
+            ClassicAssert.Less(VersionFactory.CreateMavenVersion("1.0-rc1-SNAPSHOT"),
                 VersionFactory.CreateMavenVersion("1.0-rc1"));
-            Assert.Less(VersionFactory.CreateMavenVersion("1.0-rc1"),
+            ClassicAssert.Less(VersionFactory.CreateMavenVersion("1.0-rc1"),
                 VersionFactory.CreateMavenVersion("1.0-SNAPSHOT"));
-            Assert.Less(VersionFactory.CreateMavenVersion("1.0-SNAPSHOT"),
+            ClassicAssert.Less(VersionFactory.CreateMavenVersion("1.0-SNAPSHOT"),
                 VersionFactory.CreateMavenVersion("1.0"));
-            Assert.AreEqual(VersionFactory.CreateMavenVersion("1.0"),
+            ClassicAssert.AreEqual(VersionFactory.CreateMavenVersion("1.0"),
                 VersionFactory.CreateMavenVersion("1"));
-            Assert.Less(VersionFactory.CreateMavenVersion("1.0"),
+            ClassicAssert.Less(VersionFactory.CreateMavenVersion("1.0"),
                 VersionFactory.CreateMavenVersion("1.0-sp"));
-            Assert.Less(VersionFactory.CreateMavenVersion("1.0-sp"),
+            ClassicAssert.Less(VersionFactory.CreateMavenVersion("1.0-sp"),
                 VersionFactory.CreateMavenVersion("1.0-whatever"));
-            Assert.Less(VersionFactory.CreateMavenVersion("1.0-whatever"),
+            ClassicAssert.Less(VersionFactory.CreateMavenVersion("1.0-whatever"),
                 VersionFactory.CreateMavenVersion("1.0.1"));
         }
 
         [Test]
         public void TesQualifierOnly()
         {
-            Assert.Less(
+            ClassicAssert.Less(
                 VersionFactory.CreateMavenVersion("version1"),
                 VersionFactory.CreateMavenVersion("version2"));
 
-            Assert.Less(
+            ClassicAssert.Less(
                 VersionFactory.CreateMavenVersion("VERSION1"),
                 VersionFactory.CreateMavenVersion("version2"));
         }
@@ -60,16 +61,16 @@ namespace Octopus.Versioning.Tests.Versions
         [Test]
         public void TestEquivalents()
         {
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 VersionFactory.CreateMavenVersion("1.0.0.a1"),
                 VersionFactory.CreateMavenVersion("1.0.0.alpha1"));
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 VersionFactory.CreateMavenVersion("1.0.0.b10"),
                 VersionFactory.CreateMavenVersion("1.0.0.beta10"));
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 VersionFactory.CreateMavenVersion("1.0.0.m3"),
                 VersionFactory.CreateMavenVersion("1.0.0.milestone3"));
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 VersionFactory.CreateMavenVersion("1.0.0"),
                 VersionFactory.CreateMavenVersion("1.0.0.0"),
                 "Another `.0` after patch isn't counted");
@@ -78,7 +79,7 @@ namespace Octopus.Versioning.Tests.Versions
         [Test]
         public void TestSemVerEquivalents()
         {
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 VersionFactory.CreateSemanticVersion("1.0.0"),
                 VersionFactory.CreateSemanticVersion("1.0.0.0"),
                 "Another `.0` after patch isn't counted");
@@ -87,16 +88,16 @@ namespace Octopus.Versioning.Tests.Versions
         [Test]
         public void TestSingleDigit()
         {
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 VersionFactory.CreateSemanticVersion("0001"),
                 VersionFactory.CreateSemanticVersion("1.0.0.0"));
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 VersionFactory.CreateSemanticVersion("0001"),
                 VersionFactory.CreateSemanticVersion("1.0"));
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 VersionFactory.CreateSemanticVersion("0001"),
                 VersionFactory.CreateSemanticVersion("1"));
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
                 VersionFactory.CreateSemanticVersion("1"),
                 VersionFactory.CreateSemanticVersion("1.0.0.0"));
         }
@@ -104,13 +105,13 @@ namespace Octopus.Versioning.Tests.Versions
         [Test]
         public void TestInvalidVersion()
         {
-            Assert.Null(VersionFactory.TryCreateVersion("1.0.*", VersionFormat.Semver));
+            ClassicAssert.Null(VersionFactory.TryCreateVersion("1.0.*", VersionFormat.Semver));
         }
 
         [Test]
         public void TestDockerTagComparison()
         {
-            Assert.AreEqual(VersionFactory.CreateDockerTag("latest"), VersionFactory.CreateDockerTag("latest"));
+            ClassicAssert.AreEqual(VersionFactory.CreateDockerTag("latest"), VersionFactory.CreateDockerTag("latest"));
         }
     }
 }

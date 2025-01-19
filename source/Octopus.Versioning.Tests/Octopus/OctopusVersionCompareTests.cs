@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
 
@@ -53,7 +54,7 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.0.0.1", "1.0.0-2", 1)]
         public void TestVersionComparisons(string version1, string version2, int result)
         {
-            Assert.AreEqual(result, OctopusVersionParser.Parse(version1).CompareTo(OctopusVersionParser.Parse(version2)));
+            ClassicAssert.AreEqual(result, OctopusVersionParser.Parse(version1).CompareTo(OctopusVersionParser.Parse(version2)));
         }
 
         /// <summary>
@@ -75,12 +76,12 @@ namespace Octopus.Versioning.Tests.Octopus
             var semver1 = SemVerFactory.CreateVersionOrNone(version1);
             var semver2 = SemVerFactory.CreateVersionOrNone(version2);
 
-            Assert.LessOrEqual(semver1.CompareTo(semver2), -1);
+            ClassicAssert.LessOrEqual(semver1.CompareTo(semver2), -1);
 
             var octopus1 = OctopusVersionParser.Parse(version1);
             var octopus2 = OctopusVersionParser.Parse(version2);
 
-            Assert.LessOrEqual(octopus1.CompareTo(octopus2), -1);
+            ClassicAssert.LessOrEqual(octopus1.CompareTo(octopus2), -1);
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace Octopus.Versioning.Tests.Octopus
             var octopus1 = OctopusVersionParser.Parse(version1);
             var octopus2 = OctopusVersionParser.Parse(version2);
 
-            Assert.LessOrEqual(octopus1.CompareTo(octopus2), -1);
+            ClassicAssert.LessOrEqual(octopus1.CompareTo(octopus2), -1);
         }
 
         [Test]
@@ -116,11 +117,11 @@ namespace Octopus.Versioning.Tests.Octopus
         {
             var result = OctopusVersionParser.Parse(version1).CompareTo(OctopusVersionParser.Parse(version2));
             if (expected < 0)
-                Assert.LessOrEqual(result, -1);
+                ClassicAssert.LessOrEqual(result, -1);
             else if (expected > 0)
-                Assert.GreaterOrEqual(result, 1);
+                ClassicAssert.GreaterOrEqual(result, 1);
             else
-                Assert.AreEqual(0, result);
+                ClassicAssert.AreEqual(0, result);
         }
 
         [Test]
@@ -133,7 +134,7 @@ namespace Octopus.Versioning.Tests.Octopus
             var ver2 = VersionFactory.CreateOctopusVersion(version);
 
             var items = new List<IVersion> {ver1, ver2}.GroupBy(i => i).ToList();
-            Assert.AreEqual(1, items.Count);
+            ClassicAssert.AreEqual(1, items.Count);
         }
 
         [Test]
@@ -145,7 +146,7 @@ namespace Octopus.Versioning.Tests.Octopus
             var ver1 = VersionFactory.CreateOctopusVersion(version);
             var ver2 = VersionFactory.CreateOctopusVersion(version);
 
-            Assert.AreEqual(ver1.GetHashCode(), ver2.GetHashCode());
+            ClassicAssert.AreEqual(ver1.GetHashCode(), ver2.GetHashCode());
         }
 
         [Test]
@@ -157,7 +158,7 @@ namespace Octopus.Versioning.Tests.Octopus
             var ver1 = VersionFactory.CreateOctopusVersion(v1);
             var ver2 = VersionFactory.CreateOctopusVersion(v2);
 
-            Assert.AreNotEqual(ver1.GetHashCode(), ver2.GetHashCode());
+            ClassicAssert.AreNotEqual(ver1.GetHashCode(), ver2.GetHashCode());
         }
     }
 }

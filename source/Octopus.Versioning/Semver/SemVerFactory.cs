@@ -9,7 +9,7 @@ namespace Octopus.Versioning.Semver
     /// </summary>
     public class SemVerFactory
     {
-        static readonly ISemanticVersionUtils utils = new SemanticVersionUtils();
+        static readonly ISemanticVersionUtils Utils = new SemanticVersionUtils();
 
         public static SemanticVersion CreateVersion(string input, bool preserveMissingComponents = false)
         {
@@ -46,9 +46,15 @@ namespace Octopus.Versioning.Semver
         /// </summary>
         public static SemanticVersion? TryCreateVersion(string value, bool preserveMissingComponents = false)
         {
+
             // trim the value before passing it in since we're not strict here
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+            // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
+            // Conditional value? call is not necessary according to the type signature,
+            // but this API is old, and it's possible some old caller could supply a null.
             value = value?.Trim();
             var originalVersion = value;
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
             // also trim the leading v if it exists
             if (value?.FirstOrDefault() == 'v')
@@ -58,11 +64,10 @@ namespace Octopus.Versioning.Semver
 
             if (!string.IsNullOrWhiteSpace(value))
             {
-                var sections = utils.ParseSections(value);
+                var sections = Utils.ParseSections(value!);
 
                 // null indicates the string did not meet the rules
-                if (sections != null
-                    && !string.IsNullOrEmpty(sections.Item1))
+                if (!string.IsNullOrEmpty(sections.Item1))
                 {
                     var versionPart = sections.Item1;
 
@@ -74,20 +79,20 @@ namespace Octopus.Versioning.Semver
                     {
                         // labels
                         if (sections.Item2 != null
-                            && !sections.Item2.All(s => utils.IsValidPart(s, true)))
+                            && !sections.Item2.All(s => Utils.IsValidPart(s, true)))
                             return null;
 
                         // build metadata
                         if (sections.Item3 != null
-                            && !utils.IsValid(sections.Item3, true))
+                            && !Utils.IsValid(sections.Item3, true))
                             return null;
 
                         var ver = preserveMissingComponents
                             ? systemVersion
-                            : utils.NormalizeVersionValue(systemVersion);
+                            : Utils.NormalizeVersionValue(systemVersion);
 
-                        if (originalVersion.IndexOf(' ') > -1)
-                            originalVersion = value.Replace(" ", "");
+                        if (originalVersion != null && originalVersion.IndexOf(' ') > -1)
+                            originalVersion = value!.Replace(" ", "");
 
                         return new SemanticVersion(ver,
                             sections.Item2,

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace Octopus.Versioning.Tests.Maven
 {
@@ -16,7 +17,7 @@ namespace Octopus.Versioning.Tests.Maven
             var ver2 = VersionFactory.CreateMavenVersion(version);
 
             var items = new List<IVersion> {ver1, ver2}.GroupBy(i => i).ToList();
-            Assert.AreEqual(1, items.Count);
+            ClassicAssert.AreEqual(1, items.Count);
         }
 
         [Test]
@@ -27,7 +28,7 @@ namespace Octopus.Versioning.Tests.Maven
             var ver1 = VersionFactory.CreateMavenVersion(v1);
             var ver2 = VersionFactory.CreateMavenVersion(v2);
 
-            Assert.AreNotEqual(ver1.GetHashCode(), ver2.GetHashCode());
+            ClassicAssert.AreNotEqual(ver1.GetHashCode(), ver2.GetHashCode());
         }
     }
 }
