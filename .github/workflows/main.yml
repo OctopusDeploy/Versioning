@@ -32,14 +32,13 @@ jobs:
       contents: write # Read Required to check out code, Write to create Git Tags
       checks: write # Required for test-reporter
     steps:
-      # Must clone the entire history for OctoVersion to work
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 
 
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
@@ -80,15 +79,14 @@ jobs:
         uses: OctopusDeploy/login@v1
         with: 
           server: https://deploy.octopus.app
-          service_account_id: 235214cc-3dec-4814-bfa0-3b82af8dc95e
+          service_account_id: c6e32234-4fff-4813-b6be-7b1047b717f0
 
       - name: Push build information to Octopus Deploy 🐙
         uses: OctopusDeploy/push-build-information-action@v3
         if: (! contains(github.ref, '/merge')) && (! contains(github.ref, '/dependabot/')) && (! contains(github.ref, 'prettybot/'))
         with:
           packages: |
-            Octopus.TinyTypes
-            Octopus.TinyTypes.Json
+            ./artifacts/Octopus.Versioning.${{ steps.build.outputs.octoversion_fullsemver }}.nupkg
           version: ${{ steps.build.outputs.octoversion_fullsemver }}
 
       - name: Push Packages to Octopus Deploy 🐙
