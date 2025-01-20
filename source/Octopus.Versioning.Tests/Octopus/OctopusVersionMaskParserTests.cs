@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
@@ -219,6 +220,35 @@ namespace Octopus.Versioning.Tests.Octopus
                 var latestMaskedVersionNewImplementationPrefix = OctopusVersionMaskParser.Parse(prefix + version).GetLatestMaskedVersion(latestVersions);
                 Assert.AreEqual(expected, latestMaskedVersionNewImplementationPrefix?.ToString());
             }
+        }
+
+        [Test]
+        public void GetLatestMaskedVersionShouldNotBeOrderDependent()
+        {
+            var mask = OctopusVersionMaskParser.Parse("0.0.7+branchA.c.c.i");
+            var versionParser = new OctopusVersionParser();
+
+            var versions = new[]
+                {
+                    "0.0.7+branchA.1",
+                    "0.0.7+branchA",
+                    "0.0.6+branchA",
+                    "0.0.5-beta.2",
+                    "0.0.5-beta.1",
+                    "0.0.4-beta",
+                    "0.0.3",
+                    "0.0.1",
+                    "0.0.2"
+                }.Select(v => (IVersion)versionParser.Parse(v))
+                .ToList();
+
+            // This is the correct answer that we are looking for
+            Assert.AreEqual("0.0.7+branchA.1", mask.GetLatestMaskedVersion(versions)!.ToString());
+
+            // Now the real test; it should still return the same result even if the versions are not in the correct order
+            var reversedVersions = versions.ToList();
+            reversedVersions.Reverse();
+            Assert.AreEqual("0.0.7+branchA.1", mask.GetLatestMaskedVersion(reversedVersions)!.ToString());
         }
     }
 }
