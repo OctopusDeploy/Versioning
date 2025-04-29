@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Octopus.Versioning.Lexicographic;
 
 namespace Octopus.Versioning.Tests.LexicographicSortedVersion;
@@ -39,7 +40,7 @@ public class LexicographicSortedVersionCompareTests
     {
         var parsedVersion1 = LexicographicSortedVersionParser.Parse(version1);
         var parsedVersion2 = LexicographicSortedVersionParser.Parse(version2);
-        Assert.AreEqual(result, parsedVersion1.CompareTo(parsedVersion2));
+        ClassicAssert.AreEqual(result, parsedVersion1.CompareTo(parsedVersion2));
     }
 
     [Test]
@@ -49,7 +50,7 @@ public class LexicographicSortedVersionCompareTests
     {
         var parsedVersion1 = LexicographicSortedVersionParser.Parse(version1);
         var parsedVersion2 = LexicographicSortedVersionParser.Parse(version2);
-        Assert.AreEqual(result, Equals(parsedVersion1, parsedVersion2));
+        ClassicAssert.AreEqual(result, Equals(parsedVersion1, parsedVersion2));
     }
 
     [Test]
@@ -58,6 +59,6 @@ public class LexicographicSortedVersionCompareTests
         var versionString = "release-1";
         var parsedVersion = LexicographicSortedVersionParser.Parse(versionString);
 
-        Assert.AreEqual(versionString.GetHashCode(), parsedVersion.GetHashCode());
+        ClassicAssert.AreEqual(versionString.GetHashCode(), parsedVersion.GetHashCode());
     }
 }

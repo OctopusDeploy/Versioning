@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Octopus.Versioning.Maven;
 using Octopus.Versioning.Maven.Ranges;
 
@@ -32,11 +33,11 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
         {
             var parser = new MavenVersionParser();
             var range1 = MavenVersionRange.CreateFromVersionSpec("(,9.0.1)");
-            Assert.IsTrue(range1.ContainsVersion(parser.Parse("8.0.1")));
-            Assert.IsFalse(range1.ContainsVersion(parser.Parse("9.0.10.M27")));
-            Assert.IsFalse(range1.ContainsVersion(parser.Parse("10.0.0.M22")));
-            Assert.IsTrue(range1.ContainsVersion(parser.Parse("9.0.0.M25")));
-            Assert.IsTrue(range1.ContainsVersion(parser.Parse("9.0.0.M22")));
+            ClassicAssert.IsTrue(range1.ContainsVersion(parser.Parse("8.0.1")));
+            ClassicAssert.IsFalse(range1.ContainsVersion(parser.Parse("9.0.10.M27")));
+            ClassicAssert.IsFalse(range1.ContainsVersion(parser.Parse("10.0.0.M22")));
+            ClassicAssert.IsTrue(range1.ContainsVersion(parser.Parse("9.0.0.M25")));
+            ClassicAssert.IsTrue(range1.ContainsVersion(parser.Parse("9.0.0.M22")));
         }
 
         [Test]
@@ -44,102 +45,102 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
         {
             var range = MavenVersionRange.CreateFromVersionSpec("(,1.0]");
             var restrictions = range.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             var restriction = restrictions[0];
-            Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
-            Assert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
-            Assert.IsFalse(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
-            Assert.IsNull(range.GetSelectedVersion(), CHECK_SELECTED_VERSION);
+            ClassicAssert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsFalse(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
+            ClassicAssert.IsNull(range.GetSelectedVersion(), CHECK_SELECTED_VERSION);
 
             range = MavenVersionRange.CreateFromVersionSpec("1.0");
-            Assert.AreEqual("1.0", range.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.AreEqual("1.0", range.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
             restrictions = range.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
-            Assert.IsTrue(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
-            Assert.AreEqual("1.0", range.GetSelectedVersion().ToString(), CHECK_SELECTED_VERSION);
+            ClassicAssert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsTrue(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
+            ClassicAssert.AreEqual("1.0", range.GetSelectedVersion().ToString(), CHECK_SELECTED_VERSION);
 
             range = MavenVersionRange.CreateFromVersionSpec("[1.0]");
             restrictions = range.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.0", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
-            Assert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
-            Assert.IsFalse(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
-            Assert.IsNull(range.GetSelectedVersion(), CHECK_SELECTED_VERSION);
+            ClassicAssert.AreEqual("1.0", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsFalse(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
+            ClassicAssert.IsNull(range.GetSelectedVersion(), CHECK_SELECTED_VERSION);
 
             range = MavenVersionRange.CreateFromVersionSpec("[1.2,1.3]");
             restrictions = range.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
-            Assert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
-            Assert.IsFalse(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
-            Assert.IsNull(range.GetSelectedVersion(), CHECK_SELECTED_VERSION);
+            ClassicAssert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsFalse(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
+            ClassicAssert.IsNull(range.GetSelectedVersion(), CHECK_SELECTED_VERSION);
 
             range = MavenVersionRange.CreateFromVersionSpec("[1.0,2.0)");
             restrictions = range.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.0", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("2.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
-            Assert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
-            Assert.IsFalse(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
-            Assert.IsNull(range.GetSelectedVersion(), CHECK_SELECTED_VERSION);
+            ClassicAssert.AreEqual("1.0", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("2.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsFalse(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
+            ClassicAssert.IsNull(range.GetSelectedVersion(), CHECK_SELECTED_VERSION);
 
             range = MavenVersionRange.CreateFromVersionSpec("[1.5,)");
             restrictions = range.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.5", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
-            Assert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
-            Assert.IsFalse(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
-            Assert.IsNull(range.GetSelectedVersion(), CHECK_SELECTED_VERSION);
+            ClassicAssert.AreEqual("1.5", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsFalse(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
+            ClassicAssert.IsNull(range.GetSelectedVersion(), CHECK_SELECTED_VERSION);
 
             range = MavenVersionRange.CreateFromVersionSpec("(,1.0],[1.2,)");
             restrictions = range.Restrictions;
-            Assert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
-            Assert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restriction = restrictions[1];
-            Assert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
-            Assert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
-            Assert.IsFalse(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
-            Assert.IsNull(range.GetSelectedVersion(), CHECK_SELECTED_VERSION);
+            ClassicAssert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(range.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsFalse(range.IsSelectedVersionKnown(), CHECK_SELECTED_VERSION_KNOWN);
+            ClassicAssert.IsNull(range.GetSelectedVersion(), CHECK_SELECTED_VERSION);
 
             range = MavenVersionRange.CreateFromVersionSpec("[1.0,)");
-            Assert.IsFalse(range.ContainsVersion(new MavenVersionParser().Parse("1.0-SNAPSHOT")));
+            ClassicAssert.IsFalse(range.ContainsVersion(new MavenVersionParser().Parse("1.0-SNAPSHOT")));
 
             range = MavenVersionRange.CreateFromVersionSpec("[1.0,1.1-SNAPSHOT]");
-            Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.1-SNAPSHOT")));
+            ClassicAssert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.1-SNAPSHOT")));
 
             range = MavenVersionRange.CreateFromVersionSpec("[5.0.9.0,5.0.10.0)");
-            Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("5.0.9.0")));
+            ClassicAssert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("5.0.9.0")));
         }
 
         [Test]
@@ -168,479 +169,479 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
             var range2 = MavenVersionRange.CreateFromVersionSpec("1.1");
             var mergedRange = range1.Restrict(range2);
             // TODO current policy is to retain the original version - is this correct, do we need strategies or is that handled elsewhere?
-//        Assert.AreEqual( "1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION );
-            Assert.AreEqual("1.0", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
+//        ClassicAssert.AreEqual( "1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION );
+            ClassicAssert.AreEqual("1.0", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
             var restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             var restriction = restrictions[0];
-            Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             mergedRange = range2.Restrict(range1);
-            Assert.AreEqual("1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.AreEqual("1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             // TODO test reversed restrictions on all below
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.0,)");
             range2 = MavenVersionRange.CreateFromVersionSpec("1.1");
             mergedRange = range1.Restrict(range2);
-            Assert.AreEqual("1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.AreEqual("1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.0", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.0", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.1,)");
             range2 = MavenVersionRange.CreateFromVersionSpec("1.1");
             mergedRange = range1.Restrict(range2);
-            Assert.AreEqual("1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.AreEqual("1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.1]");
             range2 = MavenVersionRange.CreateFromVersionSpec("1.1");
             mergedRange = range1.Restrict(range2);
-            Assert.AreEqual("1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.AreEqual("1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(1.1,)");
             range2 = MavenVersionRange.CreateFromVersionSpec("1.1");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.2,)");
             range2 = MavenVersionRange.CreateFromVersionSpec("1.1");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(,1.2]");
             range2 = MavenVersionRange.CreateFromVersionSpec("1.1");
             mergedRange = range1.Restrict(range2);
-            Assert.AreEqual("1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.AreEqual("1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(,1.1]");
             range2 = MavenVersionRange.CreateFromVersionSpec("1.1");
             mergedRange = range1.Restrict(range2);
-            Assert.AreEqual("1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.AreEqual("1.1", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.1", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(,1.1)");
             range2 = MavenVersionRange.CreateFromVersionSpec("1.1");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.1", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(,1.0]");
             range2 = MavenVersionRange.CreateFromVersionSpec("1.1");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(,1.0], [1.1,)");
             range2 = MavenVersionRange.CreateFromVersionSpec("1.2");
             mergedRange = range1.Restrict(range2);
-            Assert.AreEqual("1.2", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.AreEqual("1.2", mergedRange.RecommendedVersion.ToString(), CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
             restriction = restrictions[1];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(,1.0], [1.1,)");
             range2 = MavenVersionRange.CreateFromVersionSpec("1.0.5");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.0", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
             restriction = restrictions[1];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(,1.1), (1.1,)");
             range2 = MavenVersionRange.CreateFromVersionSpec("1.1");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.1", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.LowerBound, CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
             restriction = restrictions[1];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.IsNull(restriction.UpperBound, CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.1,1.3]");
             range2 = MavenVersionRange.CreateFromVersionSpec("(1.1,)");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(,1.3)");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.2,1.3]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.1,1.3]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.2,)");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(,1.3]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.2,1.4]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(1.2,1.3]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.1,1.4]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(1.2,1.3)");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.1,1.4]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.2,1.3)");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.1,1.4]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.0,1.1]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.1,1.4]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.1", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.0,1.1)");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.1,1.4]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(0, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(0, restrictions.Count, CHECK_NUM_RESTRICTIONS);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2],[1.3,1.5]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.1]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.1", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2],[1.3,1.5]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.4]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(1, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.4", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.4", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2],[1.3,1.5]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.1,1.4]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
             restriction = restrictions[1];
-            Assert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2),(1.3,1.5]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.1,1.4]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
             restriction = restrictions[1];
-            Assert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2],[1.3,1.5]");
             range2 = MavenVersionRange.CreateFromVersionSpec("(1.1,1.4)");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
             restriction = restrictions[1];
-            Assert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2),(1.3,1.5]");
             range2 = MavenVersionRange.CreateFromVersionSpec("(1.1,1.4)");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
             restriction = restrictions[1];
-            Assert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsFalse(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(,1.1),(1.4,)");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.1,1.4]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(0, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(0, restrictions.Count, CHECK_NUM_RESTRICTIONS);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("(,1.1],[1.4,)");
             range2 = MavenVersionRange.CreateFromVersionSpec("(1.1,1.4)");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(0, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(0, restrictions.Count, CHECK_NUM_RESTRICTIONS);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[,1.1],[1.4,]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.2,1.3]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(0, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(0, restrictions.Count, CHECK_NUM_RESTRICTIONS);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2],[1.3,1.5]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.1,1.4],[1.6,]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(2, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
             restriction = restrictions[1];
-            Assert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2],[1.3,1.5]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.1,1.4],[1.5,]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(3, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(3, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
             restriction = restrictions[1];
-            Assert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
             restriction = restrictions[2];
-            Assert.AreEqual("1.5", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.5", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.5", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.5", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2],[1.3,1.7]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.1,1.4],[1.5,1.6]");
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(3, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(3, restrictions.Count, CHECK_NUM_RESTRICTIONS);
             restriction = restrictions[0];
-            Assert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.1", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.2", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
             restriction = restrictions[1];
-            Assert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.3", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.4", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
             restriction = restrictions[2];
-            Assert.AreEqual("1.5", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
-            Assert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
-            Assert.AreEqual("1.6", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
-            Assert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.5", restriction.LowerBound.ToString(), CHECK_LOWER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsLowerBoundInclusive, CHECK_LOWER_BOUND_INCLUSIVE);
+            ClassicAssert.AreEqual("1.6", restriction.UpperBound.ToString(), CHECK_UPPER_BOUND);
+            ClassicAssert.IsTrue(restriction.IsUpperBoundInclusive, CHECK_UPPER_BOUND_INCLUSIVE);
 
             // test restricting empty sets
             range1 = MavenVersionRange.CreateFromVersionSpec("[,1.1],[1.4,]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.2,1.3]");
             range1 = range1.Restrict(range2);
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(0, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(0, restrictions.Count, CHECK_NUM_RESTRICTIONS);
 
             range1 = MavenVersionRange.CreateFromVersionSpec("[,1.1],[1.4,]");
             range2 = MavenVersionRange.CreateFromVersionSpec("[1.2,1.3]");
             range2 = range1.Restrict(range2);
             mergedRange = range1.Restrict(range2);
-            Assert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
+            ClassicAssert.IsNull(mergedRange.RecommendedVersion, CHECK_VERSION_RECOMMENDATION);
             restrictions = mergedRange.Restrictions;
-            Assert.AreEqual(0, restrictions.Count, CHECK_NUM_RESTRICTIONS);
+            ClassicAssert.AreEqual(0, restrictions.Count, CHECK_NUM_RESTRICTIONS);
         }
 
         [Test]
@@ -648,9 +649,9 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
         {
             var range = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2]");
 
-            Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.1-SNAPSHOT")));
-            Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.2-SNAPSHOT")));
-            Assert.IsFalse(range.ContainsVersion(new MavenVersionParser().Parse("1.0-SNAPSHOT")));
+            ClassicAssert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.1-SNAPSHOT")));
+            ClassicAssert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.2-SNAPSHOT")));
+            ClassicAssert.IsFalse(range.ContainsVersion(new MavenVersionParser().Parse("1.0-SNAPSHOT")));
         }
 
         [Test]
@@ -658,13 +659,13 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
         {
             var range = MavenVersionRange.CreateFromVersionSpec("[1.0,1.2-SNAPSHOT]");
 
-            Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.1-SNAPSHOT")));
-            Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.2-SNAPSHOT")));
+            ClassicAssert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.1-SNAPSHOT")));
+            ClassicAssert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.2-SNAPSHOT")));
 
             range = MavenVersionRange.CreateFromVersionSpec("[1.0-SNAPSHOT,1.2]");
 
-            Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.0-SNAPSHOT")));
-            Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.1-SNAPSHOT")));
+            ClassicAssert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.0-SNAPSHOT")));
+            ClassicAssert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.1-SNAPSHOT")));
         }
 
         [Test]
@@ -672,7 +673,7 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
         {
             var range = MavenVersionRange.CreateFromVersionSpec("1.0-SNAPSHOT");
 
-            Assert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.0-SNAPSHOT")));
+            ClassicAssert.IsTrue(range.ContainsVersion(new MavenVersionParser().Parse("1.0-SNAPSHOT")));
         }
 
         void checkInvalidRange(string version)
@@ -680,7 +681,7 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
             try
             {
                 MavenVersionRange.CreateFromVersionSpec(version);
-                Assert.Fail("Version " + version + " should have failed to construct");
+                ClassicAssert.Fail("Version " + version + " should have failed to construct");
             }
             catch (InvalidVersionSpecificationException)
             {
@@ -692,15 +693,15 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
         public void testContains()
         {
             IVersion actualVersion = new MavenVersionParser().Parse("2.0.5");
-            Assert.IsTrue(enforceVersion("2.0.5", actualVersion));
-            Assert.IsTrue(enforceVersion("2.0.4", actualVersion));
-            Assert.IsTrue(enforceVersion("[2.0.5]", actualVersion));
-            Assert.IsFalse(enforceVersion("[2.0.6,)", actualVersion));
-            Assert.IsFalse(enforceVersion("[2.0.6]", actualVersion));
-            Assert.IsTrue(enforceVersion("[2.0,2.1]", actualVersion));
-            Assert.IsFalse(enforceVersion("[2.0,2.0.3]", actualVersion));
-            Assert.IsTrue(enforceVersion("[2.0,2.0.5]", actualVersion));
-            Assert.IsFalse(enforceVersion("[2.0,2.0.5)", actualVersion));
+            ClassicAssert.IsTrue(enforceVersion("2.0.5", actualVersion));
+            ClassicAssert.IsTrue(enforceVersion("2.0.4", actualVersion));
+            ClassicAssert.IsTrue(enforceVersion("[2.0.5]", actualVersion));
+            ClassicAssert.IsFalse(enforceVersion("[2.0.6,)", actualVersion));
+            ClassicAssert.IsFalse(enforceVersion("[2.0.6]", actualVersion));
+            ClassicAssert.IsTrue(enforceVersion("[2.0,2.1]", actualVersion));
+            ClassicAssert.IsFalse(enforceVersion("[2.0,2.0.3]", actualVersion));
+            ClassicAssert.IsTrue(enforceVersion("[2.0,2.0.5]", actualVersion));
+            ClassicAssert.IsFalse(enforceVersion("[2.0,2.0.5)", actualVersion));
         }
 
         public bool enforceVersion(string requiredMavenVersionRange, IVersion actualVersion)
@@ -715,7 +716,7 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
         [Test]
         public void testOrder0()
         {
-            // Assert.IsTrue( new DefaultArtifactVersion( "1.0-alpha10" ).compareTo( new DefaultArtifactVersion( "1.0-alpha1" ) ) > 0 );
+            // ClassicAssert.IsTrue( new DefaultArtifactVersion( "1.0-alpha10" ).compareTo( new DefaultArtifactVersion( "1.0-alpha1" ) ) > 0 );
         }
 
         [TestCase("[1.0,1.1]")]
@@ -725,7 +726,7 @@ namespace Octopus.Versioning.Tests.Maven.Ranges
             var result = MavenVersionRange.CreateFromVersionSpec(input)
                 .ToString();
 
-            Assert.AreEqual(input, result);
+            ClassicAssert.AreEqual(input, result);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using Octopus.Versioning.Maven;
 using Octopus.Versioning.Octopus;
 using Octopus.Versioning.Semver;
@@ -16,8 +17,8 @@ namespace Octopus.Versioning.Tests.Octopus
         [Test]
         public void TryParseTest()
         {
-            Assert.IsFalse(OctopusVersionParser.TryParse("99999999999999999999999999999999999", out var version));
-            Assert.IsTrue(OctopusVersionParser.TryParse("1.1.1.1", out var version2));
+            ClassicAssert.IsFalse(OctopusVersionParser.TryParse("99999999999999999999999999999999999", out var version));
+            ClassicAssert.IsTrue(OctopusVersionParser.TryParse("1.1.1.1", out var version2));
         }
 
         [Test]
@@ -491,21 +492,21 @@ namespace Octopus.Versioning.Tests.Octopus
             var semverParsed = SemVerFactory.Parse(version);
             var parsed = OctopusVersionParser.Parse(version);
 
-            Assert.AreEqual(major, parsed.Major);
-            Assert.AreEqual(major, semverParsed.Major);
-            Assert.AreEqual(minor, parsed.Minor);
-            Assert.AreEqual(minor, semverParsed.Minor);
-            Assert.AreEqual(patch, parsed.Patch);
-            Assert.AreEqual(patch, semverParsed.Patch);
-            Assert.AreEqual(revision, parsed.Revision);
-            Assert.AreEqual(revision, semverParsed.Revision);
-            Assert.AreEqual(prerelease, parsed.Release);
-            Assert.AreEqual(prerelease, semverParsed.Release);
-            Assert.AreEqual(metadata, parsed.Metadata);
-            Assert.AreEqual(metadata, semverParsed.Metadata);
+            ClassicAssert.AreEqual(major, parsed.Major);
+            ClassicAssert.AreEqual(major, semverParsed.Major);
+            ClassicAssert.AreEqual(minor, parsed.Minor);
+            ClassicAssert.AreEqual(minor, semverParsed.Minor);
+            ClassicAssert.AreEqual(patch, parsed.Patch);
+            ClassicAssert.AreEqual(patch, semverParsed.Patch);
+            ClassicAssert.AreEqual(revision, parsed.Revision);
+            ClassicAssert.AreEqual(revision, semverParsed.Revision);
+            ClassicAssert.AreEqual(prerelease, parsed.Release);
+            ClassicAssert.AreEqual(prerelease, semverParsed.Release);
+            ClassicAssert.AreEqual(metadata, parsed.Metadata);
+            ClassicAssert.AreEqual(metadata, semverParsed.Metadata);
 
-            Assert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
-            Assert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
+            ClassicAssert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
+            ClassicAssert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
         }
 
         [Test]
@@ -649,21 +650,21 @@ namespace Octopus.Versioning.Tests.Octopus
             var parsed = OctopusVersionParser.Parse(version);
             var mavenParsed = new MavenVersionParser().Parse(version);
 
-            Assert.AreEqual(major, parsed.Major);
-            Assert.AreEqual(major, mavenParsed.Major);
-            Assert.AreEqual(minor, parsed.Minor);
-            Assert.AreEqual(minor, mavenParsed.Minor);
-            Assert.AreEqual(patch, parsed.Patch);
-            Assert.AreEqual(patch, mavenParsed.Patch);
-            Assert.AreEqual(revision, parsed.Revision);
-            Assert.AreEqual(revision, mavenParsed.Revision);
-            Assert.AreEqual(prerelease, parsed.Release);
-            Assert.AreEqual(prerelease, mavenParsed.Release);
-            Assert.AreEqual(metadata, parsed.Metadata);
-            Assert.AreEqual(metadata, mavenParsed.Metadata ?? string.Empty);
+            ClassicAssert.AreEqual(major, parsed.Major);
+            ClassicAssert.AreEqual(major, mavenParsed.Major);
+            ClassicAssert.AreEqual(minor, parsed.Minor);
+            ClassicAssert.AreEqual(minor, mavenParsed.Minor);
+            ClassicAssert.AreEqual(patch, parsed.Patch);
+            ClassicAssert.AreEqual(patch, mavenParsed.Patch);
+            ClassicAssert.AreEqual(revision, parsed.Revision);
+            ClassicAssert.AreEqual(revision, mavenParsed.Revision);
+            ClassicAssert.AreEqual(prerelease, parsed.Release);
+            ClassicAssert.AreEqual(prerelease, mavenParsed.Release);
+            ClassicAssert.AreEqual(metadata, parsed.Metadata);
+            ClassicAssert.AreEqual(metadata, mavenParsed.Metadata ?? string.Empty);
 
-            Assert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
-            Assert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
+            ClassicAssert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
+            ClassicAssert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
         }
 
         /// <summary>
@@ -765,21 +766,21 @@ namespace Octopus.Versioning.Tests.Octopus
             var parsed = OctopusVersionParser.Parse(version);
             var mavenParsed = new MavenVersionParser().Parse(version);
 
-            Assert.AreEqual(major, parsed.Major);
-            Assert.AreEqual(major, mavenParsed.Major);
-            Assert.AreEqual(minor, parsed.Minor);
-            Assert.AreEqual(mavenMinor, mavenParsed.Minor);
-            Assert.AreEqual(patch, parsed.Patch);
-            Assert.AreEqual(mavenPatch, mavenParsed.Patch);
-            Assert.AreEqual(revision, parsed.Revision);
-            Assert.AreEqual(mavenRevision, mavenParsed.Revision);
-            Assert.AreEqual(prerelease, parsed.Release);
-            Assert.AreEqual(mavenPrerelease, mavenParsed.Release);
-            Assert.AreEqual(metadata, parsed.Metadata);
-            Assert.AreEqual(metadata, mavenParsed.Metadata ?? string.Empty);
+            ClassicAssert.AreEqual(major, parsed.Major);
+            ClassicAssert.AreEqual(major, mavenParsed.Major);
+            ClassicAssert.AreEqual(minor, parsed.Minor);
+            ClassicAssert.AreEqual(mavenMinor, mavenParsed.Minor);
+            ClassicAssert.AreEqual(patch, parsed.Patch);
+            ClassicAssert.AreEqual(mavenPatch, mavenParsed.Patch);
+            ClassicAssert.AreEqual(revision, parsed.Revision);
+            ClassicAssert.AreEqual(mavenRevision, mavenParsed.Revision);
+            ClassicAssert.AreEqual(prerelease, parsed.Release);
+            ClassicAssert.AreEqual(mavenPrerelease, mavenParsed.Release);
+            ClassicAssert.AreEqual(metadata, parsed.Metadata);
+            ClassicAssert.AreEqual(metadata, mavenParsed.Metadata ?? string.Empty);
 
-            Assert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
-            Assert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
+            ClassicAssert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
+            ClassicAssert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
         }
 
         /// <summary>
@@ -953,17 +954,17 @@ namespace Octopus.Versioning.Tests.Octopus
         {
             var parsed = OctopusVersionParser.Parse(version);
 
-            Assert.AreEqual(major, parsed.Major);
-            Assert.AreEqual(minor, parsed.Minor);
-            Assert.AreEqual(patch, parsed.Patch);
-            Assert.AreEqual(revision, parsed.Revision);
-            Assert.AreEqual(prerelease, parsed.Release);
-            Assert.AreEqual(metadata, parsed.Metadata);
+            ClassicAssert.AreEqual(major, parsed.Major);
+            ClassicAssert.AreEqual(minor, parsed.Minor);
+            ClassicAssert.AreEqual(patch, parsed.Patch);
+            ClassicAssert.AreEqual(revision, parsed.Revision);
+            ClassicAssert.AreEqual(prerelease, parsed.Release);
+            ClassicAssert.AreEqual(metadata, parsed.Metadata);
 
-            Assert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
-            Assert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
+            ClassicAssert.AreEqual(prereleasePrefix, parsed.ReleasePrefix);
+            ClassicAssert.AreEqual(prereleaseCounter, parsed.ReleaseCounter);
 
-            Assert.IsNull(SemVerFactory.TryCreateVersion(version));
+            ClassicAssert.IsNull(SemVerFactory.TryCreateVersion(version));
         }
 
         [TestCase("stable", false)]
@@ -974,7 +975,7 @@ namespace Octopus.Versioning.Tests.Octopus
         public void TestHasMetadata(string version, bool hasMetadata)
         {
             var parsed = OctopusVersionParser.Parse(version);
-            Assert.AreEqual(hasMetadata, parsed.HasMetadata);
+            ClassicAssert.AreEqual(hasMetadata, parsed.HasMetadata);
         }
 
         /// <summary>
@@ -996,7 +997,7 @@ namespace Octopus.Versioning.Tests.Octopus
                 var hasRelease = !string.IsNullOrEmpty(parsed.Release);
                 var hasMetadata = !string.IsNullOrEmpty(parsed.Metadata);
 
-                Assert.IsTrue(hasMajor || hasMinor || hasPatch || hasRevision || hasRelease || hasMetadata);
+                ClassicAssert.IsTrue(hasMajor || hasMinor || hasPatch || hasRevision || hasRelease || hasMetadata);
             }
             catch (OverflowException)
             {
@@ -1015,11 +1016,11 @@ namespace Octopus.Versioning.Tests.Octopus
             try
             {
                 OctopusVersionParser.Parse(version);
-                Assert.Fail("Should have thrown an exception");
+                ClassicAssert.Fail("Should have thrown an exception");
             }
             catch (OverflowException)
             {
-                Assert.Pass("Exception was expected");
+                ClassicAssert.Pass("Exception was expected");
             }
         }
 
@@ -1051,7 +1052,7 @@ namespace Octopus.Versioning.Tests.Octopus
             var semanticVersion = SemVerFactory.TryCreateVersion(version);
 
             if (octoSuccess || semanticVersion != null)
-                Assert.Fail("Should have thrown an exception");
+                ClassicAssert.Fail("Should have thrown an exception");
         }
 
         /// <summary>
@@ -1073,7 +1074,7 @@ namespace Octopus.Versioning.Tests.Octopus
             OctopusVersionParser.TryParse(version, out var octoVersion);
             var semanticVersion = SemVerFactory.TryCreateVersion(version);
 
-            Assert.AreEqual(octoVersion.OriginalString, semanticVersion.OriginalString);
+            ClassicAssert.AreEqual(octoVersion.OriginalString, semanticVersion.OriginalString);
         }
 
         public static string RandomString(int length)
@@ -1095,7 +1096,7 @@ namespace Octopus.Versioning.Tests.Octopus
             OctopusVersionParser.TryParse(version, out var octoVersion);
             OctopusVersionParser.TryParse(version2, out var octoVersion2);
 
-            Assert.Greater(octoVersion2, octoVersion);
+            ClassicAssert.Greater(octoVersion2, octoVersion);
         }
     }
 }
