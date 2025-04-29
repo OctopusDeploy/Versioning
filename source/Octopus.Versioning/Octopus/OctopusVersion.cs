@@ -57,6 +57,10 @@ namespace Octopus.Versioning.Octopus
                 if (!string.IsNullOrEmpty(Release) && string.IsNullOrEmpty(objVersion.Release)) return -1;
                 if (!string.IsNullOrEmpty(objVersion.Release) && string.IsNullOrEmpty(Release)) return 1;
 
+                if (!string.IsNullOrEmpty(Metadata) && string.IsNullOrEmpty(objVersion.Metadata)) return 1;
+                if (!string.IsNullOrEmpty(objVersion.Metadata) && string.IsNullOrEmpty(Metadata)) return -1;
+                if (string.Compare(Metadata, objVersion.Metadata, StringComparison.Ordinal) != 0) return string.Compare(Metadata, objVersion.Metadata, StringComparison.Ordinal);
+
                 /*
                  * We only consider alpha numeric characters when comparing two versions. This means characters used in
                  * in typical version ranges like [1.0,2.0] or 1.0->2.0 (i.e. the comma, square brackets and greater than)
