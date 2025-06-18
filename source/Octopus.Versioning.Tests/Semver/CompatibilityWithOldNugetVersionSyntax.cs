@@ -51,6 +51,22 @@ public class CompatibilityWithOldNugetVersionSyntax
     }
     
     [Test]
+    public void VersionsWithDifferingLeadingZeroesAreEqual()
+    {
+        var basic = VersionFactory.CreateSemanticVersion("1.1");
+        var zeroOne = VersionFactory.CreateSemanticVersion("1.01");
+        var multipleZeroes = VersionFactory.CreateSemanticVersion("1.0001");
+        var trailingZeroes = VersionFactory.CreateSemanticVersion("1.000001.00");
+        var firstLeadingZero = VersionFactory.CreateSemanticVersion("001.1");
+        
+        // All things must equal eachother
+        foreach (var (a, b) in GenerateUniquePairs([basic, zeroOne, multipleZeroes, trailingZeroes, firstLeadingZero]))
+        {
+            Assert.AreEqual(a, b);
+        }
+    }
+    
+    [Test]
     public void PreReleaseComponentsCompareEqual()
     {
         var lowerCase = VersionFactory.CreateSemanticVersion("1.0.0-alpha");
