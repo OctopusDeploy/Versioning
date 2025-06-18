@@ -9,8 +9,6 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <Copyright>Copyright © Octopus Deploy 2017</Copyright>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <!-- nuget packages with security warnings should not break the build -->
-    <WarningsNotAsErrors>CS0618,NU1901,NU1902,NU1903</WarningsNotAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Octopus.Versioning\Octopus.Versioning.csproj" />
