@@ -68,7 +68,7 @@ namespace Octopus.Versioning.Octopus
         /// the method will determine the latest version and return 3.2.2-branch1.a. because it's the first occurrence of the two 'highest version'
         /// </param>
         /// <returns>The latest version based on precedence rules.</returns>
-        [Obsolete("GetLatestMaskedVersion ignores metadata when determining version precedence, it can give unexpected 'latest' version depending list of versions order.")]
+        [Obsolete("Its preferred to use GetLatestMaskedVersions and handle the case when there is multiple versions passed with the same version but different metadata.")]
         public IVersion? GetLatestMaskedVersion(List<IVersion> versions)
         {
             var maskMajor = Major.IsPresent && !Major.IsSubstitute ? int.Parse(Major.Value) : 0;
@@ -108,6 +108,73 @@ namespace Octopus.Versioning.Octopus
                 })
                 .OrderByDescending(o => o)
                 .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets all versions with the highest precedence from the provided list that match this mask.
+        /// Uses each version type's native comparison logic to determine precedence.
+        /// 
+        /// When multiple versions have identical precedence according to their native comparison,
+        /// all such versions are returned, allowing the consumer to determine the most appropriate one based
+        /// on additional context such as creation time, repository order, or other criteria.
+        /// </summary>
+        /// <param name="versions">List of versions to filter and compare</param>
+        /// <returns>All versions with the highest precedence matching the mask, or empty list if no matches found</returns>
+        public List<IVersion> GetLatestMaskedVersions(List<IVersion> versions)
+        {
+            var maskMajor = Major.IsPresent && !Major.IsSubstitute ? int.Parse(Major.Value) : 0;
+            var maskMinor = Minor.IsPresent && !Minor.IsSubstitute ? int.Parse(Minor.Value) : 0;
+            var maskBuild = Patch.IsPresent && !Patch.IsSubstitute ? int.Parse(Patch.Value) : 0;
+            var maskRevision = Revision.IsPresent && !Revision.IsSubstitute ? int.Parse(Revision.Value) : 0;
+
+            var filteredVersions = versions
+                .Where(v => v != null)
+                .Where(v =>
+                {
+                    if (Major.IsSubstitute)
+                        return true;
+
+                    if (v.Major != maskMajor)
+                        return false;
+
+                    if (Minor.IsSubstitute)
+                        return true;
+
+                    if (v.Minor != maskMinor)
+                        return false;
+
+                    if (Patch.IsSubstitute)
+                        return true;
+
+                    if (v.Patch != maskBuild)
+                        return false;
+
+                    if (Revision.IsSubstitute)
+                        return true;
+
+                    if (v.Revision != maskRevision)
+                        return false;
+
+                    return true;
+                })
+                .ToList();
+
+            if (!filteredVersions.Any())
+                return new List<IVersion>();
+
+            // Find the highest precedence version using native comparison
+            // e.g. [0.0.7+branchA.1, 0.0.7+branchA, 0.0.6+branchA] -> "0.0.7+branchA.1" 
+            // (because 0.0.7+branchA.1 was first in the list and the highest precedence version)
+            var highestVersion = filteredVersions
+                .OrderByDescending(v => v)// use IVersion.CompareTo to determine precedence (this should ignore metadata if semver)
+                .First(); 
+
+            // Because Semver does not consider metadata when determining precedence. (see: https://semver.org/#spec-item-11)
+            //  we need to return all versions that have the same highest precedence 
+            // e.g. [1.2.7+branchA.1, 1.2.7+branchA, 0.2.6+branchA] -> [1.2.7+branchA.1, 1.2.7+branchA]
+            return filteredVersions
+                .Where(v => v.CompareTo(highestVersion) == 0)
+                .ToList();
         }
 
         public IVersion GenerateVersionFromMask()

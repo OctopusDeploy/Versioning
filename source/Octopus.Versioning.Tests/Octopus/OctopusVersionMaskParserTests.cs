@@ -254,5 +254,106 @@ namespace Octopus.Versioning.Tests.Octopus
             Assert.AreEqual("0.0.7+branchA.2", mask.GetLatestMaskedVersion(reversedVersions)!.ToString(),"Because we reversed the order of the list, so `+branchA.2` is now first in the list.");
 #pragma warning restore CS0618 // Type or member is obsolete
         }
+
+        [Test]
+        public void GetLatestMaskedVersionsShouldReturnAllVersionsWithHighestPrecedence()
+        {
+            var mask = OctopusVersionMaskParser.Parse("0.0.7+branchA.c.c.i");
+            var versionParser = new OctopusVersionParser();
+
+            var versions = new[]
+                {
+                    "0.0.7+branchA.1",
+                    "0.0.7+branchA.2", 
+                    "0.0.6+branchA",
+                    "0.0.5-beta.2",
+                    "0.0.5-beta.1",
+                    "0.0.4-beta",
+                    "0.0.3",
+                    "0.0.1",
+                    "0.0.2"
+                }.Select(v => (IVersion)versionParser.Parse(v))
+                .ToList();
+
+            var result = mask.GetLatestMaskedVersions(versions);
+
+            // Should return both 0.0.7 versions since they have the same precedence (metadata is ignored in comparison)
+            Assert.AreEqual(2, result.Count, "Should return both versions with highest precedence");
+            Assert.True(result.Any(v => v.ToString() == "0.0.7+branchA.1"), "Should include 0.0.7+branchA.1");
+            Assert.True(result.Any(v => v.ToString() == "0.0.7+branchA.2"), "Should include 0.0.7+branchA.2");
+        }
+
+        [Test]
+        public void GetLatestMaskedVersionsShouldReturnEmptyListWhenNoVersionsMatch()
+        {
+            var mask = OctopusVersionMaskParser.Parse("2.0.0");
+            var versionParser = new OctopusVersionParser();
+
+            var versions = new[]
+                {
+                    "1.0.0",
+                    "1.5.0",
+                    "1.9.9"
+                }.Select(v => (IVersion)versionParser.Parse(v))
+                .ToList();
+
+            var result = mask.GetLatestMaskedVersions(versions);
+
+            Assert.AreEqual(0, result.Count, "Should return empty list when no versions match the mask");
+        }
+
+        [Test]
+        public void GetLatestMaskedVersionsShouldReturnSingleVersionWhenOnlyOneHasHighestPrecedence()
+        {
+            var mask = OctopusVersionMaskParser.Parse("c.c.i");
+            var versionParser = new OctopusVersionParser();
+
+            var versions = new[]
+                {
+                    "1.2.3",
+                    "1.2.2",
+                    "1.1.9",
+                    "0.9.0"
+                }.Select(v => (IVersion)versionParser.Parse(v))
+                .ToList();
+
+            var result = mask.GetLatestMaskedVersions(versions);
+
+            Assert.AreEqual(1, result.Count, "Should return single version when only one has highest precedence");
+            Assert.AreEqual("1.2.3", result.First().ToString(), "Should return the highest version");
+        }
+
+        [Test]
+        public void GetLatestMaskedVersionsShouldReturnAllVersionsWithDifferentMetadataTypes()
+        {
+            var mask = OctopusVersionMaskParser.Parse("1.2.3+c.c.c");
+            var versionParser = new OctopusVersionParser();
+
+            var versions = new[]
+                {
+                    "1.2.3+20231201.1430",           // DateTime-like metadata
+                    "1.2.3+build.456",               // Build number metadata
+                    "1.2.3+commit.abc123f",          // Git commit hash metadata
+                    "1.2.3+feature-branch.45",       // Branch name with build number
+                    "1.2.3+build.789.20231201",      // Combined build and date metadata
+                    "1.2.2+anything",                // Lower version (should be filtered out)
+                    "1.2.4+something"                // Higher version (should be filtered out)
+                }.Select(v => (IVersion)versionParser.Parse(v))
+                .ToList();
+
+            var result = mask.GetLatestMaskedVersions(versions);
+
+            // Should return all 1.2.3 versions since they have the same precedence (metadata is ignored in comparison)
+            Assert.AreEqual(5, result.Count, "Should return all versions with matching core version 1.2.3");
+            Assert.True(result.Any(v => v.ToString() == "1.2.3+20231201.1430"), "Should include datetime metadata version");
+            Assert.True(result.Any(v => v.ToString() == "1.2.3+build.456"), "Should include build number metadata version");
+            Assert.True(result.Any(v => v.ToString() == "1.2.3+commit.abc123f"), "Should include git commit metadata version");
+            Assert.True(result.Any(v => v.ToString() == "1.2.3+feature-branch.45"), "Should include branch metadata version");
+            Assert.True(result.Any(v => v.ToString() == "1.2.3+build.789.20231201"), "Should include combined metadata version");
+            
+            // Verify that versions with different core numbers are not included
+            Assert.False(result.Any(v => v.ToString() == "1.2.2+anything"), "Should not include lower version");
+            Assert.False(result.Any(v => v.ToString() == "1.2.4+something"), "Should not include higher version");
+        }
     }
 }
