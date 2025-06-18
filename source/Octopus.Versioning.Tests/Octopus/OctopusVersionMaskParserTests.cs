@@ -223,7 +223,7 @@ namespace Octopus.Versioning.Tests.Octopus
         }
 
         [Test]
-        public void GetLatestMaskedVersionShouldNotBeOrderDependent()
+        public void GetLatestMaskedVersionShouldUseOrderPassedInToTieBreak()
         {
             var mask = OctopusVersionMaskParser.Parse("0.0.7+branchA.c.c.i");
             var versionParser = new OctopusVersionParser();
@@ -231,7 +231,7 @@ namespace Octopus.Versioning.Tests.Octopus
             var versions = new[]
                 {
                     "0.0.7+branchA.1",
-                    "0.0.7+branchA",
+                    "0.0.7+branchA.2", 
                     "0.0.6+branchA",
                     "0.0.5-beta.2",
                     "0.0.5-beta.1",
@@ -242,13 +242,17 @@ namespace Octopus.Versioning.Tests.Octopus
                 }.Select(v => (IVersion)versionParser.Parse(v))
                 .ToList();
 
-            // This is the correct answer that we are looking for
-            Assert.AreEqual("0.0.7+branchA.1", mask.GetLatestMaskedVersion(versions)!.ToString());
+            // GetLatestMaskedVersion, ignores metata when comparing versions, we verify tiebreak behaviour on matching versions.
+#pragma warning disable CS0618 // Type or member is obsolete
+            Assert.AreEqual("0.0.7+branchA.1", mask.GetLatestMaskedVersion(versions)!.ToString(), "Because version with metadata of '+branchA.1' is first in the list passed in");
+#pragma warning restore CS0618 // Type or member is obsolete
 
             // Now the real test; it should still return the same result even if the versions are not in the correct order
             var reversedVersions = versions.ToList();
             reversedVersions.Reverse();
-            Assert.AreEqual("0.0.7+branchA.1", mask.GetLatestMaskedVersion(reversedVersions)!.ToString());
+#pragma warning disable CS0618 // Type or member is obsolete
+            Assert.AreEqual("0.0.7+branchA.2", mask.GetLatestMaskedVersion(reversedVersions)!.ToString(),"Because we reversed the order of the list, so `+branchA.2` is now first in the list.");
+#pragma warning restore CS0618 // Type or member is obsolete
         }
     }
 }

@@ -55,6 +55,20 @@ namespace Octopus.Versioning.Octopus
         public bool IsMask =>
             DidParse && (Major.IsSubstitute || Minor.IsSubstitute || Patch.IsSubstitute || Release.IsSubstitute || Revision.IsSubstitute || Metadata.IsSubstitute);
 
+        /// <summary>
+        /// Gets the latest masked version from a list of versions.
+        /// </summary>
+        /// <remarks>
+        /// When determining version precedence, metadata is ignored (e.g., pre-release tags 
+        /// such as "branch1.a" or build metadata). If two versions are considered equal, 
+        /// the method will return the first occurrence in the list.
+        /// </remarks>
+        /// <param name="versions">
+        /// Example: If passed a list of versions [3.2.1-branch1.a, 3.2.2-branch1.a, 3.2.2-branch1.b],
+        /// the method will determine the latest version and return 3.2.2-branch1.a. because it's the first occurrence of the two 'highest version'
+        /// </param>
+        /// <returns>The latest version based on precedence rules.</returns>
+        [Obsolete("GetLatestMaskedVersion ignores metadata when determining version precedence, it can give unexpected 'latest' version depending list of versions order.")]
         public IVersion? GetLatestMaskedVersion(List<IVersion> versions)
         {
             var maskMajor = Major.IsPresent && !Major.IsSubstitute ? int.Parse(Major.Value) : 0;
