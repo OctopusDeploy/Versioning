@@ -202,6 +202,7 @@ namespace Octopus.Versioning.Tests.Octopus
         [TestCase("1.2.i", "1.2.3", "1.2.3")]
         [TestCase("1.i.i", "1.2.3", "1.2.3")]
         [TestCase("1.i.i", "2.0.0", null)]
+        [Obsolete]
         public void GetLatestVersionMask(string version, string latestVersion, string expected)
         {
             var latestVersions = new List<IVersion>
@@ -223,6 +224,7 @@ namespace Octopus.Versioning.Tests.Octopus
         }
 
         [Test]
+        [Obsolete]
         public void GetLatestMaskedVersionShouldUseOrderPassedInToTieBreak()
         {
             var mask = OctopusVersionMaskParser.Parse("0.0.7+branchA.c.c.i");
@@ -243,16 +245,12 @@ namespace Octopus.Versioning.Tests.Octopus
                 .ToList();
 
             // GetLatestMaskedVersion, ignores metata when comparing versions, we verify tiebreak behaviour on matching versions.
-#pragma warning disable CS0618 // Type or member is obsolete
             Assert.AreEqual("0.0.7+branchA.1", mask.GetLatestMaskedVersion(versions)!.ToString(), "Because version with metadata of '+branchA.1' is first in the list passed in");
-#pragma warning restore CS0618 // Type or member is obsolete
 
             // Now the real test; it should still return the same result even if the versions are not in the correct order
             var reversedVersions = versions.ToList();
             reversedVersions.Reverse();
-#pragma warning disable CS0618 // Type or member is obsolete
             Assert.AreEqual("0.0.7+branchA.2", mask.GetLatestMaskedVersion(reversedVersions)!.ToString(),"Because we reversed the order of the list, so `+branchA.2` is now first in the list.");
-#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         [Test]
