@@ -71,43 +71,7 @@ namespace Octopus.Versioning.Octopus
         [Obsolete("Its preferred to use GetLatestMaskedVersions and handle the case when there is multiple versions passed with the same version but different metadata.")]
         public IVersion? GetLatestMaskedVersion(List<IVersion> versions)
         {
-            var maskMajor = Major.IsPresent && !Major.IsSubstitute ? int.Parse(Major.Value) : 0;
-            var maskMinor = Minor.IsPresent && !Minor.IsSubstitute ? int.Parse(Minor.Value) : 0;
-            var maskBuild = Patch.IsPresent && !Patch.IsSubstitute ? int.Parse(Patch.Value) : 0;
-            var maskRevision = Revision.IsPresent && !Revision.IsSubstitute ? int.Parse(Revision.Value) : 0;
-
-            return versions
-                .Where(v => v != null)
-                .Where(v =>
-                {
-                    if (Major.IsSubstitute)
-                        return true;
-
-                    if (v.Major != maskMajor)
-                        return false;
-
-                    if (Minor.IsSubstitute)
-                        return true;
-
-                    if (v.Minor != maskMinor)
-                        return false;
-
-                    if (Patch.IsSubstitute)
-                        return true;
-
-                    if (v.Patch != maskBuild)
-                        return false;
-
-                    if (Revision.IsSubstitute)
-                        return true;
-
-                    if (v.Revision != maskRevision)
-                        return false;
-
-                    return true;
-                })
-                .OrderByDescending(o => o)
-                .FirstOrDefault();
+            return GetLatestMaskedVersions(versions).FirstOrDefault();
         }
 
         /// <summary>
