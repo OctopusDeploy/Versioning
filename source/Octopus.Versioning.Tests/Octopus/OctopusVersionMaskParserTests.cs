@@ -233,7 +233,7 @@ namespace Octopus.Versioning.Tests.Octopus
             var versions = new[]
                 {
                     "0.0.7+branchA.1",
-                    "0.0.7+branchA.2", 
+                    "0.0.7+branchA.2",
                     "0.0.6+branchA",
                     "0.0.5-beta.2",
                     "0.0.5-beta.1",
@@ -250,7 +250,7 @@ namespace Octopus.Versioning.Tests.Octopus
             // Now the real test; it should still return the same result even if the versions are not in the correct order
             var reversedVersions = versions.ToList();
             reversedVersions.Reverse();
-            Assert.AreEqual("0.0.7+branchA.2", mask.GetLatestMaskedVersion(reversedVersions)!.ToString(),"Because we reversed the order of the list, so `+branchA.2` is now first in the list.");
+            Assert.AreEqual("0.0.7+branchA.2", mask.GetLatestMaskedVersion(reversedVersions)!.ToString(), "Because we reversed the order of the list, so `+branchA.2` is now first in the list.");
         }
 
         [Test]
@@ -262,7 +262,7 @@ namespace Octopus.Versioning.Tests.Octopus
             var versions = new[]
                 {
                     "0.0.7+branchA.1",
-                    "0.0.7+branchA.2", 
+                    "0.0.7+branchA.2",
                     "0.0.6+branchA",
                     "0.0.5-beta.2",
                     "0.0.5-beta.1",
@@ -276,11 +276,12 @@ namespace Octopus.Versioning.Tests.Octopus
             var result = mask.GetLatestMaskedVersions(versions);
 
             // Should return both 0.0.7 versions since they have the same precedence (metadata is ignored in comparison)
-            CollectionAssert.AreEquivalent(new[] 
-            { 
-                "0.0.7+branchA.1", 
-                "0.0.7+branchA.2" 
-            }, result.Select(r => r.ToString()));
+            CollectionAssert.AreEquivalent(new[]
+                {
+                    "0.0.7+branchA.1",
+                    "0.0.7+branchA.2"
+                },
+                result.Select(r => r.ToString()));
         }
 
         [Test]
@@ -344,18 +345,17 @@ namespace Octopus.Versioning.Tests.Octopus
             var result = mask.GetLatestMaskedVersions(versions);
 
             // Should return all 1.2.3 versions since they have the same precedence (metadata is ignored in comparison)
-            CollectionAssert.AreEquivalent(new[] 
-            { 
-                "1.2.3+20231201.1430",
-                "1.2.3+build.456",
-                "1.2.3+commit.abc123f",
-                "1.2.3+feature-branch.45",
-                "1.2.3+build.789.20231201"
-            }, result.Select(r => r.ToString()));
-            
-            // Verify that versions with different core numbers are not included
-            Assert.False(result.Any(v => v.ToString() == "1.2.2+anything"), "Should not include lower version");
-            Assert.False(result.Any(v => v.ToString() == "1.2.4+something"), "Should not include higher version");
+            CollectionAssert.AreEquivalent(new[]
+                {
+                    "1.2.3+20231201.1430",
+                    "1.2.3+build.456",
+                    "1.2.3+commit.abc123f",
+                    "1.2.3+feature-branch.45",
+                    "1.2.3+build.789.20231201"
+                },
+                result.Select(r => r.ToString()),
+                "Because these match the mask of 1.2.3, it should not include lower version or higher version"
+            );
         }
     }
 }
