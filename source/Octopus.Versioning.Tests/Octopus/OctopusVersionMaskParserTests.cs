@@ -276,9 +276,11 @@ namespace Octopus.Versioning.Tests.Octopus
             var result = mask.GetLatestMaskedVersions(versions);
 
             // Should return both 0.0.7 versions since they have the same precedence (metadata is ignored in comparison)
-            Assert.AreEqual(2, result.Count, "Should return both versions with highest precedence");
-            Assert.True(result.Any(v => v.ToString() == "0.0.7+branchA.1"), "Should include 0.0.7+branchA.1");
-            Assert.True(result.Any(v => v.ToString() == "0.0.7+branchA.2"), "Should include 0.0.7+branchA.2");
+            CollectionAssert.AreEquivalent(new[] 
+            { 
+                "0.0.7+branchA.1", 
+                "0.0.7+branchA.2" 
+            }, result.Select(r => r.ToString()));
         }
 
         [Test]
@@ -342,12 +344,14 @@ namespace Octopus.Versioning.Tests.Octopus
             var result = mask.GetLatestMaskedVersions(versions);
 
             // Should return all 1.2.3 versions since they have the same precedence (metadata is ignored in comparison)
-            Assert.AreEqual(5, result.Count, "Should return all versions with matching core version 1.2.3");
-            Assert.True(result.Any(v => v.ToString() == "1.2.3+20231201.1430"), "Should include datetime metadata version");
-            Assert.True(result.Any(v => v.ToString() == "1.2.3+build.456"), "Should include build number metadata version");
-            Assert.True(result.Any(v => v.ToString() == "1.2.3+commit.abc123f"), "Should include git commit metadata version");
-            Assert.True(result.Any(v => v.ToString() == "1.2.3+feature-branch.45"), "Should include branch metadata version");
-            Assert.True(result.Any(v => v.ToString() == "1.2.3+build.789.20231201"), "Should include combined metadata version");
+            CollectionAssert.AreEquivalent(new[] 
+            { 
+                "1.2.3+20231201.1430",
+                "1.2.3+build.456",
+                "1.2.3+commit.abc123f",
+                "1.2.3+feature-branch.45",
+                "1.2.3+build.789.20231201"
+            }, result.Select(r => r.ToString()));
             
             // Verify that versions with different core numbers are not included
             Assert.False(result.Any(v => v.ToString() == "1.2.2+anything"), "Should not include lower version");
