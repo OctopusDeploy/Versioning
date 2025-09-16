@@ -79,8 +79,8 @@ namespace Octopus.Versioning
             int patch,
             int revision,
             IEnumerable<string> releaseLabels,
-            string metadata,
-            string originalVersion)
+            string? metadata,
+            string? originalVersion)
         {
             return new SemanticVersion(major,
                 minor,
@@ -110,8 +110,8 @@ namespace Octopus.Versioning
 
         public static IVersion CreateSemanticVersion(Version version,
             IEnumerable<string> releaseLabels,
-            string metadata,
-            string originalVersion)
+            string? metadata,
+            string? originalVersion)
         {
             return new SemanticVersion(
                 version,
