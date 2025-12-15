@@ -90,7 +90,7 @@ jobs:
           version: ${{ steps.build.outputs.octoversion_fullsemver }}
 
       - name: Push Packages to Octopus Deploy 🐙
-        uses: OctopusDeploy/push-package-action@v3
+        uses: OctopusDeploy/push-package-action@v4
         if: (! contains(github.ref, '/merge')) && (! contains(github.ref, '/dependabot/')) && (! contains(github.ref, 'prettybot/'))
         with:
           packages: |
