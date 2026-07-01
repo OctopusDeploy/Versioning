@@ -14,6 +14,7 @@ namespace Octopus.Versioning.Octopus
         const string PrereleasePrefix = "prereleaseprefix";
         const string PrereleaseCounter = "prereleasecounter";
         const string Meta = "buildmetadata";
+        const string Digest = "digest";
 
         /// <summary>
         /// Note that we don't expect to see versions with spaces around the major, minor, patch, and release.
@@ -40,7 +41,9 @@ namespace Octopus.Versioning.Octopus
             // Everything after the last digit and before the plus is the prerelease
             @$"(?:[.\-_\\])?(?<{Prerelease}>(?<{PrereleasePrefix}>[A-Za-z0-9]*?)([.\-_\\](?<{PrereleaseCounter}>[A-Za-z0-9.\-_\\]*?)?)?)?" +
             // The metadata is everything after the plus
-            $@"(?:\+(?<{Meta}>[A-Za-z0-9_\-.\\+]*?))?\s*$");
+            $@"(?:\+(?<{Meta}>[A-Za-z0-9_\-.\\+]*?))?" +
+            // Optionally match a Docker digest suffix e.g. @sha256:abc123 (used to pin an image to an exact content hash)
+            $@"(?:@(?<{Digest}>sha256:[a-f0-9]+))?\s*$");
 
         public OctopusVersion Parse(string? version)
         {
