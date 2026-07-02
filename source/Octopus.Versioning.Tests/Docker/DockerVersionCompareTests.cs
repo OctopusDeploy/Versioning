@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using Octopus.Versioning.Docker;
 
 namespace Octopus.Versioning.Tests.Docker
 {
@@ -71,6 +72,36 @@ namespace Octopus.Versioning.Tests.Docker
             var ver2 = VersionFactory.CreateDockerTag(v2);
 
             Assert.AreNotEqual(ver1.GetHashCode(), ver2.GetHashCode());
+        }
+
+        [Test]
+        [TestCase("6.5@sha256:abc123def456", "6.5", "sha256:abc123def456")]
+        [TestCase("latest@sha256:abc123def456", "latest", "sha256:abc123def456")]
+        [TestCase("6.5", "6.5", "")]
+        public void SplitDigestShouldExtractDigestCorrectly(string input, string expectedTag, string expectedDigest)
+        {
+            var (tag, digest) = DockerTag.SplitDigest(input);
+            Assert.AreEqual(expectedTag, tag);
+            Assert.AreEqual(string.IsNullOrEmpty(expectedDigest) ? null : expectedDigest, digest);
+        }
+
+        [Test]
+        [TestCase("6.5@sha256:abc123def456", "sha256:abc123def456")]
+        [TestCase("latest", "")]
+        public void CreateDockerTagShouldPopulateDigest(string input, string expectedDigest)
+        {
+            var tag = (DockerTag)VersionFactory.CreateDockerTag(input);
+            Assert.AreEqual(string.IsNullOrEmpty(expectedDigest) ? null : expectedDigest, tag.Digest);
+        }
+
+        [Test]
+        [TestCase("6.5@sha256:abc123def456", "6.5@sha256:abc123def456")]
+        [TestCase("6.5", "6.5")]
+        [TestCase("latest", "latest")]
+        public void ToStringShouldIncludeDigestWhenPresent(string input, string expected)
+        {
+            var tag = VersionFactory.CreateDockerTag(input);
+            Assert.AreEqual(expected, tag.ToString());
         }
 
         [Test]
