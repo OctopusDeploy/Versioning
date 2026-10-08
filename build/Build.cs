@@ -1,11 +1,11 @@
 using System;
+using System.IO;
 using Nuke.Common;
 using Nuke.Common.Execution;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Utilities.Collections;
-using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 using Nuke.Common.Tools.OctoVersion;
 using Serilog;
@@ -39,7 +39,7 @@ class Build : NukeBuild
         MajorMember = nameof(OctoVersionMajor),
         MinorMember = nameof(OctoVersionMinor),
         PatchMember = nameof(OctoVersionPatch),
-        Framework = "net8.0")]
+        Framework = "net10.0")]
     readonly OctoVersionInfo OctoVersionInfo = null!; // assigned by Nuke via reflection
 
     static AbsolutePath SourceDirectory => RootDirectory / "source";
@@ -88,7 +88,6 @@ class Build : NukeBuild
                 .SetNoBuild(true)
                 .EnableNoRestore()
                 .SetLoggers("trx")
-                .SetVerbosity(DotNetVerbosity.Normal)
                 .SetFilter(@"FullyQualifiedName\!~Integration.Tests"));
         });
 
@@ -110,7 +109,6 @@ class Build : NukeBuild
                 .SetOutputDirectory(ArtifactsDirectory)
                 .EnableNoBuild()
                 .DisableIncludeSymbols()
-                .SetVerbosity(DotNetVerbosity.Normal)
                 .SetProperty("NuspecProperties", $"Version={OctoVersionInfo.FullSemVer}"));
         });
 
@@ -123,7 +121,7 @@ class Build : NukeBuild
             ArtifactsDirectory.GlobFiles("*.nupkg")
                 .ForEach(package =>
                 {
-                    CopyFileToDirectory(package, LocalPackagesDir);
+                    File.Copy(package, LocalPackagesDir / package.Name, overwrite: true);
                 });
         });
 
