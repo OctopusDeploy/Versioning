@@ -88,6 +88,7 @@ class Build : NukeBuild
                 .SetNoBuild(true)
                 .EnableNoRestore()
                 .SetLoggers("trx")
+                .SetVerbosity(DotNetVerbosity.normal)
                 .SetFilter(@"FullyQualifiedName\!~Integration.Tests"));
         });
 
@@ -109,6 +110,7 @@ class Build : NukeBuild
                 .SetOutputDirectory(ArtifactsDirectory)
                 .EnableNoBuild()
                 .DisableIncludeSymbols()
+                .SetVerbosity(DotNetVerbosity.normal)
                 .SetProperty("NuspecProperties", $"Version={OctoVersionInfo.FullSemVer}"));
         });
 
